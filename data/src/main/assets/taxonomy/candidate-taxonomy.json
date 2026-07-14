@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "taxonomyVersion": "candidate-2026-07-14",
+  "artifactChecksum": "",
+  "review": {"status": "DRAFT", "reviewedAt": "2026-07-14", "reviewedBy": "catalog-review-pending"},
+  "concepts": [
+    {
+      "stableId": "vegetable.small-bok-choy",
+      "householdName": "小白菜",
+      "aliases": ["小白菜", "白菜"],
+      "category": "VEGETABLE",
+      "publicationState": "CANDIDATE",
+      "officialMappings": [
+        {"commodityCode": "LB1", "officialName": "小白菜-土白菜", "market": "TAIPEI_FIRST"},
+        {"commodityCode": "LB2", "officialName": "小白菜-蚵仔白", "market": "TAIPEI_SECOND"}
+      ],
+      "image": {"assetPath": "illustrations/pending/vegetable-small-bok-choy.webp", "generated": true, "disclosure": "AI 生成示意圖，非實物照片。", "reviewedAt": null, "reviewedBy": null, "reviewStatus": "DRAFT"}
+    },
+    {
+      "stableId": "vegetable.napa-cabbage",
+      "householdName": "包心白菜",
+      "aliases": ["包心白菜", "白菜"],
+      "category": "VEGETABLE",
+      "publicationState": "CANDIDATE",
+      "officialMappings": [
+        {"commodityCode": "LC1", "officialName": "包心白-包白", "market": "TAIPEI_FIRST"},
+        {"commodityCode": "LC1", "officialName": "包心白-包白", "market": "TAIPEI_SECOND"}
+      ],
+      "image": {"assetPath": "illustrations/pending/vegetable-napa-cabbage.webp", "generated": true, "disclosure": "AI 生成示意圖，非實物照片。", "reviewedAt": null, "reviewedBy": null, "reviewStatus": "DRAFT"}
+    },
+    {
+      "stableId": "fruit.banana",
+      "householdName": "香蕉",
+      "aliases": ["香蕉"],
+      "category": "FRUIT",
+      "publicationState": "CANDIDATE",
+      "officialMappings": [
+        {"commodityCode": "A1", "officialName": "香蕉", "market": "TAIPEI_FIRST"},
+        {"commodityCode": "A1", "officialName": "香蕉", "market": "TAIPEI_SECOND"}
+      ],
+      "image": {"assetPath": "illustrations/pending/fruit-banana.webp", "generated": true, "disclosure": "AI 生成示意圖，非實物照片。", "reviewedAt": null, "reviewedBy": null, "reviewStatus": "DRAFT"}
+    }
+  ],
+  "ambiguitySets": [
+    {"normalizedAlias": "白菜", "displayAlias": "白菜", "targetConceptIds": ["vegetable.napa-cabbage", "vegetable.small-bok-choy"]}
+  ]
+}

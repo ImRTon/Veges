@@ -1,0 +1,75 @@
+## 1. Project Foundation
+
+- [x] 1.1 Bootstrap the Kotlin Gradle project with app, domain, data, design-system, release-tool, home, catalog, detail, and alerts modules using a version catalog and reproducible build settings
+- [x] 1.2 Configure Android application identity, supported SDK range, Traditional Chinese resources, light/dark Material 3 themes, adaptive navigation, and release-safe manifest defaults
+- [x] 1.3 Add Hilt, coroutines/Flow, Compose navigation, Room, Retrofit/OkHttp, Kotlin serialization, WorkManager, and test dependencies behind module-appropriate interfaces
+- [x] 1.4 Configure CI checks for build, unit and instrumented tests, lint, formatting, static analysis, dependency verification, and release artifact validation
+- [x] 1.5 Add deterministic clock, dispatcher, fake repository, and fixture utilities so date-sensitive and asynchronous behavior is testable without live services
+
+## 2. Domain And Persistence
+
+- [x] 2.1 Define domain types for stable produce concepts, aliases, categories, official variants, market bases, scaled prices, units, dates, provenance, freshness, and explicit unavailable reasons
+- [x] 2.2 Design and implement the Room schema for taxonomy, source observations, source-day states, sync runs, model metadata, estimates, tracked concepts, alert rules, and notification events with required indexes and uniqueness constraints
+- [x] 2.3 Implement DAO and transaction boundaries for idempotent staged imports, observable repository queries, estimate history, and atomic alert transitions
+- [x] 2.4 Add Room schema export, migration tests, transaction rollback tests, query tests, and a policy prohibiting destructive migration fallback
+- [x] 2.5 Implement repository interfaces and data/domain mappers that prevent network DTOs and persistence entities from leaking into feature modules
+
+## 3. Official Data Synchronization
+
+- [x] 3.1 Verify the current MOA wholesale and Taipei retail dataset contracts, attribution and usage terms, pagination, market identifiers, units, date formats, closure signals, and practical request limits; capture reviewed fixtures and document any blocking ambiguity
+- [x] 3.2 Implement isolated HTTPS clients and DTO mappers for Taipei First, Taipei Second, crop metadata, and Taipei historical retail observations with bounded timeouts and retries
+- [x] 3.3 Implement validation for schemas, dates, markets, commodity identifiers, numeric ranges, units, and referential integrity, including distinct valid, closed, missing, invalid, and failed states
+- [x] 3.4 Implement incremental paginated synchronization with conditional requests where supported, atomic publication, prior-valid-data preservation, and source/run provenance
+- [x] 3.5 Add contract and integration tests for success, pagination, duplicate observations, closure, empty data, zero values, malformed responses, schema drift, retry exhaustion, and interrupted atomic import
+- [x] 3.6 Implement unique network-constrained WorkManager refresh, foreground stale-data catch-up, last-attempt/status reporting, and bounded history retention for the 1-year trend
+- [ ] 3.7 Verify synchronization, storage growth, network use, and battery behavior on representative emulator/device profiles and record acceptable operating bounds
+
+## 4. Taxonomy And Catalog Audit
+
+- [x] 4.1 Define versioned reviewed taxonomy and catalog-audit schemas with checksums, stable IDs, review metadata, aliases, explicit ambiguity sets, exact official mappings, category, publication state, and image metadata
+- [x] 4.2 Implement deterministic release-tool commands that ingest reviewed taxonomy and source snapshots, validate referential integrity, calculate mapping/coverage/recency metrics, and emit machine-readable artifacts plus an exclusion report
+- [x] 4.3 Build an initial vegetable and fruit candidate taxonomy from official catalogs and reviewed Taiwan household terms without automatically accepting LLM-proposed mappings
+- [x] 4.4 Present catalog audit evidence and proposed numeric publication thresholds to the user, record the approved minimum of 30 valid observation days, leave coverage/recency thresholds pending audit approval, and obtain explicit approval before marking any launch concept published
+- [x] 4.5 Finalize the approved launch taxonomy, including explicit choices for ambiguous terms such as `白菜`, and add golden, checksum, deterministic-output, invalid-artifact, and stable-ID tests
+- [ ] 4.6 Generate representative catalog illustrations without logos, packaging, certifications, origin, or quality claims; obtain user review for recognizability and botanical plausibility and record approval metadata
+- [x] 4.7 Implement fail-closed, idempotent bundled taxonomy import and Room-backed normalized household-name/alias search with fruit and vegetable category queries
+
+## 5. Estimation Audit And Runtime
+
+- [x] 5.1 Define candidate calibration models, feature/unit contracts, rolling or expanding-window backtest strategy, point-error metrics, interval-calibration metrics, confidence semantics, and artifact schema without embedding unreviewed acceptance thresholds
+- [x] 5.2 Implement deterministic source normalization and same-date transaction-volume weighting for Taipei combined, with no silent single-market substitution
+- [x] 5.3 Implement release-tool model fitting and no-future-leakage backtesting per concept and source basis, including per-period metrics, aggregate metrics, provenance, data cutoff, and exclusion reasons
+- [ ] 5.4 Run the initial data audit and backtests, present model comparisons and proposed coverage, recency, sample-size, accuracy, interval, confidence, and staleness thresholds to the user, record approval of at least 30 paired calibration periods, and obtain remaining explicit approvals before enabling estimates
+- [ ] 5.5 Generate checksummed versioned model artifacts from the approved thresholds and verify deterministic output, no-look-ahead behavior, expected exclusions, and calibration-cutoff metadata in CI
+- [x] 5.6 Implement the on-device registry of known estimator versions, artifact integrity/version checks, per-concept/source eligibility, point estimation, and independent range/confidence gates
+- [x] 5.7 Persist estimate provenance and auditable history, including concept, basis, source dates, model version, calibration cutoff, calculation time, optional interval/confidence, and unavailable reason
+- [x] 5.8 Add domain tests for unit normalization, decimal rounding, variant aggregation, combined weighting, market-specific bases, invalid/closed/stale inputs, unsupported models, output gates, and historical provenance
+
+## 6. Tracking And Alerts
+
+- [x] 6.1 Implement track/untrack use cases with stable concept IDs, active-alert confirmation, persistence, and catalog-update behavior
+- [x] 6.2 Implement validated create, edit, enable, disable, and delete flows for positive below-threshold alert rules whose source basis remains fixed until edited
+- [x] 6.3 Implement transactional evaluation on only newer valid qualified estimates, transition deduplication, clear-state rearming, and retry-safe notification event identities
+- [x] 6.4 Implement local notification channels, Android runtime permission handling, notification content and deep links, and best-effort scheduling disclosure
+- [ ] 6.5 Integrate synchronization, estimation, alert evaluation, and notification delivery as a unique retry-safe WorkManager chain plus foreground catch-up
+- [x] 6.6 Add tests for threshold boundaries, unchanged/closed/missing/invalid/stale data, source preference changes, duplicate worker execution, permission denial, transition rearming, and notification deep links
+
+## 7. Compose Product Experience
+
+- [x] 7.1 Build the adaptive Material 3 application shell, typed navigation, reusable loading/refreshing/current/stale/offline/unavailable/error components, price formatting, source labels, mandatory `估算` estimate tag/full disclosure, and AI-image disclosure component
+- [x] 7.2 Implement the tracked-produce home with compact estimate hierarchy, movement text/icons, freshness and source dates, alert summaries, empty state, cached refresh behavior, and unavailable reasons
+- [x] 7.3 Implement household-name search, fruit/vegetable visual browsing, official identity context, no-reviewed-result state, and mandatory ambiguity choice sheet
+- [x] 7.4 Implement produce detail with estimate qualification, illustration disclosure, source segmented control, source/calibration dates, track and alert actions, and expandable methodology/provenance
+- [x] 7.5 Implement accessible 7D/30D/90D/1Y retail-estimate and wholesale range/average/volume trends with point inspection and non-visual summaries, without stock candlesticks
+- [x] 7.6 Implement alert list/editor screens, notification permission remediation, fixed-basis explanation, validation, and background-delay disclosure
+- [ ] 7.7 Add Compose navigation, state-restoration, disclosure, ambiguity, source-switching, unavailable-state, chart semantics, font-scaling, touch-target, contrast, light/dark theme, and screenshot tests
+
+## 8. Privacy, Reliability, And Release
+
+- [x] 8.1 Add data-source attribution, methodology, privacy, no-account/no-custom-backend disclosure, open-source notices, and release logging rules that exclude full payloads and local user preferences
+- [x] 8.2 Add offline-first end-to-end tests using deterministic fake sources for initial import, failed refresh with cached data, catalog search, estimate display, tracking, and alert transitions
+- [x] 8.3 Add non-blocking live-source smoke diagnostics and documented operator steps for detecting upstream schema, attribution, endpoint, or closure-signal changes without making CI depend on availability
+- [ ] 8.4 Benchmark startup, search, chart rendering, database size, synchronization duration, and memory on representative low/mid-range devices; fix regressions against recorded budgets
+- [ ] 8.5 Complete accessibility review, Traditional Chinese copy review, generated-image review evidence, model/catalog audit evidence, Room migration verification, dependency/security review, and Play policy checklist
+- [ ] 8.6 Run the full release build and test matrix, perform closed-device testing across online/offline/closure/permission/update scenarios, and resolve all blocking findings
+- [ ] 8.7 Document release, rollback, data/model refresh, taxonomy amendment, source incident, and database migration procedures, then produce the signed MVP candidate only after every gate passes

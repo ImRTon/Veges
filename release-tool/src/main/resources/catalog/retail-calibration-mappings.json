@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "mappings": [
+    {"conceptId": "vegetable.cabbage", "retailItemNames": ["甘藍"]},
+    {"conceptId": "vegetable.small-bok-choy", "retailItemNames": ["小白菜"]},
+    {"conceptId": "vegetable.napa-cabbage", "retailItemNames": ["結球白菜"]},
+    {"conceptId": "vegetable.qingjiang-bok-choy", "retailItemNames": ["青江白菜"]},
+    {"conceptId": "fruit.banana", "retailItemNames": ["香蕉(內銷)", "香蕉"]}
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "policyVersion": "catalog-publication-2026-07-14",
+  "approvedAt": "2026-07-14",
+  "approvedBy": "product-owner",
+  "minimumValidObservationDays": 30,
+  "minimumPairedCalibrationPeriods": 30,
+  "minimumCoverageRatio": null,
+  "maximumRecencyDays": null,
+  "publishCandidates": false,
+  "requireExplicitAmbiguityChoice": true,
+  "estimateDisclosureShortTag": "估算",
+  "estimateDisclosureFullLabel": "Taipei retail reference estimate",
+  "notes": "Thirty paired periods, each containing valid wholesale input and historical retail target data, is approved as the minimum calibration history. Coverage, recency, point-error, interval, confidence, and staleness remain pending a later audit. Current 18-month retail history cannot enable launch estimates."
+}

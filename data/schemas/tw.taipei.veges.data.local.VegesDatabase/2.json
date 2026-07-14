@@ -1,0 +1,1018 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "2f91f8bd3425cccbf3dc87eb7b55f3ec",
+    "entities": [
+      {
+        "tableName": "taxonomy_concepts",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`stableId` TEXT NOT NULL, `householdName` TEXT NOT NULL, `normalizedHouseholdName` TEXT NOT NULL, `category` TEXT NOT NULL, `published` INTEGER NOT NULL, `illustrationAsset` TEXT, `illustrationDisclosure` TEXT NOT NULL, `taxonomyVersion` TEXT NOT NULL, `artifactChecksum` TEXT NOT NULL, `reviewedAt` TEXT NOT NULL, `reviewer` TEXT NOT NULL, PRIMARY KEY(`stableId`))",
+        "fields": [
+          {
+            "fieldPath": "stableId",
+            "columnName": "stableId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "householdName",
+            "columnName": "householdName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "normalizedHouseholdName",
+            "columnName": "normalizedHouseholdName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "category",
+            "columnName": "category",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "published",
+            "columnName": "published",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "illustrationAsset",
+            "columnName": "illustrationAsset",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "illustrationDisclosure",
+            "columnName": "illustrationDisclosure",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "taxonomyVersion",
+            "columnName": "taxonomyVersion",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "artifactChecksum",
+            "columnName": "artifactChecksum",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "reviewedAt",
+            "columnName": "reviewedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "reviewer",
+            "columnName": "reviewer",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "stableId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_taxonomy_concepts_category_published",
+            "unique": false,
+            "columnNames": [
+              "category",
+              "published"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_taxonomy_concepts_category_published` ON `${TABLE_NAME}` (`category`, `published`)"
+          },
+          {
+            "name": "index_taxonomy_concepts_taxonomyVersion",
+            "unique": false,
+            "columnNames": [
+              "taxonomyVersion"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_taxonomy_concepts_taxonomyVersion` ON `${TABLE_NAME}` (`taxonomyVersion`)"
+          }
+        ]
+      },
+      {
+        "tableName": "taxonomy_aliases",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`conceptId` TEXT NOT NULL, `normalizedAlias` TEXT NOT NULL, `displayAlias` TEXT NOT NULL, PRIMARY KEY(`conceptId`, `normalizedAlias`), FOREIGN KEY(`conceptId`) REFERENCES `taxonomy_concepts`(`stableId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "conceptId",
+            "columnName": "conceptId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "normalizedAlias",
+            "columnName": "normalizedAlias",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "displayAlias",
+            "columnName": "displayAlias",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "conceptId",
+            "normalizedAlias"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_taxonomy_aliases_normalizedAlias",
+            "unique": false,
+            "columnNames": [
+              "normalizedAlias"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_taxonomy_aliases_normalizedAlias` ON `${TABLE_NAME}` (`normalizedAlias`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "taxonomy_concepts",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "conceptId"
+            ],
+            "referencedColumns": [
+              "stableId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "official_variants",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`conceptId` TEXT NOT NULL, `commodityCode` TEXT NOT NULL, `officialName` TEXT NOT NULL, `market` TEXT NOT NULL, PRIMARY KEY(`conceptId`, `commodityCode`, `market`), FOREIGN KEY(`conceptId`) REFERENCES `taxonomy_concepts`(`stableId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "conceptId",
+            "columnName": "conceptId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "commodityCode",
+            "columnName": "commodityCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "officialName",
+            "columnName": "officialName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "market",
+            "columnName": "market",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "conceptId",
+            "commodityCode",
+            "market"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_official_variants_commodityCode_market",
+            "unique": false,
+            "columnNames": [
+              "commodityCode",
+              "market"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_official_variants_commodityCode_market` ON `${TABLE_NAME}` (`commodityCode`, `market`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "taxonomy_concepts",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "conceptId"
+            ],
+            "referencedColumns": [
+              "stableId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "source_observations",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`observationId` TEXT NOT NULL, `sourceKind` TEXT NOT NULL, `market` TEXT NOT NULL, `commodityCode` TEXT NOT NULL, `officialName` TEXT NOT NULL, `observedOn` TEXT NOT NULL, `lowerPrice` TEXT, `averagePrice` TEXT, `upperPrice` TEXT, `priceUnit` TEXT, `volume` TEXT, `volumeUnit` TEXT, `state` TEXT NOT NULL, `sourceUrl` TEXT, `attribution` TEXT NOT NULL, `retrievedAt` TEXT NOT NULL, `syncRunId` TEXT NOT NULL, PRIMARY KEY(`observationId`))",
+        "fields": [
+          {
+            "fieldPath": "observationId",
+            "columnName": "observationId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sourceKind",
+            "columnName": "sourceKind",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "market",
+            "columnName": "market",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "commodityCode",
+            "columnName": "commodityCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "officialName",
+            "columnName": "officialName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "observedOn",
+            "columnName": "observedOn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lowerPrice",
+            "columnName": "lowerPrice",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "averagePrice",
+            "columnName": "averagePrice",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "upperPrice",
+            "columnName": "upperPrice",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "priceUnit",
+            "columnName": "priceUnit",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "volume",
+            "columnName": "volume",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "volumeUnit",
+            "columnName": "volumeUnit",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "state",
+            "columnName": "state",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sourceUrl",
+            "columnName": "sourceUrl",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "attribution",
+            "columnName": "attribution",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "retrievedAt",
+            "columnName": "retrievedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "syncRunId",
+            "columnName": "syncRunId",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "observationId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_source_observations_sourceKind_market_commodityCode_observedOn",
+            "unique": true,
+            "columnNames": [
+              "sourceKind",
+              "market",
+              "commodityCode",
+              "observedOn"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_source_observations_sourceKind_market_commodityCode_observedOn` ON `${TABLE_NAME}` (`sourceKind`, `market`, `commodityCode`, `observedOn`)"
+          },
+          {
+            "name": "index_source_observations_commodityCode_observedOn",
+            "unique": false,
+            "columnNames": [
+              "commodityCode",
+              "observedOn"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_source_observations_commodityCode_observedOn` ON `${TABLE_NAME}` (`commodityCode`, `observedOn`)"
+          },
+          {
+            "name": "index_source_observations_market_observedOn",
+            "unique": false,
+            "columnNames": [
+              "market",
+              "observedOn"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_source_observations_market_observedOn` ON `${TABLE_NAME}` (`market`, `observedOn`)"
+          }
+        ]
+      },
+      {
+        "tableName": "source_day_states",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`stateId` TEXT NOT NULL, `sourceKind` TEXT NOT NULL, `market` TEXT NOT NULL, `observedOn` TEXT NOT NULL, `state` TEXT NOT NULL, `diagnostic` TEXT, `latestValidObservationOn` TEXT, `updatedAt` TEXT NOT NULL, `syncRunId` TEXT, PRIMARY KEY(`stateId`))",
+        "fields": [
+          {
+            "fieldPath": "stateId",
+            "columnName": "stateId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sourceKind",
+            "columnName": "sourceKind",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "market",
+            "columnName": "market",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "observedOn",
+            "columnName": "observedOn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "state",
+            "columnName": "state",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "diagnostic",
+            "columnName": "diagnostic",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "latestValidObservationOn",
+            "columnName": "latestValidObservationOn",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "syncRunId",
+            "columnName": "syncRunId",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "stateId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_source_day_states_sourceKind_market_observedOn",
+            "unique": true,
+            "columnNames": [
+              "sourceKind",
+              "market",
+              "observedOn"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_source_day_states_sourceKind_market_observedOn` ON `${TABLE_NAME}` (`sourceKind`, `market`, `observedOn`)"
+          },
+          {
+            "name": "index_source_day_states_state_observedOn",
+            "unique": false,
+            "columnNames": [
+              "state",
+              "observedOn"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_source_day_states_state_observedOn` ON `${TABLE_NAME}` (`state`, `observedOn`)"
+          }
+        ]
+      },
+      {
+        "tableName": "sync_runs",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`runId` TEXT NOT NULL, `sourceKind` TEXT NOT NULL, `startedAt` TEXT NOT NULL, `completedAt` TEXT, `status` TEXT NOT NULL, `requestedFrom` TEXT, `requestedTo` TEXT, `pagesFetched` INTEGER NOT NULL, `recordsAccepted` INTEGER NOT NULL, `diagnostic` TEXT, PRIMARY KEY(`runId`))",
+        "fields": [
+          {
+            "fieldPath": "runId",
+            "columnName": "runId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sourceKind",
+            "columnName": "sourceKind",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startedAt",
+            "columnName": "startedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "completedAt",
+            "columnName": "completedAt",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "requestedFrom",
+            "columnName": "requestedFrom",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "requestedTo",
+            "columnName": "requestedTo",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "pagesFetched",
+            "columnName": "pagesFetched",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recordsAccepted",
+            "columnName": "recordsAccepted",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "diagnostic",
+            "columnName": "diagnostic",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "runId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_sync_runs_sourceKind_startedAt",
+            "unique": false,
+            "columnNames": [
+              "sourceKind",
+              "startedAt"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_sync_runs_sourceKind_startedAt` ON `${TABLE_NAME}` (`sourceKind`, `startedAt`)"
+          },
+          {
+            "name": "index_sync_runs_status_startedAt",
+            "unique": false,
+            "columnNames": [
+              "status",
+              "startedAt"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_sync_runs_status_startedAt` ON `${TABLE_NAME}` (`status`, `startedAt`)"
+          }
+        ]
+      },
+      {
+        "tableName": "model_metadata",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`artifactId` TEXT NOT NULL, `conceptId` TEXT NOT NULL, `basis` TEXT NOT NULL, `modelVersion` TEXT NOT NULL, `artifactChecksum` TEXT NOT NULL, `calibrationCutoff` TEXT NOT NULL, `pointEligible` INTEGER NOT NULL, `intervalEligible` INTEGER NOT NULL, `confidenceEligible` INTEGER NOT NULL, `exclusionReason` TEXT, `importedAt` TEXT NOT NULL, PRIMARY KEY(`artifactId`))",
+        "fields": [
+          {
+            "fieldPath": "artifactId",
+            "columnName": "artifactId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "conceptId",
+            "columnName": "conceptId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "basis",
+            "columnName": "basis",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "modelVersion",
+            "columnName": "modelVersion",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "artifactChecksum",
+            "columnName": "artifactChecksum",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "calibrationCutoff",
+            "columnName": "calibrationCutoff",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pointEligible",
+            "columnName": "pointEligible",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "intervalEligible",
+            "columnName": "intervalEligible",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "confidenceEligible",
+            "columnName": "confidenceEligible",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "exclusionReason",
+            "columnName": "exclusionReason",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "importedAt",
+            "columnName": "importedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "artifactId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_model_metadata_conceptId_basis_modelVersion",
+            "unique": true,
+            "columnNames": [
+              "conceptId",
+              "basis",
+              "modelVersion"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_model_metadata_conceptId_basis_modelVersion` ON `${TABLE_NAME}` (`conceptId`, `basis`, `modelVersion`)"
+          }
+        ]
+      },
+      {
+        "tableName": "estimates",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`estimateId` TEXT NOT NULL, `conceptId` TEXT NOT NULL, `basis` TEXT NOT NULL, `modelVersion` TEXT NOT NULL, `sourceDate` TEXT NOT NULL, `sourceDatesJson` TEXT NOT NULL, `calibrationCutoff` TEXT NOT NULL, `pairedCalibrationPeriods` INTEGER NOT NULL, `calculatedAt` TEXT NOT NULL, `pointValue` TEXT, `pointUnit` TEXT, `intervalLower` TEXT, `intervalUpper` TEXT, `confidence` TEXT, `unavailableReason` TEXT, `disclosureShortTag` TEXT NOT NULL, `disclosureFullLabel` TEXT NOT NULL, PRIMARY KEY(`estimateId`))",
+        "fields": [
+          {
+            "fieldPath": "estimateId",
+            "columnName": "estimateId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "conceptId",
+            "columnName": "conceptId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "basis",
+            "columnName": "basis",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "modelVersion",
+            "columnName": "modelVersion",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sourceDate",
+            "columnName": "sourceDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sourceDatesJson",
+            "columnName": "sourceDatesJson",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "calibrationCutoff",
+            "columnName": "calibrationCutoff",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pairedCalibrationPeriods",
+            "columnName": "pairedCalibrationPeriods",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "calculatedAt",
+            "columnName": "calculatedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pointValue",
+            "columnName": "pointValue",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "pointUnit",
+            "columnName": "pointUnit",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "intervalLower",
+            "columnName": "intervalLower",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "intervalUpper",
+            "columnName": "intervalUpper",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "confidence",
+            "columnName": "confidence",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "unavailableReason",
+            "columnName": "unavailableReason",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "disclosureShortTag",
+            "columnName": "disclosureShortTag",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "disclosureFullLabel",
+            "columnName": "disclosureFullLabel",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "estimateId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_estimates_conceptId_basis_sourceDate",
+            "unique": false,
+            "columnNames": [
+              "conceptId",
+              "basis",
+              "sourceDate"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_estimates_conceptId_basis_sourceDate` ON `${TABLE_NAME}` (`conceptId`, `basis`, `sourceDate`)"
+          },
+          {
+            "name": "index_estimates_conceptId_calculatedAt",
+            "unique": false,
+            "columnNames": [
+              "conceptId",
+              "calculatedAt"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_estimates_conceptId_calculatedAt` ON `${TABLE_NAME}` (`conceptId`, `calculatedAt`)"
+          },
+          {
+            "name": "index_estimates_modelVersion_calibrationCutoff",
+            "unique": false,
+            "columnNames": [
+              "modelVersion",
+              "calibrationCutoff"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_estimates_modelVersion_calibrationCutoff` ON `${TABLE_NAME}` (`modelVersion`, `calibrationCutoff`)"
+          }
+        ]
+      },
+      {
+        "tableName": "tracked_concepts",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`conceptId` TEXT NOT NULL, `trackedAt` TEXT NOT NULL, `updatedAt` TEXT NOT NULL, PRIMARY KEY(`conceptId`), FOREIGN KEY(`conceptId`) REFERENCES `taxonomy_concepts`(`stableId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "conceptId",
+            "columnName": "conceptId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "trackedAt",
+            "columnName": "trackedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "conceptId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_tracked_concepts_updatedAt",
+            "unique": false,
+            "columnNames": [
+              "updatedAt"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_tracked_concepts_updatedAt` ON `${TABLE_NAME}` (`updatedAt`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "taxonomy_concepts",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "conceptId"
+            ],
+            "referencedColumns": [
+              "stableId"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "alert_rules",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`ruleId` TEXT NOT NULL, `conceptId` TEXT NOT NULL, `basis` TEXT NOT NULL, `thresholdNtdPerTaiJin` TEXT NOT NULL, `enabled` INTEGER NOT NULL, `conditionMet` INTEGER NOT NULL, `lastEvaluatedSourceDate` TEXT, `lastTransitionEstimateId` TEXT, `createdAt` TEXT NOT NULL, `updatedAt` TEXT NOT NULL, PRIMARY KEY(`ruleId`))",
+        "fields": [
+          {
+            "fieldPath": "ruleId",
+            "columnName": "ruleId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "conceptId",
+            "columnName": "conceptId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "basis",
+            "columnName": "basis",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "thresholdNtdPerTaiJin",
+            "columnName": "thresholdNtdPerTaiJin",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enabled",
+            "columnName": "enabled",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "conditionMet",
+            "columnName": "conditionMet",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastEvaluatedSourceDate",
+            "columnName": "lastEvaluatedSourceDate",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "lastTransitionEstimateId",
+            "columnName": "lastTransitionEstimateId",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "ruleId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_alert_rules_conceptId_enabled",
+            "unique": false,
+            "columnNames": [
+              "conceptId",
+              "enabled"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_alert_rules_conceptId_enabled` ON `${TABLE_NAME}` (`conceptId`, `enabled`)"
+          },
+          {
+            "name": "index_alert_rules_basis_enabled",
+            "unique": false,
+            "columnNames": [
+              "basis",
+              "enabled"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_alert_rules_basis_enabled` ON `${TABLE_NAME}` (`basis`, `enabled`)"
+          }
+        ]
+      },
+      {
+        "tableName": "notification_events",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`eventId` TEXT NOT NULL, `eventIdentity` TEXT NOT NULL, `ruleId` TEXT NOT NULL, `estimateId` TEXT NOT NULL, `conceptId` TEXT NOT NULL, `basis` TEXT NOT NULL, `sourceDate` TEXT NOT NULL, `createdAt` TEXT NOT NULL, `deliveredAt` TEXT, PRIMARY KEY(`eventId`))",
+        "fields": [
+          {
+            "fieldPath": "eventId",
+            "columnName": "eventId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "eventIdentity",
+            "columnName": "eventIdentity",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ruleId",
+            "columnName": "ruleId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "estimateId",
+            "columnName": "estimateId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "conceptId",
+            "columnName": "conceptId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "basis",
+            "columnName": "basis",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sourceDate",
+            "columnName": "sourceDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deliveredAt",
+            "columnName": "deliveredAt",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "eventId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_notification_events_ruleId_sourceDate",
+            "unique": false,
+            "columnNames": [
+              "ruleId",
+              "sourceDate"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_notification_events_ruleId_sourceDate` ON `${TABLE_NAME}` (`ruleId`, `sourceDate`)"
+          },
+          {
+            "name": "index_notification_events_estimateId",
+            "unique": false,
+            "columnNames": [
+              "estimateId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_notification_events_estimateId` ON `${TABLE_NAME}` (`estimateId`)"
+          },
+          {
+            "name": "index_notification_events_eventIdentity",
+            "unique": true,
+            "columnNames": [
+              "eventIdentity"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_notification_events_eventIdentity` ON `${TABLE_NAME}` (`eventIdentity`)"
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2f91f8bd3425cccbf3dc87eb7b55f3ec')"
+    ]
+  }
+}

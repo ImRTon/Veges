@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "taxonomyVersion": "candidate-2026-07-14",
+  "artifactChecksum": "165411750d109bab44a7c2e1944a07ff45bacc61ad5d144422083212136ff7d4",
+  "review": {
+    "status": "DRAFT",
+    "reviewedAt": "2026-07-14",
+    "reviewedBy": "catalog-review-pending",
+    "notes": "Candidate assembled from reviewed household terms and official crop metadata; not approved for launch publication."
+  },
+  "concepts": [
+    {
+      "stableId": "vegetable.cabbage",
+      "householdName": "高麗菜",
+      "aliases": ["高麗菜", "甘藍"],
+      "category": "VEGETABLE",
+      "publicationState": "CANDIDATE",
+      "officialMappings": [
+        {"commodityCode": "LA1", "officialName": "甘藍-初秋", "market": "TAIPEI_FIRST"},
+        {"commodityCode": "LA1", "officialName": "甘藍-初秋", "market": "TAIPEI_SECOND"},
+        {"commodityCode": "LA2", "officialName": "甘藍-改良種", "market": "TAIPEI_FIRST"},
+        {"commodityCode": "LA2", "officialName": "甘藍-改良種", "market": "TAIPEI_SECOND"}
+      ],
+      "image": {
+        "assetPath": "illustrations/pending/vegetable-cabbage.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": null,
+        "reviewedBy": null,
+        "reviewStatus": "DRAFT"
+      }
+    },
+    {
+      "stableId": "vegetable.small-bok-choy",
+      "householdName": "小白菜",
+      "aliases": ["小白菜", "白菜"],
+      "category": "VEGETABLE",
+      "publicationState": "CANDIDATE",
+      "officialMappings": [
+        {"commodityCode": "LB1", "officialName": "小白菜-土白菜", "market": "TAIPEI_FIRST"},
+        {"commodityCode": "LB2", "officialName": "小白菜-蚵仔白", "market": "TAIPEI_FIRST"},
+        {"commodityCode": "LB3", "officialName": "小白菜-奶油白", "market": "TAIPEI_FIRST"}
+      ],
+      "image": {
+        "assetPath": "illustrations/pending/vegetable-small-bok-choy.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": null,
+        "reviewedBy": null,
+        "reviewStatus": "DRAFT"
+      }
+    },
+    {
+      "stableId": "vegetable.napa-cabbage",
+      "householdName": "包心白菜",
+      "aliases": ["包心白菜", "白菜"],
+      "category": "VEGETABLE",
+      "publicationState": "CANDIDATE",
+      "officialMappings": [
+        {"commodityCode": "LC1", "officialName": "包心白-包白", "market": "TAIPEI_FIRST"},
+        {"commodityCode": "LC1", "officialName": "包心白-包白", "market": "TAIPEI_SECOND"}
+      ],
+      "image": {
+        "assetPath": "illustrations/pending/vegetable-napa-cabbage.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": null,
+        "reviewedBy": null,
+        "reviewStatus": "DRAFT"
+      }
+    },
+    {
+      "stableId": "vegetable.qingjiang-bok-choy",
+      "householdName": "青江白菜",
+      "aliases": ["青江白菜", "青江菜", "白菜"],
+      "category": "VEGETABLE",
+      "publicationState": "CANDIDATE",
+      "officialMappings": [
+        {"commodityCode": "LD1", "officialName": "青江白菜-小梗", "market": "TAIPEI_FIRST"},
+        {"commodityCode": "LD1", "officialName": "青江白菜-小梗", "market": "TAIPEI_SECOND"}
+      ],
+      "image": {
+        "assetPath": "illustrations/pending/vegetable-qingjiang-bok-choy.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": null,
+        "reviewedBy": null,
+        "reviewStatus": "DRAFT"
+      }
+    },
+    {
+      "stableId": "fruit.banana",
+      "householdName": "香蕉",
+      "aliases": ["香蕉", "芭蕉"],
+      "category": "FRUIT",
+      "publicationState": "CANDIDATE",
+      "officialMappings": [
+        {"commodityCode": "A1", "officialName": "香蕉", "market": "TAIPEI_FIRST"},
+        {"commodityCode": "A1", "officialName": "香蕉", "market": "TAIPEI_SECOND"},
+        {"commodityCode": "A2", "officialName": "香蕉-芭蕉紅芭蕉", "market": "TAIPEI_FIRST"},
+        {"commodityCode": "A2", "officialName": "香蕉-芭蕉紅芭蕉", "market": "TAIPEI_SECOND"}
+      ],
+      "image": {
+        "assetPath": "illustrations/pending/fruit-banana.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": null,
+        "reviewedBy": null,
+        "reviewStatus": "DRAFT"
+      }
+    }
+  ],
+  "ambiguitySets": [
+    {
+      "normalizedAlias": "白菜",
+      "displayAlias": "白菜",
+      "targetConceptIds": [
+        "vegetable.napa-cabbage",
+        "vegetable.qingjiang-bok-choy",
+        "vegetable.small-bok-choy"
+      ]
+    }
+  ]
+}

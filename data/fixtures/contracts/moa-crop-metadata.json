@@ -1,0 +1,17 @@
+{
+  "RS": "OK",
+  "Data": [
+    {
+      "CropCode": "LA1",
+      "CropName": "甘藍-初秋"
+    },
+    {
+      "CropCode": "LA2",
+      "CropName": "甘藍-改良種"
+    },
+    {
+      "CropCode": "A1",
+      "CropName": "香蕉"
+    }
+  ]
+}

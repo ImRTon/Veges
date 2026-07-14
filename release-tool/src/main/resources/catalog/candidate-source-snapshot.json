@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "source": "MOA_WHOLESALE_REVIEWED_FIXTURE",
+  "snapshotId": "moa-reviewed-fixture-2026-07-14",
+  "dataCutoff": "2026-07-14",
+  "snapshotChecksum": "378309415c821b0a4788241ee86dcb5b0cfbc265c155e8f862a5148182556bd8",
+  "observations": [
+    {
+      "observedOn": "2026-07-14",
+      "commodityCode": "LA1",
+      "officialName": "甘藍-初秋",
+      "market": "TAIPEI_SECOND",
+      "valid": true,
+      "averagePriceNtdPerKg": "40.5",
+      "volumeKg": "25470"
+    },
+    {
+      "observedOn": "2026-07-14",
+      "commodityCode": "LA2",
+      "officialName": "甘藍-改良種",
+      "market": "TAIPEI_FIRST",
+      "valid": true,
+      "averagePriceNtdPerKg": "41.8",
+      "volumeKg": "19800"
+    },
+    {
+      "observedOn": "2026-07-14",
+      "commodityCode": "LB2",
+      "officialName": "小白菜-蚵仔白",
+      "market": "TAIPEI_SECOND",
+      "valid": true,
+      "averagePriceNtdPerKg": "32.2",
+      "volumeKg": "12409"
+    },
+    {
+      "observedOn": "2026-07-14",
+      "commodityCode": "LC1",
+      "officialName": "包心白-包白",
+      "market": "TAIPEI_SECOND",
+      "valid": true,
+      "averagePriceNtdPerKg": "24.7",
+      "volumeKg": "5970"
+    },
+    {
+      "observedOn": "2026-07-14",
+      "commodityCode": "LD1",
+      "officialName": "青江白菜-小梗",
+      "market": "TAIPEI_SECOND",
+      "valid": true,
+      "averagePriceNtdPerKg": "30.2",
+      "volumeKg": "13939"
+    },
+    {
+      "observedOn": "2026-07-14",
+      "commodityCode": "A1",
+      "officialName": "香蕉",
+      "market": "TAIPEI_SECOND",
+      "valid": true,
+      "averagePriceNtdPerKg": "28.9",
+      "volumeKg": "15116"
+    }
+  ]
+}
