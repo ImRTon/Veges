@@ -1,6 +1,6 @@
 # Official Source Contract Review
 
-Reviewed: 2026-07-14
+Reviewed: 2026-07-14; live contract revalidated: 2026-07-26
 
 ## MOA Wholesale
 
@@ -16,6 +16,10 @@ Reviewed: 2026-07-14
 - Observed date format: Republic of China calendar, `YY.MM.DD`, for example `115.07.14`.
 - Reviewed Taipei market identifiers: `104` / `台北二` and `109` / `台北一`.
 - Crop code authority: the crop metadata endpoint returns `{CropCode, CropName}` records.
+- Revalidated closure signal: the official bulk endpoint emits `作物代號=rest`,
+  `作物名稱=休市`, `種類代碼=N04|N06`, and zero price/volume fields for a closed
+  Taipei market/date. This exact sentinel is a state signal and must never become a zero-price
+  observation. Partial or malformed variants remain invalid.
 - Attribution: retain source name, endpoint, retrieval timestamp, market, crop code, and original
   values in persisted provenance.
 
@@ -36,8 +40,8 @@ Reviewed: 2026-07-14
 
 - The reviewed MOA bulk endpoint does not expose a pagination contract in its URL or response shape.
   The adapter must treat the response as a bounded daily snapshot and fail closed if the shape changes.
-- The reviewed MOA transaction records do not contain an official market-closure field. Missing
-  rows therefore mean `MISSING`, never `CLOSED`; closure requires a separate reviewed official signal.
+- The MOA records do not expose a dedicated closure field. Missing rows therefore mean `MISSING`,
+  never `CLOSED`; only the exact reviewed `rest` / `休市` sentinel confirms `CLOSED`.
 - No request-rate limit or conditional-request header contract was documented by the reviewed dataset
   page. The client must use bounded timeouts, capped retries, and conservative request frequency.
 - The MOA sample uses NTD/kg while retail calibration uses NTD/台斤. Conversion may support display

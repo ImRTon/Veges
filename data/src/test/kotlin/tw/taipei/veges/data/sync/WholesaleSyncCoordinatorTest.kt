@@ -15,6 +15,29 @@ import tw.taipei.veges.domain.SourceDayState
 
 class WholesaleSyncCoordinatorTest {
     @Test
+    fun completeCodeCoverageStillBackfillsWhenHistoryIsTooShallow() {
+        assertTrue(
+            needsCatalogBootstrap(
+                expectedVegetableCodes = 100,
+                recentVegetableCodes = 100,
+                recentTradingDays = 1,
+            ),
+        )
+    }
+
+    @Test
+    fun completeCoverageAndThirtyOneTradingDaysDoesNotBackfillAgain() {
+        assertEquals(
+            false,
+            needsCatalogBootstrap(
+                expectedVegetableCodes = 100,
+                recentVegetableCodes = 100,
+                recentTradingDays = 31,
+            ),
+        )
+    }
+
+    @Test
     fun reviewedSnapshotContainsBothTaipeiMarkets() {
         val json = fixture("contracts/moa-wholesale-success.json")
         val records = strictSourceJson.decodeFromString<List<tw.taipei.veges.data.network.MoaWholesaleRecordDto>>(json)

@@ -11,6 +11,7 @@ import javax.inject.Singleton
 import java.time.Clock
 import tw.taipei.veges.data.local.VegesDatabase
 import tw.taipei.veges.data.local.MIGRATION_1_2
+import tw.taipei.veges.data.local.MIGRATION_2_3
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -19,7 +20,7 @@ object DataModule {
     @Singleton
     fun provideVegesDatabase(@ApplicationContext context: Context): VegesDatabase =
         Room.databaseBuilder(context, VegesDatabase::class.java, "veges.db")
-            .addMigrations(MIGRATION_1_2)
+            .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
             .build()
 
     @Provides

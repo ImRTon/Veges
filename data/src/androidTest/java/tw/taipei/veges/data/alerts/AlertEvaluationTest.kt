@@ -15,9 +15,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import tw.taipei.veges.data.local.AlertRuleEntity
 import tw.taipei.veges.data.local.EstimateEntity
+import tw.taipei.veges.data.local.TaxonomyConceptEntity
 import tw.taipei.veges.data.local.VegesDatabase
 import tw.taipei.veges.domain.MarketBasis
 import tw.taipei.veges.domain.PriceUnit
+import tw.taipei.veges.domain.ProduceCategory
 
 @RunWith(AndroidJUnit4::class)
 class AlertEvaluationTest {
@@ -74,6 +76,42 @@ class AlertEvaluationTest {
         assertEquals(0, countEvents())
     }
 
+    @Test
+    fun pendingEventIsDeliveredOnceAndMarkedComplete() = runTest {
+        database.taxonomyDao().replaceConcepts(listOf(taxonomyConcept()))
+        database.alertDao().replaceRule(rule())
+        val estimate = estimate("estimate-1", BigDecimal("39"), date("2026-07-14"))
+        database.estimateDao().replaceEstimate(estimate)
+        coordinator.evaluate(estimate, instant())
+        val publisher = RecordingPublisher(accept = true)
+        val delivery = NotificationDeliveryCoordinator(database, publisher)
+
+        val first = delivery.deliverPending(instant())
+        val second = delivery.deliverPending(instant())
+
+        assertEquals(NotificationDeliverySummary(1, 1, 0), first)
+        assertEquals(NotificationDeliverySummary(0, 0, 0), second)
+        assertEquals(1, publisher.notifications.size)
+        assertEquals("vegetable.cabbage", publisher.notifications.single().conceptId)
+        assertEquals(1, countDeliveredEvents())
+    }
+
+    @Test
+    fun deniedDeliveryRemainsPendingWithoutDuplicatingEvent() = runTest {
+        database.taxonomyDao().replaceConcepts(listOf(taxonomyConcept()))
+        database.alertDao().replaceRule(rule())
+        val estimate = estimate("estimate-1", BigDecimal("39"), date("2026-07-14"))
+        database.estimateDao().replaceEstimate(estimate)
+        coordinator.evaluate(estimate, instant())
+        val delivery = NotificationDeliveryCoordinator(database, RecordingPublisher(accept = false))
+
+        val summary = delivery.deliverPending(instant())
+
+        assertEquals(NotificationDeliverySummary(1, 0, 1), summary)
+        assertEquals(1, countEvents())
+        assertEquals(0, countDeliveredEvents())
+    }
+
     private fun rule() = AlertRuleEntity(
         ruleId = "rule-1",
         conceptId = "vegetable.cabbage",
@@ -95,6 +133,8 @@ class AlertEvaluationTest {
         sourceDate = date,
         sourceDatesJson = "[\"$date\"]",
         calibrationCutoff = date,
+        estimatorApprovedOn = date,
+        formula = "(wholesale NTD/kg × 0.6 kg/台斤) × 2.0",
         pairedCalibrationPeriods = 30,
         calculatedAt = instant(),
         pointValue = point,
@@ -114,7 +154,41 @@ class AlertEvaluationTest {
         cursor.getInt(0)
     }
 
+    private fun countDeliveredEvents(): Int = database.openHelper.readableDatabase.query(
+        "SELECT COUNT(*) FROM notification_events WHERE deliveredAt IS NOT NULL",
+    ).use { cursor ->
+        cursor.moveToFirst()
+        cursor.getInt(0)
+    }
+
+    private fun taxonomyConcept() = TaxonomyConceptEntity(
+        stableId = "vegetable.cabbage",
+        householdName = "高麗菜",
+        normalizedHouseholdName = "高麗菜",
+        category = ProduceCategory.VEGETABLE,
+        published = true,
+        illustrationAsset = null,
+        illustrationDisclosure = "",
+        taxonomyVersion = "test",
+        artifactChecksum = "a".repeat(64),
+        reviewedAt = instant(),
+        reviewer = "test",
+    )
+
     private fun instant() = Instant.parse("2026-07-14T03:00:00Z")
 
     private fun date(value: String) = LocalDate.parse(value)
+
+    private class RecordingPublisher(
+        private val accept: Boolean,
+    ) : LocalNotificationPublisher {
+        val notifications = mutableListOf<PriceAlertNotification>()
+
+        override fun ensureChannels() = Unit
+
+        override fun publish(notification: PriceAlertNotification): Boolean {
+            notifications += notification
+            return accept
+        }
+    }
 }

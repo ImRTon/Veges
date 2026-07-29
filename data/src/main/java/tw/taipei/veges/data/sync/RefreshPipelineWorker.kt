@@ -7,9 +7,10 @@ import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.android.EntryPointAccessors
 import dagger.hilt.components.SingletonComponent
+import java.time.Clock
 import java.time.Instant
 import tw.taipei.veges.data.alerts.AlertEvaluationCoordinator
-import tw.taipei.veges.data.alerts.LocalNotificationPublisher
+import tw.taipei.veges.data.alerts.NotificationDeliveryCoordinator
 
 @EntryPoint
 @InstallIn(SingletonComponent::class)
@@ -20,7 +21,9 @@ interface RefreshWorkerEntryPoint {
 
     fun alertEvaluationCoordinator(): AlertEvaluationCoordinator
 
-    fun notificationPublisher(): LocalNotificationPublisher
+    fun notificationDeliveryCoordinator(): NotificationDeliveryCoordinator
+
+    fun clock(): Clock
 }
 
 class RefreshPipelineWorker(
@@ -28,22 +31,38 @@ class RefreshPipelineWorker(
     workerParams: WorkerParameters,
 ) : CoroutineWorker(appContext, workerParams) {
     override suspend fun doWork(): Result {
-        val dependencies = EntryPointAccessors.fromApplication(
-            applicationContext,
-            RefreshWorkerEntryPoint::class.java,
-        )
-        val syncResult = dependencies.syncWorker().run()
-        if (syncResult is SyncResult.Failed) return Result.retry()
+        return try {
+            val dependencies = EntryPointAccessors.fromApplication(
+                applicationContext,
+                RefreshWorkerEntryPoint::class.java,
+            )
+            val syncResult = dependencies.syncWorker().run(
+                inputData.getString(REQUESTED_CONCEPT_ID_KEY),
+            )
+            if (syncResult is SyncResult.Failed) return retryOrFail()
 
-        dependencies.notificationPublisher().ensureChannels()
-        val estimates = dependencies.estimateRefreshCoordinator().calculateNewEstimates()
-        estimates.forEach { estimate ->
-            dependencies.alertEvaluationCoordinator().evaluate(estimate, Instant.now())
+            val now = dependencies.clock().instant()
+            val estimates = dependencies.estimateRefreshCoordinator().calculateNewEstimates()
+            estimates.forEach { estimate ->
+                dependencies.alertEvaluationCoordinator().evaluate(estimate, now)
+            }
+            dependencies.notificationDeliveryCoordinator().deliverPending(now)
+            Result.success()
+        } catch (cancellation: kotlinx.coroutines.CancellationException) {
+            throw cancellation
+        } catch (failure: Exception) {
+            retryOrFail()
         }
-        return Result.success()
+    }
+
+    private fun retryOrFail(): Result =
+        if (runAttemptCount < MAX_RETRY_ATTEMPTS) Result.retry() else Result.failure()
+
+    private companion object {
+        const val MAX_RETRY_ATTEMPTS = 3
     }
 }
 
 fun interface SyncWorkerDelegate {
-    suspend fun run(): SyncResult
+    suspend fun run(requestedConceptId: String?): SyncResult
 }

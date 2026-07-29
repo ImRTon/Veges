@@ -11,3 +11,17 @@ val MIGRATION_1_2 = object : Migration(1, 2) {
         db.execSQL("ALTER TABLE estimates ADD COLUMN disclosureFullLabel TEXT NOT NULL DEFAULT 'Taipei retail reference estimate'")
     }
 }
+
+val MIGRATION_2_3 = object : Migration(2, 3) {
+    override fun migrate(db: SupportSQLiteDatabase) {
+        db.execSQL(
+            "ALTER TABLE estimates ADD COLUMN estimatorApprovedOn TEXT NOT NULL DEFAULT '1970-01-01'",
+        )
+        db.execSQL(
+            "UPDATE estimates SET estimatorApprovedOn = calibrationCutoff",
+        )
+        db.execSQL(
+            "ALTER TABLE estimates ADD COLUMN formula TEXT NOT NULL DEFAULT 'CALIBRATED_MODEL'",
+        )
+    }
+}

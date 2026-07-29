@@ -8,6 +8,8 @@ import tw.taipei.veges.data.repository.RoomProduceRepository
 import tw.taipei.veges.data.repository.RoomTrackingRepository
 import tw.taipei.veges.domain.AlertRuleRepository
 import tw.taipei.veges.data.repository.RoomHomeRepository
+import tw.taipei.veges.data.repository.RoomDetailRepository
+import tw.taipei.veges.domain.DetailRepository
 import tw.taipei.veges.domain.HomeRepository
 import tw.taipei.veges.domain.ProduceRepository
 import tw.taipei.veges.domain.TrackingRepository
@@ -26,4 +28,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindHomeRepository(repository: RoomHomeRepository): HomeRepository
+
+    @Binds
+    abstract fun bindDetailRepository(repository: RoomDetailRepository): DetailRepository
 }

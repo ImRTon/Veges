@@ -21,7 +21,7 @@ import kotlinx.serialization.decodeFromString
 
 class CatalogAuditTest {
     @Test
-    fun bundledCandidateTaxonomyIsDeterministicAndNotPublished() {
+    fun bundledTaxonomyIsDeterministicAndExplicitlyApprovedForPublication() {
         val json = requireNotNull(javaClass.classLoader?.getResourceAsStream("catalog/candidate-taxonomy.json"))
             .bufferedReader()
             .use { it.readText() }
@@ -29,7 +29,19 @@ class CatalogAuditTest {
 
         ArtifactValidator.validateTaxonomy(taxonomy)
         assertEquals(taxonomy.artifactChecksum, ArtifactCodec.taxonomyChecksum(taxonomy))
-        assertTrue(taxonomy.concepts.all { it.publicationState == PublicationState.CANDIDATE })
+        assertEquals(ReviewStatus.APPROVED, taxonomy.review.status)
+        assertEquals("project-owner", taxonomy.review.reviewedBy)
+        assertEquals(121, taxonomy.concepts.size)
+        assertEquals(120, taxonomy.concepts.count { it.category == tw.taipei.veges.releasetool.artifact.TaxonomyCategory.VEGETABLE })
+        assertEquals(1, taxonomy.concepts.count { it.category == tw.taipei.veges.releasetool.artifact.TaxonomyCategory.FRUIT })
+        assertTrue(taxonomy.concepts.all { it.publicationState == PublicationState.PUBLISHED })
+        assertTrue(taxonomy.concepts.all { it.image.reviewStatus == ReviewStatus.APPROVED })
+        assertEquals(
+            "青江菜",
+            taxonomy.concepts.single { it.stableId == "vegetable.qingjiang-bok-choy" }.householdName,
+        )
+        assertTrue(taxonomy.concepts.any { it.householdName == "空心菜" })
+        assertTrue(taxonomy.concepts.any { it.householdName == "地瓜葉" })
         assertTrue(taxonomy.ambiguitySets.any { it.normalizedAlias == "白菜" && it.targetConceptIds.size == 3 })
     }
 

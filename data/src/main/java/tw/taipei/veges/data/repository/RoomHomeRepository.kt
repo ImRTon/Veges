@@ -18,27 +18,40 @@ class RoomHomeRepository @Inject constructor(
 ) : HomeRepository {
     override fun observeHome(): Flow<List<HomeItem>> = combine(
         database.taxonomyDao().observeTrackedConcepts(),
-        database.estimateDao().observeTrackedLatest(),
-    ) { concepts, estimates ->
+        database.estimateDao().observeTrackedHistory(),
+        database.alertDao().observeAllRules(),
+    ) { concepts, estimates, alertRules ->
         val estimateByConcept = estimates
             .groupBy { it.conceptId }
-            .mapValues { (_, rows) -> rows.maxWithOrNull(compareBy({ it.sourceDate }, { it.calculatedAt })) }
+            .mapValues { (_, rows) ->
+                rows.sortedWith(compareByDescending<tw.taipei.veges.data.local.EstimateEntity> { it.sourceDate }
+                    .thenByDescending { it.calculatedAt })
+            }
         concepts.map { conceptEntity ->
             val concept = TaxonomyConceptWithDetails(
                 concept = conceptEntity,
                 aliases = emptyList(),
                 variants = emptyList(),
             ).toDomain()
-            val latest = estimateByConcept[conceptEntity.stableId]?.toDomain()
+            val ordered = estimateByConcept[conceptEntity.stableId].orEmpty()
+            val latestEntity = ordered.firstOrNull()
+            val latest = latestEntity?.toDomain()
+            val previous = latestEntity?.let { current ->
+                ordered.firstOrNull { it.basis == current.basis && it.sourceDate < current.sourceDate }
+            }?.toDomain()
             HomeItem(
                 concept = concept,
                 latestEstimate = latest,
+                previousEstimate = previous,
+                activeAlertCount = alertRules.count {
+                    it.conceptId == conceptEntity.stableId && it.enabled
+                },
                 unavailableReason = latest?.unavailableReason ?: UnavailableReason.MISSING_SOURCE_DATA.takeIf { latest == null },
             )
         }
     }
 
     override fun requestRefresh() {
-        syncScheduler.requestForegroundCatchUp()
+        syncScheduler.requestManualRefresh()
     }
 }

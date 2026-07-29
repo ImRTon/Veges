@@ -16,6 +16,12 @@ import tw.taipei.veges.domain.OfficialCommodityCode
 
 sealed interface WholesaleValidation {
     data class Valid(val observation: SourceObservation) : WholesaleValidation
+    data class Closed(
+        val market: MarketBasis,
+        val observedOn: LocalDate,
+        val kindCode: String,
+    ) : WholesaleValidation
+    data class OutOfScope(val marketCode: String) : WholesaleValidation
     data class Invalid(val reason: String) : WholesaleValidation
 }
 
@@ -36,10 +42,7 @@ fun validateWholesale(
     val market = when (dto.marketCode.trim()) {
         "104" -> MarketBasis.TAIPEI_SECOND
         "109" -> MarketBasis.TAIPEI_FIRST
-        else -> return WholesaleValidation.Invalid("Unsupported market code: ${dto.marketCode}")
-    }
-    if (dto.cropCode.isBlank() || dto.cropName.isBlank()) {
-        return WholesaleValidation.Invalid("Commodity code and name are required")
+        else -> return WholesaleValidation.OutOfScope(dto.marketCode)
     }
     val date = parseRocDate(dto.transactionDate)
         ?: return WholesaleValidation.Invalid("Invalid ROC transaction date: ${dto.transactionDate}")
@@ -48,6 +51,27 @@ fun validateWholesale(
     val lower = dto.lowerPrice.decimalValue()
     val average = dto.averagePrice.decimalValue()
     val volume = dto.volume.decimalValue()
+    val closureIdentity =
+        dto.cropCode.trim().equals("rest", ignoreCase = true) &&
+            dto.cropName?.trim() == "休市"
+    if (closureIdentity) {
+        val kindCode = dto.kindCode?.trim()
+        val hasExactZeroValues =
+            listOf(upper, middle, lower, average, volume).all {
+                it?.compareTo(BigDecimal.ZERO) == 0
+            }
+        if (kindCode !in OFFICIAL_CLOSURE_KIND_CODES || !hasExactZeroValues) {
+            return WholesaleValidation.Invalid("Malformed official closure signal")
+        }
+        return WholesaleValidation.Closed(
+            market = market,
+            observedOn = date,
+            kindCode = requireNotNull(kindCode),
+        )
+    }
+    if (dto.cropCode.isBlank() || dto.cropName.isNullOrBlank()) {
+        return WholesaleValidation.Invalid("Commodity code and name are required")
+    }
     if (listOf(upper, middle, lower, average, volume).any { it == null || it <= BigDecimal.ZERO }) {
         return WholesaleValidation.Invalid("Price and volume must be positive numbers")
     }
@@ -76,6 +100,8 @@ fun validateWholesale(
         ),
     )
 }
+
+private val OFFICIAL_CLOSURE_KIND_CODES = setOf("N04", "N06")
 
 fun validateTaipeiRetail(dto: TaipeiRetailRecordDto): RetailValidation {
     if (dto.countyCode != "63000" || dto.countyName != "臺北市") {

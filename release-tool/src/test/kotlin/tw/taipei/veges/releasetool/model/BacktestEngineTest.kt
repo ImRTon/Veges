@@ -68,4 +68,50 @@ class BacktestEngineTest {
         assertTrue(result.metrics.periods.isEmpty())
         assertEquals("2026-01-01:INSUFFICIENT_PRIOR_TRAINING_ROWS", result.exclusions.single())
     }
+
+    @Test
+    fun candidateFamiliesFitTheirOwnParametersAndPredictions() {
+        val rows = (1..4).map { index ->
+            val date = LocalDate.of(2026, index, 1)
+            calibrationRow(
+                date = date,
+                wholesale = BigDecimal(index * 10),
+                retail = BigDecimal(index * 20 + 5),
+                month = index,
+            )
+        }
+        val validationFeatures = rows.last().features.copy(
+            wholesaleAverageNtdPerKg = BigDecimal("50"),
+            monthOfYear = 12,
+        )
+
+        val linear = CandidateEstimatorFitter.fit(rows, EstimatorFamily.LINEAR_CALIBRATION)
+        val logLinear = CandidateEstimatorFitter.fit(rows, EstimatorFamily.LOG_LINEAR_CALIBRATION)
+        val seasonal = CandidateEstimatorFitter.fit(rows, EstimatorFamily.SEASONAL_BASELINE)
+
+        assertEquals(setOf("intercept", "wholesaleAverageSlope"), linear.parameters.keys)
+        assertEquals(setOf("logIntercept", "logWholesaleAverageSlope"), logLinear.parameters.keys)
+        assertTrue(seasonal.parameters.keys.any { it.startsWith("month") })
+        assertEquals(BigDecimal("105"), linear.predict(validationFeatures))
+        assertTrue(logLinear.predict(validationFeatures) != linear.predict(validationFeatures))
+        assertTrue(seasonal.predict(validationFeatures) != linear.predict(validationFeatures))
+    }
+
+    private fun calibrationRow(
+        date: LocalDate,
+        wholesale: BigDecimal,
+        retail: BigDecimal,
+        month: Int,
+    ) = HistoricalCalibrationRow(
+        observedOn = date,
+        features = EstimatorFeatureSet(
+            wholesaleAverageNtdPerKg = wholesale,
+            wholesaleLowerNtdPerKg = wholesale - BigDecimal.TEN,
+            wholesaleUpperNtdPerKg = wholesale + BigDecimal.TEN,
+            transactionVolumeKg = BigDecimal("100"),
+            monthOfYear = month,
+            marketBasis = MarketBasis.TAIPEI_COMBINED,
+        ),
+        target = CalibrationTarget(date, retail),
+    )
 }

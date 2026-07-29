@@ -7,6 +7,9 @@ adapter tests without bundling the full upstream payload.
 - `moa-wholesale-success.json` mirrors the MOA `FarmTransData` JSON shape for Taipei First (`109`)
   and Taipei Second (`104`). Prices are NTD/kg and volume is kg. The source date is a Republic of
   China calendar date (`115.07.14`), not an ISO date.
+- `moa-wholesale-closure.json` captures the exact official `rest` / `休市` sentinel revalidated on
+  2026-07-26 for both Taipei markets and both published kind codes. Its zero fields represent state,
+  never a zero-price observation.
 - `moa-crop-metadata.json` mirrors `https://data.moa.gov.tw/api/v1/CropType` and keeps crop code to
   official crop name mapping separate from transaction observations.
 - `taipei-retail-december-2025.csv` mirrors the Taipei public retail-market CSV. The average column

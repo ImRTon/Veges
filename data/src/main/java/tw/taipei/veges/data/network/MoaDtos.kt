@@ -10,9 +10,9 @@ import kotlinx.serialization.json.jsonPrimitive
 @Serializable
 data class MoaWholesaleRecordDto(
     @SerialName("交易日期") val transactionDate: String,
-    @SerialName("種類代碼") val kindCode: String,
+    @SerialName("種類代碼") val kindCode: String?,
     @SerialName("作物代號") val cropCode: String,
-    @SerialName("作物名稱") val cropName: String,
+    @SerialName("作物名稱") val cropName: String?,
     @SerialName("市場代號") val marketCode: String,
     @SerialName("市場名稱") val marketName: String,
     @SerialName("上價") val upperPrice: JsonElement,

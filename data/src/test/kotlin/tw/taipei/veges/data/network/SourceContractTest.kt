@@ -66,6 +66,80 @@ class SourceContractTest {
     }
 
     @Test
+    fun officialRestSentinelBecomesClosedWithoutCreatingZeroPrice() {
+        val payload = fixture("contracts/moa-wholesale-closure.json")
+        val records = strictSourceJson.decodeFromString<List<MoaWholesaleRecordDto>>(payload)
+
+        val results = records.map {
+            validateWholesale(it, Instant.parse("2026-07-23T02:00:00Z"))
+        }
+
+        assertEquals(4, results.size)
+        assertTrue(results.all { it is WholesaleValidation.Closed })
+        assertEquals(
+            setOf(MarketBasis.TAIPEI_FIRST, MarketBasis.TAIPEI_SECOND),
+            results.map { (it as WholesaleValidation.Closed).market }.toSet(),
+        )
+        assertEquals(
+            setOf("N04", "N06"),
+            results.map { (it as WholesaleValidation.Closed).kindCode }.toSet(),
+        )
+        assertEquals(
+            setOf("2026-07-23"),
+            results.map { (it as WholesaleValidation.Closed).observedOn.toString() }.toSet(),
+        )
+    }
+
+    @Test
+    fun malformedRestSentinelStillFailsClosed() {
+        val record = MoaWholesaleRecordDto(
+            transactionDate = "115.07.23",
+            kindCode = "N04",
+            cropCode = "rest",
+            cropName = "休市",
+            marketCode = "104",
+            marketName = "台北二",
+            upperPrice = number("1"),
+            middlePrice = number("0"),
+            lowerPrice = number("0"),
+            averagePrice = number("0"),
+            volume = number("0"),
+        )
+
+        assertTrue(
+            validateWholesale(record, Instant.parse("2026-07-23T02:00:00Z")) is
+                WholesaleValidation.Invalid,
+        )
+    }
+
+    @Test
+    fun nullableNamesFromOutOfScopeMarketAreIgnoredWithoutWeakeningTaipeiValidation() {
+        val outOfScope = MoaWholesaleRecordDto(
+            transactionDate = "115.07.24",
+            kindCode = null,
+            cropCode = "FE800",
+            cropName = null,
+            marketCode = "105",
+            marketName = "台北市場",
+            upperPrice = number("51"),
+            middlePrice = number("34"),
+            lowerPrice = number("27"),
+            averagePrice = number("36"),
+            volume = number("450"),
+        )
+        val supportedMarketMissingName = outOfScope.copy(marketCode = "104")
+
+        assertTrue(
+            validateWholesale(outOfScope, Instant.parse("2026-07-24T02:00:00Z")) is
+                WholesaleValidation.OutOfScope,
+        )
+        assertTrue(
+            validateWholesale(supportedMarketMissingName, Instant.parse("2026-07-24T02:00:00Z")) is
+                WholesaleValidation.Invalid,
+        )
+    }
+
+    @Test
     fun retailDashIsUnavailableAndNotZero() {
         val result = validateTaipeiRetail(
             TaipeiRetailRecordDto("75", "臺北市", "63000", "芒果(在來)", "-"),

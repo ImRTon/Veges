@@ -25,3 +25,7 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     testImplementation(libs.junit)
 }
+
+tasks.test {
+    systemProperty("veges.repoRoot", rootProject.projectDir.absolutePath)
+}

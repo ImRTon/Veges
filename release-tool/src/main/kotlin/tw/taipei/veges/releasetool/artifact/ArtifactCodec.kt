@@ -5,6 +5,8 @@ import java.security.MessageDigest
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import tw.taipei.veges.releasetool.model.ModelArtifactBundle
+import tw.taipei.veges.releasetool.model.TemporaryFactorArtifact
 
 @OptIn(ExperimentalSerializationApi::class)
 object ArtifactCodec {
@@ -39,6 +41,20 @@ object ArtifactCodec {
         checksumJson.encodeToString(snapshot.copy(snapshotChecksum = "").canonical()),
     )
 
+    fun encodeModelArtifact(artifact: ModelArtifactBundle): String =
+        strictJson.encodeToString(artifact.canonical())
+
+    fun modelArtifactChecksum(artifact: ModelArtifactBundle): String = sha256(
+        checksumJson.encodeToString(artifact.copy(artifactChecksum = "").canonical()),
+    )
+
+    fun encodeTemporaryFactorArtifact(artifact: TemporaryFactorArtifact): String =
+        strictJson.encodeToString(artifact.canonical())
+
+    fun temporaryFactorArtifactChecksum(artifact: TemporaryFactorArtifact): String = sha256(
+        checksumJson.encodeToString(artifact.copy(artifactChecksum = "").canonical()),
+    )
+
     fun sha256(value: String): String = MessageDigest.getInstance("SHA-256")
         .digest(value.toByteArray(StandardCharsets.UTF_8))
         .joinToString("") { byte -> "%02x".format(byte) }
@@ -61,5 +77,19 @@ object ArtifactCodec {
         observations = observations.sortedWith(
             compareBy({ it.observedOn }, { it.market }, { it.commodityCode }, { it.officialName }),
         ),
+    )
+
+    private fun ModelArtifactBundle.canonical(): ModelArtifactBundle = copy(
+        sourceFiles = sourceFiles.sortedWith(compareBy({ it.source }, { it.fileName }, { it.sha256 })),
+        entries = entries.sortedWith(compareBy({ it.conceptId }, { it.basis }, { it.family })).map {
+            it.copy(parameters = it.parameters.toSortedMap())
+        },
+        exclusions = exclusions.sortedWith(compareBy({ it.conceptId }, { it.basis })).map {
+            it.copy(reasonCodes = it.reasonCodes.distinct().sorted())
+        },
+    )
+
+    private fun TemporaryFactorArtifact.canonical(): TemporaryFactorArtifact = copy(
+        supportedBases = supportedBases.distinct().sorted(),
     )
 }

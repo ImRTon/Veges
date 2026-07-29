@@ -28,7 +28,7 @@ fun UnavailableState(
     modifier: Modifier = Modifier,
 ) {
     Column(modifier.padding(24.dp)) {
-        Text("目前無法提供估價", style = MaterialTheme.typography.titleMedium)
+        Text("目前無法提供參考估算", style = MaterialTheme.typography.titleMedium)
         Text(reason, style = MaterialTheme.typography.bodyMedium)
     }
 }

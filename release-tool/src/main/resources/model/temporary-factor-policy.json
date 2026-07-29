@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "policyVersion": "temporary-wholesale-x2-policy-2026-07-26",
+  "approvedAt": "2026-07-26",
+  "approvedBy": "product-owner",
+  "wholesaleToMarketFactor": "2.0",
+  "kilogramsPerTaiJin": "0.6",
+  "wholesaleFreshnessHours": 36,
+  "supportedBases": [
+    "TAIPEI_COMBINED",
+    "TAIPEI_FIRST",
+    "TAIPEI_SECOND"
+  ],
+  "intervalEnabled": false,
+  "confidenceEnabled": false,
+  "disclosure": "估算：批發價換算成每台斤後 × 2 的粗略市場參考；不是零售實價。"
+}

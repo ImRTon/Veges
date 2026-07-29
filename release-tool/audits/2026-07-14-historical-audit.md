@@ -4,6 +4,8 @@ Generated: 2026-07-14T04:00:00Z
 
 This audit used official source downloads and did not publish a model artifact.
 
+Sample-size gate decision updated: 2026-07-26 by the project owner.
+
 ## Inputs
 
 - MOA endpoint: `FarmTransData.aspx?IsTransData=1&UnitId=037&StartDate=113.01.01&EndDate=114.12.31&$top=9999&$skip=0`, queried separately for Taipei First/Second and `甘藍`, `香蕉`, `小白菜`.
@@ -30,8 +32,11 @@ another market.
 
 ## Gate Status
 
-- The approved minimum is 30 paired calibration periods, where each period has both valid wholesale
-  input and a historical retail target. Only 18 monthly retail periods are currently available.
+- The approved minimum is 18 paired calibration periods, where each period has both valid wholesale
+  input and a historical retail target. The 18 monthly retail periods can satisfy this sample-size
+  gate only for concept/source pairs with all periods aligned.
+- Expanding-window evaluation produces 17 validation periods because the first paired period is used
+  only for initial training.
 - Wholesale source history exceeds 30 days, but that does not by itself validate a retail calibration
   model.
 - Interval coverage and confidence calibration were not calculated by this baseline and remain

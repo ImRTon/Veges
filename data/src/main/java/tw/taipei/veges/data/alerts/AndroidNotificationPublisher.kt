@@ -13,7 +13,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class AndroidNotificationPermissionState @Inject constructor(
-    @ApplicationContext private val context: Context,
+    @param:ApplicationContext private val context: Context,
 ) : NotificationPermissionState {
     override fun canPostNotifications(): Boolean =
         android.os.Build.VERSION.SDK_INT < 33 ||
@@ -21,7 +21,7 @@ class AndroidNotificationPermissionState @Inject constructor(
 }
 
 class AndroidLocalNotificationPublisher @Inject constructor(
-    @ApplicationContext private val context: Context,
+    @param:ApplicationContext private val context: Context,
     private val permissionState: NotificationPermissionState,
 ) : LocalNotificationPublisher {
     override fun ensureChannels() {

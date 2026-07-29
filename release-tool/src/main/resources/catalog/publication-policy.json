@@ -1,15 +1,21 @@
 {
   "schemaVersion": 1,
-  "policyVersion": "catalog-publication-2026-07-14",
-  "approvedAt": "2026-07-14",
+  "policyVersion": "catalog-publication-2026-07-26",
+  "approvedAt": "2026-07-26",
   "approvedBy": "product-owner",
   "minimumValidObservationDays": 30,
-  "minimumPairedCalibrationPeriods": 30,
-  "minimumCoverageRatio": null,
-  "maximumRecencyDays": null,
+  "minimumPairedCalibrationPeriods": 18,
+  "minimumCoverageRatio": "0.90",
+  "maximumRecencyDays": 45,
+  "maximumMeanAbsoluteErrorNtdPerTaiJin": "15.00",
+  "maximumRootMeanSquaredErrorNtdPerTaiJin": "22.00",
+  "wholesaleFreshnessHours": 36,
+  "calibrationArtifactLifetimeDays": 62,
+  "intervalEnabled": false,
+  "confidenceEnabled": false,
   "publishCandidates": false,
   "requireExplicitAmbiguityChoice": true,
   "estimateDisclosureShortTag": "估算",
   "estimateDisclosureFullLabel": "Taipei retail reference estimate",
-  "notes": "Thirty paired periods, each containing valid wholesale input and historical retail target data, is approved as the minimum calibration history. Coverage, recency, point-error, interval, confidence, and staleness remain pending a later audit. Current 18-month retail history cannot enable launch estimates."
+  "notes": "Approved MVP gates: 18 paired periods, 0.90 paired coverage, 45-day generation recency, MAE at most NTD 15 per tai-jin, RMSE at most NTD 22 per tai-jin, 36-hour wholesale freshness, and 62-day calibration artifact lifetime. Interval and confidence outputs remain disabled, and every model family requires its own fit and backtest evidence."
 }

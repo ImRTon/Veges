@@ -5,8 +5,10 @@ import org.junit.Test
 
 class SyncSchedulerContractTest {
     @Test
-    fun refreshPipelineUsesFailClosedEstimatorUntilArtifactIsApproved() = kotlinx.coroutines.test.runTest {
-        val estimates = FailClosedEstimateRefreshCoordinator().calculateNewEstimates()
+    fun refreshPipelineAcceptsAQualifiedEstimatorBoundary() = kotlinx.coroutines.test.runTest {
+        val coordinator = EstimateRefreshCoordinator { emptyList() }
+        val estimates = coordinator.calculateNewEstimates()
+
         assertTrue(estimates.isEmpty())
     }
 }

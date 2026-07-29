@@ -48,6 +48,7 @@ kotlin {
 kapt { correctErrorTypes = true }
 
 dependencies {
+    implementation(project(":domain"))
     implementation(project(":data"))
     implementation(project(":design-system"))
     implementation(project(":home"))
@@ -70,12 +71,15 @@ dependencies {
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material3)
+    implementation(libs.compose.material.icons.extended)
     debugImplementation(libs.compose.ui.tooling)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation(project(":domain"))
     androidTestImplementation(platform(libs.compose.bom))
 }
 

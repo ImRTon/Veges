@@ -1,27 +1,109 @@
 package tw.taipei.veges.detail
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.time.Clock
+import java.time.Instant
 import javax.inject.Inject
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import tw.taipei.veges.domain.DetailRepository
+import tw.taipei.veges.domain.HistoryRefreshRequester
 import tw.taipei.veges.domain.MarketBasis
 import tw.taipei.veges.domain.ProduceConceptId
+import tw.taipei.veges.domain.TrackingRepository
+import tw.taipei.veges.domain.TrackingUseCases
+import tw.taipei.veges.domain.TrendPeriod
+import tw.taipei.veges.domain.UntrackResult
 
 @HiltViewModel
-class DetailViewModel @Inject constructor() : ViewModel() {
+class DetailViewModel @Inject constructor(
+    private val repository: DetailRepository,
+    trackingRepository: TrackingRepository,
+    private val historyRefreshRequester: HistoryRefreshRequester,
+    private val clock: Clock,
+) : ViewModel() {
+    private val trackingUseCases = TrackingUseCases(trackingRepository)
     private val mutableState = MutableStateFlow(DetailUiState())
     val state: StateFlow<DetailUiState> = mutableState.asStateFlow()
+    private var conceptId: ProduceConceptId? = null
+    private var observationJob: Job? = null
 
-    fun selectBasis(basis: MarketBasis) = mutableState.update { it.copy(selectedBasis = basis) }
+    fun selectBasis(basis: MarketBasis) {
+        mutableState.update { it.copy(selectedBasis = basis) }
+        observe()
+    }
+
+    fun selectPeriod(period: TrendPeriod) {
+        mutableState.update { it.copy(selectedPeriod = period) }
+        if (period == TrendPeriod.ONE_YEAR) {
+            conceptId?.let(historyRefreshRequester::requestOneYearHistory)
+        }
+        observe()
+    }
 
     fun toggleMethodology() = mutableState.update { it.copy(methodologyExpanded = !it.methodologyExpanded) }
 
-    fun toggleTracked() = mutableState.update { it.copy(isTracked = !it.isTracked) }
+    fun toggleTracked() {
+        val id = conceptId ?: return
+        viewModelScope.launch {
+            if (mutableState.value.isTracked) {
+                when (val result = trackingUseCases.untrack(id, removeActiveAlerts = false)) {
+                    UntrackResult.Untracked -> Unit
+                    is UntrackResult.RequiresActiveAlertConfirmation ->
+                        mutableState.update { it.copy(untrackConfirmationCount = result.activeAlertCount) }
+                }
+            } else {
+                trackingUseCases.track(id, Instant.now(clock))
+                historyRefreshRequester.requestOneYearHistory(id)
+            }
+        }
+    }
+
+    fun confirmUntrackAndRemoveAlerts() {
+        val id = conceptId ?: return
+        viewModelScope.launch {
+            trackingUseCases.untrack(id, removeActiveAlerts = true)
+            mutableState.update { it.copy(untrackConfirmationCount = null) }
+        }
+    }
+
+    fun dismissUntrackConfirmation() =
+        mutableState.update { it.copy(untrackConfirmationCount = null) }
 
     fun load(conceptId: ProduceConceptId) {
-        // TODO(7.4): Load concept and basis-qualified estimate from the feature repository.
+        if (this.conceptId == conceptId) return
+        this.conceptId = conceptId
+        historyRefreshRequester.requestOneYearHistory(conceptId)
+        observe()
+    }
+
+    private fun observe() {
+        val id = conceptId ?: return
+        observationJob?.cancel()
+        observationJob = viewModelScope.launch {
+            repository.observeDetail(
+                conceptId = id,
+                basis = mutableState.value.selectedBasis,
+                period = mutableState.value.selectedPeriod,
+            ).collectLatest { snapshot ->
+                mutableState.update {
+                    it.copy(
+                        concept = snapshot.concept,
+                        estimate = snapshot.estimate,
+                        estimateHistory = snapshot.estimateHistory,
+                        trendPoints = snapshot.trendPoints,
+                        unavailableReason = snapshot.estimate?.unavailableReason,
+                        isTracked = snapshot.isTracked,
+                    )
+                }
+            }
+        }
     }
 }

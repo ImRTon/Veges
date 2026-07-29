@@ -110,6 +110,8 @@ data class Estimate(
     val modelVersion: String,
     val wholesaleSourceDates: List<LocalDate>,
     val calibrationCutoff: LocalDate,
+    val estimatorApprovedOn: LocalDate = calibrationCutoff,
+    val formula: String = "CALIBRATED_MODEL",
     val calculatedAt: Instant,
     val point: ScaledPrice?,
     val intervalLower: ScaledPrice?,
@@ -143,6 +145,8 @@ interface ProduceRepository {
     fun search(query: String): Flow<List<ProduceConcept>>
 
     fun browse(category: ProduceCategory): Flow<List<ProduceConcept>>
+
+    fun observeMarket(category: ProduceCategory): Flow<List<MarketItem>>
 }
 
 // TODO(3.1): Add reviewed source contracts after endpoint terms and fixtures are verified.

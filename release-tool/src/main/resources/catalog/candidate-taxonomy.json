@@ -1,116 +1,6171 @@
 {
   "schemaVersion": 1,
-  "taxonomyVersion": "candidate-2026-07-14",
-  "artifactChecksum": "165411750d109bab44a7c2e1944a07ff45bacc61ad5d144422083212136ff7d4",
+  "taxonomyVersion": "launch-all-produce-2026-07-27",
+  "artifactChecksum": "2c17d98130a15671becd4aeb87d61f25e1ca631f46c334767ae0d7ab5867dbc0",
   "review": {
-    "status": "DRAFT",
-    "reviewedAt": "2026-07-14",
-    "reviewedBy": "catalog-review-pending",
-    "notes": "Candidate assembled from reviewed household terms and official crop metadata; not approved for launch publication."
+    "status": "APPROVED",
+    "reviewedAt": "2026-07-27",
+    "reviewedBy": "project-owner",
+    "notes": "Project owner approved the exhaustive 120-vegetable launch breadth and all 121 exact catalog illustration hashes."
   },
   "concepts": [
     {
-      "stableId": "vegetable.cabbage",
-      "householdName": "高麗菜",
-      "aliases": ["高麗菜", "甘藍"],
-      "category": "VEGETABLE",
-      "publicationState": "CANDIDATE",
+      "stableId": "fruit.banana",
+      "householdName": "香蕉",
+      "aliases": [
+        "香蕉",
+        "芭蕉"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
       "officialMappings": [
-        {"commodityCode": "LA1", "officialName": "甘藍-初秋", "market": "TAIPEI_FIRST"},
-        {"commodityCode": "LA1", "officialName": "甘藍-初秋", "market": "TAIPEI_SECOND"},
-        {"commodityCode": "LA2", "officialName": "甘藍-改良種", "market": "TAIPEI_FIRST"},
-        {"commodityCode": "LA2", "officialName": "甘藍-改良種", "market": "TAIPEI_SECOND"}
+        {
+          "commodityCode": "A1",
+          "officialName": "香蕉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "A1",
+          "officialName": "香蕉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "A2",
+          "officialName": "香蕉-芭蕉紅芭蕉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "A2",
+          "officialName": "香蕉-芭蕉紅芭蕉",
+          "market": "TAIPEI_SECOND"
+        }
       ],
       "image": {
-        "assetPath": "illustrations/pending/vegetable-cabbage.webp",
+        "assetPath": "illustrations/catalog/fruit-banana.webp",
         "generated": true,
         "disclosure": "AI 生成示意圖，非實物照片。",
-        "reviewedAt": null,
-        "reviewedBy": null,
-        "reviewStatus": "DRAFT"
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
       }
     },
     {
-      "stableId": "vegetable.small-bok-choy",
-      "householdName": "小白菜",
-      "aliases": ["小白菜", "白菜"],
+      "stableId": "vegetable.moa.lp2",
+      "householdName": "九層塔",
+      "aliases": [
+        "九層塔",
+        "LP2"
+      ],
       "category": "VEGETABLE",
-      "publicationState": "CANDIDATE",
+      "publicationState": "PUBLISHED",
       "officialMappings": [
-        {"commodityCode": "LB1", "officialName": "小白菜-土白菜", "market": "TAIPEI_FIRST"},
-        {"commodityCode": "LB2", "officialName": "小白菜-蚵仔白", "market": "TAIPEI_FIRST"},
-        {"commodityCode": "LB3", "officialName": "小白菜-奶油白", "market": "TAIPEI_FIRST"}
+        {
+          "commodityCode": "LP2",
+          "officialName": "九層塔",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LP2",
+          "officialName": "九層塔",
+          "market": "TAIPEI_SECOND"
+        }
       ],
       "image": {
-        "assetPath": "illustrations/pending/vegetable-small-bok-choy.webp",
+        "assetPath": "illustrations/catalog/vegetable-lp2.webp",
         "generated": true,
         "disclosure": "AI 生成示意圖，非實物照片。",
-        "reviewedAt": null,
-        "reviewedBy": null,
-        "reviewStatus": "DRAFT"
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.ly4",
+      "householdName": "人參葉",
+      "aliases": [
+        "人參葉",
+        "LY4"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LY4",
+          "officialName": "人參葉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LY4",
+          "officialName": "人參葉",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-ly4.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.ox1",
+      "householdName": "其他",
+      "aliases": [
+        "其他",
+        "OX1"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "OX1",
+          "officialName": "其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "OX1",
+          "officialName": "其他",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-ox1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fa0",
+      "householdName": "其他花類",
+      "aliases": [
+        "其他花類",
+        "FA0"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FA0",
+          "officialName": "其他花類",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FA0",
+          "officialName": "其他花類",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fa0.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.mx1",
+      "householdName": "其他菇類",
+      "aliases": [
+        "其他菇類",
+        "MX1"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "MX1",
+          "officialName": "其他菇類",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "MX1",
+          "officialName": "其他菇類",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-mx1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fe0",
+      "householdName": "冬瓜",
+      "aliases": [
+        "冬瓜",
+        "冬瓜-其他",
+        "FE0",
+        "冬瓜-白皮",
+        "FE1"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FE0",
+          "officialName": "冬瓜-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FE0",
+          "officialName": "冬瓜-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FE1",
+          "officialName": "冬瓜-白皮",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FE1",
+          "officialName": "冬瓜-白皮",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fe0.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
       }
     },
     {
       "stableId": "vegetable.napa-cabbage",
       "householdName": "包心白菜",
-      "aliases": ["包心白菜", "白菜"],
+      "aliases": [
+        "包心白菜",
+        "包心白",
+        "包心白-其他",
+        "LC0",
+        "包心白-包白",
+        "LC1",
+        "包心白-成功白",
+        "LC2",
+        "包心白-包頭蓮",
+        "LC3",
+        "包心白-天津白",
+        "LC5",
+        "包心白-冬白芽",
+        "LC6",
+        "包心白-進口",
+        "LC9",
+        "白菜"
+      ],
       "category": "VEGETABLE",
-      "publicationState": "CANDIDATE",
+      "publicationState": "PUBLISHED",
       "officialMappings": [
-        {"commodityCode": "LC1", "officialName": "包心白-包白", "market": "TAIPEI_FIRST"},
-        {"commodityCode": "LC1", "officialName": "包心白-包白", "market": "TAIPEI_SECOND"}
+        {
+          "commodityCode": "LC0",
+          "officialName": "包心白-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LC0",
+          "officialName": "包心白-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LC1",
+          "officialName": "包心白-包白",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LC1",
+          "officialName": "包心白-包白",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LC2",
+          "officialName": "包心白-成功白",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LC3",
+          "officialName": "包心白-包頭蓮",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LC3",
+          "officialName": "包心白-包頭蓮",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LC5",
+          "officialName": "包心白-天津白",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LC6",
+          "officialName": "包心白-冬白芽",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LC6",
+          "officialName": "包心白-冬白芽",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LC9",
+          "officialName": "包心白-進口",
+          "market": "TAIPEI_SECOND"
+        }
       ],
       "image": {
-        "assetPath": "illustrations/pending/vegetable-napa-cabbage.webp",
+        "assetPath": "illustrations/catalog/vegetable-napa-cabbage.webp",
         "generated": true,
         "disclosure": "AI 生成示意圖，非實物照片。",
-        "reviewedAt": null,
-        "reviewedBy": null,
-        "reviewStatus": "DRAFT"
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.lc90",
+      "householdName": "包心白菜",
+      "aliases": [
+        "包心白菜",
+        "包心白菜-進口 其他",
+        "LC90",
+        "包心白菜-進口 包頭蓮",
+        "LC93"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LC90",
+          "officialName": "包心白菜-進口 其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LC90",
+          "officialName": "包心白菜-進口 其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LC93",
+          "officialName": "包心白菜-進口 包頭蓮 ",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LC93",
+          "officialName": "包心白菜-進口 包頭蓮 ",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-lc90.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sz1",
+      "householdName": "半天筍",
+      "aliases": [
+        "半天筍",
+        "SZ1"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SZ1",
+          "officialName": "半天筍",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SZ1",
+          "officialName": "半天筍",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sz1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sz6",
+      "householdName": "半天花",
+      "aliases": [
+        "半天花",
+        "SZ6"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SZ6",
+          "officialName": "半天花",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SZ6",
+          "officialName": "半天花",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sz6.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.ft0",
+      "householdName": "南瓜",
+      "aliases": [
+        "南瓜",
+        "南瓜-其他",
+        "FT0",
+        "南瓜-木瓜形",
+        "FT1",
+        "南瓜-木瓜型 阿成",
+        "FT11",
+        "南瓜-木瓜型 阿嬌",
+        "FT12",
+        "南瓜-圓形",
+        "FT2",
+        "南瓜-黃如意",
+        "FT3",
+        "南瓜-青如意",
+        "FT5",
+        "南瓜-東昇",
+        "FT6",
+        "南瓜-栗子",
+        "FT7",
+        "南瓜-栗子 小紅",
+        "FT71",
+        "南瓜-栗子 小黑",
+        "FT72",
+        "南瓜-進口",
+        "FT9",
+        "南瓜-進口 其他",
+        "FT90",
+        "南瓜-進口 木瓜型",
+        "FT91",
+        "南瓜-進口 東昇",
+        "FT96",
+        "南瓜-進口 栗子",
+        "FT97"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FT0",
+          "officialName": "南瓜-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FT0",
+          "officialName": "南瓜-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FT1",
+          "officialName": "南瓜-木瓜形",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FT1",
+          "officialName": "南瓜-木瓜形",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FT11",
+          "officialName": "南瓜-木瓜型 阿成",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FT11",
+          "officialName": "南瓜-木瓜型 阿成",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FT12",
+          "officialName": "南瓜-木瓜型 阿嬌",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FT12",
+          "officialName": "南瓜-木瓜型 阿嬌",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FT2",
+          "officialName": "南瓜-圓形",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FT2",
+          "officialName": "南瓜-圓形",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FT3",
+          "officialName": "南瓜-黃如意",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FT3",
+          "officialName": "南瓜-黃如意",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FT5",
+          "officialName": "南瓜-青如意",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FT5",
+          "officialName": "南瓜-青如意",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FT6",
+          "officialName": "南瓜-東昇",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FT6",
+          "officialName": "南瓜-東昇",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FT7",
+          "officialName": "南瓜-栗子",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FT7",
+          "officialName": "南瓜-栗子",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FT71",
+          "officialName": "南瓜-栗子 小紅",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FT71",
+          "officialName": "南瓜-栗子 小紅",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FT72",
+          "officialName": "南瓜-栗子 小黑",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FT72",
+          "officialName": "南瓜-栗子 小黑",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FT9",
+          "officialName": "南瓜-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FT90",
+          "officialName": "南瓜-進口 其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FT90",
+          "officialName": "南瓜-進口 其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FT91",
+          "officialName": "南瓜-進口 木瓜型",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FT91",
+          "officialName": "南瓜-進口 木瓜型",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FT96",
+          "officialName": "南瓜-進口 東昇",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FT96",
+          "officialName": "南瓜-進口 東昇",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FT97",
+          "officialName": "南瓜-進口 栗子",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FT97",
+          "officialName": "南瓜-進口 栗子",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-ft0.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sg2",
+      "householdName": "大蒜",
+      "aliases": [
+        "大蒜",
+        "大蒜-軟梗",
+        "SG2",
+        "大蒜-蔥蒜",
+        "SG4",
+        "大蒜-蒜頭",
+        "SG5",
+        "大蒜-蒜仁",
+        "SG6",
+        "大蒜-蒜瓣",
+        "SG7",
+        "大蒜-進口",
+        "SG9"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SG2",
+          "officialName": "大蒜-軟梗",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SG2",
+          "officialName": "大蒜-軟梗",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SG4",
+          "officialName": "大蒜-蔥蒜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SG4",
+          "officialName": "大蒜-蔥蒜",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SG5",
+          "officialName": "大蒜-蒜頭",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SG5",
+          "officialName": "大蒜-蒜頭",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SG6",
+          "officialName": "大蒜-蒜仁",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SG6",
+          "officialName": "大蒜-蒜仁",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SG7",
+          "officialName": "大蒜-蒜瓣",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SG7",
+          "officialName": "大蒜-蒜瓣",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SG9",
+          "officialName": "大蒜-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SG9",
+          "officialName": "大蒜-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sg2.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.small-bok-choy",
+      "householdName": "小白菜",
+      "aliases": [
+        "小白菜",
+        "小白菜-土白菜",
+        "LB1",
+        "小白菜-蚵仔白",
+        "LB2",
+        "小白菜-奶油白",
+        "LB3",
+        "小白菜-水耕",
+        "LB8",
+        "白菜"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LB1",
+          "officialName": "小白菜-土白菜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LB1",
+          "officialName": "小白菜-土白菜",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LB2",
+          "officialName": "小白菜-蚵仔白",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LB2",
+          "officialName": "小白菜-蚵仔白",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LB3",
+          "officialName": "小白菜-奶油白",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LB3",
+          "officialName": "小白菜-奶油白",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LB8",
+          "officialName": "小白菜-水耕",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-small-bok-choy.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.lv1",
+      "householdName": "巴西利",
+      "aliases": [
+        "巴西利",
+        "LV1"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LV1",
+          "officialName": "巴西利",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LV1",
+          "officialName": "巴西利",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-lv1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.mg1",
+      "householdName": "巴西蘑菇",
+      "aliases": [
+        "巴西蘑菇",
+        "MG1"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "MG1",
+          "officialName": "巴西蘑菇",
+          "market": "TAIPEI_FIRST"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-mg1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fh1",
+      "householdName": "扁蒲",
+      "aliases": [
+        "扁蒲",
+        "扁蒲-長形",
+        "FH1",
+        "扁蒲-圓形",
+        "FH2",
+        "扁蒲-花蒲",
+        "FH3",
+        "扁蒲-梨子蒲",
+        "FH4",
+        "蒲仔"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FH1",
+          "officialName": "扁蒲-長形",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FH1",
+          "officialName": "扁蒲-長形",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FH2",
+          "officialName": "扁蒲-圓形",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FH2",
+          "officialName": "扁蒲-圓形",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FH3",
+          "officialName": "扁蒲-花蒲",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FH3",
+          "officialName": "扁蒲-花蒲",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FH4",
+          "officialName": "扁蒲-梨子蒲",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FH4",
+          "officialName": "扁蒲-梨子蒲",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fh1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fn1",
+      "householdName": "敏豆",
+      "aliases": [
+        "敏豆",
+        "敏豆-白豆",
+        "FN1",
+        "敏豆-粉豆",
+        "FN3",
+        "敏豆-翼豆",
+        "FN4",
+        "敏豆-醜豆",
+        "FN5",
+        "四季豆"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FN1",
+          "officialName": "敏豆-白豆",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FN1",
+          "officialName": "敏豆-白豆",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FN3",
+          "officialName": "敏豆-粉豆",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FN3",
+          "officialName": "敏豆-粉豆",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FN4",
+          "officialName": "敏豆-翼豆",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FN4",
+          "officialName": "敏豆-翼豆",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FN5",
+          "officialName": "敏豆-醜豆",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FN5",
+          "officialName": "敏豆-醜豆",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fn1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sz7",
+      "householdName": "晚香玉筍",
+      "aliases": [
+        "晚香玉筍",
+        "SZ7"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SZ7",
+          "officialName": "晚香玉筍",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SZ7",
+          "officialName": "晚香玉筍",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sz7.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.ol1",
+      "householdName": "朴菜",
+      "aliases": [
+        "朴菜",
+        "OL1"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "OL1",
+          "officialName": "朴菜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "OL1",
+          "officialName": "朴菜",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-ol1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.mj1",
+      "householdName": "杏鮑菇",
+      "aliases": [
+        "杏鮑菇",
+        "MJ1",
+        "杏鮑菇-盒裝",
+        "MJ2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "MJ1",
+          "officialName": "杏鮑菇",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "MJ1",
+          "officialName": "杏鮑菇",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "MJ2",
+          "officialName": "杏鮑菇-盒裝",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "MJ2",
+          "officialName": "杏鮑菇-盒裝",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-mj1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.mn1",
+      "householdName": "柳松菇",
+      "aliases": [
+        "柳松菇",
+        "MN1",
+        "柳松菇-盒裝",
+        "MN2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "MN1",
+          "officialName": "柳松菇",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "MN1",
+          "officialName": "柳松菇",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "MN2",
+          "officialName": "柳松菇-盒裝",
+          "market": "TAIPEI_FIRST"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-mn1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.oh1",
+      "householdName": "桶筍",
+      "aliases": [
+        "桶筍",
+        "桶筍-麻竹筍",
+        "OH1",
+        "桶筍-綠竹筍",
+        "OH2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "OH1",
+          "officialName": "桶筍-麻竹筍",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "OH2",
+          "officialName": "桶筍-綠竹筍",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "OH2",
+          "officialName": "桶筍-綠竹筍",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-oh1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.oc1",
+      "householdName": "榨菜",
+      "aliases": [
+        "榨菜",
+        "OC1"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "OC1",
+          "officialName": "榨菜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "OC1",
+          "officialName": "榨菜",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-oc1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fa2",
+      "householdName": "樊花",
+      "aliases": [
+        "樊花",
+        "FA2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FA2",
+          "officialName": "樊花",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FA2",
+          "officialName": "樊花",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fa2.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fq1",
+      "householdName": "毛豆",
+      "aliases": [
+        "毛豆",
+        "毛豆-豆莢",
+        "FQ1",
+        "毛豆-豆仁",
+        "FQ2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FQ1",
+          "officialName": "毛豆-豆莢",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FQ1",
+          "officialName": "毛豆-豆莢",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FQ2",
+          "officialName": "毛豆-豆仁",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FQ2",
+          "officialName": "毛豆-豆仁",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fq1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.ln1",
+      "householdName": "油菜",
+      "aliases": [
+        "油菜",
+        "LN1",
+        "油菜-小松菜",
+        "LN2",
+        "油菜-油菜花",
+        "LN3"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LN1",
+          "officialName": "油菜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LN1",
+          "officialName": "油菜",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LN2",
+          "officialName": "油菜-小松菜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LN2",
+          "officialName": "油菜-小松菜",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LN3",
+          "officialName": "油菜-油菜花",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LN3",
+          "officialName": "油菜-油菜花",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-ln1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.ma0",
+      "householdName": "洋菇",
+      "aliases": [
+        "洋菇",
+        "洋菇-其他",
+        "MA0",
+        "MA1",
+        "洋菇-盒裝",
+        "MA2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "MA0",
+          "officialName": "洋菇-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "MA1",
+          "officialName": "洋菇",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "MA1",
+          "officialName": "洋菇",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "MA2",
+          "officialName": "洋菇-盒裝",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "MA2",
+          "officialName": "洋菇-盒裝",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-ma0.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sd1",
+      "householdName": "洋蔥",
+      "aliases": [
+        "洋蔥",
+        "洋蔥-本產",
+        "SD1",
+        "洋蔥-進口",
+        "SD9"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SD1",
+          "officialName": "洋蔥-本產",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SD1",
+          "officialName": "洋蔥-本產",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SD9",
+          "officialName": "洋蔥-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SD9",
+          "officialName": "洋蔥-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sd1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fw2",
+      "householdName": "洛神花",
+      "aliases": [
+        "洛神花",
+        "FW2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FW2",
+          "officialName": "洛神花",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fw2.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.lt2",
+      "householdName": "海菜",
+      "aliases": [
+        "海菜",
+        "海菜-海帶",
+        "LT2",
+        "海菜-水蓮",
+        "LT3"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LT2",
+          "officialName": "海菜-海帶",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LT2",
+          "officialName": "海菜-海帶",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LT3",
+          "officialName": "海菜-水蓮",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LT3",
+          "officialName": "海菜-水蓮",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-lt2.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.mc0",
+      "householdName": "濕木耳",
+      "aliases": [
+        "濕木耳",
+        "濕木耳-其他",
+        "MC0",
+        "MC1",
+        "濕木耳-盒裝",
+        "MC2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "MC0",
+          "officialName": "濕木耳-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "MC0",
+          "officialName": "濕木耳-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "MC1",
+          "officialName": "濕木耳",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "MC1",
+          "officialName": "濕木耳",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "MC2",
+          "officialName": "濕木耳-盒裝",
+          "market": "TAIPEI_FIRST"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-mc0.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.md1",
+      "householdName": "濕香菇",
+      "aliases": [
+        "濕香菇",
+        "MD1"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "MD1",
+          "officialName": "濕香菇",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "MD1",
+          "officialName": "濕香菇",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-md1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.og1",
+      "householdName": "熟筍",
+      "aliases": [
+        "熟筍",
+        "熟筍-桂竹筍",
+        "OG1",
+        "熟筍-箭竹筍",
+        "OG2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "OG1",
+          "officialName": "熟筍-桂竹筍",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "OG1",
+          "officialName": "熟筍-桂竹筍",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "OG2",
+          "officialName": "熟筍-箭竹筍",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-og1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sm1",
+      "householdName": "牛蒡",
+      "aliases": [
+        "牛蒡",
+        "SM1",
+        "牛蒡-進口",
+        "SM9"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SM1",
+          "officialName": "牛蒡",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SM1",
+          "officialName": "牛蒡",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SM9",
+          "officialName": "牛蒡-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SM9",
+          "officialName": "牛蒡-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sm1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fy0",
+      "householdName": "玉米",
+      "aliases": [
+        "玉米",
+        "玉米-其他",
+        "FY0",
+        "玉米-白玉米",
+        "FY1",
+        "玉米-甜硬殼",
+        "FY2",
+        "玉米-超甜白",
+        "FY3",
+        "玉米-玉米筍",
+        "FY4",
+        "玉米-玉米筍 帶殼",
+        "FY41",
+        "玉米-糯米黑",
+        "FY5",
+        "玉米-甜軟殼",
+        "FY6",
+        "玉米-糯米白",
+        "FY7",
+        "玉米-白龍王",
+        "FY8",
+        "玉米-進口",
+        "FY9",
+        "玉米-進口 其他",
+        "FY90",
+        "玉米-進口 白玉米",
+        "FY91",
+        "玉米-進口 玉米筍",
+        "FY94"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FY0",
+          "officialName": "玉米-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FY0",
+          "officialName": "玉米-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FY1",
+          "officialName": "玉米-白玉米",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FY1",
+          "officialName": "玉米-白玉米",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FY2",
+          "officialName": "玉米-甜硬殼",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FY2",
+          "officialName": "玉米-甜硬殼",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FY3",
+          "officialName": "玉米-超甜白",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FY3",
+          "officialName": "玉米-超甜白",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FY4",
+          "officialName": "玉米-玉米筍",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FY4",
+          "officialName": "玉米-玉米筍",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FY41",
+          "officialName": "玉米-玉米筍 帶殼",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FY41",
+          "officialName": "玉米-玉米筍 帶殼",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FY5",
+          "officialName": "玉米-糯米黑",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FY5",
+          "officialName": "玉米-糯米黑",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FY6",
+          "officialName": "玉米-甜軟殼",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FY6",
+          "officialName": "玉米-甜軟殼",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FY7",
+          "officialName": "玉米-糯米白",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FY7",
+          "officialName": "玉米-糯米白",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FY8",
+          "officialName": "玉米-白龍王",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FY8",
+          "officialName": "玉米-白龍王",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FY9",
+          "officialName": "玉米-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FY9",
+          "officialName": "玉米-進口",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FY90",
+          "officialName": "玉米-進口 其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FY91",
+          "officialName": "玉米-進口 白玉米",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FY94",
+          "officialName": "玉米-進口 玉米筍",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FY94",
+          "officialName": "玉米-進口 玉米筍",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fy0.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.ml1",
+      "householdName": "珊瑚菇",
+      "aliases": [
+        "珊瑚菇",
+        "ML1",
+        "珊瑚菇-盒裝",
+        "ML2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "ML1",
+          "officialName": "珊瑚菇",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "ML1",
+          "officialName": "珊瑚菇",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "ML2",
+          "officialName": "珊瑚菇-盒裝",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "ML2",
+          "officialName": "珊瑚菇-盒裝",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-ml1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sw1",
+      "householdName": "大頭菜",
+      "aliases": [
+        "大頭菜",
+        "球莖甘藍",
+        "SW1"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SW1",
+          "officialName": "球莖甘藍",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SW1",
+          "officialName": "球莖甘藍",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sw1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.so0",
+      "householdName": "地瓜",
+      "aliases": [
+        "地瓜",
+        "甘薯",
+        "甘薯-其他",
+        "SO0",
+        "甘薯-臺農57號",
+        "SO1",
+        "甘薯-芋仔甘薯",
+        "SO2",
+        "甘薯-臺農66號",
+        "SO3",
+        "番薯"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SO0",
+          "officialName": "甘薯-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SO0",
+          "officialName": "甘薯-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SO1",
+          "officialName": "甘薯-臺農57號",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SO1",
+          "officialName": "甘薯-臺農57號",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SO2",
+          "officialName": "甘薯-芋仔甘薯",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SO2",
+          "officialName": "甘薯-芋仔甘薯",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SO3",
+          "officialName": "甘薯-臺農66號",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SO3",
+          "officialName": "甘薯-臺農66號",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-so0.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.lo1",
+      "householdName": "地瓜葉",
+      "aliases": [
+        "地瓜葉",
+        "甘薯葉",
+        "LO1",
+        "番薯葉"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LO1",
+          "officialName": "甘薯葉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LO1",
+          "officialName": "甘薯葉",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-lo1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.cabbage",
+      "householdName": "高麗菜",
+      "aliases": [
+        "高麗菜",
+        "甘藍",
+        "甘藍-其他",
+        "LA0",
+        "甘藍-初秋",
+        "LA1",
+        "甘藍-改良種",
+        "LA2",
+        "甘藍-甜甘藍",
+        "LA3",
+        "甘藍-紫色",
+        "LA4",
+        "甘藍-甘藍心",
+        "LA5",
+        "甘藍-甘藍芽",
+        "LA6",
+        "甘藍-改良尖",
+        "LA7",
+        "甘藍-進口",
+        "LA9",
+        "甘藍-進口 初秋",
+        "LA91",
+        "甘藍-進口 改良種",
+        "LA92",
+        "甘藍-進口 紫色",
+        "LA94"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LA0",
+          "officialName": "甘藍-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LA0",
+          "officialName": "甘藍-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LA1",
+          "officialName": "甘藍-初秋",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LA1",
+          "officialName": "甘藍-初秋",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LA2",
+          "officialName": "甘藍-改良種",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LA2",
+          "officialName": "甘藍-改良種",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LA3",
+          "officialName": "甘藍-甜甘藍",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LA4",
+          "officialName": "甘藍-紫色",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LA4",
+          "officialName": "甘藍-紫色",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LA5",
+          "officialName": "甘藍-甘藍心",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LA5",
+          "officialName": "甘藍-甘藍心",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LA6",
+          "officialName": "甘藍-甘藍芽",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LA6",
+          "officialName": "甘藍-甘藍芽",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LA7",
+          "officialName": "甘藍-改良尖",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LA7",
+          "officialName": "甘藍-改良尖",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LA9",
+          "officialName": "甘藍-進口",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LA91",
+          "officialName": "甘藍-進口 初秋",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LA91",
+          "officialName": "甘藍-進口 初秋",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LA92",
+          "officialName": "甘藍-進口 改良種",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LA92",
+          "officialName": "甘藍-進口 改良種",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LA94",
+          "officialName": "甘藍-進口 紫色",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LA94",
+          "officialName": "甘藍-進口 紫色",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-cabbage.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fk0",
+      "householdName": "甜椒",
+      "aliases": [
+        "甜椒",
+        "甜椒-其他",
+        "FK0",
+        "甜椒-新香",
+        "FK3",
+        "甜椒-彩色種",
+        "FK4",
+        "甜椒-彩色種 其他",
+        "FK40",
+        "甜椒-彩色種 紅色",
+        "FK41",
+        "甜椒-彩色種 黃色",
+        "FK42",
+        "甜椒-青椒",
+        "FK5",
+        "甜椒-水果彩椒",
+        "FK6",
+        "甜椒-進口",
+        "FK9",
+        "甜椒-進口 其他",
+        "FK90",
+        "甜椒-進口 彩色種",
+        "FK94",
+        "彩椒",
+        "青椒"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FK0",
+          "officialName": "甜椒-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FK0",
+          "officialName": "甜椒-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FK3",
+          "officialName": "甜椒-新香",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FK3",
+          "officialName": "甜椒-新香",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FK4",
+          "officialName": "甜椒-彩色種",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FK40",
+          "officialName": "甜椒-彩色種 其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FK40",
+          "officialName": "甜椒-彩色種 其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FK41",
+          "officialName": "甜椒-彩色種 紅色",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FK41",
+          "officialName": "甜椒-彩色種 紅色",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FK42",
+          "officialName": "甜椒-彩色種 黃色",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FK42",
+          "officialName": "甜椒-彩色種 黃色",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FK5",
+          "officialName": "甜椒-青椒",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FK5",
+          "officialName": "甜椒-青椒",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FK6",
+          "officialName": "甜椒-水果彩椒",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FK6",
+          "officialName": "甜椒-水果彩椒",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FK9",
+          "officialName": "甜椒-進口",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FK90",
+          "officialName": "甜椒-進口 其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FK94",
+          "officialName": "甜椒-進口 彩色種",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FK94",
+          "officialName": "甜椒-進口 彩色種",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fk0.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fj0",
+      "householdName": "番茄",
+      "aliases": [
+        "番茄",
+        "番茄-其他",
+        "FJ0",
+        "番茄-黑柿",
+        "FJ1",
+        "番茄-粉柿",
+        "FJ2",
+        "番茄-牛番茄",
+        "FJ3"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FJ0",
+          "officialName": "番茄-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FJ0",
+          "officialName": "番茄-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FJ1",
+          "officialName": "番茄-黑柿",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FJ1",
+          "officialName": "番茄-黑柿",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FJ2",
+          "officialName": "番茄-粉柿",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FJ2",
+          "officialName": "番茄-粉柿",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FJ3",
+          "officialName": "番茄-牛番茄",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FJ3",
+          "officialName": "番茄-牛番茄",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fj0.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sz4",
+      "householdName": "百合",
+      "aliases": [
+        "百合",
+        "SZ4"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SZ4",
+          "officialName": "百合",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SZ4",
+          "officialName": "百合",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sz4.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.le1",
+      "householdName": "皇宮菜",
+      "aliases": [
+        "皇宮菜",
+        "皇宮菜-小葉",
+        "LE1",
+        "皇宮菜-大葉",
+        "LE2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LE1",
+          "officialName": "皇宮菜-小葉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LE1",
+          "officialName": "皇宮菜-小葉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LE2",
+          "officialName": "皇宮菜-大葉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LE2",
+          "officialName": "皇宮菜-大葉",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-le1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fu3",
+      "householdName": "石蓮花",
+      "aliases": [
+        "石蓮花",
+        "FU3"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FU3",
+          "officialName": "石蓮花",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FU3",
+          "officialName": "石蓮花",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fu3.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.mi1",
+      "householdName": "秀珍菇",
+      "aliases": [
+        "秀珍菇",
+        "MI1",
+        "秀珍菇-盒裝",
+        "MI2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "MI1",
+          "officialName": "秀珍菇",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "MI1",
+          "officialName": "秀珍菇",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "MI2",
+          "officialName": "秀珍菇-盒裝",
+          "market": "TAIPEI_FIRST"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-mi1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sh1",
+      "householdName": "竹筍",
+      "aliases": [
+        "竹筍",
+        "竹筍-麻竹筍",
+        "SH1",
+        "竹筍-綠竹筍",
+        "SH2",
+        "竹筍-桂竹筍",
+        "SH3",
+        "竹筍-孟宗筍",
+        "SH4",
+        "竹筍-烏殼綠",
+        "SH5",
+        "竹筍-箭竹筍",
+        "SH6",
+        "竹筍-去殼",
+        "SH7"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SH1",
+          "officialName": "竹筍-麻竹筍",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SH1",
+          "officialName": "竹筍-麻竹筍",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SH2",
+          "officialName": "竹筍-綠竹筍",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SH2",
+          "officialName": "竹筍-綠竹筍",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SH3",
+          "officialName": "竹筍-桂竹筍",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SH4",
+          "officialName": "竹筍-孟宗筍",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SH4",
+          "officialName": "竹筍-孟宗筍",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SH5",
+          "officialName": "竹筍-烏殼綠",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SH5",
+          "officialName": "竹筍-烏殼綠",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SH6",
+          "officialName": "竹筍-箭竹筍",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SH7",
+          "officialName": "竹筍-去殼",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SH7",
+          "officialName": "竹筍-去殼",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sh1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.oi3",
+      "householdName": "筍片",
+      "aliases": [
+        "筍片",
+        "OI3"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "OI3",
+          "officialName": "筍片",
+          "market": "TAIPEI_FIRST"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-oi3.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.oi2",
+      "householdName": "筍絲",
+      "aliases": [
+        "筍絲",
+        "OI2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "OI2",
+          "officialName": "筍絲",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-oi2.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.oi4",
+      "householdName": "筍茸",
+      "aliases": [
+        "筍茸",
+        "OI4"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "OI4",
+          "officialName": "筍茸",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "OI4",
+          "officialName": "筍茸",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-oi4.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.lq1",
+      "householdName": "紅鳳菜",
+      "aliases": [
+        "紅鳳菜",
+        "紅鳳菜-紅鳳菜",
+        "LQ1"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LQ1",
+          "officialName": "紅鳳菜-紅鳳菜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LQ1",
+          "officialName": "紅鳳菜-紅鳳菜",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-lq1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.ff0",
+      "householdName": "絲瓜",
+      "aliases": [
+        "絲瓜",
+        "絲瓜-其他",
+        "FF0",
+        "FF1",
+        "絲瓜-角瓜",
+        "FF2",
+        "絲瓜-長絲瓜",
+        "FF4",
+        "菜瓜"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FF0",
+          "officialName": "絲瓜-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FF0",
+          "officialName": "絲瓜-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FF1",
+          "officialName": "絲瓜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FF1",
+          "officialName": "絲瓜",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FF2",
+          "officialName": "絲瓜-角瓜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FF2",
+          "officialName": "絲瓜-角瓜",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FF4",
+          "officialName": "絲瓜-長絲瓜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FF4",
+          "officialName": "絲瓜-長絲瓜",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-ff0.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.lp3",
+      "householdName": "羅勒",
+      "aliases": [
+        "羅勒",
+        "LP3"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LP3",
+          "officialName": "羅勒",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LP3",
+          "officialName": "羅勒",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-lp3.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fc1",
+      "householdName": "胡瓜",
+      "aliases": [
+        "胡瓜",
+        "胡瓜-黑刺",
+        "FC1",
+        "大黃瓜",
+        "刺瓜"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FC1",
+          "officialName": "胡瓜-黑刺",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FC1",
+          "officialName": "胡瓜-黑刺",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fc1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sb1",
+      "householdName": "胡蘿蔔",
+      "aliases": [
+        "胡蘿蔔",
+        "胡蘿蔔-未洗",
+        "SB1",
+        "胡蘿蔔-清洗",
+        "SB2",
+        "胡蘿蔔-進口",
+        "SB9"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SB1",
+          "officialName": "胡蘿蔔-未洗",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SB1",
+          "officialName": "胡蘿蔔-未洗",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SB2",
+          "officialName": "胡蘿蔔-清洗",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SB2",
+          "officialName": "胡蘿蔔-清洗",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SB9",
+          "officialName": "胡蘿蔔-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SB9",
+          "officialName": "胡蘿蔔-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sb1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sj1",
+      "householdName": "芋",
+      "aliases": [
+        "芋",
+        "芋-麵芋",
+        "SJ1",
+        "芋-檳榔心芋",
+        "SJ2",
+        "芋-里芋",
+        "SJ3",
+        "芋-芋莖",
+        "SJ4",
+        "芋-芋角",
+        "SJ5"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SJ1",
+          "officialName": "芋-麵芋",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SJ2",
+          "officialName": "芋-檳榔心芋",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SJ2",
+          "officialName": "芋-檳榔心芋",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SJ3",
+          "officialName": "芋-里芋",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SJ3",
+          "officialName": "芋-里芋",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SJ4",
+          "officialName": "芋-芋莖",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SJ4",
+          "officialName": "芋-芋莖",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SJ5",
+          "officialName": "芋-芋角",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SJ5",
+          "officialName": "芋-芋角",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sj1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.lj1",
+      "householdName": "芥菜",
+      "aliases": [
+        "芥菜",
+        "芥菜-芥菜仁",
+        "LJ1",
+        "芥菜-大芥菜",
+        "LJ3",
+        "芥菜-小芥菜",
+        "LJ4"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LJ1",
+          "officialName": "芥菜-芥菜仁",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LJ1",
+          "officialName": "芥菜-芥菜仁",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LJ3",
+          "officialName": "芥菜-大芥菜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LJ3",
+          "officialName": "芥菜-大芥菜",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LJ4",
+          "officialName": "芥菜-小芥菜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LJ4",
+          "officialName": "芥菜-小芥菜",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-lj1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.lk2",
+      "householdName": "芥藍菜",
+      "aliases": [
+        "芥藍菜",
+        "LK2",
+        "芥藍菜-芥藍芽",
+        "LK3"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LK2",
+          "officialName": "芥藍菜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LK2",
+          "officialName": "芥藍菜",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LK3",
+          "officialName": "芥藍菜-芥藍芽",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LK3",
+          "officialName": "芥藍菜-芥藍芽",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-lk2.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.lp1",
+      "householdName": "香菜",
+      "aliases": [
+        "香菜",
+        "芫荽",
+        "LP1",
+        "芫荽-進口",
+        "LP9"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LP1",
+          "officialName": "芫荽",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LP1",
+          "officialName": "芫荽",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LP9",
+          "officialName": "芫荽-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LP9",
+          "officialName": "芫荽-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-lp1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fb0",
+      "householdName": "花椰菜",
+      "aliases": [
+        "花椰菜",
+        "花椰菜-其他",
+        "FB0",
+        "花椰菜-青梗",
+        "FB1",
+        "花椰菜-進口",
+        "FB9"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FB0",
+          "officialName": "花椰菜-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FB0",
+          "officialName": "花椰菜-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FB1",
+          "officialName": "花椰菜-青梗",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FB1",
+          "officialName": "花椰菜-青梗",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FB9",
+          "officialName": "花椰菜-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FB9",
+          "officialName": "花椰菜-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fb0.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fd0",
+      "householdName": "花胡瓜",
+      "aliases": [
+        "花胡瓜",
+        "花胡瓜-其他",
+        "FD0",
+        "FD1",
+        "小黃瓜"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FD0",
+          "officialName": "花胡瓜-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FD0",
+          "officialName": "花胡瓜-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FD1",
+          "officialName": "花胡瓜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FD1",
+          "officialName": "花胡瓜",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fd0.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fx1",
+      "householdName": "花豆",
+      "aliases": [
+        "花豆",
+        "FX1"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FX1",
+          "officialName": "花豆",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FX1",
+          "officialName": "花豆",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fx1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.lg2",
+      "householdName": "芹菜",
+      "aliases": [
+        "芹菜",
+        "芹菜-白梗",
+        "LG2",
+        "芹菜-西洋芹菜",
+        "LG3",
+        "芹菜-山芹菜",
+        "LG4",
+        "芹菜-芹菜管",
+        "LG5",
+        "芹菜-水耕",
+        "LG8",
+        "芹菜-進口",
+        "LG9"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LG2",
+          "officialName": "芹菜-白梗",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LG2",
+          "officialName": "芹菜-白梗",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LG3",
+          "officialName": "芹菜-西洋芹菜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LG3",
+          "officialName": "芹菜-西洋芹菜",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LG4",
+          "officialName": "芹菜-山芹菜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LG4",
+          "officialName": "芹菜-山芹菜",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LG5",
+          "officialName": "芹菜-芹菜管",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LG5",
+          "officialName": "芹菜-芹菜管",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LG8",
+          "officialName": "芹菜-水耕",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LG8",
+          "officialName": "芹菜-水耕",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LG9",
+          "officialName": "芹菜-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LG9",
+          "officialName": "芹菜-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-lg2.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sx0",
+      "householdName": "其他芽菜",
+      "aliases": [
+        "其他芽菜",
+        "芽菜類-其他",
+        "SX0"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SX0",
+          "officialName": "芽菜類-其他",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sx0.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sx1",
+      "householdName": "綠豆芽",
+      "aliases": [
+        "綠豆芽",
+        "芽菜類-綠豆芽",
+        "SX1"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SX1",
+          "officialName": "芽菜類-綠豆芽",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SX1",
+          "officialName": "芽菜類-綠豆芽",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sx1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sx4",
+      "householdName": "苜蓿芽",
+      "aliases": [
+        "苜蓿芽",
+        "芽菜類-苜蓿芽",
+        "SX4"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SX4",
+          "officialName": "芽菜類-苜蓿芽",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SX4",
+          "officialName": "芽菜類-苜蓿芽",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sx4.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sx3",
+      "householdName": "豌豆芽",
+      "aliases": [
+        "豌豆芽",
+        "芽菜類-豌豆芽",
+        "SX3"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SX3",
+          "officialName": "芽菜類-豌豆芽",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SX3",
+          "officialName": "芽菜類-豌豆芽",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sx3.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sx2",
+      "householdName": "黃豆芽",
+      "aliases": [
+        "黃豆芽",
+        "芽菜類-黃豆芽",
+        "SX2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SX2",
+          "officialName": "芽菜類-黃豆芽",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SX2",
+          "officialName": "芽菜類-黃豆芽",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sx2.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fg0",
+      "householdName": "苦瓜",
+      "aliases": [
+        "苦瓜",
+        "苦瓜-其他",
+        "FG0",
+        "苦瓜-白大米",
+        "FG1",
+        "苦瓜-青大米",
+        "FG2",
+        "苦瓜-山苦瓜",
+        "FG3",
+        "苦瓜-翠綠",
+        "FG4"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FG0",
+          "officialName": "苦瓜-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FG0",
+          "officialName": "苦瓜-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FG1",
+          "officialName": "苦瓜-白大米",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FG1",
+          "officialName": "苦瓜-白大米",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FG2",
+          "officialName": "苦瓜-青大米",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FG2",
+          "officialName": "苦瓜-青大米",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FG3",
+          "officialName": "苦瓜-山苦瓜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FG3",
+          "officialName": "苦瓜-山苦瓜",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FG4",
+          "officialName": "苦瓜-翠綠",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FG4",
+          "officialName": "苦瓜-翠綠",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fg0.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fi0",
+      "householdName": "茄子",
+      "aliases": [
+        "茄子",
+        "茄子-其他",
+        "FI0",
+        "茄子-胭脂茄",
+        "FI1",
+        "茄子-麻荸茄",
+        "FI2",
+        "茄子-日本種",
+        "FI3"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FI0",
+          "officialName": "茄子-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FI0",
+          "officialName": "茄子-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FI1",
+          "officialName": "茄子-胭脂茄",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FI1",
+          "officialName": "茄子-胭脂茄",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FI2",
+          "officialName": "茄子-麻荸茄",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FI2",
+          "officialName": "茄子-麻荸茄",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FI3",
+          "officialName": "茄子-日本種",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FI3",
+          "officialName": "茄子-日本種",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fi0.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sq1",
+      "householdName": "茭白筍",
+      "aliases": [
+        "茭白筍",
+        "茭白筍-帶殼",
+        "SQ1",
+        "茭白筍-去殼",
+        "SQ3",
+        "美人腿"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SQ1",
+          "officialName": "茭白筍-帶殼",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SQ1",
+          "officialName": "茭白筍-帶殼",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SQ3",
+          "officialName": "茭白筍-去殼",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SQ3",
+          "officialName": "茭白筍-去殼",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sq1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.ls1",
+      "householdName": "茴香",
+      "aliases": [
+        "茴香",
+        "LS1"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LS1",
+          "officialName": "茴香",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LS1",
+          "officialName": "茴香",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-ls1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.ll1",
+      "householdName": "茼蒿",
+      "aliases": [
+        "茼蒿",
+        "LL1",
+        "茼蒿-山茼蒿",
+        "LL2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LL1",
+          "officialName": "茼蒿",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LL1",
+          "officialName": "茼蒿",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LL2",
+          "officialName": "茼蒿-山茼蒿",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LL2",
+          "officialName": "茼蒿-山茼蒿",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-ll1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sz5",
+      "householdName": "草石蠶",
+      "aliases": [
+        "草石蠶",
+        "SZ5"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SZ5",
+          "officialName": "草石蠶",
+          "market": "TAIPEI_FIRST"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sz5.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.mb1",
+      "householdName": "草菇",
+      "aliases": [
+        "草菇",
+        "MB1"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "MB1",
+          "officialName": "草菇",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "MB1",
+          "officialName": "草菇",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-mb1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sk1",
+      "householdName": "荸薺",
+      "aliases": [
+        "荸薺",
+        "SK1",
+        "荸薺-加工",
+        "SK2",
+        "馬蹄"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SK1",
+          "officialName": "荸薺",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SK1",
+          "officialName": "荸薺",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SK2",
+          "officialName": "荸薺-加工",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SK2",
+          "officialName": "荸薺-加工",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sk1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.lm1",
+      "householdName": "莧菜",
+      "aliases": [
+        "莧菜",
+        "莧菜-紅莧菜",
+        "LM1",
+        "莧菜-白莧菜",
+        "LM2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LM1",
+          "officialName": "莧菜-紅莧菜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LM1",
+          "officialName": "莧菜-紅莧菜",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LM2",
+          "officialName": "莧菜-白莧菜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LM2",
+          "officialName": "莧菜-白莧菜",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-lm1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fm1",
+      "householdName": "菜豆",
+      "aliases": [
+        "菜豆",
+        "菜豆-白色",
+        "FM1",
+        "菜豆-青色",
+        "FM2",
+        "菜豆-紅色",
+        "FM3",
+        "豇豆",
+        "長豆"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FM1",
+          "officialName": "菜豆-白色",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FM1",
+          "officialName": "菜豆-白色",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FM2",
+          "officialName": "菜豆-青色",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FM2",
+          "officialName": "菜豆-青色",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FM3",
+          "officialName": "菜豆-紅色",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FM3",
+          "officialName": "菜豆-紅色",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fm1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.lh1",
+      "householdName": "菠菜",
+      "aliases": [
+        "菠菜",
+        "菠菜-圓葉",
+        "LH1",
+        "菠菜-角葉",
+        "LH2",
+        "菠菜-甜菠菜",
+        "LH3"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LH1",
+          "officialName": "菠菜-圓葉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LH1",
+          "officialName": "菠菜-圓葉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LH2",
+          "officialName": "菠菜-角葉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LH2",
+          "officialName": "菠菜-角葉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LH3",
+          "officialName": "菠菜-甜菠菜",
+          "market": "TAIPEI_FIRST"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-lh1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sr1",
+      "householdName": "菱角",
+      "aliases": [
+        "菱角",
+        "菱角-生菱角",
+        "SR1",
+        "菱角-去殼",
+        "SR3",
+        "菱角-熟菱角",
+        "SR4"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SR1",
+          "officialName": "菱角-生菱角",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SR1",
+          "officialName": "菱角-生菱角",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SR3",
+          "officialName": "菱角-去殼",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SR3",
+          "officialName": "菱角-去殼",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SR4",
+          "officialName": "菱角-熟菱角",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sr1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.lu1",
+      "householdName": "菾菜",
+      "aliases": [
+        "菾菜",
+        "菾菜-茄茉菜",
+        "LU1",
+        "甜菜"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LU1",
+          "officialName": "菾菜-茄茉菜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LU1",
+          "officialName": "菾菜-茄茉菜",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-lu1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fp1",
+      "householdName": "萊豆",
+      "aliases": [
+        "萊豆",
+        "萊豆-豆莢",
+        "FP1",
+        "萊豆-豆仁",
+        "FP2",
+        "皇帝豆"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FP1",
+          "officialName": "萊豆-豆莢",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FP1",
+          "officialName": "萊豆-豆莢",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FP2",
+          "officialName": "萊豆-豆仁",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FP2",
+          "officialName": "萊豆-豆仁",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fp1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.si1",
+      "householdName": "萵苣莖",
+      "aliases": [
+        "萵苣莖",
+        "SI1"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SI1",
+          "officialName": "萵苣莖",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SI1",
+          "officialName": "萵苣莖",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-si1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.li0",
+      "householdName": "萵苣菜",
+      "aliases": [
+        "萵苣菜",
+        "萵苣菜-其他",
+        "LI0",
+        "萵苣菜-廣東菜",
+        "LI1",
+        "萵苣菜-結球萵",
+        "LI2",
+        "萵苣菜-本島圓葉",
+        "LI3",
+        "萵苣菜-本島尖葉",
+        "LI4",
+        "萵苣菜-油麥菜",
+        "LI5",
+        "萵苣菜-蘿美",
+        "LI6",
+        "萵苣菜-紅捲綠捲",
+        "LI7",
+        "萵苣菜-紅捲",
+        "LI71",
+        "萵苣菜-綠捲",
+        "LI72",
+        "萵苣菜-水耕",
+        "LI8",
+        "萵苣菜-進口",
+        "LI9",
+        "萵苣菜-進口 其他",
+        "LI90",
+        "萵苣菜-進口 廣東萵",
+        "LI91",
+        "萵苣菜-進口 結球萵",
+        "LI92",
+        "萵苣菜-進口 油麥菜",
+        "LI95",
+        "萵苣菜-進口 蘿美",
+        "LI96",
+        "萵苣"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LI0",
+          "officialName": "萵苣菜-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LI0",
+          "officialName": "萵苣菜-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LI1",
+          "officialName": "萵苣菜-廣東菜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LI1",
+          "officialName": "萵苣菜-廣東菜",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LI2",
+          "officialName": "萵苣菜-結球萵",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LI2",
+          "officialName": "萵苣菜-結球萵",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LI3",
+          "officialName": "萵苣菜-本島圓葉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LI3",
+          "officialName": "萵苣菜-本島圓葉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LI4",
+          "officialName": "萵苣菜-本島尖葉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LI4",
+          "officialName": "萵苣菜-本島尖葉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LI5",
+          "officialName": "萵苣菜-油麥菜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LI5",
+          "officialName": "萵苣菜-油麥菜",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LI6",
+          "officialName": "萵苣菜-蘿美",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LI6",
+          "officialName": "萵苣菜-蘿美",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LI7",
+          "officialName": "萵苣菜-紅捲綠捲",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LI7",
+          "officialName": "萵苣菜-紅捲綠捲",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LI71",
+          "officialName": "萵苣菜-紅捲",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LI71",
+          "officialName": "萵苣菜-紅捲",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LI72",
+          "officialName": "萵苣菜-綠捲",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LI72",
+          "officialName": "萵苣菜-綠捲",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LI8",
+          "officialName": "萵苣菜-水耕",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LI8",
+          "officialName": "萵苣菜-水耕",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LI9",
+          "officialName": "萵苣菜-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LI9",
+          "officialName": "萵苣菜-進口",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LI90",
+          "officialName": "萵苣菜-進口 其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LI90",
+          "officialName": "萵苣菜-進口 其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LI91",
+          "officialName": "萵苣菜-進口 廣東萵",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LI91",
+          "officialName": "萵苣菜-進口 廣東萵",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LI92",
+          "officialName": "萵苣菜-進口 結球萵",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LI92",
+          "officialName": "萵苣菜-進口 結球萵",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LI95",
+          "officialName": "萵苣菜-進口 油麥菜 ",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LI95",
+          "officialName": "萵苣菜-進口 油麥菜 ",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LI96",
+          "officialName": "萵苣菜-進口 蘿美",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LI96",
+          "officialName": "萵苣菜-進口 蘿美",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-li0.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fz1",
+      "householdName": "落花生",
+      "aliases": [
+        "落花生",
+        "落花生-生",
+        "FZ1",
+        "落花生-熟",
+        "FZ2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FZ1",
+          "officialName": "落花生-生",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FZ1",
+          "officialName": "落花生-生",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FZ2",
+          "officialName": "落花生-熟",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FZ2",
+          "officialName": "落花生-熟",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fz1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sn1",
+      "householdName": "蓮藕",
+      "aliases": [
+        "蓮藕",
+        "SN1",
+        "蓮藕-蓮子",
+        "SN2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SN1",
+          "officialName": "蓮藕",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SN1",
+          "officialName": "蓮藕",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SN2",
+          "officialName": "蓮藕-蓮子",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SN2",
+          "officialName": "蓮藕-蓮子",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sn1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.st1",
+      "householdName": "蕎頭",
+      "aliases": [
+        "蕎頭",
+        "蕎頭-露蕎",
+        "ST1",
+        "藠頭"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "ST1",
+          "officialName": "蕎頭-露蕎",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "ST1",
+          "officialName": "蕎頭-露蕎",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-st1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.lx1",
+      "householdName": "蕨菜",
+      "aliases": [
+        "蕨菜",
+        "蕨菜-過貓",
+        "LX1",
+        "蕨菜-山蘇",
+        "LX2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LX1",
+          "officialName": "蕨菜-過貓",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LX1",
+          "officialName": "蕨菜-過貓",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LX2",
+          "officialName": "蕨菜-山蘇",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LX2",
+          "officialName": "蕨菜-山蘇",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-lx1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.lf1",
+      "householdName": "空心菜",
+      "aliases": [
+        "空心菜",
+        "蕹菜",
+        "蕹菜-大葉",
+        "LF1",
+        "蕹菜-小葉",
+        "LF2",
+        "蕹菜-水蕹菜",
+        "LF3"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LF1",
+          "officialName": "蕹菜-大葉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LF1",
+          "officialName": "蕹菜-大葉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LF2",
+          "officialName": "蕹菜-小葉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LF2",
+          "officialName": "蕹菜-小葉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LF3",
+          "officialName": "蕹菜-水蕹菜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LF3",
+          "officialName": "蕹菜-水蕹菜",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-lf1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sp0",
+      "householdName": "薑",
+      "aliases": [
+        "薑",
+        "薑-其他",
+        "SP0",
+        "薑-老薑",
+        "SP1",
+        "薑-嫩薑",
+        "SP2",
+        "薑-粉薑",
+        "SP3",
+        "薑-竹薑",
+        "SP4",
+        "薑-薑黃",
+        "SP5"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SP0",
+          "officialName": "薑-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SP0",
+          "officialName": "薑-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SP1",
+          "officialName": "薑-老薑",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SP1",
+          "officialName": "薑-老薑",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SP2",
+          "officialName": "薑-嫩薑",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SP2",
+          "officialName": "薑-嫩薑",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SP3",
+          "officialName": "薑-粉薑",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SP3",
+          "officialName": "薑-粉薑",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SP4",
+          "officialName": "薑-竹薑",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SP4",
+          "officialName": "薑-竹薑",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SP5",
+          "officialName": "薑-薑黃",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SP5",
+          "officialName": "薑-薑黃",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sp0.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.su1",
+      "householdName": "山藥",
+      "aliases": [
+        "山藥",
+        "薯蕷",
+        "薯蕷-紅薯蕷",
+        "SU1",
+        "薯蕷-白薯蕷",
+        "SU2",
+        "薯蕷-白薯蕷 人參",
+        "SU21",
+        "薯蕷-樹薯",
+        "SU3",
+        "薯蕷-粉薯",
+        "SU4",
+        "薯蕷-進口",
+        "SU9"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SU1",
+          "officialName": "薯蕷-紅薯蕷",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SU1",
+          "officialName": "薯蕷-紅薯蕷",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SU2",
+          "officialName": "薯蕷-白薯蕷",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SU2",
+          "officialName": "薯蕷-白薯蕷",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SU21",
+          "officialName": "薯蕷-白薯蕷 人參",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SU21",
+          "officialName": "薯蕷-白薯蕷 人參",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SU3",
+          "officialName": "薯蕷-樹薯",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SU3",
+          "officialName": "薯蕷-樹薯",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SU4",
+          "officialName": "薯蕷-粉薯",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SU9",
+          "officialName": "薯蕷-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SU9",
+          "officialName": "薯蕷-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-su1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.lz2",
+      "householdName": "川七",
+      "aliases": [
+        "川七",
+        "藤川七",
+        "藤川七-川七葉",
+        "LZ2",
+        "藤三七"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LZ2",
+          "officialName": "藤川七-川七葉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LZ2",
+          "officialName": "藤川七-川七葉",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-lz2.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sv1",
+      "householdName": "蘆筍",
+      "aliases": [
+        "蘆筍",
+        "蘆筍-白蘆筍",
+        "SV1",
+        "蘆筍-綠蘆筍",
+        "SV2",
+        "蘆筍-蘆筍花",
+        "SV3",
+        "蘆筍-進口",
+        "SV9",
+        "蘆筍-進口 綠蘆筍",
+        "SV92"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SV1",
+          "officialName": "蘆筍-白蘆筍",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SV1",
+          "officialName": "蘆筍-白蘆筍",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SV2",
+          "officialName": "蘆筍-綠蘆筍",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SV2",
+          "officialName": "蘆筍-綠蘆筍",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SV3",
+          "officialName": "蘆筍-蘆筍花",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SV3",
+          "officialName": "蘆筍-蘆筍花",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SV9",
+          "officialName": "蘆筍-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SV9",
+          "officialName": "蘆筍-進口",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SV92",
+          "officialName": "蘆筍-進口 綠蘆筍",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SV92",
+          "officialName": "蘆筍-進口 綠蘆筍",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sv1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sa0",
+      "householdName": "蘿蔔",
+      "aliases": [
+        "蘿蔔",
+        "蘿蔔-其他",
+        "SA0",
+        "蘿蔔-矸仔",
+        "SA3",
+        "蘿蔔-櫻桃",
+        "SA4",
+        "蘿蔔-甜菜根",
+        "SA7",
+        "蘿蔔-進口",
+        "SA9"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SA0",
+          "officialName": "蘿蔔-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SA3",
+          "officialName": "蘿蔔-矸仔",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SA3",
+          "officialName": "蘿蔔-矸仔",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SA4",
+          "officialName": "蘿蔔-櫻桃",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SA4",
+          "officialName": "蘿蔔-櫻桃",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SA7",
+          "officialName": "蘿蔔-甜菜根",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SA7",
+          "officialName": "蘿蔔-甜菜根",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SA9",
+          "officialName": "蘿蔔-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SA9",
+          "officialName": "蘿蔔-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sa0.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.od1",
+      "householdName": "蘿蔔乾",
+      "aliases": [
+        "蘿蔔乾",
+        "OD1"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "OD1",
+          "officialName": "蘿蔔乾",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "OD1",
+          "officialName": "蘿蔔乾",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-od1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fx2",
+      "householdName": "虎豆",
+      "aliases": [
+        "虎豆",
+        "虎豆-福豆",
+        "FX2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FX2",
+          "officialName": "虎豆-福豆",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FX2",
+          "officialName": "虎豆-福豆",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fx2.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.mf1",
+      "householdName": "蠔菇",
+      "aliases": [
+        "蠔菇",
+        "蠔菇-鮑魚菇",
+        "MF1",
+        "蠔菇-盒裝",
+        "MF2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "MF1",
+          "officialName": "蠔菇-鮑魚菇",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "MF1",
+          "officialName": "蠔菇-鮑魚菇",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "MF2",
+          "officialName": "蠔菇-盒裝",
+          "market": "TAIPEI_FIRST"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-mf1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.ly1",
+      "householdName": "西洋菜",
+      "aliases": [
+        "西洋菜",
+        "LY1"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LY1",
+          "officialName": "西洋菜",
+          "market": "TAIPEI_FIRST"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-ly1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sl1",
+      "householdName": "豆薯",
+      "aliases": [
+        "豆薯",
+        "SL1",
+        "涼薯"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SL1",
+          "officialName": "豆薯",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SL1",
+          "officialName": "豆薯",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sl1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fl1",
+      "householdName": "豌豆",
+      "aliases": [
+        "豌豆",
+        "豌豆-白花",
+        "FL1",
+        "豌豆-紅花",
+        "FL2",
+        "豌豆-豌豆苗",
+        "FL5",
+        "豌豆-甜豌豆",
+        "FL6",
+        "豌豆-進口",
+        "FL9",
+        "豌豆-進口 紅花",
+        "FL92",
+        "豌豆-進口 甜豌豆",
+        "FL96",
+        "荷蘭豆"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FL1",
+          "officialName": "豌豆-白花",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FL2",
+          "officialName": "豌豆-紅花",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FL5",
+          "officialName": "豌豆-豌豆苗",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FL5",
+          "officialName": "豌豆-豌豆苗",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FL6",
+          "officialName": "豌豆-甜豌豆",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FL6",
+          "officialName": "豌豆-甜豌豆",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FL9",
+          "officialName": "豌豆-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FL9",
+          "officialName": "豌豆-進口",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FL92",
+          "officialName": "豌豆-進口 紅花",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FL92",
+          "officialName": "豌豆-進口 紅花",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FL96",
+          "officialName": "豌豆-進口 甜豌豆",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FL96",
+          "officialName": "豌豆-進口 甜豌豆",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fl1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fs1",
+      "householdName": "越瓜",
+      "aliases": [
+        "越瓜",
+        "越瓜-青色",
+        "FS1",
+        "越瓜-白色",
+        "FS2",
+        "醃瓜"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FS1",
+          "officialName": "越瓜-青色",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FS1",
+          "officialName": "越瓜-青色",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FS2",
+          "officialName": "越瓜-白色",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fs1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fv0",
+      "householdName": "辣椒",
+      "aliases": [
+        "辣椒",
+        "辣椒-其他",
+        "FV0",
+        "辣椒-紅小",
+        "FV1",
+        "辣椒-青小",
+        "FV2",
+        "辣椒-雞心",
+        "FV3",
+        "辣椒-朝天椒",
+        "FV4",
+        "辣椒-青龍",
+        "FV5",
+        "辣椒-糯米椒",
+        "FV6",
+        "辣椒-進口",
+        "FV9",
+        "辣椒-進口 紅小",
+        "FV91",
+        "辣椒-進口 青小",
+        "FV92",
+        "辣椒-進口 朝天椒",
+        "FV94",
+        "辣椒-進口 青龍",
+        "FV95",
+        "辣椒-進口 糯米椒",
+        "FV96"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FV0",
+          "officialName": "辣椒-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FV0",
+          "officialName": "辣椒-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FV1",
+          "officialName": "辣椒-紅小",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FV1",
+          "officialName": "辣椒-紅小",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FV2",
+          "officialName": "辣椒-青小",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FV2",
+          "officialName": "辣椒-青小",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FV3",
+          "officialName": "辣椒-雞心",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FV3",
+          "officialName": "辣椒-雞心",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FV4",
+          "officialName": "辣椒-朝天椒",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FV4",
+          "officialName": "辣椒-朝天椒",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FV5",
+          "officialName": "辣椒-青龍",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FV5",
+          "officialName": "辣椒-青龍",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FV6",
+          "officialName": "辣椒-糯米椒",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FV6",
+          "officialName": "辣椒-糯米椒",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FV9",
+          "officialName": "辣椒-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FV9",
+          "officialName": "辣椒-進口",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FV91",
+          "officialName": "辣椒-進口 紅小",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FV91",
+          "officialName": "辣椒-進口 紅小",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FV92",
+          "officialName": "辣椒-進口 青小",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FV92",
+          "officialName": "辣椒-進口 青小",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FV94",
+          "officialName": "辣椒-進口 朝天椒",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FV94",
+          "officialName": "辣椒-進口 朝天椒",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FV95",
+          "officialName": "辣椒-進口 青龍",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FV95",
+          "officialName": "辣椒-進口 青龍",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FV96",
+          "officialName": "辣椒-進口 糯米椒",
+          "market": "TAIPEI_FIRST"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fv0.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.oe1",
+      "householdName": "醃瓜",
+      "aliases": [
+        "醃瓜",
+        "醃瓜-乾",
+        "OE1",
+        "醃瓜-漬",
+        "OE2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "OE1",
+          "officialName": "醃瓜-乾",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "OE2",
+          "officialName": "醃瓜-漬",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "OE2",
+          "officialName": "醃瓜-漬",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-oe1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.me0",
+      "householdName": "金針菇",
+      "aliases": [
+        "金針菇",
+        "金絲菇",
+        "金絲菇-其他",
+        "ME0",
+        "金絲菇-金針菇",
+        "ME1",
+        "金絲菇-盒裝",
+        "ME2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "ME0",
+          "officialName": "金絲菇-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "ME1",
+          "officialName": "金絲菇-金針菇",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "ME1",
+          "officialName": "金絲菇-金針菇",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "ME2",
+          "officialName": "金絲菇-盒裝",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "ME2",
+          "officialName": "金絲菇-盒裝",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-me0.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sz3",
+      "householdName": "金針筍",
+      "aliases": [
+        "金針筍",
+        "SZ3"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SZ3",
+          "officialName": "金針筍",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SZ3",
+          "officialName": "金針筍",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sz3.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fw1",
+      "householdName": "金針花",
+      "aliases": [
+        "金針花",
+        "FW1"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FW1",
+          "officialName": "金針花",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FW1",
+          "officialName": "金針花",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fw1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fu1",
+      "householdName": "佛手瓜",
+      "aliases": [
+        "佛手瓜",
+        "隼人瓜",
+        "FU1",
+        "隼人瓜-瓜苗",
+        "FU2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FU1",
+          "officialName": "隼人瓜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FU1",
+          "officialName": "隼人瓜",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FU2",
+          "officialName": "隼人瓜-瓜苗",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FU2",
+          "officialName": "隼人瓜-瓜苗",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fu1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.ob1",
+      "householdName": "雪里紅",
+      "aliases": [
+        "雪里紅",
+        "OB1"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "OB1",
+          "officialName": "雪里紅",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "OB1",
+          "officialName": "雪里紅",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-ob1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
       }
     },
     {
       "stableId": "vegetable.qingjiang-bok-choy",
-      "householdName": "青江白菜",
-      "aliases": ["青江白菜", "青江菜", "白菜"],
+      "householdName": "青江菜",
+      "aliases": [
+        "青江菜",
+        "青江白菜",
+        "青江白菜-小梗",
+        "LD1",
+        "青江白菜-大梗",
+        "LD2",
+        "青江白菜-水耕",
+        "LD8",
+        "白菜"
+      ],
       "category": "VEGETABLE",
-      "publicationState": "CANDIDATE",
+      "publicationState": "PUBLISHED",
       "officialMappings": [
-        {"commodityCode": "LD1", "officialName": "青江白菜-小梗", "market": "TAIPEI_FIRST"},
-        {"commodityCode": "LD1", "officialName": "青江白菜-小梗", "market": "TAIPEI_SECOND"}
+        {
+          "commodityCode": "LD1",
+          "officialName": "青江白菜-小梗",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LD1",
+          "officialName": "青江白菜-小梗",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "LD2",
+          "officialName": "青江白菜-大梗",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LD8",
+          "officialName": "青江白菜-水耕",
+          "market": "TAIPEI_SECOND"
+        }
       ],
       "image": {
-        "assetPath": "illustrations/pending/vegetable-qingjiang-bok-choy.webp",
+        "assetPath": "illustrations/catalog/vegetable-qingjiang-bok-choy.webp",
         "generated": true,
         "disclosure": "AI 生成示意圖，非實物照片。",
-        "reviewedAt": null,
-        "reviewedBy": null,
-        "reviewStatus": "DRAFT"
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
       }
     },
     {
-      "stableId": "fruit.banana",
-      "householdName": "香蕉",
-      "aliases": ["香蕉", "芭蕉"],
-      "category": "FRUIT",
-      "publicationState": "CANDIDATE",
+      "stableId": "vegetable.moa.fr1",
+      "householdName": "青花菜",
+      "aliases": [
+        "青花菜",
+        "青花苔",
+        "FR1",
+        "青花苔-青花筍",
+        "FR2",
+        "青花苔-進口",
+        "FR9",
+        "綠花椰菜"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
       "officialMappings": [
-        {"commodityCode": "A1", "officialName": "香蕉", "market": "TAIPEI_FIRST"},
-        {"commodityCode": "A1", "officialName": "香蕉", "market": "TAIPEI_SECOND"},
-        {"commodityCode": "A2", "officialName": "香蕉-芭蕉紅芭蕉", "market": "TAIPEI_FIRST"},
-        {"commodityCode": "A2", "officialName": "香蕉-芭蕉紅芭蕉", "market": "TAIPEI_SECOND"}
+        {
+          "commodityCode": "FR1",
+          "officialName": "青花苔",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FR1",
+          "officialName": "青花苔",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FR2",
+          "officialName": "青花苔-青花筍",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FR2",
+          "officialName": "青花苔-青花筍",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "FR9",
+          "officialName": "青花苔-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FR9",
+          "officialName": "青花苔-進口",
+          "market": "TAIPEI_SECOND"
+        }
       ],
       "image": {
-        "assetPath": "illustrations/pending/fruit-banana.webp",
+        "assetPath": "illustrations/catalog/vegetable-fr1.webp",
         "generated": true,
         "disclosure": "AI 生成示意圖，非實物照片。",
-        "reviewedAt": null,
-        "reviewedBy": null,
-        "reviewStatus": "DRAFT"
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.se1",
+      "householdName": "青蔥",
+      "aliases": [
+        "青蔥",
+        "青蔥-日蔥",
+        "SE1",
+        "青蔥-北蔥",
+        "SE2",
+        "青蔥-大蔥",
+        "SE3",
+        "青蔥-珠蔥",
+        "SE4",
+        "青蔥-紅蔥頭",
+        "SE5",
+        "青蔥-粉蔥",
+        "SE6",
+        "青蔥-進口",
+        "SE9"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SE1",
+          "officialName": "青蔥-日蔥",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SE1",
+          "officialName": "青蔥-日蔥",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SE2",
+          "officialName": "青蔥-北蔥",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SE2",
+          "officialName": "青蔥-北蔥",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SE3",
+          "officialName": "青蔥-大蔥",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SE3",
+          "officialName": "青蔥-大蔥",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SE4",
+          "officialName": "青蔥-珠蔥",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SE5",
+          "officialName": "青蔥-紅蔥頭",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SE5",
+          "officialName": "青蔥-紅蔥頭",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SE6",
+          "officialName": "青蔥-粉蔥",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SE6",
+          "officialName": "青蔥-粉蔥",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SE9",
+          "officialName": "青蔥-進口",
+          "market": "TAIPEI_FIRST"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-se1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sf1",
+      "householdName": "韭菜",
+      "aliases": [
+        "韭菜",
+        "韭菜-白頭",
+        "SF1",
+        "韭菜-韭菜黃",
+        "SF2",
+        "韭菜-韭菜花",
+        "SF3",
+        "韭菜-青頭",
+        "SF4"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SF1",
+          "officialName": "韭菜-白頭",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SF1",
+          "officialName": "韭菜-白頭",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SF2",
+          "officialName": "韭菜-韭菜黃",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SF2",
+          "officialName": "韭菜-韭菜黃",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SF3",
+          "officialName": "韭菜-韭菜花",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SF3",
+          "officialName": "韭菜-韭菜花",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SF4",
+          "officialName": "韭菜-青頭",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SF4",
+          "officialName": "韭菜-青頭",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sf1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.ly6",
+      "householdName": "香椿",
+      "aliases": [
+        "香椿",
+        "LY6"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LY6",
+          "officialName": "香椿",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LY6",
+          "officialName": "香椿",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-ly6.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sz8",
+      "householdName": "香茅",
+      "aliases": [
+        "香茅",
+        "SZ8"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SZ8",
+          "officialName": "香茅",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SZ8",
+          "officialName": "香茅",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sz8.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.sc1",
+      "householdName": "馬鈴薯",
+      "aliases": [
+        "馬鈴薯",
+        "馬鈴薯-本產",
+        "SC1",
+        "馬鈴薯-進口",
+        "SC9"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "SC1",
+          "officialName": "馬鈴薯-本產",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SC1",
+          "officialName": "馬鈴薯-本產",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "SC9",
+          "officialName": "馬鈴薯-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "SC9",
+          "officialName": "馬鈴薯-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-sc1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.mk0",
+      "householdName": "鴻喜菇",
+      "aliases": [
+        "鴻喜菇",
+        "鴻喜菇-其他",
+        "MK0",
+        "MK1",
+        "鴻喜菇-盒裝",
+        "MK2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "MK0",
+          "officialName": "鴻喜菇-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "MK1",
+          "officialName": "鴻喜菇",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "MK1",
+          "officialName": "鴻喜菇",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "MK2",
+          "officialName": "鴻喜菇-盒裝",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "MK2",
+          "officialName": "鴻喜菇-盒裝",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-mk0.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fp3",
+      "householdName": "鵲豆",
+      "aliases": [
+        "鵲豆",
+        "鵲豆-肉豆",
+        "FP3"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FP3",
+          "officialName": "鵲豆-肉豆",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FP3",
+          "officialName": "鵲豆-肉豆",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fp3.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.oa1",
+      "householdName": "鹹菜",
+      "aliases": [
+        "鹹菜",
+        "鹹菜-清心",
+        "OA1",
+        "鹹菜-帶葉",
+        "OA2"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "OA1",
+          "officialName": "鹹菜-清心",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "OA2",
+          "officialName": "鹹菜-帶葉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "OA2",
+          "officialName": "鹹菜-帶葉",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-oa1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.fa1",
+      "householdName": "黃秋葵",
+      "aliases": [
+        "黃秋葵",
+        "FA1"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "FA1",
+          "officialName": "黃秋葵",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "FA1",
+          "officialName": "黃秋葵",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-fa1.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "vegetable.moa.ly2",
+      "householdName": "黑甜仔菜",
+      "aliases": [
+        "黑甜仔菜",
+        "LY2",
+        "龍葵"
+      ],
+      "category": "VEGETABLE",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "LY2",
+          "officialName": "黑甜仔菜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "LY2",
+          "officialName": "黑甜仔菜",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/vegetable-ly2.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "reviewStatus": "APPROVED"
       }
     }
   ],
   "ambiguitySets": [
+    {
+      "normalizedAlias": "包心白菜",
+      "displayAlias": "包心白菜",
+      "targetConceptIds": [
+        "vegetable.moa.lc90",
+        "vegetable.napa-cabbage"
+      ]
+    },
     {
       "normalizedAlias": "白菜",
       "displayAlias": "白菜",
@@ -118,6 +6173,14 @@
         "vegetable.napa-cabbage",
         "vegetable.qingjiang-bok-choy",
         "vegetable.small-bok-choy"
+      ]
+    },
+    {
+      "normalizedAlias": "醃瓜",
+      "displayAlias": "醃瓜",
+      "targetConceptIds": [
+        "vegetable.moa.fs1",
+        "vegetable.moa.oe1"
       ]
     }
   ]

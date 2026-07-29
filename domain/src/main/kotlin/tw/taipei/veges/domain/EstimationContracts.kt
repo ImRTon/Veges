@@ -7,7 +7,14 @@ enum class EstimatorFamily {
     LINEAR_CALIBRATION,
     LOG_LINEAR_CALIBRATION,
     SEASONAL_BASELINE,
+    WHOLESALE_MULTIPLIER_REFERENCE,
 }
+
+val CALIBRATED_ESTIMATOR_FAMILIES = setOf(
+    EstimatorFamily.LINEAR_CALIBRATION,
+    EstimatorFamily.LOG_LINEAR_CALIBRATION,
+    EstimatorFamily.SEASONAL_BASELINE,
+)
 
 data class EstimatorFeatureSet(
     val wholesaleAverageNtdPerKg: BigDecimal,

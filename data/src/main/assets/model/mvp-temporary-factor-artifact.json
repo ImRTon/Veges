@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "artifactVersion": "temporary-wholesale-x2-2026-07-26",
+  "generatedAt": "2026-07-26T00:00:00Z",
+  "policyVersion": "temporary-wholesale-x2-policy-2026-07-26",
+  "approvedAt": "2026-07-26",
+  "approvedBy": "product-owner",
+  "family": "WHOLESALE_MULTIPLIER_REFERENCE",
+  "wholesaleToMarketFactor": "2.0",
+  "kilogramsPerTaiJin": "0.6",
+  "sourceUnit": "NTD_PER_KILOGRAM",
+  "outputUnit": "NTD_PER_TAI_JIN",
+  "formula": "(wholesale NTD/kg × 0.6 kg/台斤) × 2.0",
+  "wholesaleFreshnessHours": 36,
+  "supportedBases": [
+    "TAIPEI_COMBINED",
+    "TAIPEI_FIRST",
+    "TAIPEI_SECOND"
+  ],
+  "intervalEnabled": false,
+  "confidenceEnabled": false,
+  "disclosure": "估算：批發價換算成每台斤後 × 2 的粗略市場參考；不是零售實價。",
+  "artifactChecksum": "aa595925feef5106033ae4d46f3d2eee7496326f1e7563a1a502d087929eb98c"
+}

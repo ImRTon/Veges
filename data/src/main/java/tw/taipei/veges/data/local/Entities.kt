@@ -178,6 +178,8 @@ data class EstimateEntity(
     val sourceDate: LocalDate,
     val sourceDatesJson: String,
     val calibrationCutoff: LocalDate,
+    val estimatorApprovedOn: LocalDate,
+    val formula: String,
     val pairedCalibrationPeriods: Int,
     val calculatedAt: Instant,
     val pointValue: BigDecimal?,

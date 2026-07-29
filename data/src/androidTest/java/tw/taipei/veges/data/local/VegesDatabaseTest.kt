@@ -80,7 +80,7 @@ class VegesDatabaseTest {
             FrameworkSQLiteOpenHelperFactory(),
         )
 
-        helper.createDatabase("schema-test", 1).close()
+        helper.createDatabase("schema-test", 3).close()
     }
 
     @Test
@@ -113,6 +113,49 @@ class VegesDatabaseTest {
             assertTrue(cursor.moveToFirst())
             assertEquals(EstimateDisclosure.SHORT_TAG, cursor.getString(0))
             assertEquals(EstimateDisclosure.FULL_LABEL, cursor.getString(1))
+        }
+        migrated.close()
+    }
+
+    @Test
+    fun migrationTwoToThreePreservesEstimateAndAddsEstimatorPolicyProvenance() {
+        val helper = MigrationTestHelper(
+            InstrumentationRegistry.getInstrumentation(),
+            VegesDatabase::class.java,
+            emptyList(),
+            FrameworkSQLiteOpenHelperFactory(),
+        )
+        helper.createDatabase("migration-2-3-test", 2).apply {
+            execSQL(
+                """
+                INSERT INTO estimates(
+                    estimateId, conceptId, basis, modelVersion, sourceDate, sourceDatesJson,
+                    calibrationCutoff, pairedCalibrationPeriods, calculatedAt, pointValue,
+                    pointUnit, intervalLower, intervalUpper, confidence, unavailableReason,
+                    disclosureShortTag, disclosureFullLabel
+                ) VALUES (
+                    'estimate-1', 'vegetable.cabbage', 'TAIPEI_COMBINED', 'model-v1',
+                    '2026-07-14', '["2026-07-14"]', '2026-06-30', 18,
+                    '2026-07-14T03:00:00Z', 52.0, 'NTD_PER_TAI_JIN',
+                    NULL, NULL, NULL, NULL, '估算', 'Taipei retail reference estimate'
+                )
+                """.trimIndent(),
+            )
+            close()
+        }
+
+        val migrated = helper.runMigrationsAndValidate(
+            "migration-2-3-test",
+            3,
+            true,
+            MIGRATION_2_3,
+        )
+        migrated.query(
+            "SELECT estimatorApprovedOn, formula FROM estimates WHERE estimateId = 'estimate-1'",
+        ).use { cursor ->
+            assertTrue(cursor.moveToFirst())
+            assertEquals("2026-06-30", cursor.getString(0))
+            assertEquals("CALIBRATED_MODEL", cursor.getString(1))
         }
         migrated.close()
     }

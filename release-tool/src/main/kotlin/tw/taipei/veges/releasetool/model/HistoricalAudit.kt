@@ -5,11 +5,14 @@ import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 import java.nio.file.Path
 import java.security.MessageDigest
+import java.time.Instant
 import java.time.LocalDate
 import java.time.YearMonth
+import java.time.ZoneOffset
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
+import tw.taipei.veges.domain.BacktestMetrics
 import tw.taipei.veges.domain.CalibrationTarget
 import tw.taipei.veges.domain.EstimatorFamily
 import tw.taipei.veges.domain.EstimatorFeatureSet
@@ -57,12 +60,16 @@ data class SourceFileProvenance(
 data class HistoricalConceptAudit(
     val conceptId: String,
     val basis: String,
+    val family: String,
     val wholesaleValidDays: Int,
     val retailPeriods: Int,
     val calibrationRows: Int,
     val backtestPeriods: Int,
+    val calibrationCutoff: String?,
     val meanAbsoluteError: String?,
     val rootMeanSquaredError: String?,
+    val fittedParameters: Map<String, String>,
+    val gate: EligibilityGateResult,
     val exclusions: List<String>,
 )
 
@@ -104,8 +111,10 @@ class HistoricalAuditRunner {
         wholesaleFiles: List<Path>,
         retailFiles: List<Path>,
         generatedAt: String,
+        policy: EstimationPublicationPolicy,
     ): HistoricalAuditReport {
         ArtifactValidator.validateTaxonomy(taxonomy)
+        policy.validate()
         require(mappings.schemaVersion == 1) { "Unsupported retail calibration mapping schema" }
         val conceptIds = taxonomy.concepts.map { it.stableId }.toSet()
         require(mappings.mappings.all { it.conceptId in conceptIds }) { "Retail mapping references unknown concept" }
@@ -115,9 +124,18 @@ class HistoricalAuditRunner {
         val retailByConcept = mappings.mappings.associate { mapping ->
             mapping.conceptId to retail.filter { it.itemName in mapping.retailItemNames }
         }
+        val generatedOn = Instant.parse(generatedAt).atZone(ZoneOffset.UTC).toLocalDate()
         val results = taxonomy.concepts.sortedBy { it.stableId }.flatMap { concept ->
-            listOf(MarketBasis.TAIPEI_COMBINED, MarketBasis.TAIPEI_FIRST, MarketBasis.TAIPEI_SECOND).map { basis ->
-                auditConcept(concept.stableId, concept.officialMappings, basis, wholesale, retailByConcept[concept.stableId].orEmpty())
+            listOf(MarketBasis.TAIPEI_COMBINED, MarketBasis.TAIPEI_FIRST, MarketBasis.TAIPEI_SECOND).flatMap { basis ->
+                auditConcept(
+                    conceptId = concept.stableId,
+                    mappings = concept.officialMappings,
+                    basis = basis,
+                    wholesale = wholesale,
+                    retail = retailByConcept[concept.stableId].orEmpty(),
+                    generatedOn = generatedOn,
+                    policy = policy,
+                )
             }
         }
 
@@ -129,11 +147,13 @@ class HistoricalAuditRunner {
             wholesaleFiles = wholesaleFiles.map { provenance(it, "MOA wholesale historical API") },
             retailFiles = retailFiles.map { provenance(it, "Taipei public retail-market CSV") },
             result = results,
-            thresholdStatus = "PENDING_USER_APPROVAL",
+            thresholdStatus = "APPROVED_POLICY_ENFORCED",
             notes = listOf(
-                "This report compares candidate estimators; it does not publish a model artifact.",
-                "The approved minimum calibration history is 30 valid observation days.",
-                "Coverage, recency, point-error, interval, confidence, and staleness thresholds remain pending audit approval.",
+                "This report fits and compares every declared candidate estimator family; it does not publish a model artifact.",
+                "The approved minimum calibration history is 18 paired periods.",
+                "Approved gates: coverage 0.90, generation recency 45 days, MAE 15 NTD/tai-jin, RMSE 22 NTD/tai-jin.",
+                "Wholesale freshness is 36 hours and calibration artifact lifetime is 62 days.",
+                "Interval and confidence outputs remain disabled.",
                 "All model-derived prices must carry the 估算 tag and Taipei retail reference estimate label.",
             ),
         )
@@ -145,7 +165,9 @@ class HistoricalAuditRunner {
         basis: MarketBasis,
         wholesale: List<WholesaleRow>,
         retail: List<RetailRow>,
-    ): HistoricalConceptAudit {
+        generatedOn: LocalDate,
+        policy: EstimationPublicationPolicy,
+    ): List<HistoricalConceptAudit> {
         val sourceInputs = wholesaleInputs(mappings, basis, wholesale)
         val retailByMonth = retail.associateBy { YearMonth.from(it.observedOn) }
         val rows = sourceInputs.mapNotNull { (month, input) ->
@@ -162,33 +184,61 @@ class HistoricalAuditRunner {
                 ),
                 target = CalibrationTarget(month.atDay(1), target),
             )
+        }.sortedBy { it.observedOn }
+        val baseExclusions = buildList {
+            if (sourceInputs.isEmpty()) add("NO_VALID_WHOLESALE_INPUT")
+            if (retailByMonth.isEmpty()) add("NO_RETAIL_CALIBRATION_ROWS")
+            if (rows.size < 2) add("INSUFFICIENT_ALIGNED_CALIBRATION_ROWS")
         }
-        val exclusions = mutableListOf<String>()
-        if (sourceInputs.isEmpty()) exclusions += "NO_VALID_WHOLESALE_INPUT"
-        if (retailByMonth.isEmpty()) exclusions += "NO_RETAIL_CALIBRATION_ROWS"
-        val backtest = if (rows.size >= 2) {
-            ExpandingWindowBacktest().run(
-                rows = rows,
-                family = EstimatorFamily.SEASONAL_BASELINE,
-                basis = basis,
-                config = BacktestConfig(minimumTrainingRows = 1),
+        val fallbackCutoff = rows.maxOfOrNull { it.observedOn }
+            ?: retailByMonth.keys.maxOrNull()?.atDay(1)
+            ?: generatedOn
+        return tw.taipei.veges.domain.CALIBRATED_ESTIMATOR_FAMILIES.map { family ->
+            val backtest = if (rows.size >= 2) {
+                ExpandingWindowBacktest().run(
+                    rows = rows,
+                    family = family,
+                    basis = basis,
+                    config = BacktestConfig(minimumTrainingRows = 2),
+                )
+            } else {
+                null
+            }
+            val metrics = backtest?.metrics ?: BacktestMetrics(emptyList(), null, null, null, null)
+            val cutoff = backtest?.calibrationCutoff ?: fallbackCutoff
+            val gate = EstimationGateEvaluator.evaluate(
+                policy = policy,
+                pairedCalibrationPeriods = rows.size,
+                retailTargetPeriods = retailByMonth.size,
+                calibrationCutoff = cutoff,
+                generatedOn = generatedOn,
+                metrics = metrics,
             )
-        } else {
-            exclusions += "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS"
-            null
+            val parameters = if (rows.isEmpty()) {
+                emptyMap()
+            } else {
+                CandidateEstimatorFitter.fit(rows, family).parameters
+                    .toSortedMap()
+                    .mapValues { (_, value) -> value.toPlainString() }
+            }
+            HistoricalConceptAudit(
+                conceptId = conceptId,
+                basis = basis.name,
+                family = family.name,
+                wholesaleValidDays = sourceInputs.values.sumOf { it.validDays },
+                retailPeriods = retailByMonth.size,
+                calibrationRows = rows.size,
+                backtestPeriods = metrics.periods.size,
+                calibrationCutoff = cutoff.toString(),
+                meanAbsoluteError = metrics.meanAbsoluteError?.toPlainString(),
+                rootMeanSquaredError = metrics.rootMeanSquaredError?.toPlainString(),
+                fittedParameters = parameters,
+                gate = gate,
+                exclusions = (baseExclusions + backtest.orEmptyExclusions() + gate.exclusionReasons)
+                    .distinct()
+                    .sorted(),
+            )
         }
-        backtest?.exclusions?.let(exclusions::addAll)
-        return HistoricalConceptAudit(
-            conceptId = conceptId,
-            basis = basis.name,
-            wholesaleValidDays = sourceInputs.values.sumOf { it.validDays },
-            retailPeriods = retailByMonth.size,
-            calibrationRows = rows.size,
-            backtestPeriods = backtest?.metrics?.periods?.size ?: 0,
-            meanAbsoluteError = backtest?.metrics?.meanAbsoluteError?.toPlainString(),
-            rootMeanSquaredError = backtest?.metrics?.rootMeanSquaredError?.toPlainString(),
-            exclusions = exclusions.distinct().sorted(),
-        )
     }
 
     private fun wholesaleInputs(
@@ -310,3 +360,5 @@ class HistoricalAuditRunner {
         val validDays: Int,
     )
 }
+
+private fun BacktestResult?.orEmptyExclusions(): List<String> = this?.exclusions.orEmpty()

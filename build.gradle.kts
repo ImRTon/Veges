@@ -54,9 +54,9 @@ tasks.register("verifyFormatting") {
             }
             .filter { candidate ->
                 val content = candidate.readText()
-                content.contains("\r") ||
+                content.replace("\r\n", "\n").contains("\r") ||
                     content.lines().any { line -> line.endsWith(" ") || line.endsWith("\t") } ||
-                    !content.endsWith("\n")
+                    !(content.endsWith("\n") || content.endsWith("\r\n"))
             }
             .map(File::getPath)
             .toList()

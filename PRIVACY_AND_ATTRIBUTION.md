@@ -14,6 +14,9 @@
 - MOA crop metadata: `https://data.moa.gov.tw/api/v1/CropType`.
 - Taipei retail calibration: [臺北市公有零售市場行情](https://data.taipei/dataset/detail?id=54d9d492-1e2e-40d1-ae7b-fbce6f271bf1).
 - Historical retail data is calibration input and must not be described as live store pricing.
+- This is an independently developed app. It does not represent, operate for, or imply
+  authorization by the Ministry of Agriculture, Taipei City Government, or any other government
+  entity.
 
 ## User-Facing Claims
 

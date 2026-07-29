@@ -1,0 +1,1787 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-26T00:00:00Z",
+  "wholesaleFileCount": 6,
+  "retailFileCount": 18,
+  "wholesaleFiles": [
+    {
+      "fileName": "banana-first.json",
+      "sha256": "5ef401818728a7138c14f281f999d47f280bbd71e1c46df38ba0528beb814b51",
+      "source": "MOA wholesale historical API"
+    },
+    {
+      "fileName": "banana-second.json",
+      "sha256": "c0fa01cc0c8aec9f90998ab9d4f120d845c21c809d861a7bc90bd451391fd6b5",
+      "source": "MOA wholesale historical API"
+    },
+    {
+      "fileName": "cabbage-first.json",
+      "sha256": "d2a4648b6ecc66b7a178531ccb867a5abc7c39e45aa76cea90797d87cb575c96",
+      "source": "MOA wholesale historical API"
+    },
+    {
+      "fileName": "cabbage-second.json",
+      "sha256": "0d2bdc5e7d3dfa62f02185cf07fb12bd4dc29ccfa9efe697ac92b6f1cbbcc4b9",
+      "source": "MOA wholesale historical API"
+    },
+    {
+      "fileName": "small-bok-choy-first.json",
+      "sha256": "1046257d779da25d9164d32e6883f84852fbdb0e863728b2c95689af09d489dd",
+      "source": "MOA wholesale historical API"
+    },
+    {
+      "fileName": "small-bok-choy-second.json",
+      "sha256": "a8559c2457baac57c78e2d45d8927f2f9ebaf13668baa82142ab05c7d5d29eda",
+      "source": "MOA wholesale historical API"
+    }
+  ],
+  "retailFiles": [
+    {
+      "fileName": "113-07.csv",
+      "sha256": "6ce00c390841fe4cd8bb7a8b15abd26a13dc8ce32d1a4e05a771ee89ff055a4a",
+      "source": "Taipei public retail-market CSV"
+    },
+    {
+      "fileName": "113-08.csv",
+      "sha256": "722113cb5fe8cb55463adde9d85885bc2a21347a948a1ee23639dea48a53bc66",
+      "source": "Taipei public retail-market CSV"
+    },
+    {
+      "fileName": "113-09.csv",
+      "sha256": "79088acec0a8e1365304a32fc49e51b944845e30e3362b6b36fa125affefc32d",
+      "source": "Taipei public retail-market CSV"
+    },
+    {
+      "fileName": "113-10.csv",
+      "sha256": "b8ca4b21cf79a690ccd3bd5f2171ad62248e2b11825c4fd31403f4285e7c547c",
+      "source": "Taipei public retail-market CSV"
+    },
+    {
+      "fileName": "113-11.csv",
+      "sha256": "7834e76a6fd5b4f75d0ad1cc59a18bedbc5a4a0c38fec636c17b337ce24101e5",
+      "source": "Taipei public retail-market CSV"
+    },
+    {
+      "fileName": "113-12.csv",
+      "sha256": "8f963aff9ed82c31639d3cd61ada7459c25c074558b36269e4f93ec18548a465",
+      "source": "Taipei public retail-market CSV"
+    },
+    {
+      "fileName": "114-01.csv",
+      "sha256": "8beb84f1db02b654bfb62b82b182b945d8db46dd39335a805a593bd323c8367c",
+      "source": "Taipei public retail-market CSV"
+    },
+    {
+      "fileName": "114-02.csv",
+      "sha256": "834527c7e52d59244fb5535f5f3f56521bbc778c947f2db5db36e56d578f387d",
+      "source": "Taipei public retail-market CSV"
+    },
+    {
+      "fileName": "114-03.csv",
+      "sha256": "476a727e1a7ed5cd5a78adf6bbecbe025ff1e72dd42d9976d5c99ad2450a0c36",
+      "source": "Taipei public retail-market CSV"
+    },
+    {
+      "fileName": "114-04.csv",
+      "sha256": "9879ca37cf54d10e00c39e0debdc56e60a0f6c8b83d2b3c58c794e6ae21ea917",
+      "source": "Taipei public retail-market CSV"
+    },
+    {
+      "fileName": "114-05.csv",
+      "sha256": "5f7f7e9973479e6f9d3e75ded4251ac547ff0eded4945d2bc71cd7d05ea41f9f",
+      "source": "Taipei public retail-market CSV"
+    },
+    {
+      "fileName": "114-06.csv",
+      "sha256": "928663f2f996cbd30b311bd1474d4f4c224d36e06e3d48df7c4c6e5287c1b7c4",
+      "source": "Taipei public retail-market CSV"
+    },
+    {
+      "fileName": "114-07.csv",
+      "sha256": "0bcd8404148cc5cbd8e3a0bef824c96178e8460f8cc77fbd582529a171bbda07",
+      "source": "Taipei public retail-market CSV"
+    },
+    {
+      "fileName": "114-08.csv",
+      "sha256": "7bc5efbe92a29aa2eb811eb5fec71d2c6f549073c59a36f57016beef3cbb2841",
+      "source": "Taipei public retail-market CSV"
+    },
+    {
+      "fileName": "114-09.csv",
+      "sha256": "103827f6f51eda2122b2724c6688eadda0558eda7ece16bfd7fbf8b1a88aa341",
+      "source": "Taipei public retail-market CSV"
+    },
+    {
+      "fileName": "114-10.csv",
+      "sha256": "2950bb288bfbec6742375b299986b22001dcde54c3154ec414be6fd439b21ad4",
+      "source": "Taipei public retail-market CSV"
+    },
+    {
+      "fileName": "114-11.csv",
+      "sha256": "a9dcb7a3d5e9d8f3a765a3a4e7171d616842e0bd6e63cd685c3abd9676b16737",
+      "source": "Taipei public retail-market CSV"
+    },
+    {
+      "fileName": "114-12.csv",
+      "sha256": "a1dabf8283f021f7a79ae17344522c82a96f2067c82c4d4265276364bc9f4065",
+      "source": "Taipei public retail-market CSV"
+    }
+  ],
+  "result": [
+    {
+      "conceptId": "fruit.banana",
+      "basis": "TAIPEI_COMBINED",
+      "family": "LINEAR_CALIBRATION",
+      "wholesaleValidDays": 586,
+      "retailPeriods": 18,
+      "calibrationRows": 18,
+      "backtestPeriods": 16,
+      "calibrationCutoff": "2025-12-01",
+      "meanAbsoluteError": "7.05978897",
+      "rootMeanSquaredError": "8.8503661",
+      "fittedParameters": {
+        "intercept": "25.05328159",
+        "wholesaleAverageSlope": "0.69066987"
+      },
+      "gate": {
+        "pairedCalibrationPeriods": 18,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "1",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION"
+        ]
+      },
+      "exclusions": [
+        "2024-07-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "2024-08-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "CALIBRATION_TOO_OLD_AT_GENERATION"
+      ]
+    },
+    {
+      "conceptId": "fruit.banana",
+      "basis": "TAIPEI_COMBINED",
+      "family": "LOG_LINEAR_CALIBRATION",
+      "wholesaleValidDays": 586,
+      "retailPeriods": 18,
+      "calibrationRows": 18,
+      "backtestPeriods": 16,
+      "calibrationCutoff": "2025-12-01",
+      "meanAbsoluteError": "7.77759047",
+      "rootMeanSquaredError": "10.726932",
+      "fittedParameters": {
+        "logIntercept": "2.04392225",
+        "logWholesaleAverageSlope": "0.52799061"
+      },
+      "gate": {
+        "pairedCalibrationPeriods": 18,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "1",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION"
+        ]
+      },
+      "exclusions": [
+        "2024-07-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "2024-08-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "CALIBRATION_TOO_OLD_AT_GENERATION"
+      ]
+    },
+    {
+      "conceptId": "fruit.banana",
+      "basis": "TAIPEI_COMBINED",
+      "family": "SEASONAL_BASELINE",
+      "wholesaleValidDays": 586,
+      "retailPeriods": 18,
+      "calibrationRows": 18,
+      "backtestPeriods": 16,
+      "calibrationCutoff": "2025-12-01",
+      "meanAbsoluteError": "14.81250000",
+      "rootMeanSquaredError": "21.066116",
+      "fittedParameters": {
+        "medianRetailNtdPerTaiJin": "54",
+        "month01MedianRetailNtdPerTaiJin": "84",
+        "month02MedianRetailNtdPerTaiJin": "105",
+        "month03MedianRetailNtdPerTaiJin": "103",
+        "month04MedianRetailNtdPerTaiJin": "77",
+        "month05MedianRetailNtdPerTaiJin": "62",
+        "month06MedianRetailNtdPerTaiJin": "58",
+        "month07MedianRetailNtdPerTaiJin": "50.5",
+        "month08MedianRetailNtdPerTaiJin": "49",
+        "month09MedianRetailNtdPerTaiJin": "47.5",
+        "month10MedianRetailNtdPerTaiJin": "48",
+        "month11MedianRetailNtdPerTaiJin": "48.5",
+        "month12MedianRetailNtdPerTaiJin": "58.5"
+      },
+      "gate": {
+        "pairedCalibrationPeriods": 18,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "1",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION"
+        ]
+      },
+      "exclusions": [
+        "2024-07-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "2024-08-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "CALIBRATION_TOO_OLD_AT_GENERATION"
+      ]
+    },
+    {
+      "conceptId": "fruit.banana",
+      "basis": "TAIPEI_FIRST",
+      "family": "LINEAR_CALIBRATION",
+      "wholesaleValidDays": 586,
+      "retailPeriods": 18,
+      "calibrationRows": 18,
+      "backtestPeriods": 16,
+      "calibrationCutoff": "2025-12-01",
+      "meanAbsoluteError": "6.67790882",
+      "rootMeanSquaredError": "8.3085015",
+      "fittedParameters": {
+        "intercept": "26.51745074",
+        "wholesaleAverageSlope": "0.68034995"
+      },
+      "gate": {
+        "pairedCalibrationPeriods": 18,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "1",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION"
+        ]
+      },
+      "exclusions": [
+        "2024-07-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "2024-08-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "CALIBRATION_TOO_OLD_AT_GENERATION"
+      ]
+    },
+    {
+      "conceptId": "fruit.banana",
+      "basis": "TAIPEI_FIRST",
+      "family": "LOG_LINEAR_CALIBRATION",
+      "wholesaleValidDays": 586,
+      "retailPeriods": 18,
+      "calibrationRows": 18,
+      "backtestPeriods": 16,
+      "calibrationCutoff": "2025-12-01",
+      "meanAbsoluteError": "7.50432013",
+      "rootMeanSquaredError": "10.254784",
+      "fittedParameters": {
+        "logIntercept": "2.12438517",
+        "logWholesaleAverageSlope": "0.51196254"
+      },
+      "gate": {
+        "pairedCalibrationPeriods": 18,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "1",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION"
+        ]
+      },
+      "exclusions": [
+        "2024-07-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "2024-08-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "CALIBRATION_TOO_OLD_AT_GENERATION"
+      ]
+    },
+    {
+      "conceptId": "fruit.banana",
+      "basis": "TAIPEI_FIRST",
+      "family": "SEASONAL_BASELINE",
+      "wholesaleValidDays": 586,
+      "retailPeriods": 18,
+      "calibrationRows": 18,
+      "backtestPeriods": 16,
+      "calibrationCutoff": "2025-12-01",
+      "meanAbsoluteError": "14.81250000",
+      "rootMeanSquaredError": "21.066116",
+      "fittedParameters": {
+        "medianRetailNtdPerTaiJin": "54",
+        "month01MedianRetailNtdPerTaiJin": "84",
+        "month02MedianRetailNtdPerTaiJin": "105",
+        "month03MedianRetailNtdPerTaiJin": "103",
+        "month04MedianRetailNtdPerTaiJin": "77",
+        "month05MedianRetailNtdPerTaiJin": "62",
+        "month06MedianRetailNtdPerTaiJin": "58",
+        "month07MedianRetailNtdPerTaiJin": "50.5",
+        "month08MedianRetailNtdPerTaiJin": "49",
+        "month09MedianRetailNtdPerTaiJin": "47.5",
+        "month10MedianRetailNtdPerTaiJin": "48",
+        "month11MedianRetailNtdPerTaiJin": "48.5",
+        "month12MedianRetailNtdPerTaiJin": "58.5"
+      },
+      "gate": {
+        "pairedCalibrationPeriods": 18,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "1",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION"
+        ]
+      },
+      "exclusions": [
+        "2024-07-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "2024-08-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "CALIBRATION_TOO_OLD_AT_GENERATION"
+      ]
+    },
+    {
+      "conceptId": "fruit.banana",
+      "basis": "TAIPEI_SECOND",
+      "family": "LINEAR_CALIBRATION",
+      "wholesaleValidDays": 586,
+      "retailPeriods": 18,
+      "calibrationRows": 18,
+      "backtestPeriods": 16,
+      "calibrationCutoff": "2025-12-01",
+      "meanAbsoluteError": "7.72983208",
+      "rootMeanSquaredError": "9.870521",
+      "fittedParameters": {
+        "intercept": "23.00638336",
+        "wholesaleAverageSlope": "0.7009825"
+      },
+      "gate": {
+        "pairedCalibrationPeriods": 18,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "1",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION"
+        ]
+      },
+      "exclusions": [
+        "2024-07-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "2024-08-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "CALIBRATION_TOO_OLD_AT_GENERATION"
+      ]
+    },
+    {
+      "conceptId": "fruit.banana",
+      "basis": "TAIPEI_SECOND",
+      "family": "LOG_LINEAR_CALIBRATION",
+      "wholesaleValidDays": 586,
+      "retailPeriods": 18,
+      "calibrationRows": 18,
+      "backtestPeriods": 16,
+      "calibrationCutoff": "2025-12-01",
+      "meanAbsoluteError": "8.26337781",
+      "rootMeanSquaredError": "11.564309",
+      "fittedParameters": {
+        "logIntercept": "1.94116192",
+        "logWholesaleAverageSlope": "0.54706969"
+      },
+      "gate": {
+        "pairedCalibrationPeriods": 18,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "1",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION"
+        ]
+      },
+      "exclusions": [
+        "2024-07-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "2024-08-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "CALIBRATION_TOO_OLD_AT_GENERATION"
+      ]
+    },
+    {
+      "conceptId": "fruit.banana",
+      "basis": "TAIPEI_SECOND",
+      "family": "SEASONAL_BASELINE",
+      "wholesaleValidDays": 586,
+      "retailPeriods": 18,
+      "calibrationRows": 18,
+      "backtestPeriods": 16,
+      "calibrationCutoff": "2025-12-01",
+      "meanAbsoluteError": "14.81250000",
+      "rootMeanSquaredError": "21.066116",
+      "fittedParameters": {
+        "medianRetailNtdPerTaiJin": "54",
+        "month01MedianRetailNtdPerTaiJin": "84",
+        "month02MedianRetailNtdPerTaiJin": "105",
+        "month03MedianRetailNtdPerTaiJin": "103",
+        "month04MedianRetailNtdPerTaiJin": "77",
+        "month05MedianRetailNtdPerTaiJin": "62",
+        "month06MedianRetailNtdPerTaiJin": "58",
+        "month07MedianRetailNtdPerTaiJin": "50.5",
+        "month08MedianRetailNtdPerTaiJin": "49",
+        "month09MedianRetailNtdPerTaiJin": "47.5",
+        "month10MedianRetailNtdPerTaiJin": "48",
+        "month11MedianRetailNtdPerTaiJin": "48.5",
+        "month12MedianRetailNtdPerTaiJin": "58.5"
+      },
+      "gate": {
+        "pairedCalibrationPeriods": 18,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "1",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION"
+        ]
+      },
+      "exclusions": [
+        "2024-07-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "2024-08-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "CALIBRATION_TOO_OLD_AT_GENERATION"
+      ]
+    },
+    {
+      "conceptId": "vegetable.cabbage",
+      "basis": "TAIPEI_COMBINED",
+      "family": "LINEAR_CALIBRATION",
+      "wholesaleValidDays": 586,
+      "retailPeriods": 18,
+      "calibrationRows": 18,
+      "backtestPeriods": 16,
+      "calibrationCutoff": "2025-12-01",
+      "meanAbsoluteError": "9.00151143",
+      "rootMeanSquaredError": "12.951698",
+      "fittedParameters": {
+        "intercept": "25.88879592",
+        "wholesaleAverageSlope": "1.8806994"
+      },
+      "gate": {
+        "pairedCalibrationPeriods": 18,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "1",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION"
+        ]
+      },
+      "exclusions": [
+        "2024-07-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "2024-08-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "CALIBRATION_TOO_OLD_AT_GENERATION"
+      ]
+    },
+    {
+      "conceptId": "vegetable.cabbage",
+      "basis": "TAIPEI_COMBINED",
+      "family": "LOG_LINEAR_CALIBRATION",
+      "wholesaleValidDays": 586,
+      "retailPeriods": 18,
+      "calibrationRows": 18,
+      "backtestPeriods": 16,
+      "calibrationCutoff": "2025-12-01",
+      "meanAbsoluteError": "9.48506994",
+      "rootMeanSquaredError": "13.018456",
+      "fittedParameters": {
+        "logIntercept": "2.57603545",
+        "logWholesaleAverageSlope": "0.53560207"
+      },
+      "gate": {
+        "pairedCalibrationPeriods": 18,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "1",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION"
+        ]
+      },
+      "exclusions": [
+        "2024-07-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "2024-08-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "CALIBRATION_TOO_OLD_AT_GENERATION"
+      ]
+    },
+    {
+      "conceptId": "vegetable.cabbage",
+      "basis": "TAIPEI_COMBINED",
+      "family": "SEASONAL_BASELINE",
+      "wholesaleValidDays": 586,
+      "retailPeriods": 18,
+      "calibrationRows": 18,
+      "backtestPeriods": 16,
+      "calibrationCutoff": "2025-12-01",
+      "meanAbsoluteError": "25.37500000",
+      "rootMeanSquaredError": "29.089302",
+      "fittedParameters": {
+        "medianRetailNtdPerTaiJin": "67",
+        "month01MedianRetailNtdPerTaiJin": "45",
+        "month02MedianRetailNtdPerTaiJin": "37",
+        "month03MedianRetailNtdPerTaiJin": "43",
+        "month04MedianRetailNtdPerTaiJin": "36",
+        "month05MedianRetailNtdPerTaiJin": "38",
+        "month06MedianRetailNtdPerTaiJin": "55",
+        "month07MedianRetailNtdPerTaiJin": "68.5",
+        "month08MedianRetailNtdPerTaiJin": "84.5",
+        "month09MedianRetailNtdPerTaiJin": "90.5",
+        "month10MedianRetailNtdPerTaiJin": "81.5",
+        "month11MedianRetailNtdPerTaiJin": "78.5",
+        "month12MedianRetailNtdPerTaiJin": "63"
+      },
+      "gate": {
+        "pairedCalibrationPeriods": 18,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "1",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "MAE_ABOVE_MAXIMUM",
+          "RMSE_ABOVE_MAXIMUM"
+        ]
+      },
+      "exclusions": [
+        "2024-07-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "2024-08-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "MAE_ABOVE_MAXIMUM",
+        "RMSE_ABOVE_MAXIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.cabbage",
+      "basis": "TAIPEI_FIRST",
+      "family": "LINEAR_CALIBRATION",
+      "wholesaleValidDays": 586,
+      "retailPeriods": 18,
+      "calibrationRows": 18,
+      "backtestPeriods": 16,
+      "calibrationCutoff": "2025-12-01",
+      "meanAbsoluteError": "8.96803708",
+      "rootMeanSquaredError": "13.302132",
+      "fittedParameters": {
+        "intercept": "26.18577835",
+        "wholesaleAverageSlope": "1.88734236"
+      },
+      "gate": {
+        "pairedCalibrationPeriods": 18,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "1",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION"
+        ]
+      },
+      "exclusions": [
+        "2024-07-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "2024-08-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "CALIBRATION_TOO_OLD_AT_GENERATION"
+      ]
+    },
+    {
+      "conceptId": "vegetable.cabbage",
+      "basis": "TAIPEI_FIRST",
+      "family": "LOG_LINEAR_CALIBRATION",
+      "wholesaleValidDays": 586,
+      "retailPeriods": 18,
+      "calibrationRows": 18,
+      "backtestPeriods": 16,
+      "calibrationCutoff": "2025-12-01",
+      "meanAbsoluteError": "9.34913358",
+      "rootMeanSquaredError": "13.110411",
+      "fittedParameters": {
+        "logIntercept": "2.59534791",
+        "logWholesaleAverageSlope": "0.5312894"
+      },
+      "gate": {
+        "pairedCalibrationPeriods": 18,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "1",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION"
+        ]
+      },
+      "exclusions": [
+        "2024-07-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "2024-08-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "CALIBRATION_TOO_OLD_AT_GENERATION"
+      ]
+    },
+    {
+      "conceptId": "vegetable.cabbage",
+      "basis": "TAIPEI_FIRST",
+      "family": "SEASONAL_BASELINE",
+      "wholesaleValidDays": 586,
+      "retailPeriods": 18,
+      "calibrationRows": 18,
+      "backtestPeriods": 16,
+      "calibrationCutoff": "2025-12-01",
+      "meanAbsoluteError": "25.37500000",
+      "rootMeanSquaredError": "29.089302",
+      "fittedParameters": {
+        "medianRetailNtdPerTaiJin": "67",
+        "month01MedianRetailNtdPerTaiJin": "45",
+        "month02MedianRetailNtdPerTaiJin": "37",
+        "month03MedianRetailNtdPerTaiJin": "43",
+        "month04MedianRetailNtdPerTaiJin": "36",
+        "month05MedianRetailNtdPerTaiJin": "38",
+        "month06MedianRetailNtdPerTaiJin": "55",
+        "month07MedianRetailNtdPerTaiJin": "68.5",
+        "month08MedianRetailNtdPerTaiJin": "84.5",
+        "month09MedianRetailNtdPerTaiJin": "90.5",
+        "month10MedianRetailNtdPerTaiJin": "81.5",
+        "month11MedianRetailNtdPerTaiJin": "78.5",
+        "month12MedianRetailNtdPerTaiJin": "63"
+      },
+      "gate": {
+        "pairedCalibrationPeriods": 18,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "1",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "MAE_ABOVE_MAXIMUM",
+          "RMSE_ABOVE_MAXIMUM"
+        ]
+      },
+      "exclusions": [
+        "2024-07-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "2024-08-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "MAE_ABOVE_MAXIMUM",
+        "RMSE_ABOVE_MAXIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.cabbage",
+      "basis": "TAIPEI_SECOND",
+      "family": "LINEAR_CALIBRATION",
+      "wholesaleValidDays": 586,
+      "retailPeriods": 18,
+      "calibrationRows": 18,
+      "backtestPeriods": 16,
+      "calibrationCutoff": "2025-12-01",
+      "meanAbsoluteError": "9.27326240",
+      "rootMeanSquaredError": "13.187066",
+      "fittedParameters": {
+        "intercept": "25.37984779",
+        "wholesaleAverageSlope": "1.85840277"
+      },
+      "gate": {
+        "pairedCalibrationPeriods": 18,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "1",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION"
+        ]
+      },
+      "exclusions": [
+        "2024-07-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "2024-08-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "CALIBRATION_TOO_OLD_AT_GENERATION"
+      ]
+    },
+    {
+      "conceptId": "vegetable.cabbage",
+      "basis": "TAIPEI_SECOND",
+      "family": "LOG_LINEAR_CALIBRATION",
+      "wholesaleValidDays": 586,
+      "retailPeriods": 18,
+      "calibrationRows": 18,
+      "backtestPeriods": 16,
+      "calibrationCutoff": "2025-12-01",
+      "meanAbsoluteError": "10.15574669",
+      "rootMeanSquaredError": "14.53704",
+      "fittedParameters": {
+        "logIntercept": "2.54098622",
+        "logWholesaleAverageSlope": "0.54256513"
+      },
+      "gate": {
+        "pairedCalibrationPeriods": 18,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "1",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION"
+        ]
+      },
+      "exclusions": [
+        "2024-07-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "2024-08-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "CALIBRATION_TOO_OLD_AT_GENERATION"
+      ]
+    },
+    {
+      "conceptId": "vegetable.cabbage",
+      "basis": "TAIPEI_SECOND",
+      "family": "SEASONAL_BASELINE",
+      "wholesaleValidDays": 586,
+      "retailPeriods": 18,
+      "calibrationRows": 18,
+      "backtestPeriods": 16,
+      "calibrationCutoff": "2025-12-01",
+      "meanAbsoluteError": "25.37500000",
+      "rootMeanSquaredError": "29.089302",
+      "fittedParameters": {
+        "medianRetailNtdPerTaiJin": "67",
+        "month01MedianRetailNtdPerTaiJin": "45",
+        "month02MedianRetailNtdPerTaiJin": "37",
+        "month03MedianRetailNtdPerTaiJin": "43",
+        "month04MedianRetailNtdPerTaiJin": "36",
+        "month05MedianRetailNtdPerTaiJin": "38",
+        "month06MedianRetailNtdPerTaiJin": "55",
+        "month07MedianRetailNtdPerTaiJin": "68.5",
+        "month08MedianRetailNtdPerTaiJin": "84.5",
+        "month09MedianRetailNtdPerTaiJin": "90.5",
+        "month10MedianRetailNtdPerTaiJin": "81.5",
+        "month11MedianRetailNtdPerTaiJin": "78.5",
+        "month12MedianRetailNtdPerTaiJin": "63"
+      },
+      "gate": {
+        "pairedCalibrationPeriods": 18,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "1",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "MAE_ABOVE_MAXIMUM",
+          "RMSE_ABOVE_MAXIMUM"
+        ]
+      },
+      "exclusions": [
+        "2024-07-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "2024-08-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "MAE_ABOVE_MAXIMUM",
+        "RMSE_ABOVE_MAXIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.napa-cabbage",
+      "basis": "TAIPEI_COMBINED",
+      "family": "LINEAR_CALIBRATION",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.napa-cabbage",
+      "basis": "TAIPEI_COMBINED",
+      "family": "LOG_LINEAR_CALIBRATION",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.napa-cabbage",
+      "basis": "TAIPEI_COMBINED",
+      "family": "SEASONAL_BASELINE",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.napa-cabbage",
+      "basis": "TAIPEI_FIRST",
+      "family": "LINEAR_CALIBRATION",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.napa-cabbage",
+      "basis": "TAIPEI_FIRST",
+      "family": "LOG_LINEAR_CALIBRATION",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.napa-cabbage",
+      "basis": "TAIPEI_FIRST",
+      "family": "SEASONAL_BASELINE",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.napa-cabbage",
+      "basis": "TAIPEI_SECOND",
+      "family": "LINEAR_CALIBRATION",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.napa-cabbage",
+      "basis": "TAIPEI_SECOND",
+      "family": "LOG_LINEAR_CALIBRATION",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.napa-cabbage",
+      "basis": "TAIPEI_SECOND",
+      "family": "SEASONAL_BASELINE",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.qingjiang-bok-choy",
+      "basis": "TAIPEI_COMBINED",
+      "family": "LINEAR_CALIBRATION",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.qingjiang-bok-choy",
+      "basis": "TAIPEI_COMBINED",
+      "family": "LOG_LINEAR_CALIBRATION",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.qingjiang-bok-choy",
+      "basis": "TAIPEI_COMBINED",
+      "family": "SEASONAL_BASELINE",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.qingjiang-bok-choy",
+      "basis": "TAIPEI_FIRST",
+      "family": "LINEAR_CALIBRATION",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.qingjiang-bok-choy",
+      "basis": "TAIPEI_FIRST",
+      "family": "LOG_LINEAR_CALIBRATION",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.qingjiang-bok-choy",
+      "basis": "TAIPEI_FIRST",
+      "family": "SEASONAL_BASELINE",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.qingjiang-bok-choy",
+      "basis": "TAIPEI_SECOND",
+      "family": "LINEAR_CALIBRATION",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.qingjiang-bok-choy",
+      "basis": "TAIPEI_SECOND",
+      "family": "LOG_LINEAR_CALIBRATION",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.qingjiang-bok-choy",
+      "basis": "TAIPEI_SECOND",
+      "family": "SEASONAL_BASELINE",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.small-bok-choy",
+      "basis": "TAIPEI_COMBINED",
+      "family": "LINEAR_CALIBRATION",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.small-bok-choy",
+      "basis": "TAIPEI_COMBINED",
+      "family": "LOG_LINEAR_CALIBRATION",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.small-bok-choy",
+      "basis": "TAIPEI_COMBINED",
+      "family": "SEASONAL_BASELINE",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.small-bok-choy",
+      "basis": "TAIPEI_FIRST",
+      "family": "LINEAR_CALIBRATION",
+      "wholesaleValidDays": 586,
+      "retailPeriods": 18,
+      "calibrationRows": 18,
+      "backtestPeriods": 16,
+      "calibrationCutoff": "2025-12-01",
+      "meanAbsoluteError": "5.50856306",
+      "rootMeanSquaredError": "6.7286646",
+      "fittedParameters": {
+        "intercept": "36.67575956",
+        "wholesaleAverageSlope": "0.35043356"
+      },
+      "gate": {
+        "pairedCalibrationPeriods": 18,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "1",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION"
+        ]
+      },
+      "exclusions": [
+        "2024-07-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "2024-08-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "CALIBRATION_TOO_OLD_AT_GENERATION"
+      ]
+    },
+    {
+      "conceptId": "vegetable.small-bok-choy",
+      "basis": "TAIPEI_FIRST",
+      "family": "LOG_LINEAR_CALIBRATION",
+      "wholesaleValidDays": 586,
+      "retailPeriods": 18,
+      "calibrationRows": 18,
+      "backtestPeriods": 16,
+      "calibrationCutoff": "2025-12-01",
+      "meanAbsoluteError": "5.77415103",
+      "rootMeanSquaredError": "6.8082401",
+      "fittedParameters": {
+        "logIntercept": "3.18158314",
+        "logWholesaleAverageSlope": "0.20239823"
+      },
+      "gate": {
+        "pairedCalibrationPeriods": 18,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "1",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION"
+        ]
+      },
+      "exclusions": [
+        "2024-07-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "2024-08-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "CALIBRATION_TOO_OLD_AT_GENERATION"
+      ]
+    },
+    {
+      "conceptId": "vegetable.small-bok-choy",
+      "basis": "TAIPEI_FIRST",
+      "family": "SEASONAL_BASELINE",
+      "wholesaleValidDays": 586,
+      "retailPeriods": 18,
+      "calibrationRows": 18,
+      "backtestPeriods": 16,
+      "calibrationCutoff": "2025-12-01",
+      "meanAbsoluteError": "8.68750000",
+      "rootMeanSquaredError": "9.303897",
+      "fittedParameters": {
+        "medianRetailNtdPerTaiJin": "46",
+        "month01MedianRetailNtdPerTaiJin": "40",
+        "month02MedianRetailNtdPerTaiJin": "40",
+        "month03MedianRetailNtdPerTaiJin": "38",
+        "month04MedianRetailNtdPerTaiJin": "40",
+        "month05MedianRetailNtdPerTaiJin": "36",
+        "month06MedianRetailNtdPerTaiJin": "40",
+        "month07MedianRetailNtdPerTaiJin": "53.5",
+        "month08MedianRetailNtdPerTaiJin": "46.5",
+        "month09MedianRetailNtdPerTaiJin": "51",
+        "month10MedianRetailNtdPerTaiJin": "54",
+        "month11MedianRetailNtdPerTaiJin": "52.5",
+        "month12MedianRetailNtdPerTaiJin": "45"
+      },
+      "gate": {
+        "pairedCalibrationPeriods": 18,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "1",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION"
+        ]
+      },
+      "exclusions": [
+        "2024-07-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "2024-08-01:INSUFFICIENT_PRIOR_TRAINING_ROWS",
+        "CALIBRATION_TOO_OLD_AT_GENERATION"
+      ]
+    },
+    {
+      "conceptId": "vegetable.small-bok-choy",
+      "basis": "TAIPEI_SECOND",
+      "family": "LINEAR_CALIBRATION",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.small-bok-choy",
+      "basis": "TAIPEI_SECOND",
+      "family": "LOG_LINEAR_CALIBRATION",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    },
+    {
+      "conceptId": "vegetable.small-bok-choy",
+      "basis": "TAIPEI_SECOND",
+      "family": "SEASONAL_BASELINE",
+      "wholesaleValidDays": 0,
+      "retailPeriods": 18,
+      "calibrationRows": 0,
+      "backtestPeriods": 0,
+      "calibrationCutoff": "2025-12-01",
+      "fittedParameters": {},
+      "gate": {
+        "pairedCalibrationPeriods": 0,
+        "retailTargetPeriods": 18,
+        "coverageRatio": "0",
+        "recencyDays": 237,
+        "pointEligible": false,
+        "intervalEligible": false,
+        "confidenceEligible": false,
+        "exclusionReasons": [
+          "CALIBRATION_TOO_OLD_AT_GENERATION",
+          "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+          "MISSING_MAE",
+          "MISSING_RMSE",
+          "PAIRED_COVERAGE_BELOW_MINIMUM"
+        ]
+      },
+      "exclusions": [
+        "CALIBRATION_TOO_OLD_AT_GENERATION",
+        "INSUFFICIENT_ALIGNED_CALIBRATION_ROWS",
+        "INSUFFICIENT_PAIRED_CALIBRATION_PERIODS",
+        "MISSING_MAE",
+        "MISSING_RMSE",
+        "NO_VALID_WHOLESALE_INPUT",
+        "PAIRED_COVERAGE_BELOW_MINIMUM"
+      ]
+    }
+  ],
+  "thresholdStatus": "APPROVED_POLICY_ENFORCED",
+  "notes": [
+    "This report fits and compares every declared candidate estimator family; it does not publish a model artifact.",
+    "The approved minimum calibration history is 18 paired periods.",
+    "Approved gates: coverage 0.90, generation recency 45 days, MAE 15 NTD/tai-jin, RMSE 22 NTD/tai-jin.",
+    "Wholesale freshness is 36 hours and calibration artifact lifetime is 62 days.",
+    "Interval and confidence outputs remain disabled.",
+    "All model-derived prices must carry the 估算 tag and Taipei retail reference estimate label."
+  ]
+}

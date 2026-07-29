@@ -1,0 +1,4039 @@
+{
+  "schemaVersion": 1,
+  "source": "MOA_FARM_TRANS_DATA",
+  "snapshotId": "moa-n04-taipei-115-07-26",
+  "kindCode": "N04",
+  "startRocDate": "115.04.27",
+  "endRocDate": "115.07.26",
+  "markets": [
+    "TAIPEI_FIRST",
+    "TAIPEI_SECOND"
+  ],
+  "pageSize": 9999,
+  "pagesFetched": 6,
+  "varieties": [
+    {
+      "commodityCode": "FA0",
+      "officialName": "其他花類",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 56,
+      "recordCount": 81,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FA1",
+      "officialName": "黃秋葵",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FA2",
+      "officialName": "樊花",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 14,
+      "recordCount": 16,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.14"
+    },
+    {
+      "commodityCode": "FB0",
+      "officialName": "花椰菜-其他",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 14,
+      "recordCount": 14,
+      "firstObservedRocDate": "115.04.29",
+      "lastObservedRocDate": "115.07.22"
+    },
+    {
+      "commodityCode": "FB1",
+      "officialName": "花椰菜-青梗",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FB9",
+      "officialName": "花椰菜-進口",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 4,
+      "recordCount": 7,
+      "firstObservedRocDate": "115.07.19",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FC1",
+      "officialName": "胡瓜-黑刺",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FD0",
+      "officialName": "花胡瓜-其他",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FD1",
+      "officialName": "花胡瓜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FE0",
+      "officialName": "冬瓜-其他",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 30,
+      "recordCount": 38,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FE1",
+      "officialName": "冬瓜-白皮",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FF0",
+      "officialName": "絲瓜-其他",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FF1",
+      "officialName": "絲瓜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FF2",
+      "officialName": "絲瓜-角瓜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FF4",
+      "officialName": "絲瓜-長絲瓜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 53,
+      "recordCount": 75,
+      "firstObservedRocDate": "115.05.05",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FG0",
+      "officialName": "苦瓜-其他",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FG1",
+      "officialName": "苦瓜-白大米",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FG2",
+      "officialName": "苦瓜-青大米",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 4,
+      "recordCount": 4,
+      "firstObservedRocDate": "115.05.29",
+      "lastObservedRocDate": "115.07.18"
+    },
+    {
+      "commodityCode": "FG3",
+      "officialName": "苦瓜-山苦瓜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 133,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FG4",
+      "officialName": "苦瓜-翠綠",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 139,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FH1",
+      "officialName": "扁蒲-長形",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 41,
+      "recordCount": 60,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.17"
+    },
+    {
+      "commodityCode": "FH2",
+      "officialName": "扁蒲-圓形",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 43,
+      "recordCount": 66,
+      "firstObservedRocDate": "115.04.30",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FH3",
+      "officialName": "扁蒲-花蒲",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FH4",
+      "officialName": "扁蒲-梨子蒲",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FI0",
+      "officialName": "茄子-其他",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FI1",
+      "officialName": "茄子-胭脂茄",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 26,
+      "recordCount": 39,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FI2",
+      "officialName": "茄子-麻荸茄",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FI3",
+      "officialName": "茄子-日本種",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FJ0",
+      "officialName": "番茄-其他",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 12,
+      "recordCount": 13,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FJ1",
+      "officialName": "番茄-黑柿",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 136,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FJ2",
+      "officialName": "番茄-粉柿",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 20,
+      "recordCount": 23,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.22"
+    },
+    {
+      "commodityCode": "FJ3",
+      "officialName": "番茄-牛番茄",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FK0",
+      "officialName": "甜椒-其他",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 19,
+      "recordCount": 25,
+      "firstObservedRocDate": "115.05.05",
+      "lastObservedRocDate": "115.06.25"
+    },
+    {
+      "commodityCode": "FK3",
+      "officialName": "甜椒-新香",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 131,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FK4",
+      "officialName": "甜椒-彩色種",
+      "markets": [
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 2,
+      "recordCount": 2,
+      "firstObservedRocDate": "115.05.09",
+      "lastObservedRocDate": "115.07.18"
+    },
+    {
+      "commodityCode": "FK40",
+      "officialName": "甜椒-彩色種 其他",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 121,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FK41",
+      "officialName": "甜椒-彩色種 紅色",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FK42",
+      "officialName": "甜椒-彩色種 黃色",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FK5",
+      "officialName": "甜椒-青椒",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FK6",
+      "officialName": "甜椒-水果彩椒",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FK9",
+      "officialName": "甜椒-進口",
+      "markets": [
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 38,
+      "recordCount": 38,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.22"
+    },
+    {
+      "commodityCode": "FK90",
+      "officialName": "甜椒-進口 其他",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 1,
+      "recordCount": 1,
+      "firstObservedRocDate": "115.05.24",
+      "lastObservedRocDate": "115.05.24"
+    },
+    {
+      "commodityCode": "FK94",
+      "officialName": "甜椒-進口 彩色種",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 62,
+      "recordCount": 118,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FL1",
+      "officialName": "豌豆-白花",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 1,
+      "recordCount": 1,
+      "firstObservedRocDate": "115.05.06",
+      "lastObservedRocDate": "115.05.06"
+    },
+    {
+      "commodityCode": "FL2",
+      "officialName": "豌豆-紅花",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 9,
+      "recordCount": 9,
+      "firstObservedRocDate": "115.04.29",
+      "lastObservedRocDate": "115.05.19"
+    },
+    {
+      "commodityCode": "FL5",
+      "officialName": "豌豆-豌豆苗",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 40,
+      "recordCount": 66,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.18"
+    },
+    {
+      "commodityCode": "FL6",
+      "officialName": "豌豆-甜豌豆",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 24,
+      "recordCount": 38,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.06.06"
+    },
+    {
+      "commodityCode": "FL9",
+      "officialName": "豌豆-進口",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 72,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FL92",
+      "officialName": "豌豆-進口 紅花",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 66,
+      "recordCount": 127,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FL96",
+      "officialName": "豌豆-進口 甜豌豆",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 136,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FM1",
+      "officialName": "菜豆-白色",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 68,
+      "recordCount": 97,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FM2",
+      "officialName": "菜豆-青色",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FM3",
+      "officialName": "菜豆-紅色",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 68,
+      "recordCount": 91,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FN1",
+      "officialName": "敏豆-白豆",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FN3",
+      "officialName": "敏豆-粉豆",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 4,
+      "recordCount": 4,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.06.13"
+    },
+    {
+      "commodityCode": "FN4",
+      "officialName": "敏豆-翼豆",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 33,
+      "recordCount": 36,
+      "firstObservedRocDate": "115.04.29",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FN5",
+      "officialName": "敏豆-醜豆",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FP1",
+      "officialName": "萊豆-豆莢",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 34,
+      "recordCount": 59,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.06.10"
+    },
+    {
+      "commodityCode": "FP2",
+      "officialName": "萊豆-豆仁",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 35,
+      "recordCount": 62,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.06.09"
+    },
+    {
+      "commodityCode": "FP3",
+      "officialName": "鵲豆-肉豆",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 23,
+      "recordCount": 28,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.06.14"
+    },
+    {
+      "commodityCode": "FQ1",
+      "officialName": "毛豆-豆莢",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 132,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FQ2",
+      "officialName": "毛豆-豆仁",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FR1",
+      "officialName": "青花苔",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 45,
+      "recordCount": 73,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FR2",
+      "officialName": "青花苔-青花筍",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 54,
+      "recordCount": 66,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FR9",
+      "officialName": "青花苔-進口",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FS1",
+      "officialName": "越瓜-青色",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 32,
+      "recordCount": 46,
+      "firstObservedRocDate": "115.05.10",
+      "lastObservedRocDate": "115.07.21"
+    },
+    {
+      "commodityCode": "FS2",
+      "officialName": "越瓜-白色",
+      "markets": [
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 31,
+      "recordCount": 31,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.19"
+    },
+    {
+      "commodityCode": "FT0",
+      "officialName": "南瓜-其他",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 68,
+      "recordCount": 134,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FT1",
+      "officialName": "南瓜-木瓜形",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 23,
+      "recordCount": 24,
+      "firstObservedRocDate": "115.04.30",
+      "lastObservedRocDate": "115.07.21"
+    },
+    {
+      "commodityCode": "FT11",
+      "officialName": "南瓜-木瓜型 阿成",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 139,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FT12",
+      "officialName": "南瓜-木瓜型 阿嬌",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 127,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FT2",
+      "officialName": "南瓜-圓形",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FT3",
+      "officialName": "南瓜-黃如意",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 68,
+      "recordCount": 97,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FT5",
+      "officialName": "南瓜-青如意",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FT6",
+      "officialName": "南瓜-東昇",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 59,
+      "recordCount": 92,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.14"
+    },
+    {
+      "commodityCode": "FT7",
+      "officialName": "南瓜-栗子",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 65,
+      "recordCount": 117,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FT71",
+      "officialName": "南瓜-栗子 小紅",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 2,
+      "recordCount": 2,
+      "firstObservedRocDate": "115.05.08",
+      "lastObservedRocDate": "115.05.16"
+    },
+    {
+      "commodityCode": "FT72",
+      "officialName": "南瓜-栗子 小黑",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 57,
+      "recordCount": 86,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FT9",
+      "officialName": "南瓜-進口",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 21,
+      "recordCount": 21,
+      "firstObservedRocDate": "115.05.16",
+      "lastObservedRocDate": "115.06.25"
+    },
+    {
+      "commodityCode": "FT90",
+      "officialName": "南瓜-進口 其他",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 33,
+      "recordCount": 41,
+      "firstObservedRocDate": "115.05.22",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FT91",
+      "officialName": "南瓜-進口 木瓜型",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 60,
+      "recordCount": 98,
+      "firstObservedRocDate": "115.05.03",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FT96",
+      "officialName": "南瓜-進口 東昇",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 68,
+      "recordCount": 130,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FT97",
+      "officialName": "南瓜-進口 栗子",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FU1",
+      "officialName": "隼人瓜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 139,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FU2",
+      "officialName": "隼人瓜-瓜苗",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 139,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FU3",
+      "officialName": "石蓮花",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 50,
+      "recordCount": 90,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FV0",
+      "officialName": "辣椒-其他",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 137,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FV1",
+      "officialName": "辣椒-紅小",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FV2",
+      "officialName": "辣椒-青小",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 138,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FV3",
+      "officialName": "辣椒-雞心",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 64,
+      "recordCount": 69,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FV4",
+      "officialName": "辣椒-朝天椒",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FV5",
+      "officialName": "辣椒-青龍",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 17,
+      "recordCount": 19,
+      "firstObservedRocDate": "115.04.29",
+      "lastObservedRocDate": "115.07.18"
+    },
+    {
+      "commodityCode": "FV6",
+      "officialName": "辣椒-糯米椒",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FV9",
+      "officialName": "辣椒-進口",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 53,
+      "recordCount": 62,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FV91",
+      "officialName": "辣椒-進口 紅小",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 49,
+      "recordCount": 66,
+      "firstObservedRocDate": "115.05.01",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FV92",
+      "officialName": "辣椒-進口 青小",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 1,
+      "recordCount": 2,
+      "firstObservedRocDate": "115.07.17",
+      "lastObservedRocDate": "115.07.17"
+    },
+    {
+      "commodityCode": "FV94",
+      "officialName": "辣椒-進口 朝天椒",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 30,
+      "recordCount": 37,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FV95",
+      "officialName": "辣椒-進口 青龍",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 1,
+      "recordCount": 2,
+      "firstObservedRocDate": "115.05.15",
+      "lastObservedRocDate": "115.05.15"
+    },
+    {
+      "commodityCode": "FV96",
+      "officialName": "辣椒-進口 糯米椒",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 1,
+      "recordCount": 1,
+      "firstObservedRocDate": "115.06.02",
+      "lastObservedRocDate": "115.06.02"
+    },
+    {
+      "commodityCode": "FW1",
+      "officialName": "金針花",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 109,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FW2",
+      "officialName": "洛神花",
+      "markets": [
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 2,
+      "recordCount": 2,
+      "firstObservedRocDate": "115.05.01",
+      "lastObservedRocDate": "115.05.30"
+    },
+    {
+      "commodityCode": "FX1",
+      "officialName": "花豆",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 3,
+      "recordCount": 3,
+      "firstObservedRocDate": "115.05.24",
+      "lastObservedRocDate": "115.06.14"
+    },
+    {
+      "commodityCode": "FX2",
+      "officialName": "虎豆-福豆",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 28,
+      "recordCount": 43,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.06.12"
+    },
+    {
+      "commodityCode": "FY0",
+      "officialName": "玉米-其他",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 68,
+      "recordCount": 129,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FY1",
+      "officialName": "玉米-白玉米",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 18,
+      "recordCount": 20,
+      "firstObservedRocDate": "115.04.29",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FY2",
+      "officialName": "玉米-甜硬殼",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 3,
+      "recordCount": 4,
+      "firstObservedRocDate": "115.04.29",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FY3",
+      "officialName": "玉米-超甜白",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 17,
+      "recordCount": 19,
+      "firstObservedRocDate": "115.05.08",
+      "lastObservedRocDate": "115.07.14"
+    },
+    {
+      "commodityCode": "FY4",
+      "officialName": "玉米-玉米筍",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FY41",
+      "officialName": "玉米-玉米筍 帶殼",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FY5",
+      "officialName": "玉米-糯米黑",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FY6",
+      "officialName": "玉米-甜軟殼",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FY7",
+      "officialName": "玉米-糯米白",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 12,
+      "recordCount": 15,
+      "firstObservedRocDate": "115.05.05",
+      "lastObservedRocDate": "115.07.07"
+    },
+    {
+      "commodityCode": "FY8",
+      "officialName": "玉米-白龍王",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 139,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FY9",
+      "officialName": "玉米-進口",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 137,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FY90",
+      "officialName": "玉米-進口 其他",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 33,
+      "recordCount": 33,
+      "firstObservedRocDate": "115.04.29",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FY91",
+      "officialName": "玉米-進口 白玉米",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 1,
+      "recordCount": 1,
+      "firstObservedRocDate": "115.06.18",
+      "lastObservedRocDate": "115.06.18"
+    },
+    {
+      "commodityCode": "FY94",
+      "officialName": "玉米-進口 玉米筍",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FZ1",
+      "officialName": "落花生-生",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 135,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "FZ2",
+      "officialName": "落花生-熟",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 124,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LA0",
+      "officialName": "甘藍-其他",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 55,
+      "recordCount": 70,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LA1",
+      "officialName": "甘藍-初秋",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LA2",
+      "officialName": "甘藍-改良種",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 133,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LA3",
+      "officialName": "甘藍-甜甘藍",
+      "markets": [
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 1,
+      "recordCount": 1,
+      "firstObservedRocDate": "115.04.29",
+      "lastObservedRocDate": "115.04.29"
+    },
+    {
+      "commodityCode": "LA4",
+      "officialName": "甘藍-紫色",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 123,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LA5",
+      "officialName": "甘藍-甘藍心",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 63,
+      "recordCount": 114,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LA6",
+      "officialName": "甘藍-甘藍芽",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 125,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LA7",
+      "officialName": "甘藍-改良尖",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 38,
+      "recordCount": 65,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.02"
+    },
+    {
+      "commodityCode": "LA9",
+      "officialName": "甘藍-進口",
+      "markets": [
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 13,
+      "recordCount": 13,
+      "firstObservedRocDate": "115.06.06",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LA91",
+      "officialName": "甘藍-進口 初秋",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 7,
+      "recordCount": 7,
+      "firstObservedRocDate": "115.05.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LA92",
+      "officialName": "甘藍-進口 改良種",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 50,
+      "recordCount": 99,
+      "firstObservedRocDate": "115.05.17",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LA94",
+      "officialName": "甘藍-進口 紫色",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 36,
+      "recordCount": 66,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LB1",
+      "officialName": "小白菜-土白菜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LB2",
+      "officialName": "小白菜-蚵仔白",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LB3",
+      "officialName": "小白菜-奶油白",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LB8",
+      "officialName": "小白菜-水耕",
+      "markets": [
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 59,
+      "recordCount": 59,
+      "firstObservedRocDate": "115.05.02",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LC0",
+      "officialName": "包心白-其他",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 96,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LC1",
+      "officialName": "包心白-包白",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LC2",
+      "officialName": "包心白-成功白",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 1,
+      "recordCount": 1,
+      "firstObservedRocDate": "115.05.19",
+      "lastObservedRocDate": "115.05.19"
+    },
+    {
+      "commodityCode": "LC3",
+      "officialName": "包心白-包頭蓮",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 44,
+      "recordCount": 61,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.19"
+    },
+    {
+      "commodityCode": "LC5",
+      "officialName": "包心白-天津白",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 2,
+      "recordCount": 2,
+      "firstObservedRocDate": "115.05.02",
+      "lastObservedRocDate": "115.05.03"
+    },
+    {
+      "commodityCode": "LC6",
+      "officialName": "包心白-冬白芽",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 11,
+      "recordCount": 14,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.05.10"
+    },
+    {
+      "commodityCode": "LC9",
+      "officialName": "包心白-進口",
+      "markets": [
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 49,
+      "recordCount": 49,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LC90",
+      "officialName": "包心白菜-進口 其他",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LC93",
+      "officialName": "包心白菜-進口 包頭蓮 ",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LD1",
+      "officialName": "青江白菜-小梗",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LD2",
+      "officialName": "青江白菜-大梗",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 1,
+      "recordCount": 1,
+      "firstObservedRocDate": "115.07.07",
+      "lastObservedRocDate": "115.07.07"
+    },
+    {
+      "commodityCode": "LD8",
+      "officialName": "青江白菜-水耕",
+      "markets": [
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 3,
+      "recordCount": 3,
+      "firstObservedRocDate": "115.05.15",
+      "lastObservedRocDate": "115.06.07"
+    },
+    {
+      "commodityCode": "LE1",
+      "officialName": "皇宮菜-小葉",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LE2",
+      "officialName": "皇宮菜-大葉",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LF1",
+      "officialName": "蕹菜-大葉",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 28,
+      "recordCount": 29,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.16"
+    },
+    {
+      "commodityCode": "LF2",
+      "officialName": "蕹菜-小葉",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LF3",
+      "officialName": "蕹菜-水蕹菜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LG2",
+      "officialName": "芹菜-白梗",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LG3",
+      "officialName": "芹菜-西洋芹菜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 41,
+      "recordCount": 71,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LG4",
+      "officialName": "芹菜-山芹菜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 12,
+      "recordCount": 16,
+      "firstObservedRocDate": "115.05.16",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LG5",
+      "officialName": "芹菜-芹菜管",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 6,
+      "recordCount": 12,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.05.05"
+    },
+    {
+      "commodityCode": "LG8",
+      "officialName": "芹菜-水耕",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 23,
+      "recordCount": 30,
+      "firstObservedRocDate": "115.06.16",
+      "lastObservedRocDate": "115.07.15"
+    },
+    {
+      "commodityCode": "LG9",
+      "officialName": "芹菜-進口",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LH1",
+      "officialName": "菠菜-圓葉",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 34,
+      "recordCount": 55,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.22"
+    },
+    {
+      "commodityCode": "LH2",
+      "officialName": "菠菜-角葉",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 136,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LH3",
+      "officialName": "菠菜-甜菠菜",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 1,
+      "recordCount": 1,
+      "firstObservedRocDate": "115.05.09",
+      "lastObservedRocDate": "115.05.09"
+    },
+    {
+      "commodityCode": "LI0",
+      "officialName": "萵苣菜-其他",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LI1",
+      "officialName": "萵苣菜-廣東菜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 136,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LI2",
+      "officialName": "萵苣菜-結球萵",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 135,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LI3",
+      "officialName": "萵苣菜-本島圓葉",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LI4",
+      "officialName": "萵苣菜-本島尖葉",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 34,
+      "recordCount": 51,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.08"
+    },
+    {
+      "commodityCode": "LI5",
+      "officialName": "萵苣菜-油麥菜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LI6",
+      "officialName": "萵苣菜-蘿美",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 138,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LI7",
+      "officialName": "萵苣菜-紅捲綠捲",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 3,
+      "recordCount": 3,
+      "firstObservedRocDate": "115.05.01",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LI71",
+      "officialName": "萵苣菜-紅捲",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 67,
+      "recordCount": 114,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LI72",
+      "officialName": "萵苣菜-綠捲",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 131,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LI8",
+      "officialName": "萵苣菜-水耕",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 139,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LI9",
+      "officialName": "萵苣菜-進口",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 61,
+      "recordCount": 70,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LI90",
+      "officialName": "萵苣菜-進口 其他",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 3,
+      "recordCount": 3,
+      "firstObservedRocDate": "115.05.09",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LI91",
+      "officialName": "萵苣菜-進口 廣東萵",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 59,
+      "recordCount": 115,
+      "firstObservedRocDate": "115.05.02",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LI92",
+      "officialName": "萵苣菜-進口 結球萵",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LI95",
+      "officialName": "萵苣菜-進口 油麥菜 ",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 13,
+      "recordCount": 24,
+      "firstObservedRocDate": "115.07.08",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LI96",
+      "officialName": "萵苣菜-進口 蘿美",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 63,
+      "recordCount": 121,
+      "firstObservedRocDate": "115.05.03",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LJ1",
+      "officialName": "芥菜-芥菜仁",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 11,
+      "recordCount": 20,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.05.24"
+    },
+    {
+      "commodityCode": "LJ3",
+      "officialName": "芥菜-大芥菜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 52,
+      "recordCount": 96,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.22"
+    },
+    {
+      "commodityCode": "LJ4",
+      "officialName": "芥菜-小芥菜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 139,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LK2",
+      "officialName": "芥藍菜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LK3",
+      "officialName": "芥藍菜-芥藍芽",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LL1",
+      "officialName": "茼蒿",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 7,
+      "recordCount": 10,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.05.12"
+    },
+    {
+      "commodityCode": "LL2",
+      "officialName": "茼蒿-山茼蒿",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 25,
+      "recordCount": 42,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.06.14"
+    },
+    {
+      "commodityCode": "LM1",
+      "officialName": "莧菜-紅莧菜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LM2",
+      "officialName": "莧菜-白莧菜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LN1",
+      "officialName": "油菜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LN2",
+      "officialName": "油菜-小松菜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 125,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LN3",
+      "officialName": "油菜-油菜花",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 3,
+      "recordCount": 4,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LO1",
+      "officialName": "甘薯葉",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LP1",
+      "officialName": "芫荽",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LP2",
+      "officialName": "九層塔",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LP3",
+      "officialName": "羅勒",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 36,
+      "recordCount": 45,
+      "firstObservedRocDate": "115.05.12",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LP9",
+      "officialName": "芫荽-進口",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 12,
+      "recordCount": 20,
+      "firstObservedRocDate": "115.07.02",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LQ1",
+      "officialName": "紅鳳菜-紅鳳菜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LS1",
+      "officialName": "茴香",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 59,
+      "recordCount": 67,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LT2",
+      "officialName": "海菜-海帶",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 139,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LT3",
+      "officialName": "海菜-水蓮",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LU1",
+      "officialName": "菾菜-茄茉菜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 7,
+      "recordCount": 9,
+      "firstObservedRocDate": "115.05.13",
+      "lastObservedRocDate": "115.07.22"
+    },
+    {
+      "commodityCode": "LV1",
+      "officialName": "巴西利",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 134,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LX1",
+      "officialName": "蕨菜-過貓",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 138,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LX2",
+      "officialName": "蕨菜-山蘇",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 118,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "LY1",
+      "officialName": "西洋菜",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 7,
+      "recordCount": 7,
+      "firstObservedRocDate": "115.05.12",
+      "lastObservedRocDate": "115.07.21"
+    },
+    {
+      "commodityCode": "LY2",
+      "officialName": "黑甜仔菜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 26,
+      "recordCount": 33,
+      "firstObservedRocDate": "115.05.03",
+      "lastObservedRocDate": "115.07.21"
+    },
+    {
+      "commodityCode": "LY4",
+      "officialName": "人參葉",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 18,
+      "recordCount": 18,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.14"
+    },
+    {
+      "commodityCode": "LY6",
+      "officialName": "香椿",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 8,
+      "recordCount": 8,
+      "firstObservedRocDate": "115.05.10",
+      "lastObservedRocDate": "115.07.19"
+    },
+    {
+      "commodityCode": "LZ2",
+      "officialName": "藤川七-川七葉",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 114,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "MA0",
+      "officialName": "洋菇-其他",
+      "markets": [
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 22,
+      "recordCount": 22,
+      "firstObservedRocDate": "115.05.06",
+      "lastObservedRocDate": "115.07.15"
+    },
+    {
+      "commodityCode": "MA1",
+      "officialName": "洋菇",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 134,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "MA2",
+      "officialName": "洋菇-盒裝",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "MB1",
+      "officialName": "草菇",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 68,
+      "recordCount": 123,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "MC0",
+      "officialName": "濕木耳-其他",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 54,
+      "recordCount": 68,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "MC1",
+      "officialName": "濕木耳",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "MC2",
+      "officialName": "濕木耳-盒裝",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 10,
+      "recordCount": 10,
+      "firstObservedRocDate": "115.04.30",
+      "lastObservedRocDate": "115.07.07"
+    },
+    {
+      "commodityCode": "MD1",
+      "officialName": "濕香菇",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "ME0",
+      "officialName": "金絲菇-其他",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 63,
+      "recordCount": 63,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "ME1",
+      "officialName": "金絲菇-金針菇",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 139,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "ME2",
+      "officialName": "金絲菇-盒裝",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 139,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "MF1",
+      "officialName": "蠔菇-鮑魚菇",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 65,
+      "recordCount": 110,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "MF2",
+      "officialName": "蠔菇-盒裝",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 39,
+      "recordCount": 39,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "MG1",
+      "officialName": "巴西蘑菇",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 1,
+      "recordCount": 1,
+      "firstObservedRocDate": "115.05.22",
+      "lastObservedRocDate": "115.05.22"
+    },
+    {
+      "commodityCode": "MI1",
+      "officialName": "秀珍菇",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 139,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "MI2",
+      "officialName": "秀珍菇-盒裝",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 2,
+      "recordCount": 2,
+      "firstObservedRocDate": "115.07.02",
+      "lastObservedRocDate": "115.07.05"
+    },
+    {
+      "commodityCode": "MJ1",
+      "officialName": "杏鮑菇",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "MJ2",
+      "officialName": "杏鮑菇-盒裝",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 68,
+      "recordCount": 124,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "MK0",
+      "officialName": "鴻喜菇-其他",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 70,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "MK1",
+      "officialName": "鴻喜菇",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 139,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "MK2",
+      "officialName": "鴻喜菇-盒裝",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "ML1",
+      "officialName": "珊瑚菇",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 52,
+      "recordCount": 70,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "ML2",
+      "officialName": "珊瑚菇-盒裝",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 29,
+      "recordCount": 30,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.22"
+    },
+    {
+      "commodityCode": "MN1",
+      "officialName": "柳松菇",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 66,
+      "recordCount": 85,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "MN2",
+      "officialName": "柳松菇-盒裝",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 49,
+      "recordCount": 49,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "MX1",
+      "officialName": "其他菇類",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "OA1",
+      "officialName": "鹹菜-清心",
+      "markets": [
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 13,
+      "recordCount": 13,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.21"
+    },
+    {
+      "commodityCode": "OA2",
+      "officialName": "鹹菜-帶葉",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 132,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "OB1",
+      "officialName": "雪里紅",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 130,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "OC1",
+      "officialName": "榨菜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 62,
+      "recordCount": 87,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "OD1",
+      "officialName": "蘿蔔乾",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 138,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "OE1",
+      "officialName": "醃瓜-乾",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 1,
+      "recordCount": 1,
+      "firstObservedRocDate": "115.07.07",
+      "lastObservedRocDate": "115.07.07"
+    },
+    {
+      "commodityCode": "OE2",
+      "officialName": "醃瓜-漬",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 68,
+      "recordCount": 101,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "OG1",
+      "officialName": "熟筍-桂竹筍",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 67,
+      "recordCount": 111,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "OG2",
+      "officialName": "熟筍-箭竹筍",
+      "markets": [
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 70,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "OH1",
+      "officialName": "桶筍-麻竹筍",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 1,
+      "recordCount": 1,
+      "firstObservedRocDate": "115.05.28",
+      "lastObservedRocDate": "115.05.28"
+    },
+    {
+      "commodityCode": "OH2",
+      "officialName": "桶筍-綠竹筍",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 7,
+      "recordCount": 7,
+      "firstObservedRocDate": "115.04.30",
+      "lastObservedRocDate": "115.07.22"
+    },
+    {
+      "commodityCode": "OI2",
+      "officialName": "筍絲",
+      "markets": [
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 3,
+      "recordCount": 3,
+      "firstObservedRocDate": "115.07.18",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "OI3",
+      "officialName": "筍片",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 2,
+      "recordCount": 2,
+      "firstObservedRocDate": "115.07.01",
+      "lastObservedRocDate": "115.07.08"
+    },
+    {
+      "commodityCode": "OI4",
+      "officialName": "筍茸",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 107,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "OL1",
+      "officialName": "朴菜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 82,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "OX1",
+      "officialName": "其他",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SA0",
+      "officialName": "蘿蔔-其他",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 4,
+      "recordCount": 4,
+      "firstObservedRocDate": "115.07.04",
+      "lastObservedRocDate": "115.07.22"
+    },
+    {
+      "commodityCode": "SA3",
+      "officialName": "蘿蔔-矸仔",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 126,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SA4",
+      "officialName": "蘿蔔-櫻桃",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 67,
+      "recordCount": 112,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SA7",
+      "officialName": "蘿蔔-甜菜根",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 132,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SA9",
+      "officialName": "蘿蔔-進口",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SB1",
+      "officialName": "胡蘿蔔-未洗",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SB2",
+      "officialName": "胡蘿蔔-清洗",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SB9",
+      "officialName": "胡蘿蔔-進口",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 31,
+      "recordCount": 39,
+      "firstObservedRocDate": "115.05.10",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SC1",
+      "officialName": "馬鈴薯-本產",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SC9",
+      "officialName": "馬鈴薯-進口",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 139,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SD1",
+      "officialName": "洋蔥-本產",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SD9",
+      "officialName": "洋蔥-進口",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SE1",
+      "officialName": "青蔥-日蔥",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SE2",
+      "officialName": "青蔥-北蔥",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 52,
+      "recordCount": 65,
+      "firstObservedRocDate": "115.05.19",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SE3",
+      "officialName": "青蔥-大蔥",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 41,
+      "recordCount": 60,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SE4",
+      "officialName": "青蔥-珠蔥",
+      "markets": [
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 1,
+      "recordCount": 1,
+      "firstObservedRocDate": "115.06.18",
+      "lastObservedRocDate": "115.06.18"
+    },
+    {
+      "commodityCode": "SE5",
+      "officialName": "青蔥-紅蔥頭",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SE6",
+      "officialName": "青蔥-粉蔥",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SE9",
+      "officialName": "青蔥-進口",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 1,
+      "recordCount": 1,
+      "firstObservedRocDate": "115.05.28",
+      "lastObservedRocDate": "115.05.28"
+    },
+    {
+      "commodityCode": "SF1",
+      "officialName": "韭菜-白頭",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 138,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SF2",
+      "officialName": "韭菜-韭菜黃",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SF3",
+      "officialName": "韭菜-韭菜花",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SF4",
+      "officialName": "韭菜-青頭",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SG2",
+      "officialName": "大蒜-軟梗",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 139,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SG4",
+      "officialName": "大蒜-蔥蒜",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 109,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SG5",
+      "officialName": "大蒜-蒜頭",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SG6",
+      "officialName": "大蒜-蒜仁",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SG7",
+      "officialName": "大蒜-蒜瓣",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SG9",
+      "officialName": "大蒜-進口",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 102,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SH1",
+      "officialName": "竹筍-麻竹筍",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 52,
+      "recordCount": 95,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SH2",
+      "officialName": "竹筍-綠竹筍",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SH3",
+      "officialName": "竹筍-桂竹筍",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 4,
+      "recordCount": 4,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.05.09"
+    },
+    {
+      "commodityCode": "SH4",
+      "officialName": "竹筍-孟宗筍",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 2,
+      "recordCount": 3,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.05.02"
+    },
+    {
+      "commodityCode": "SH5",
+      "officialName": "竹筍-烏殼綠",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 139,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SH6",
+      "officialName": "竹筍-箭竹筍",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 1,
+      "recordCount": 1,
+      "firstObservedRocDate": "115.05.02",
+      "lastObservedRocDate": "115.05.02"
+    },
+    {
+      "commodityCode": "SH7",
+      "officialName": "竹筍-去殼",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 136,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SI1",
+      "officialName": "萵苣莖",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 4,
+      "recordCount": 6,
+      "firstObservedRocDate": "115.04.29",
+      "lastObservedRocDate": "115.05.02"
+    },
+    {
+      "commodityCode": "SJ1",
+      "officialName": "芋-麵芋",
+      "markets": [
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 1,
+      "recordCount": 1,
+      "firstObservedRocDate": "115.07.04",
+      "lastObservedRocDate": "115.07.04"
+    },
+    {
+      "commodityCode": "SJ2",
+      "officialName": "芋-檳榔心芋",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SJ3",
+      "officialName": "芋-里芋",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 57,
+      "recordCount": 99,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SJ4",
+      "officialName": "芋-芋莖",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 64,
+      "recordCount": 112,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SJ5",
+      "officialName": "芋-芋角",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 56,
+      "recordCount": 84,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SK1",
+      "officialName": "荸薺",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 53,
+      "recordCount": 69,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SK2",
+      "officialName": "荸薺-加工",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 135,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SL1",
+      "officialName": "豆薯",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SM1",
+      "officialName": "牛蒡",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 66,
+      "recordCount": 76,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SM9",
+      "officialName": "牛蒡-進口",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 65,
+      "recordCount": 113,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SN1",
+      "officialName": "蓮藕",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 124,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SN2",
+      "officialName": "蓮藕-蓮子",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 62,
+      "recordCount": 86,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SO0",
+      "officialName": "甘薯-其他",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 139,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SO1",
+      "officialName": "甘薯-臺農57號",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SO2",
+      "officialName": "甘薯-芋仔甘薯",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SO3",
+      "officialName": "甘薯-臺農66號",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SP0",
+      "officialName": "薑-其他",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 68,
+      "recordCount": 117,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SP1",
+      "officialName": "薑-老薑",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SP2",
+      "officialName": "薑-嫩薑",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SP3",
+      "officialName": "薑-粉薑",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 68,
+      "recordCount": 104,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SP4",
+      "officialName": "薑-竹薑",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 37,
+      "recordCount": 48,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.19"
+    },
+    {
+      "commodityCode": "SP5",
+      "officialName": "薑-薑黃",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 48,
+      "recordCount": 74,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.14"
+    },
+    {
+      "commodityCode": "SQ1",
+      "officialName": "茭白筍-帶殼",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 69,
+      "recordCount": 138,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SQ3",
+      "officialName": "茭白筍-去殼",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 139,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SR1",
+      "officialName": "菱角-生菱角",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 58,
+      "recordCount": 60,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SR3",
+      "officialName": "菱角-去殼",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 35,
+      "recordCount": 38,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.21"
+    },
+    {
+      "commodityCode": "SR4",
+      "officialName": "菱角-熟菱角",
+      "markets": [
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 2,
+      "recordCount": 2,
+      "firstObservedRocDate": "115.07.01",
+      "lastObservedRocDate": "115.07.14"
+    },
+    {
+      "commodityCode": "ST1",
+      "officialName": "蕎頭-露蕎",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 66,
+      "recordCount": 87,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SU1",
+      "officialName": "薯蕷-紅薯蕷",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 67,
+      "recordCount": 76,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SU2",
+      "officialName": "薯蕷-白薯蕷",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 65,
+      "recordCount": 108,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SU21",
+      "officialName": "薯蕷-白薯蕷 人參",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SU3",
+      "officialName": "薯蕷-樹薯",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 31,
+      "recordCount": 40,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SU4",
+      "officialName": "薯蕷-粉薯",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 1,
+      "recordCount": 1,
+      "firstObservedRocDate": "115.07.10",
+      "lastObservedRocDate": "115.07.10"
+    },
+    {
+      "commodityCode": "SU9",
+      "officialName": "薯蕷-進口",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 119,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SV1",
+      "officialName": "蘆筍-白蘆筍",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 137,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SV2",
+      "officialName": "蘆筍-綠蘆筍",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SV3",
+      "officialName": "蘆筍-蘆筍花",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 63,
+      "recordCount": 104,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SV9",
+      "officialName": "蘆筍-進口",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 124,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SV92",
+      "officialName": "蘆筍-進口 綠蘆筍",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 132,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SW1",
+      "officialName": "球莖甘藍",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 39,
+      "recordCount": 66,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.06.25"
+    },
+    {
+      "commodityCode": "SX0",
+      "officialName": "芽菜類-其他",
+      "markets": [
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 68,
+      "recordCount": 68,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SX1",
+      "officialName": "芽菜類-綠豆芽",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 139,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SX2",
+      "officialName": "芽菜類-黃豆芽",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 139,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SX3",
+      "officialName": "芽菜類-豌豆芽",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 139,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SX4",
+      "officialName": "芽菜類-苜蓿芽",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 138,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SZ1",
+      "officialName": "半天筍",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 64,
+      "recordCount": 98,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SZ3",
+      "officialName": "金針筍",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 65,
+      "recordCount": 74,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SZ4",
+      "officialName": "百合",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 32,
+      "recordCount": 33,
+      "firstObservedRocDate": "115.04.30",
+      "lastObservedRocDate": "115.07.21"
+    },
+    {
+      "commodityCode": "SZ5",
+      "officialName": "草石蠶",
+      "markets": [
+        "TAIPEI_FIRST"
+      ],
+      "observedDayCount": 13,
+      "recordCount": 13,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.05.31"
+    },
+    {
+      "commodityCode": "SZ6",
+      "officialName": "半天花",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 39,
+      "recordCount": 47,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.22"
+    },
+    {
+      "commodityCode": "SZ7",
+      "officialName": "晚香玉筍",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 130,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    },
+    {
+      "commodityCode": "SZ8",
+      "officialName": "香茅",
+      "markets": [
+        "TAIPEI_FIRST",
+        "TAIPEI_SECOND"
+      ],
+      "observedDayCount": 70,
+      "recordCount": 140,
+      "firstObservedRocDate": "115.04.28",
+      "lastObservedRocDate": "115.07.24"
+    }
+  ]
+}

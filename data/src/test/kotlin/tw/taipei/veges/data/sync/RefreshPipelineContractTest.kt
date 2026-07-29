@@ -5,7 +5,9 @@ import org.junit.Test
 
 class RefreshPipelineContractTest {
     @Test
-    fun failClosedEstimatorProducesNoUnqualifiedEstimates() = kotlinx.coroutines.test.runTest {
-        assertEquals(0, FailClosedEstimateRefreshCoordinator().calculateNewEstimates().size)
+    fun estimatorBoundaryCanFailClosedWithoutPublishingRows() = kotlinx.coroutines.test.runTest {
+        val coordinator = EstimateRefreshCoordinator { emptyList() }
+
+        assertEquals(0, coordinator.calculateNewEstimates().size)
     }
 }

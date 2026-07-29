@@ -2,6 +2,9 @@ package tw.taipei.veges.data.local
 
 import androidx.room.Embedded
 import androidx.room.Relation
+import java.math.BigDecimal
+import java.time.LocalDate
+import tw.taipei.veges.domain.MarketBasis
 
 data class TaxonomyConceptWithDetails(
     @Embedded val concept: TaxonomyConceptEntity,
@@ -15,4 +18,14 @@ data class TaxonomyConceptWithDetails(
         entityColumn = "conceptId",
     )
     val variants: List<OfficialVariantEntity>,
+)
+
+data class PendingNotificationDelivery(
+    val eventId: String,
+    val conceptId: String,
+    val householdName: String,
+    val basis: MarketBasis,
+    val estimateNtdPerTaiJin: BigDecimal,
+    val thresholdNtdPerTaiJin: BigDecimal,
+    val sourceDate: LocalDate,
 )

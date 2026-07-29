@@ -28,7 +28,12 @@ private data class BundledTaxonomy(
 )
 
 @Serializable
-private data class ReviewDto(val status: String, val reviewedAt: String, val reviewedBy: String)
+private data class ReviewDto(
+    val status: String,
+    val reviewedAt: String,
+    val reviewedBy: String,
+    val notes: String? = null,
+)
 
 @Serializable
 private data class ConceptDto(
@@ -118,16 +123,26 @@ class TaxonomyBundleImporter @Inject constructor(
 
     private fun validate(artifact: BundledTaxonomy, raw: String) {
         require(artifact.schemaVersion == 1) { "Unsupported taxonomy schema" }
-        require(artifact.artifactChecksum == checksum(json.encodeToString(artifact.copy(artifactChecksum = "")))) {
+        require(artifact.artifactChecksum == computeBundledTaxonomyChecksum(raw)) {
             "Taxonomy checksum mismatch"
         }
         require(artifact.review.reviewedAt.isNotBlank() && artifact.review.reviewedBy.isNotBlank()) { "Review metadata required" }
+        require(artifact.review.status == "APPROVED") { "Bundled taxonomy review must be approved" }
         require(artifact.concepts.map { it.stableId }.distinct().size == artifact.concepts.size) { "Stable IDs must be unique" }
         val conceptIds = artifact.concepts.map { it.stableId }.toSet()
         artifact.concepts.forEach { concept ->
             require(concept.householdName.isNotBlank() && concept.aliases.isNotEmpty()) { "Concept identity incomplete" }
             require(concept.image.disclosure == AI_ILLUSTRATION_DISCLOSURE) { "Invalid image disclosure" }
             require(concept.officialMappings.isNotEmpty()) { "Official mapping required" }
+            if (concept.publicationState == "PUBLISHED") {
+                require(
+                    concept.image.reviewStatus == "APPROVED" &&
+                        !concept.image.reviewedAt.isNullOrBlank() &&
+                        !concept.image.reviewedBy.isNullOrBlank(),
+                ) {
+                    "Published concept ${concept.stableId} requires approved image review"
+                }
+            }
             concept.officialMappings.forEach { mapping ->
                 require(mapping.market == "TAIPEI_FIRST" || mapping.market == "TAIPEI_SECOND") { "Invalid market mapping" }
             }
@@ -138,11 +153,34 @@ class TaxonomyBundleImporter @Inject constructor(
         }
     }
 
-    private fun checksum(value: String): String = MessageDigest.getInstance("SHA-256")
-        .digest(value.toByteArray())
-        .joinToString("") { "%02x".format(it) }
-
     private companion object {
         const val DEFAULT_ASSET = "taxonomy/candidate-taxonomy.json"
     }
 }
+
+internal fun computeBundledTaxonomyChecksum(raw: String): String {
+    val checksumJson = Json {
+        ignoreUnknownKeys = false
+        encodeDefaults = true
+        explicitNulls = false
+    }
+    val artifact = checksumJson.decodeFromString<BundledTaxonomy>(raw)
+    val canonical = artifact.copy(artifactChecksum = "").canonical()
+    return MessageDigest.getInstance("SHA-256")
+        .digest(checksumJson.encodeToString(canonical).toByteArray())
+        .joinToString("") { "%02x".format(it) }
+}
+
+private fun BundledTaxonomy.canonical(): BundledTaxonomy = copy(
+    concepts = concepts.sortedBy { it.stableId }.map { concept ->
+        concept.copy(
+            aliases = concept.aliases.sortedWith(String.CASE_INSENSITIVE_ORDER),
+            officialMappings = concept.officialMappings.sortedWith(
+                compareBy({ it.commodityCode }, { it.market }, { it.officialName }),
+            ),
+        )
+    },
+    ambiguitySets = ambiguitySets.sortedBy { it.normalizedAlias }.map { ambiguity ->
+        ambiguity.copy(targetConceptIds = ambiguity.targetConceptIds.sorted())
+    },
+)
