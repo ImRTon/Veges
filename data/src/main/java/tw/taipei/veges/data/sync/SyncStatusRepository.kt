@@ -4,13 +4,17 @@ import java.time.Clock
 import java.time.Duration
 import java.time.Instant
 import javax.inject.Inject
+import javax.inject.Singleton
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import tw.taipei.veges.data.local.VegesDatabase
 import tw.taipei.veges.domain.Freshness
+import tw.taipei.veges.domain.PriceRefresh
+import tw.taipei.veges.domain.PriceRefreshStage
 import tw.taipei.veges.domain.UnavailableReason
 
+@Singleton
 class SyncStatusRepository @Inject constructor(
     private val database: VegesDatabase,
     private val clock: Clock,
@@ -27,6 +31,25 @@ class SyncStatusRepository @Inject constructor(
 
     val status: Flow<SyncStatus> = mutableStatus.asStateFlow()
 
+    private val mutablePriceRefresh = MutableStateFlow(PriceRefresh())
+    val priceRefresh: Flow<PriceRefresh> = mutablePriceRefresh.asStateFlow()
+
+    fun recordStarted() {
+        mutablePriceRefresh.value = PriceRefresh(
+            isRunning = true,
+            stage = PriceRefreshStage.PREPARING,
+            fraction = 0.05f,
+        )
+    }
+
+    fun recordProgress(stage: PriceRefreshStage, fraction: Float) {
+        mutablePriceRefresh.value = PriceRefresh(
+            isRunning = true,
+            stage = stage,
+            fraction = fraction.coerceIn(0f, 0.99f),
+        )
+    }
+
     suspend fun refreshFromDatabase() {
         val sourceDao = database.sourceDao()
         val now = clock.instant()
@@ -42,6 +65,11 @@ class SyncStatusRepository @Inject constructor(
             lastAttemptedRefresh = sourceDao.latestAttemptedRefresh(),
             lastFailure = null,
         )
+        mutablePriceRefresh.value = PriceRefresh(
+            isRunning = false,
+            stage = PriceRefreshStage.SAVING,
+            fraction = 1f,
+        )
     }
 
     fun recordFailure(at: Instant = clock.instant()) {
@@ -51,6 +79,7 @@ class SyncStatusRepository @Inject constructor(
             lastAttemptedRefresh = at,
             lastFailure = UnavailableReason.FAILED_REFRESH,
         )
+        mutablePriceRefresh.value = mutablePriceRefresh.value.copy(isRunning = false)
     }
 
     private companion object {

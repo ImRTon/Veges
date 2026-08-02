@@ -12,17 +12,6 @@ import androidx.compose.ui.unit.dp
 import tw.taipei.veges.domain.EstimateDisclosure
 
 @Composable
-fun AiIllustrationDisclosure(modifier: Modifier = Modifier) {
-    Text(
-        text = "AI 生成示意圖，非實物照片。",
-        style = MaterialTheme.typography.labelSmall,
-        modifier = modifier.semantics {
-            contentDescription = "AI 生成示意圖，非實物照片。不可作為產地、等級、認證、包裝或實物證據。"
-        },
-    )
-}
-
-@Composable
 fun UnavailableState(
     reason: String,
     modifier: Modifier = Modifier,

@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.map
 import tw.taipei.veges.data.local.VegesDatabase
 import tw.taipei.veges.data.local.EstimateEntity
 import tw.taipei.veges.domain.MarketItem
+import tw.taipei.veges.domain.MarketHistoryPoint
 import tw.taipei.veges.domain.MarketBasis
 import tw.taipei.veges.domain.PriceUnit
 import tw.taipei.veges.domain.ProduceCategory
@@ -35,8 +36,10 @@ class RoomProduceRepository @Inject constructor(
     override fun observeMarket(category: ProduceCategory): Flow<List<MarketItem>> = combine(
         database.taxonomyDao().observePublished(category),
         database.estimateDao().observePublishedHistory(category),
-    ) { concepts, estimates ->
+        database.sourceDao().observeConceptMarketHistory(category),
+    ) { concepts, estimates, observations ->
         val historyByConcept = estimates.groupBy(EstimateEntity::conceptId)
+        val wholesaleByConcept = observations.groupBy { it.conceptId }
         concepts.map { details ->
             val concept = details.toDomain()
             val ordered = historyByConcept[concept.id.value].orEmpty()
@@ -66,6 +69,29 @@ class RoomProduceRepository @Inject constructor(
                     .mapNotNull(EstimateEntity::pointValue)
                     .take(30)
                     .map { ScaledPrice(it, PriceUnit.NTD_PER_TAI_JIN) },
+                wholesaleHistory = wholesaleByConcept[concept.id.value]
+                    .orEmpty()
+                    .groupBy { it.observedOn }
+                    .mapNotNull { (date, rows) ->
+                        val totalVolume = rows.sumOf { it.volume }
+                        if (totalVolume <= java.math.BigDecimal.ZERO) {
+                            null
+                        } else {
+                            MarketHistoryPoint(
+                                observedOn = date,
+                                averageNtdPerKg = rows
+                                    .sumOf { it.averagePrice.multiply(it.volume) }
+                                    .divide(
+                                        totalVolume,
+                                        6,
+                                        java.math.RoundingMode.HALF_UP,
+                                    ),
+                                volumeKg = totalVolume,
+                            )
+                        }
+                    }
+                    .sortedByDescending(MarketHistoryPoint::observedOn)
+                    .take(31),
             )
         }
     }

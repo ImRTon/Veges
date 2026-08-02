@@ -10,7 +10,7 @@ class BundledTaxonomyChecksumTest {
         val raw = File("src/main/assets/taxonomy/candidate-taxonomy.json").readText()
 
         assertEquals(
-            "2c17d98130a15671becd4aeb87d61f25e1ca631f46c334767ae0d7ab5867dbc0",
+            "df8e74f9c76891e0f35485c9dfc602958b840fa575ccf8f9434746c97e45b9e2",
             computeBundledTaxonomyChecksum(raw),
         )
     }

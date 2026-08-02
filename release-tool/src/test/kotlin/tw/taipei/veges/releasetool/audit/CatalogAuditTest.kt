@@ -30,10 +30,10 @@ class CatalogAuditTest {
         ArtifactValidator.validateTaxonomy(taxonomy)
         assertEquals(taxonomy.artifactChecksum, ArtifactCodec.taxonomyChecksum(taxonomy))
         assertEquals(ReviewStatus.APPROVED, taxonomy.review.status)
-        assertEquals("project-owner", taxonomy.review.reviewedBy)
-        assertEquals(121, taxonomy.concepts.size)
+        assertEquals("codex-image-review", taxonomy.review.reviewedBy)
+        assertEquals(175, taxonomy.concepts.size)
         assertEquals(120, taxonomy.concepts.count { it.category == tw.taipei.veges.releasetool.artifact.TaxonomyCategory.VEGETABLE })
-        assertEquals(1, taxonomy.concepts.count { it.category == tw.taipei.veges.releasetool.artifact.TaxonomyCategory.FRUIT })
+        assertEquals(55, taxonomy.concepts.count { it.category == tw.taipei.veges.releasetool.artifact.TaxonomyCategory.FRUIT })
         assertTrue(taxonomy.concepts.all { it.publicationState == PublicationState.PUBLISHED })
         assertTrue(taxonomy.concepts.all { it.image.reviewStatus == ReviewStatus.APPROVED })
         assertEquals(

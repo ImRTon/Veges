@@ -1,6 +1,8 @@
 param(
     [Parameter(Mandatory = $true)]
     [string]$Output,
+    [ValidateSet("N04", "N05")]
+    [string]$KindCode = "N04",
     [string]$StartDate = "115.04.27",
     [string]$EndDate = "115.07.26",
     [int]$PageSize = 9999,
@@ -8,6 +10,7 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+$kindSlug = $KindCode.ToLowerInvariant()
 $endpoint = "https://data.moa.gov.tw/Service/OpenData/FromM/FarmTransData.aspx"
 $markets = @(
     [ordered]@{ QueryName = "台北一"; Basis = "TAIPEI_FIRST" },
@@ -33,7 +36,7 @@ foreach ($market in $markets) {
         $pagesFetched++
         foreach ($record in $pageRecords) {
             if (
-                $record.'種類代碼' -eq "N04" -and
+                $record.'種類代碼' -eq $KindCode -and
                 $record.'作物代號' -ne "rest" -and
                 -not [string]::IsNullOrWhiteSpace($record.'作物代號') -and
                 -not [string]::IsNullOrWhiteSpace($record.'作物名稱')
@@ -77,8 +80,8 @@ $varieties = @(
 $artifact = [ordered]@{
     schemaVersion = 1
     source = "MOA_FARM_TRANS_DATA"
-    snapshotId = "moa-n04-taipei-$($EndDate.Replace('.', '-'))"
-    kindCode = "N04"
+    snapshotId = "moa-$kindSlug-taipei-$($EndDate.Replace('.', '-'))"
+    kindCode = $KindCode
     startRocDate = $StartDate
     endRocDate = $EndDate
     markets = @($markets.Basis)
@@ -95,4 +98,4 @@ if (-not [string]::IsNullOrEmpty($parent)) {
 $json = $artifact | ConvertTo-Json -Depth 8
 [IO.File]::WriteAllText($target, $json + [Environment]::NewLine, [Text.UTF8Encoding]::new($false))
 
-Write-Output "Wrote $($varieties.Count) N04 varieties from $($records.Count) records across $pagesFetched pages to $target"
+Write-Output "Wrote $($varieties.Count) $KindCode varieties from $($records.Count) records across $pagesFetched pages to $target"

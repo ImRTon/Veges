@@ -13,6 +13,8 @@ import androidx.work.workDataOf
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import tw.taipei.veges.domain.HistoryRefreshRequester
 import tw.taipei.veges.domain.ProduceConceptId
 
@@ -24,6 +26,25 @@ class SyncScheduler @Inject constructor(
     }
     private val preferences by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
         context.getSharedPreferences(SCHEDULER_PREFERENCES, Context.MODE_PRIVATE)
+    }
+
+    suspend fun prepareWorkQueue() = withContext(Dispatchers.IO) {
+        val queueVersion = preferences.getInt(SYNC_QUEUE_VERSION, 0)
+        if (queueVersion < CURRENT_SYNC_QUEUE_VERSION) {
+            workManager.cancelAllWorkByTag(RefreshPipelineWorker::class.java.name).result.get()
+            val migrationEditor = preferences.edit()
+                .putInt(SYNC_QUEUE_VERSION, CURRENT_SYNC_QUEUE_VERSION)
+                .remove(LAST_FOREGROUND_REQUEST_AT)
+            preferences.all.keys
+                .filter { it.startsWith(LAST_HISTORY_REQUEST_PREFIX) }
+                .forEach(migrationEditor::remove)
+            check(
+                migrationEditor.commit(),
+            ) {
+                "Could not persist sync queue migration"
+            }
+        }
+        ensurePeriodicRefresh()
     }
 
     fun ensurePeriodicRefresh() {
@@ -41,12 +62,19 @@ class SyncScheduler @Inject constructor(
     fun requestForegroundCatchUp() {
         val nowMillis = System.currentTimeMillis()
         val lastRequestedAtMillis = preferences.getLong(LAST_FOREGROUND_REQUEST_AT, 0L)
-        if (!shouldEnqueueForegroundCatchUp(lastRequestedAtMillis, nowMillis)) return
+        val taxonomyReady = preferences.getBoolean(TAXONOMY_READY, false)
+        if (!shouldEnqueueForegroundCatchUp(taxonomyReady, lastRequestedAtMillis, nowMillis)) return
         if (!preferences.edit().putLong(LAST_FOREGROUND_REQUEST_AT, nowMillis).commit()) return
         enqueueImmediateRefresh()
     }
 
+    fun markTaxonomyReadyAndRequestCatchUp() {
+        if (!preferences.edit().putBoolean(TAXONOMY_READY, true).commit()) return
+        requestForegroundCatchUp()
+    }
+
     fun requestManualRefresh() {
+        if (!preferences.getBoolean(TAXONOMY_READY, false)) return
         enqueueImmediateRefresh()
     }
 
@@ -56,40 +84,66 @@ class SyncScheduler @Inject constructor(
         val lastRequestedAtMillis = preferences.getLong(preferenceKey, 0L)
         if (!shouldEnqueueHistoryRefresh(lastRequestedAtMillis, nowMillis)) return
         if (!preferences.edit().putLong(preferenceKey, nowMillis).commit()) return
-        workManager.enqueueUniqueWork(
-            "$HISTORY_WORK_PREFIX${conceptId.value}",
-            ExistingWorkPolicy.KEEP,
-            OneTimeWorkRequestBuilder<RefreshPipelineWorker>()
-                .setInputData(workDataOf(REQUESTED_CONCEPT_ID_KEY to conceptId.value))
-                .setConstraints(networkConstraints)
-                .setBackoffCriteria(BackoffPolicy.EXPONENTIAL, 30, TimeUnit.SECONDS)
-                .build(),
+        enqueueOneTimeRefresh(
+            requestedConceptId = conceptId.value,
+            catalogHistory = false,
         )
     }
 
     private fun enqueueImmediateRefresh() {
+        enqueueOneTimeRefresh(
+            requestedConceptId = null,
+            catalogHistory = false,
+        )
+    }
+
+    fun requestCatalogHistoryBackfill() {
+        if (!preferences.getBoolean(TAXONOMY_READY, false)) return
+        enqueueOneTimeRefresh(
+            requestedConceptId = null,
+            catalogHistory = true,
+        )
+    }
+
+    private fun enqueueOneTimeRefresh(
+        requestedConceptId: String?,
+        catalogHistory: Boolean,
+    ) {
+        val request = OneTimeWorkRequestBuilder<RefreshPipelineWorker>()
+            .apply {
+                when {
+                    requestedConceptId != null -> {
+                        setInputData(workDataOf(REQUESTED_CONCEPT_ID_KEY to requestedConceptId))
+                    }
+                    catalogHistory -> {
+                        setInputData(workDataOf(REQUEST_CATALOG_HISTORY_KEY to true))
+                    }
+                }
+            }
+            .setConstraints(networkConstraints)
+            .setBackoffCriteria(BackoffPolicy.EXPONENTIAL, 30, TimeUnit.SECONDS)
+            .build()
         workManager.enqueueUniqueWork(
-            FOREGROUND_WORK_NAME,
-            ExistingWorkPolicy.KEEP,
-            OneTimeWorkRequestBuilder<RefreshPipelineWorker>()
-                .setConstraints(networkConstraints)
-                .setBackoffCriteria(BackoffPolicy.EXPONENTIAL, 30, TimeUnit.SECONDS)
-                .build(),
+            ONE_TIME_SYNC_QUEUE,
+            ExistingWorkPolicy.APPEND_OR_REPLACE,
+            request,
         )
     }
 
     fun cancelAllSyncWork() {
         workManager.cancelUniqueWork(PERIODIC_WORK_NAME)
-        workManager.cancelUniqueWork(FOREGROUND_WORK_NAME)
+        workManager.cancelUniqueWork(ONE_TIME_SYNC_QUEUE)
     }
 
     private companion object {
         const val PERIODIC_WORK_NAME = "veges.periodic-sync"
-        const val FOREGROUND_WORK_NAME = "veges.foreground-catch-up"
+        const val ONE_TIME_SYNC_QUEUE = "veges.one-time-sync"
         const val SCHEDULER_PREFERENCES = "veges.sync-scheduler"
+        const val SYNC_QUEUE_VERSION = "sync-queue-version"
+        const val CURRENT_SYNC_QUEUE_VERSION = 1
         const val LAST_FOREGROUND_REQUEST_AT = "last-foreground-request-at"
+        const val TAXONOMY_READY = "taxonomy-ready"
         const val LAST_HISTORY_REQUEST_PREFIX = "last-history-request-at:"
-        const val HISTORY_WORK_PREFIX = "veges.concept-history."
         val networkConstraints = Constraints.Builder()
             .setRequiredNetworkType(NetworkType.CONNECTED)
             .build()
@@ -99,11 +153,14 @@ class SyncScheduler @Inject constructor(
 internal val MIN_FOREGROUND_CATCH_UP_INTERVAL_MILLIS: Long = TimeUnit.MINUTES.toMillis(15)
 internal val MIN_HISTORY_REFRESH_INTERVAL_MILLIS: Long = TimeUnit.HOURS.toMillis(24)
 internal const val REQUESTED_CONCEPT_ID_KEY = "requested-concept-id"
+internal const val REQUEST_CATALOG_HISTORY_KEY = "request-catalog-history"
 
 internal fun shouldEnqueueForegroundCatchUp(
+    taxonomyReady: Boolean,
     lastRequestedAtMillis: Long,
     nowMillis: Long,
 ): Boolean {
+    if (!taxonomyReady) return false
     if (lastRequestedAtMillis <= 0L) return true
     val elapsed = nowMillis - lastRequestedAtMillis
     return elapsed < 0L || elapsed >= MIN_FOREGROUND_CATCH_UP_INTERVAL_MILLIS

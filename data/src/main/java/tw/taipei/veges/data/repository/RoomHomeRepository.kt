@@ -9,12 +9,15 @@ import tw.taipei.veges.data.sync.SyncScheduler
 import tw.taipei.veges.domain.Estimate
 import tw.taipei.veges.domain.HomeItem
 import tw.taipei.veges.domain.HomeRepository
+import tw.taipei.veges.domain.PriceRefresh
 import tw.taipei.veges.domain.ProduceConcept
 import tw.taipei.veges.domain.UnavailableReason
+import tw.taipei.veges.data.sync.SyncStatusRepository
 
 class RoomHomeRepository @Inject constructor(
     private val database: VegesDatabase,
     private val syncScheduler: SyncScheduler,
+    private val syncStatusRepository: SyncStatusRepository,
 ) : HomeRepository {
     override fun observeHome(): Flow<List<HomeItem>> = combine(
         database.taxonomyDao().observeTrackedConcepts(),
@@ -50,6 +53,8 @@ class RoomHomeRepository @Inject constructor(
             )
         }
     }
+
+    override fun observePriceRefresh(): Flow<PriceRefresh> = syncStatusRepository.priceRefresh
 
     override fun requestRefresh() {
         syncScheduler.requestManualRefresh()

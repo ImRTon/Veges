@@ -201,12 +201,57 @@ abstract class SourceDao {
 
     @Query(
         """
+        SELECT official_variants.conceptId AS conceptId,
+               source_observations.observedOn AS observedOn,
+               source_observations.averagePrice AS averagePrice,
+               source_observations.volume AS volume
+        FROM source_observations
+        INNER JOIN official_variants
+          ON official_variants.commodityCode = source_observations.commodityCode
+         AND official_variants.market = source_observations.market
+        INNER JOIN taxonomy_concepts
+          ON taxonomy_concepts.stableId = official_variants.conceptId
+        WHERE source_observations.sourceKind = 'MOA_WHOLESALE'
+          AND source_observations.state = 'VALID'
+          AND source_observations.priceUnit = 'NTD_PER_KILOGRAM'
+          AND source_observations.averagePrice IS NOT NULL
+          AND source_observations.volume IS NOT NULL
+          AND source_observations.averagePrice > 0
+          AND source_observations.volume > 0
+          AND taxonomy_concepts.published = 1
+          AND taxonomy_concepts.category = :category
+        ORDER BY source_observations.observedOn DESC,
+                 official_variants.conceptId
+        """,
+    )
+    abstract fun observeConceptMarketHistory(
+        category: ProduceCategory,
+    ): Flow<List<ConceptMarketObservation>>
+
+    @Query(
+        """
         SELECT * FROM source_day_states
         WHERE sourceKind = :sourceKind AND market = :market
         ORDER BY observedOn DESC
         """,
     )
     abstract fun observeDayStates(sourceKind: SourceKind, market: MarketBasis): Flow<List<SourceDayStateEntity>>
+
+    @Query(
+        """
+        SELECT observedOn FROM source_day_states
+        WHERE sourceKind = 'MOA_WHOLESALE'
+          AND market = :market
+          AND state IN ('VALID', 'CLOSED')
+          AND observedOn BETWEEN :from AND :to
+        ORDER BY observedOn
+        """,
+    )
+    abstract suspend fun completedWholesaleSourceDates(
+        market: MarketBasis,
+        from: LocalDate,
+        to: LocalDate,
+    ): List<LocalDate>
 
     @Query("SELECT MAX(observedOn) FROM source_observations WHERE state = 'VALID'")
     abstract suspend fun latestValidObservationDate(): LocalDate?

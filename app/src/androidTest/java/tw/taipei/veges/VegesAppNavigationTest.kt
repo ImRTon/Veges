@@ -23,11 +23,11 @@ class VegesAppNavigationTest {
     @Test
     fun topLevelNavigationRestoresCatalogAfterActivityRecreation() {
         composeRule.onNodeWithTag("top-level-蔬菜市場").performClick()
-        composeRule.onNodeWithText("搜尋名稱或官方代碼").assertIsDisplayed()
+        composeRule.onNodeWithText("搜尋蔬果名稱").assertIsDisplayed()
 
         composeRule.activityRule.scenario.recreate()
 
-        composeRule.onNodeWithText("搜尋名稱或官方代碼").assertIsDisplayed()
+        composeRule.onNodeWithText("搜尋蔬果名稱").assertIsDisplayed()
         composeRule.onNodeWithTag("top-level-蔬菜市場").assertHeightIsAtLeast(48.dp)
     }
 
@@ -37,7 +37,7 @@ class VegesAppNavigationTest {
         composeRule.onNodeWithText("葉菜類").assertIsDisplayed()
 
         val startedAt = SystemClock.elapsedRealtime()
-        composeRule.onNodeWithText("搜尋名稱或官方代碼").performTextInput("LP2")
+        composeRule.onNodeWithText("搜尋蔬果名稱").performTextInput("LP2")
         composeRule.onNodeWithText("九層塔").assertIsDisplayed()
         val elapsedMs = SystemClock.elapsedRealtime() - startedAt
 

@@ -63,6 +63,7 @@ class OfficialHttpClient @Inject constructor(
         maxAttempts: Int = 3,
     ): OfficialHttpPayload = withContext(Dispatchers.IO) {
         require(maxAttempts in 1..3) { "Retry count must be bounded between 1 and 3 attempts" }
+        val diagnosticUrl = url.substringBefore('?')
 
         var lastFailure: OfficialHttpException? = null
         repeat(maxAttempts) { attempt ->
@@ -96,14 +97,14 @@ class OfficialHttpClient @Inject constructor(
                     )
                 }
 
-                val failure = OfficialHttpException(url, response.code)
+                val failure = OfficialHttpException(diagnosticUrl, response.code)
                 lastFailure = failure
                 if (response.code !in RETRYABLE_STATUS_CODES) throw failure
             } catch (exception: IOException) {
                 val failure = if (exception is OfficialHttpException) {
                     exception
                 } else {
-                    OfficialHttpException(url, cause = exception)
+                    OfficialHttpException(diagnosticUrl, cause = exception)
                 }
                 lastFailure = failure
                 if (failure.statusCode != null && failure.statusCode !in RETRYABLE_STATUS_CODES) {

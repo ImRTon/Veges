@@ -19,6 +19,15 @@ data class TrendPoint(
     val volumeKg: BigDecimal?,
 )
 
+data class VariantMarketPrice(
+    val commodityCode: OfficialCommodityCode,
+    val officialName: String,
+    val basis: MarketBasis,
+    val observedOn: LocalDate?,
+    val wholesaleAverage: ScaledPrice?,
+    val volumeKg: BigDecimal?,
+)
+
 enum class CandleDirection {
     RISING,
     FALLING,
@@ -73,7 +82,9 @@ data class DetailSnapshot(
     val estimate: Estimate?,
     val estimateHistory: List<Estimate>,
     val trendPoints: List<TrendPoint>,
+    val variantPrices: List<VariantMarketPrice>,
     val isTracked: Boolean,
+    val priceDirectionHistory: List<MarketHistoryPoint> = emptyList(),
 )
 
 interface DetailRepository {

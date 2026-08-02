@@ -1,6 +1,7 @@
 package tw.taipei.veges.data.sync
 
 import java.time.Instant
+import java.time.LocalDate
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -15,25 +16,51 @@ import tw.taipei.veges.domain.SourceDayState
 
 class WholesaleSyncCoordinatorTest {
     @Test
-    fun completeCodeCoverageStillBackfillsWhenHistoryIsTooShallow() {
-        assertTrue(
-            needsCatalogBootstrap(
-                expectedVegetableCodes = 100,
-                recentVegetableCodes = 100,
-                recentTradingDays = 1,
+    fun cachedPreviousThirtyDaysOnlyDownloadsToday() {
+        val today = LocalDate.of(2026, 8, 2)
+        val completedDates = (1L..30L).map(today::minusDays)
+
+        assertEquals(
+            listOf(SyncDateRange(today, today)),
+            missingDateRanges(
+                from = today.minusDays(29),
+                to = today,
+                completedDates = completedDates,
             ),
         )
     }
 
     @Test
-    fun completeCoverageAndThirtyOneTradingDaysDoesNotBackfillAgain() {
+    fun completeCacheDoesNotDownloadHistoryAgain() {
+        val today = LocalDate.of(2026, 8, 2)
+        val completedDates = (0L..29L).map(today::minusDays)
+
         assertEquals(
-            false,
-            needsCatalogBootstrap(
-                expectedVegetableCodes = 100,
-                recentVegetableCodes = 100,
-                recentTradingDays = 31,
+            emptyList<SyncDateRange>(),
+            missingDateRanges(
+                from = today.minusDays(29),
+                to = today,
+                completedDates = completedDates,
             ),
+        )
+    }
+
+    @Test
+    fun separatedMissingDaysBecomeContinuousDownloadRanges() {
+        val from = LocalDate.of(2026, 7, 1)
+        val to = LocalDate.of(2026, 7, 7)
+        val completedDates = listOf(
+            LocalDate.of(2026, 7, 1),
+            LocalDate.of(2026, 7, 4),
+            LocalDate.of(2026, 7, 7),
+        )
+
+        assertEquals(
+            listOf(
+                SyncDateRange(LocalDate.of(2026, 7, 2), LocalDate.of(2026, 7, 3)),
+                SyncDateRange(LocalDate.of(2026, 7, 5), LocalDate.of(2026, 7, 6)),
+            ),
+            missingDateRanges(from, to, completedDates),
         )
     }
 

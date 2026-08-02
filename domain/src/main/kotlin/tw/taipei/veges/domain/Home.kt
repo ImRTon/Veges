@@ -2,6 +2,7 @@ package tw.taipei.veges.domain
 
 import java.math.BigDecimal
 import java.math.RoundingMode
+import java.time.LocalDate
 import kotlinx.coroutines.flow.Flow
 
 data class HomeItem(
@@ -17,6 +18,13 @@ data class MarketItem(
     val latestEstimate: Estimate?,
     val previousEstimate: Estimate? = null,
     val previousTradingDayPrices: List<ScaledPrice> = emptyList(),
+    val wholesaleHistory: List<MarketHistoryPoint> = emptyList(),
+)
+
+data class MarketHistoryPoint(
+    val observedOn: LocalDate,
+    val averageNtdPerKg: BigDecimal,
+    val volumeKg: BigDecimal,
 )
 
 fun MarketItem.previousChangePercent(): BigDecimal? =
@@ -62,8 +70,23 @@ private fun percentageChange(
 interface HomeRepository {
     fun observeHome(): Flow<List<HomeItem>>
 
+    fun observePriceRefresh(): Flow<PriceRefresh>
+
     fun requestRefresh()
 }
+
+enum class PriceRefreshStage {
+    PREPARING,
+    LATEST_PRICES,
+    HISTORY,
+    SAVING,
+}
+
+data class PriceRefresh(
+    val isRunning: Boolean = false,
+    val stage: PriceRefreshStage = PriceRefreshStage.PREPARING,
+    val fraction: Float = 0f,
+)
 
 sealed interface CatalogSearchResult {
     data object NoReviewedResult : CatalogSearchResult

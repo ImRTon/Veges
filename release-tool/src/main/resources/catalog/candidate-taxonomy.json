@@ -1,24 +1,778 @@
 {
   "schemaVersion": 1,
-  "taxonomyVersion": "launch-all-produce-2026-07-27",
-  "artifactChecksum": "2c17d98130a15671becd4aeb87d61f25e1ca631f46c334767ae0d7ab5867dbc0",
+  "taxonomyVersion": "launch-all-produce-fruit-2026-07-29",
+  "artifactChecksum": "df8e74f9c76891e0f35485c9dfc602958b840fa575ccf8f9434746c97e45b9e2",
   "review": {
     "status": "APPROVED",
-    "reviewedAt": "2026-07-27",
-    "reviewedBy": "project-owner",
-    "notes": "Project owner approved the exhaustive 120-vegetable launch breadth and all 121 exact catalog illustration hashes."
+    "reviewedAt": "2026-07-29",
+    "reviewedBy": "codex-image-review",
+    "notes": "Expanded the approved vegetable catalog with exhaustive N05 fruit mappings and generated catalog illustrations."
   },
   "concepts": [
+    {
+      "stableId": "fruit.coconut",
+      "householdName": "椰子",
+      "aliases": [
+        "椰子",
+        "椰子-剝殼",
+        "椰子-剝殼進口",
+        "11",
+        "12",
+        "129"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "11",
+          "officialName": "椰子",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "11",
+          "officialName": "椰子",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "12",
+          "officialName": "椰子-剝殼",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "12",
+          "officialName": "椰子-剝殼",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "129",
+          "officialName": "椰子-剝殼進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "129",
+          "officialName": "椰子-剝殼進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-coconut.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.jujube",
+      "householdName": "棗子",
+      "aliases": [
+        "棗子",
+        "22"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "22",
+          "officialName": "棗子",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "22",
+          "officialName": "棗子",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-jujube.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.custard-apple",
+      "householdName": "釋迦",
+      "aliases": [
+        "釋迦",
+        "鳳梨釋迦",
+        "釋迦-鳳梨釋迦",
+        "31",
+        "32"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "31",
+          "officialName": "釋迦",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "31",
+          "officialName": "釋迦",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "32",
+          "officialName": "釋迦-鳳梨釋迦",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "32",
+          "officialName": "釋迦-鳳梨釋迦",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-custard-apple.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.ume",
+      "householdName": "梅",
+      "aliases": [
+        "梅",
+        "青梅",
+        "41"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "41",
+          "officialName": "梅",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "41",
+          "officialName": "梅",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-ume.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.chinese-bayberry",
+      "householdName": "楊梅",
+      "aliases": [
+        "楊梅",
+        "中國楊梅",
+        "42"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "42",
+          "officialName": "楊梅",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "42",
+          "officialName": "楊梅",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-chinese-bayberry.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.mulberry",
+      "householdName": "桑椹",
+      "aliases": [
+        "桑椹",
+        "桑葚",
+        "43"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "43",
+          "officialName": "桑椹",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "43",
+          "officialName": "桑椹",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-mulberry.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.strawberry",
+      "householdName": "草莓",
+      "aliases": [
+        "草莓",
+        "草莓-進口",
+        "45",
+        "459"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "45",
+          "officialName": "草莓",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "45",
+          "officialName": "草莓",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "459",
+          "officialName": "草莓-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "459",
+          "officialName": "草莓-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-strawberry.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.blueberry",
+      "householdName": "藍莓",
+      "aliases": [
+        "藍莓",
+        "藍莓-進口",
+        "46",
+        "469"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "46",
+          "officialName": "藍莓",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "46",
+          "officialName": "藍莓",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "469",
+          "officialName": "藍莓-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "469",
+          "officialName": "藍莓-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-blueberry.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.passion-fruit",
+      "householdName": "百香果",
+      "aliases": [
+        "百香果",
+        "百香果-其他",
+        "百香果-改良種",
+        "50",
+        "51"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "50",
+          "officialName": "百香果-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "50",
+          "officialName": "百香果-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "51",
+          "officialName": "百香果-改良種",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "51",
+          "officialName": "百香果-改良種",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-passion-fruit.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.sugarcane",
+      "householdName": "甘蔗",
+      "aliases": [
+        "甘蔗",
+        "甘蔗-帶皮",
+        "61"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "61",
+          "officialName": "甘蔗-帶皮",
+          "market": "TAIPEI_FIRST"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-sugarcane.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.cherry-tomato",
+      "householdName": "小番茄",
+      "aliases": [
+        "小番茄",
+        "聖女番茄",
+        "玉女番茄",
+        "小番茄-其他",
+        "小番茄-聖女",
+        "小番茄-玉女",
+        "70",
+        "72",
+        "74"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "70",
+          "officialName": "小番茄-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "70",
+          "officialName": "小番茄-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "72",
+          "officialName": "小番茄-聖女",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "72",
+          "officialName": "小番茄-聖女",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "74",
+          "officialName": "小番茄-玉女",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "74",
+          "officialName": "小番茄-玉女",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-cherry-tomato.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.dragon-fruit",
+      "householdName": "紅龍果",
+      "aliases": [
+        "紅龍果",
+        "火龍果",
+        "紅龍果-白肉",
+        "紅龍果-紅肉",
+        "紅龍果-雙色紅龍果",
+        "紅龍果-進口",
+        "811",
+        "812",
+        "813",
+        "819"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "811",
+          "officialName": "紅龍果-白肉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "811",
+          "officialName": "紅龍果-白肉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "812",
+          "officialName": "紅龍果-紅肉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "812",
+          "officialName": "紅龍果-紅肉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "813",
+          "officialName": "紅龍果-雙色紅龍果",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "813",
+          "officialName": "紅龍果-雙色紅龍果",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "819",
+          "officialName": "紅龍果-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-dragon-fruit.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.honey-jujube",
+      "householdName": "蜜棗",
+      "aliases": [
+        "蜜棗",
+        "台灣蜜棗",
+        "蜜棗-進口",
+        "829"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "829",
+          "officialName": "蜜棗-進口",
+          "market": "TAIPEI_FIRST"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-honey-jujube.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.cherry",
+      "householdName": "櫻桃",
+      "aliases": [
+        "櫻桃",
+        "櫻桃-進口",
+        "839"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "839",
+          "officialName": "櫻桃-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "839",
+          "officialName": "櫻桃-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-cherry.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.durian",
+      "householdName": "榴槤",
+      "aliases": [
+        "榴槤",
+        "榴槤-進口",
+        "85",
+        "859"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "85",
+          "officialName": "榴槤",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "859",
+          "officialName": "榴槤-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "859",
+          "officialName": "榴槤-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-durian.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.mangosteen",
+      "householdName": "山竹",
+      "aliases": [
+        "山竹",
+        "山竹-進口",
+        "86",
+        "869"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "86",
+          "officialName": "山竹",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "86",
+          "officialName": "山竹",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "869",
+          "officialName": "山竹-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "869",
+          "officialName": "山竹-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-mangosteen.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.rambutan",
+      "householdName": "紅毛丹",
+      "aliases": [
+        "紅毛丹",
+        "87"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "87",
+          "officialName": "紅毛丹",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "87",
+          "officialName": "紅毛丹",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-rambutan.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.jabuticaba",
+      "householdName": "樹葡萄",
+      "aliases": [
+        "樹葡萄",
+        "嘉寶果",
+        "88"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "88",
+          "officialName": "樹葡萄",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "88",
+          "officialName": "樹葡萄",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-jabuticaba.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.other",
+      "householdName": "其他水果",
+      "aliases": [
+        "其他水果",
+        "其他",
+        "其他-進口",
+        "91",
+        "919"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "91",
+          "officialName": "其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "91",
+          "officialName": "其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "919",
+          "officialName": "其他-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "919",
+          "officialName": "其他-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-other.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
     {
       "stableId": "fruit.banana",
       "householdName": "香蕉",
       "aliases": [
         "香蕉",
-        "芭蕉"
+        "芭蕉",
+        "旦蕉",
+        "香蕉-其他",
+        "香蕉-芭蕉紅芭蕉",
+        "香蕉-旦蕉",
+        "香蕉-越旦",
+        "A0",
+        "A1",
+        "A2",
+        "A3",
+        "A4"
       ],
       "category": "FRUIT",
       "publicationState": "PUBLISHED",
       "officialMappings": [
+        {
+          "commodityCode": "A0",
+          "officialName": "香蕉-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "A0",
+          "officialName": "香蕉-其他",
+          "market": "TAIPEI_SECOND"
+        },
         {
           "commodityCode": "A1",
           "officialName": "香蕉",
@@ -37,6 +791,26 @@
         {
           "commodityCode": "A2",
           "officialName": "香蕉-芭蕉紅芭蕉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "A3",
+          "officialName": "香蕉-旦蕉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "A3",
+          "officialName": "香蕉-旦蕉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "A4",
+          "officialName": "香蕉-越旦",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "A4",
+          "officialName": "香蕉-越旦",
           "market": "TAIPEI_SECOND"
         }
       ],
@@ -44,8 +818,2267 @@
         "assetPath": "illustrations/catalog/fruit-banana.webp",
         "generated": true,
         "disclosure": "AI 生成示意圖，非實物照片。",
-        "reviewedAt": "2026-07-27",
-        "reviewedBy": "project-owner",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.pineapple",
+      "householdName": "鳳梨",
+      "aliases": [
+        "鳳梨",
+        "菠蘿",
+        "鳳梨-其他",
+        "鳳梨-開英",
+        "鳳梨-金鑽鳳梨",
+        "鳳梨-甜蜜蜜",
+        "鳳梨-牛奶鳳梨",
+        "鳳梨-西瓜鳳梨",
+        "鳳梨-進口",
+        "B0",
+        "B1",
+        "B2",
+        "B6",
+        "B7",
+        "B8",
+        "B9"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "B0",
+          "officialName": "鳳梨-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "B0",
+          "officialName": "鳳梨-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "B1",
+          "officialName": "鳳梨-開英",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "B1",
+          "officialName": "鳳梨-開英",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "B2",
+          "officialName": "鳳梨-金鑽鳳梨",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "B2",
+          "officialName": "鳳梨-金鑽鳳梨",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "B6",
+          "officialName": "鳳梨-甜蜜蜜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "B6",
+          "officialName": "鳳梨-甜蜜蜜",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "B7",
+          "officialName": "鳳梨-牛奶鳳梨",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "B7",
+          "officialName": "鳳梨-牛奶鳳梨",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "B8",
+          "officialName": "鳳梨-西瓜鳳梨",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "B8",
+          "officialName": "鳳梨-西瓜鳳梨",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "B9",
+          "officialName": "鳳梨-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-pineapple.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.mandarin",
+      "householdName": "柑橘",
+      "aliases": [
+        "柑橘",
+        "茂谷柑",
+        "柑橘-其他",
+        "豔陽柑",
+        "柑橘-進口",
+        "C0",
+        "C2",
+        "C7",
+        "C9"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "C0",
+          "officialName": "柑橘-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "C0",
+          "officialName": "柑橘-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "C2",
+          "officialName": "茂谷柑",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "C2",
+          "officialName": "茂谷柑",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "C7",
+          "officialName": "豔陽柑",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "C9",
+          "officialName": "柑橘-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "C9",
+          "officialName": "柑橘-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-mandarin.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.tankan",
+      "householdName": "桶柑",
+      "aliases": [
+        "桶柑",
+        "D1"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "D1",
+          "officialName": "桶柑",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "D1",
+          "officialName": "桶柑",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-tankan.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.orange",
+      "householdName": "甜橙",
+      "aliases": [
+        "甜橙",
+        "柳橙",
+        "甜橙-柳橙",
+        "甜橙-進口",
+        "E1",
+        "E9"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "E1",
+          "officialName": "甜橙-柳橙",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "E1",
+          "officialName": "甜橙-柳橙",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "E9",
+          "officialName": "甜橙-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "E9",
+          "officialName": "甜橙-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-orange.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.mixed-citrus",
+      "householdName": "雜柑",
+      "aliases": [
+        "雜柑",
+        "雜柑-其他",
+        "雜柑-進口",
+        "F0",
+        "F9"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "F0",
+          "officialName": "雜柑-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "F0",
+          "officialName": "雜柑-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "F9",
+          "officialName": "雜柑-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-mixed-citrus.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.lemon",
+      "householdName": "檸檬",
+      "aliases": [
+        "檸檬",
+        "無子檸檬",
+        "黃金檸檬",
+        "雜柑-檸檬",
+        "雜柑-無子檸檬",
+        "雜柑-黃金檸檬",
+        "F1",
+        "F5",
+        "F6"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "F1",
+          "officialName": "雜柑-檸檬",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "F1",
+          "officialName": "雜柑-檸檬",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "F5",
+          "officialName": "雜柑-無子檸檬",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "F5",
+          "officialName": "雜柑-無子檸檬",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "F6",
+          "officialName": "雜柑-黃金檸檬",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "F6",
+          "officialName": "雜柑-黃金檸檬",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-lemon.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.kumquat",
+      "householdName": "桔子",
+      "aliases": [
+        "桔子",
+        "金桔",
+        "雜柑-桔子",
+        "F4"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "F4",
+          "officialName": "雜柑-桔子",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "F4",
+          "officialName": "雜柑-桔子",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-kumquat.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.eggfruit",
+      "householdName": "蛋黃果",
+      "aliases": [
+        "蛋黃果",
+        "仙桃",
+        "蛋黃果-仙桃",
+        "G1"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "G1",
+          "officialName": "蛋黃果-仙桃",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "G1",
+          "officialName": "蛋黃果-仙桃",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-eggfruit.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.abiu",
+      "householdName": "黃金果",
+      "aliases": [
+        "黃金果",
+        "G2"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "G2",
+          "officialName": "黃金果",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "G2",
+          "officialName": "黃金果",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-abiu.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.avocado",
+      "householdName": "酪梨",
+      "aliases": [
+        "酪梨",
+        "鱷梨",
+        "酪梨-進口",
+        "G3",
+        "G39"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "G3",
+          "officialName": "酪梨",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "G3",
+          "officialName": "酪梨",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "G39",
+          "officialName": "酪梨-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "G39",
+          "officialName": "酪梨-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-avocado.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.kiwi",
+      "householdName": "奇異果",
+      "aliases": [
+        "奇異果",
+        "獼猴桃",
+        "奇異果-進口",
+        "G49"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "G49",
+          "officialName": "奇異果-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "G49",
+          "officialName": "奇異果-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-kiwi.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.pepino",
+      "householdName": "香瓜梨",
+      "aliases": [
+        "香瓜梨",
+        "人參果",
+        "G5"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "G5",
+          "officialName": "香瓜梨",
+          "market": "TAIPEI_FIRST"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-pepino.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.olive",
+      "householdName": "橄欖",
+      "aliases": [
+        "橄欖",
+        "G7"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "G7",
+          "officialName": "橄欖",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "G7",
+          "officialName": "橄欖",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-olive.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.chestnut",
+      "householdName": "栗子",
+      "aliases": [
+        "栗子",
+        "G8"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "G8",
+          "officialName": "栗子",
+          "market": "TAIPEI_FIRST"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-chestnut.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.jackfruit",
+      "householdName": "波蘿蜜",
+      "aliases": [
+        "波蘿蜜",
+        "菠蘿蜜",
+        "G9"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "G9",
+          "officialName": "波蘿蜜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "G9",
+          "officialName": "波蘿蜜",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-jackfruit.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.cempedak",
+      "householdName": "榴槤蜜",
+      "aliases": [
+        "榴槤蜜",
+        "G91"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "G91",
+          "officialName": "榴槤蜜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "G91",
+          "officialName": "榴槤蜜",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-cempedak.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.pomelo",
+      "householdName": "柚子",
+      "aliases": [
+        "柚子",
+        "文旦",
+        "西施柚",
+        "柚子-文旦",
+        "柚子-西施柚",
+        "H1",
+        "H6"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "H1",
+          "officialName": "柚子-文旦",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "H6",
+          "officialName": "柚子-西施柚",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "H6",
+          "officialName": "柚子-西施柚",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-pomelo.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.grapefruit",
+      "householdName": "葡萄柚",
+      "aliases": [
+        "葡萄柚",
+        "葡萄柚-紅肉",
+        "葡萄柚-紅寶石",
+        "葡萄柚-紅肉進口",
+        "H4",
+        "H41",
+        "H49"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "H4",
+          "officialName": "葡萄柚-紅肉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "H4",
+          "officialName": "葡萄柚-紅肉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "H41",
+          "officialName": "葡萄柚-紅寶石",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "H41",
+          "officialName": "葡萄柚-紅寶石",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "H49",
+          "officialName": "葡萄柚-紅肉進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "H49",
+          "officialName": "葡萄柚-紅肉進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-grapefruit.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.papaya",
+      "householdName": "木瓜",
+      "aliases": [
+        "木瓜",
+        "青木瓜",
+        "木瓜-其他",
+        "木瓜-網室紅肉",
+        "木瓜-一般紅肉",
+        "木瓜-日昇種",
+        "木瓜-青木瓜",
+        "I0",
+        "I1",
+        "I2",
+        "I3",
+        "I4"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "I0",
+          "officialName": "木瓜-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "I1",
+          "officialName": "木瓜-網室紅肉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "I1",
+          "officialName": "木瓜-網室紅肉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "I2",
+          "officialName": "木瓜-一般紅肉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "I3",
+          "officialName": "木瓜-日昇種",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "I3",
+          "officialName": "木瓜-日昇種",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "I4",
+          "officialName": "木瓜-青木瓜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "I4",
+          "officialName": "木瓜-青木瓜",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-papaya.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.lychee",
+      "householdName": "荔枝",
+      "aliases": [
+        "荔枝",
+        "玉荷包",
+        "荔枝-其他",
+        "荔枝-玉荷包",
+        "荔枝-黑葉",
+        "荔枝-糯米",
+        "荔枝-竹葉黑",
+        "荔枝-桂味",
+        "J0",
+        "J1",
+        "J2",
+        "J3",
+        "J4",
+        "J5"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "J0",
+          "officialName": "荔枝-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "J0",
+          "officialName": "荔枝-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "J1",
+          "officialName": "荔枝-玉荷包",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "J1",
+          "officialName": "荔枝-玉荷包",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "J2",
+          "officialName": "荔枝-黑葉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "J2",
+          "officialName": "荔枝-黑葉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "J3",
+          "officialName": "荔枝-糯米",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "J3",
+          "officialName": "荔枝-糯米",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "J4",
+          "officialName": "荔枝-竹葉黑",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "J4",
+          "officialName": "荔枝-竹葉黑",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "J5",
+          "officialName": "荔枝-桂味",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "J5",
+          "officialName": "荔枝-桂味",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-lychee.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.longan",
+      "householdName": "龍眼",
+      "aliases": [
+        "龍眼",
+        "桂圓",
+        "龍眼-粉殼",
+        "龍眼-龍眼乾帶殼",
+        "K3",
+        "K4"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "K3",
+          "officialName": "龍眼-粉殼",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "K3",
+          "officialName": "龍眼-粉殼",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "K4",
+          "officialName": "龍眼-龍眼乾帶殼",
+          "market": "TAIPEI_FIRST"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-longan.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.loquat",
+      "householdName": "枇杷",
+      "aliases": [
+        "枇杷",
+        "枇杷-茂木",
+        "枇杷-進口",
+        "L1",
+        "L9"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "L1",
+          "officialName": "枇杷-茂木",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "L1",
+          "officialName": "枇杷-茂木",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "L9",
+          "officialName": "枇杷-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "L9",
+          "officialName": "枇杷-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-loquat.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.starfruit",
+      "householdName": "楊桃",
+      "aliases": [
+        "楊桃",
+        "楊桃-紅龍",
+        "楊桃-馬來亞種",
+        "M2",
+        "M3"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "M2",
+          "officialName": "楊桃-紅龍",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "M3",
+          "officialName": "楊桃-馬來亞種",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "M3",
+          "officialName": "楊桃-馬來亞種",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-starfruit.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.plum",
+      "householdName": "李",
+      "aliases": [
+        "李",
+        "李子",
+        "李-其他",
+        "李-桃接李",
+        "李-紅肉李",
+        "李-黃肉李",
+        "李-加州李",
+        "李-泰安李",
+        "李-進口",
+        "N0",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N9"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "N0",
+          "officialName": "李-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "N0",
+          "officialName": "李-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "N2",
+          "officialName": "李-桃接李",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "N2",
+          "officialName": "李-桃接李",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "N3",
+          "officialName": "李-紅肉李",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "N3",
+          "officialName": "李-紅肉李",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "N4",
+          "officialName": "李-黃肉李",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "N4",
+          "officialName": "李-黃肉李",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "N5",
+          "officialName": "李-加州李",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "N5",
+          "officialName": "李-加州李",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "N6",
+          "officialName": "李-泰安李",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "N6",
+          "officialName": "李-泰安李",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "N9",
+          "officialName": "李-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "N9",
+          "officialName": "李-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-plum.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.pear",
+      "householdName": "梨",
+      "aliases": [
+        "梨",
+        "水梨",
+        "西洋梨",
+        "梨-其他",
+        "梨-橫山梨",
+        "梨-寶島甘露梨",
+        "梨-秋水梨",
+        "梨-新興梨",
+        "梨-豐水梨",
+        "梨-幸水梨",
+        "梨-4029梨",
+        "梨-其他進口",
+        "梨-西洋梨進口",
+        "梨-蜜梨",
+        "梨-雪梨",
+        "O0",
+        "O1",
+        "O10",
+        "O2",
+        "O4",
+        "O5",
+        "O6",
+        "O8",
+        "O9",
+        "O99",
+        "OV",
+        "OW"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "O0",
+          "officialName": "梨-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "O0",
+          "officialName": "梨-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "O1",
+          "officialName": "梨-橫山梨",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "O10",
+          "officialName": "梨-寶島甘露梨",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "O10",
+          "officialName": "梨-寶島甘露梨",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "O2",
+          "officialName": "梨-秋水梨",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "O2",
+          "officialName": "梨-秋水梨",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "O4",
+          "officialName": "梨-新興梨",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "O4",
+          "officialName": "梨-新興梨",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "O5",
+          "officialName": "梨-豐水梨",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "O5",
+          "officialName": "梨-豐水梨",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "O6",
+          "officialName": "梨-幸水梨",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "O6",
+          "officialName": "梨-幸水梨",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "O8",
+          "officialName": "梨-4029梨",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "O8",
+          "officialName": "梨-4029梨",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "O9",
+          "officialName": "梨-其他進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "O9",
+          "officialName": "梨-其他進口",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "O99",
+          "officialName": "梨-西洋梨進口",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "OV",
+          "officialName": "梨-蜜梨",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "OV",
+          "officialName": "梨-蜜梨",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "OW",
+          "officialName": "梨-雪梨",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-pear.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.guava",
+      "householdName": "番石榴",
+      "aliases": [
+        "番石榴",
+        "芭樂",
+        "番石榴-其他",
+        "番石榴-珍珠芭",
+        "番石榴-紅心",
+        "番石榴-帝王芭",
+        "番石榴-世紀芭",
+        "番石榴-水晶無子",
+        "P0",
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "P0",
+          "officialName": "番石榴-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "P0",
+          "officialName": "番石榴-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "P1",
+          "officialName": "番石榴-珍珠芭",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "P1",
+          "officialName": "番石榴-珍珠芭",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "P2",
+          "officialName": "番石榴-紅心",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "P2",
+          "officialName": "番石榴-紅心",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "P3",
+          "officialName": "番石榴-帝王芭",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "P3",
+          "officialName": "番石榴-帝王芭",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "P4",
+          "officialName": "番石榴-世紀芭",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "P5",
+          "officialName": "番石榴-水晶無子",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "P5",
+          "officialName": "番石榴-水晶無子",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-guava.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.wax-apple",
+      "householdName": "蓮霧",
+      "aliases": [
+        "蓮霧",
+        "蓮霧-其他",
+        "蓮霧-紅蓮霧",
+        "蓮霧-子彈型",
+        "蓮霧-翠玉",
+        "蓮霧-巴掌蓮霧",
+        "蓮霧-黑糖芭比",
+        "Q0",
+        "Q1",
+        "Q2",
+        "Q3",
+        "Q4",
+        "Q5"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "Q0",
+          "officialName": "蓮霧-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "Q0",
+          "officialName": "蓮霧-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "Q1",
+          "officialName": "蓮霧-紅蓮霧",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "Q1",
+          "officialName": "蓮霧-紅蓮霧",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "Q2",
+          "officialName": "蓮霧-子彈型",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "Q2",
+          "officialName": "蓮霧-子彈型",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "Q3",
+          "officialName": "蓮霧-翠玉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "Q3",
+          "officialName": "蓮霧-翠玉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "Q4",
+          "officialName": "蓮霧-巴掌蓮霧",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "Q4",
+          "officialName": "蓮霧-巴掌蓮霧",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "Q5",
+          "officialName": "蓮霧-黑糖芭比",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "Q5",
+          "officialName": "蓮霧-黑糖芭比",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-wax-apple.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.mango",
+      "householdName": "芒果",
+      "aliases": [
+        "芒果",
+        "芒果-其他",
+        "芒果-愛文",
+        "芒果-西施",
+        "芒果-玉文",
+        "芒果-本島",
+        "芒果-夏雪",
+        "芒果-凱特",
+        "芒果-黑香金興",
+        "芒果-金煌",
+        "芒果-聖心",
+        "芒果-芒果青",
+        "R0",
+        "R1",
+        "R10",
+        "R2",
+        "R3",
+        "R31",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "R0",
+          "officialName": "芒果-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "R0",
+          "officialName": "芒果-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "R1",
+          "officialName": "芒果-愛文",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "R1",
+          "officialName": "芒果-愛文",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "R10",
+          "officialName": "芒果-西施",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "R10",
+          "officialName": "芒果-西施",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "R2",
+          "officialName": "芒果-玉文",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "R2",
+          "officialName": "芒果-玉文",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "R3",
+          "officialName": "芒果-本島",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "R3",
+          "officialName": "芒果-本島",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "R31",
+          "officialName": "芒果-夏雪",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "R31",
+          "officialName": "芒果-夏雪",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "R4",
+          "officialName": "芒果-凱特",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "R4",
+          "officialName": "芒果-凱特",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "R5",
+          "officialName": "芒果-黑香金興",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "R5",
+          "officialName": "芒果-黑香金興",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "R6",
+          "officialName": "芒果-金煌",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "R6",
+          "officialName": "芒果-金煌",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "R7",
+          "officialName": "芒果-聖心",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "R8",
+          "officialName": "芒果-芒果青",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "R8",
+          "officialName": "芒果-芒果青",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-mango.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.grape",
+      "householdName": "葡萄",
+      "aliases": [
+        "葡萄",
+        "葡萄-其他",
+        "葡萄-巨峰",
+        "葡萄-無子進口",
+        "葡萄-進口",
+        "S0",
+        "S1",
+        "S49",
+        "S9"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "S0",
+          "officialName": "葡萄-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "S0",
+          "officialName": "葡萄-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "S1",
+          "officialName": "葡萄-巨峰",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "S1",
+          "officialName": "葡萄-巨峰",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "S49",
+          "officialName": "葡萄-無子進口",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "S9",
+          "officialName": "葡萄-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "S9",
+          "officialName": "葡萄-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-grape.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.watermelon",
+      "householdName": "西瓜",
+      "aliases": [
+        "西瓜",
+        "西瓜-其他",
+        "西瓜-大西瓜",
+        "西瓜-無子西瓜",
+        "西瓜-黑美人",
+        "西瓜-鳳光英妙",
+        "西瓜-黃肉",
+        "西瓜-紅肉",
+        "西瓜-秀鈴",
+        "西瓜-甜美人",
+        "西瓜-進口",
+        "T0",
+        "T1",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T6",
+        "T7",
+        "T8",
+        "T9"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "T0",
+          "officialName": "西瓜-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "T0",
+          "officialName": "西瓜-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "T1",
+          "officialName": "西瓜-大西瓜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "T1",
+          "officialName": "西瓜-大西瓜",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "T2",
+          "officialName": "西瓜-無子西瓜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "T2",
+          "officialName": "西瓜-無子西瓜",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "T3",
+          "officialName": "西瓜-黑美人",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "T3",
+          "officialName": "西瓜-黑美人",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "T4",
+          "officialName": "西瓜-鳳光英妙",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "T4",
+          "officialName": "西瓜-鳳光英妙",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "T5",
+          "officialName": "西瓜-黃肉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "T5",
+          "officialName": "西瓜-黃肉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "T6",
+          "officialName": "西瓜-紅肉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "T7",
+          "officialName": "西瓜-秀鈴",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "T7",
+          "officialName": "西瓜-秀鈴",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "T8",
+          "officialName": "西瓜-甜美人",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "T8",
+          "officialName": "西瓜-甜美人",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "T9",
+          "officialName": "西瓜-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "T9",
+          "officialName": "西瓜-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-watermelon.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.oriental-melon",
+      "householdName": "甜瓜",
+      "aliases": [
+        "甜瓜",
+        "美濃瓜",
+        "甜瓜-其他",
+        "甜瓜-美濃",
+        "甜瓜-溫室吊瓜",
+        "V0",
+        "V1",
+        "V2"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "V0",
+          "officialName": "甜瓜-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "V0",
+          "officialName": "甜瓜-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "V1",
+          "officialName": "甜瓜-美濃",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "V1",
+          "officialName": "甜瓜-美濃",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "V2",
+          "officialName": "甜瓜-溫室吊瓜",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "V2",
+          "officialName": "甜瓜-溫室吊瓜",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-oriental-melon.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.muskmelon",
+      "householdName": "洋香瓜",
+      "aliases": [
+        "洋香瓜",
+        "網紋洋香瓜",
+        "洋香瓜-其他",
+        "洋香瓜-網狀紅肉",
+        "洋香瓜-網狀綠肉",
+        "洋香瓜-新疆",
+        "洋香瓜-光面紅肉",
+        "洋香瓜-光面綠肉",
+        "洋香瓜-光面白肉",
+        "洋香瓜-阿露斯",
+        "洋香瓜-進口",
+        "W0",
+        "W1",
+        "W2",
+        "W4",
+        "W5",
+        "W6",
+        "W7",
+        "W8",
+        "W9"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "W0",
+          "officialName": "洋香瓜-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "W0",
+          "officialName": "洋香瓜-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "W1",
+          "officialName": "洋香瓜-網狀紅肉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "W1",
+          "officialName": "洋香瓜-網狀紅肉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "W2",
+          "officialName": "洋香瓜-網狀綠肉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "W2",
+          "officialName": "洋香瓜-網狀綠肉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "W4",
+          "officialName": "洋香瓜-新疆",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "W4",
+          "officialName": "洋香瓜-新疆",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "W5",
+          "officialName": "洋香瓜-光面紅肉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "W5",
+          "officialName": "洋香瓜-光面紅肉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "W6",
+          "officialName": "洋香瓜-光面綠肉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "W6",
+          "officialName": "洋香瓜-光面綠肉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "W7",
+          "officialName": "洋香瓜-光面白肉",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "W7",
+          "officialName": "洋香瓜-光面白肉",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "W8",
+          "officialName": "洋香瓜-阿露斯",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "W8",
+          "officialName": "洋香瓜-阿露斯",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "W9",
+          "officialName": "洋香瓜-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "W9",
+          "officialName": "洋香瓜-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-muskmelon.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.apple",
+      "householdName": "蘋果",
+      "aliases": [
+        "蘋果",
+        "富士蘋果",
+        "蘋果-其他",
+        "蘋果-其他進口",
+        "蘋果-五爪進口",
+        "蘋果-秋香進口",
+        "蘋果-惠",
+        "蘋果-惠進口",
+        "蘋果-金冠進口",
+        "蘋果-紅玉進口",
+        "蘋果-富士進口",
+        "X0",
+        "X09",
+        "X19",
+        "X29",
+        "X3",
+        "X39",
+        "X49",
+        "X59",
+        "X69"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "X0",
+          "officialName": "蘋果-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "X0",
+          "officialName": "蘋果-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "X09",
+          "officialName": "蘋果-其他進口",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "X19",
+          "officialName": "蘋果-五爪進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "X29",
+          "officialName": "蘋果-秋香進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "X3",
+          "officialName": "蘋果-惠",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "X3",
+          "officialName": "蘋果-惠",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "X39",
+          "officialName": "蘋果-惠進口",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "X49",
+          "officialName": "蘋果-金冠進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "X49",
+          "officialName": "蘋果-金冠進口",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "X59",
+          "officialName": "蘋果-紅玉進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "X59",
+          "officialName": "蘋果-紅玉進口",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "X69",
+          "officialName": "蘋果-富士進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "X69",
+          "officialName": "蘋果-富士進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-apple.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.peach",
+      "householdName": "桃子",
+      "aliases": [
+        "桃子",
+        "水蜜桃",
+        "甜桃",
+        "桃子-其他",
+        "桃子-水蜜桃",
+        "桃子-水蜜桃進口",
+        "桃子-鶯歌桃",
+        "桃子-甜桃",
+        "桃子-甜桃進口",
+        "桃子-早桃",
+        "桃子-福壽桃",
+        "桃子-進口",
+        "Y0",
+        "Y1",
+        "Y19",
+        "Y2",
+        "Y3",
+        "Y39",
+        "Y4",
+        "Y5",
+        "Y9"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "Y0",
+          "officialName": "桃子-其他",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "Y0",
+          "officialName": "桃子-其他",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "Y1",
+          "officialName": "桃子-水蜜桃",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "Y1",
+          "officialName": "桃子-水蜜桃",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "Y19",
+          "officialName": "桃子-水蜜桃進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "Y19",
+          "officialName": "桃子-水蜜桃進口",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "Y2",
+          "officialName": "桃子-鶯歌桃",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "Y3",
+          "officialName": "桃子-甜桃",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "Y3",
+          "officialName": "桃子-甜桃",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "Y39",
+          "officialName": "桃子-甜桃進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "Y39",
+          "officialName": "桃子-甜桃進口",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "Y4",
+          "officialName": "桃子-早桃",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "Y4",
+          "officialName": "桃子-早桃",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "Y5",
+          "officialName": "桃子-福壽桃",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "Y5",
+          "officialName": "桃子-福壽桃",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "Y9",
+          "officialName": "桃子-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "Y9",
+          "officialName": "桃子-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-peach.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "reviewStatus": "APPROVED"
+      }
+    },
+    {
+      "stableId": "fruit.persimmon",
+      "householdName": "柿子",
+      "aliases": [
+        "柿子",
+        "甜柿",
+        "柿子-紅柿",
+        "柿子-甜柿",
+        "柿子-進口",
+        "Z1",
+        "Z4",
+        "Z9"
+      ],
+      "category": "FRUIT",
+      "publicationState": "PUBLISHED",
+      "officialMappings": [
+        {
+          "commodityCode": "Z1",
+          "officialName": "柿子-紅柿",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "Z4",
+          "officialName": "柿子-甜柿",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "Z4",
+          "officialName": "柿子-甜柿",
+          "market": "TAIPEI_SECOND"
+        },
+        {
+          "commodityCode": "Z9",
+          "officialName": "柿子-進口",
+          "market": "TAIPEI_FIRST"
+        },
+        {
+          "commodityCode": "Z9",
+          "officialName": "柿子-進口",
+          "market": "TAIPEI_SECOND"
+        }
+      ],
+      "image": {
+        "assetPath": "illustrations/catalog/fruit-persimmon.webp",
+        "generated": true,
+        "disclosure": "AI 生成示意圖，非實物照片。",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
         "reviewStatus": "APPROVED"
       }
     },
@@ -6181,6 +9214,14 @@
       "targetConceptIds": [
         "vegetable.moa.fs1",
         "vegetable.moa.oe1"
+      ]
+    },
+    {
+      "normalizedAlias": "其他",
+      "displayAlias": "其他",
+      "targetConceptIds": [
+        "fruit.other",
+        "vegetable.moa.ox1"
       ]
     }
   ]

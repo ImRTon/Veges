@@ -38,4 +38,5 @@ dependencies {
     implementation(libs.compose.material.icons.extended)
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+    testImplementation(libs.junit)
 }

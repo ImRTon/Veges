@@ -29,3 +29,10 @@ data class PendingNotificationDelivery(
     val thresholdNtdPerTaiJin: BigDecimal,
     val sourceDate: LocalDate,
 )
+
+data class ConceptMarketObservation(
+    val conceptId: String,
+    val observedOn: LocalDate,
+    val averagePrice: BigDecimal,
+    val volume: BigDecimal,
+)

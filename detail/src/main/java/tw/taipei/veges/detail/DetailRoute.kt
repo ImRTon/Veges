@@ -35,13 +35,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import tw.taipei.veges.designsystem.AiIllustrationDisclosure
+import java.math.RoundingMode
 import tw.taipei.veges.designsystem.EstimateDisclosureLabel
 import tw.taipei.veges.designsystem.ProduceIllustration
 import tw.taipei.veges.domain.EstimateDisclosure
 import tw.taipei.veges.domain.MarketBasis
+import tw.taipei.veges.domain.ProduceCategory
 import tw.taipei.veges.domain.ProduceConceptId
 import tw.taipei.veges.domain.TrendPeriod
+import tw.taipei.veges.domain.VariantMarketPrice
 
 @Composable
 fun DetailRoute(
@@ -101,29 +103,26 @@ fun DetailScreen(
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
             Text(
-                state.concept?.householdName ?: "蔬果詳情準備中",
+                state.concept?.householdName ?: "蔬果詳情",
                 style = MaterialTheme.typography.headlineLarge,
                 fontWeight = FontWeight.Black,
             )
-            Text(
-                state.concept?.officialVariants
-                    ?.distinctBy { it.code.value }
-                    ?.joinToString { "${it.officialName} · ${it.code.value}" }
-                    ?: "載入官方品項中",
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
+            if (state.concept == null) {
+                Text(
+                    "正在載入行情",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
         }
         ProduceIllustration(
             assetPath = state.concept?.illustrationAsset,
-            householdName = state.concept?.householdName ?: "蔬果",
             contentScale = ContentScale.Fit,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(160.dp)
                 .clip(MaterialTheme.shapes.extraLarge),
         )
-        AiIllustrationDisclosure()
         FlowRow(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -203,6 +202,20 @@ fun DetailScreen(
                 }
             }
         }
+        ItemPriceDirectionRadarCard(
+            householdName = state.concept?.householdName ?: "這項蔬果",
+            basis = state.selectedBasis,
+            evaluation = state.priceDirectionEvaluation,
+        )
+        if (
+            state.concept?.category == ProduceCategory.FRUIT &&
+            state.variantPrices.size > 1
+        ) {
+            VariantPriceSection(
+                householdName = state.concept.householdName,
+                prices = state.variantPrices,
+            )
+        }
         WholesaleTrendChart(
             points = state.trendPoints,
             estimateHistory = state.estimateHistory,
@@ -237,6 +250,78 @@ fun DetailScreen(
             }
         }
     }
+}
+
+@Composable
+private fun VariantPriceSection(
+    householdName: String,
+    prices: List<VariantMarketPrice>,
+) {
+    Surface(
+        shape = MaterialTheme.shapes.extraLarge,
+        color = MaterialTheme.colorScheme.surfaceContainerLow,
+        tonalElevation = 1.dp,
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+        ) {
+            Text(
+                "品種批發行情",
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.Black,
+            )
+            prices.forEachIndexed { index, price ->
+                if (index > 0) {
+                    HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
+                }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 4.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            price.officialName.variantDisplayName(householdName),
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        Text(
+                            price.observedOn?.let {
+                                "行情日期 ${it.year}/${it.monthValue}/${it.dayOfMonth}"
+                            } ?: "目前無行情",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                    Column(horizontalAlignment = Alignment.End) {
+                        Text(
+                            price.wholesaleAverage?.amount
+                                ?.setScale(1, RoundingMode.HALF_UP)
+                                ?.toPlainString()
+                                ?: "—",
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.Black,
+                        )
+                        Text(
+                            "批發均價 / 台斤",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+private fun String.variantDisplayName(householdName: String): String {
+    val prefix = "$householdName-"
+    return removePrefix(prefix).ifBlank { this }
 }
 
 private fun MarketBasis.displayName(): String = when (this) {

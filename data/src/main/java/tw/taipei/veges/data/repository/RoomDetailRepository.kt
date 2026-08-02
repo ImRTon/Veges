@@ -10,15 +10,20 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import tw.taipei.veges.data.local.SourceObservationEntity
+import tw.taipei.veges.data.local.OfficialVariantEntity
 import tw.taipei.veges.data.local.VegesDatabase
 import tw.taipei.veges.domain.DetailRepository
 import tw.taipei.veges.domain.DetailSnapshot
 import tw.taipei.veges.domain.EstimationMath
 import tw.taipei.veges.domain.MarketBasis
+import tw.taipei.veges.domain.MarketHistoryPoint
+import tw.taipei.veges.domain.OfficialCommodityCode
 import tw.taipei.veges.domain.PriceUnit
 import tw.taipei.veges.domain.ProduceConceptId
+import tw.taipei.veges.domain.ScaledPrice
 import tw.taipei.veges.domain.TrendPeriod
 import tw.taipei.veges.domain.TrendPoint
+import tw.taipei.veges.domain.VariantMarketPrice
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class RoomDetailRepository @Inject constructor(
@@ -38,11 +43,14 @@ class RoomDetailRepository @Inject constructor(
             } else {
                 database.sourceDao().observeValidWholesaleObservations(
                     commodityCodes = codes,
-                    from = LocalDate.now(clock).minusDays(period.days.toLong() - 1L),
+                    from = LocalDate.now(clock).minusDays(
+                        maxOf(period.days, VARIANT_PRICE_LOOKBACK_DAYS).toLong() - 1L,
+                    ),
                 )
             }
         }
         val from = LocalDate.now(clock).minusDays(period.days.toLong() - 1L)
+        val analysisFrom = LocalDate.now(clock).minusDays(ANALYSIS_LOOKBACK_DAYS - 1L)
         return combine(
             conceptFlow,
             database.estimateDao().observeHistory(conceptId.value, basis, from),
@@ -56,8 +64,28 @@ class RoomDetailRepository @Inject constructor(
                     compareBy({ it.wholesaleSourceDates.maxOrNull() }, { it.calculatedAt }),
                 ),
                 estimateHistory = domainEstimates,
-                trendPoints = aggregateTrend(sourceRows, basis),
+                trendPoints = aggregateTrend(
+                    rows = sourceRows.filterNot { it.observedOn.isBefore(from) },
+                    basis = basis,
+                ),
+                variantPrices = variantMarketPrices(
+                    variants = concept?.variants.orEmpty(),
+                    rows = sourceRows,
+                    basis = basis,
+                ),
                 isTracked = isTracked,
+                priceDirectionHistory = aggregateTrend(
+                    rows = sourceRows.filterNot { it.observedOn.isBefore(analysisFrom) },
+                    basis = basis,
+                ).mapNotNull { point ->
+                    val average = point.averageNtdPerKg ?: return@mapNotNull null
+                    val volume = point.volumeKg ?: return@mapNotNull null
+                    MarketHistoryPoint(
+                        observedOn = point.date,
+                        averageNtdPerKg = average,
+                        volumeKg = volume,
+                    )
+                },
             )
         }
     }
@@ -116,4 +144,100 @@ class RoomDetailRepository @Inject constructor(
             volumeKg = sumOf { requireNotNull(it.volume) },
         )
     }
+
+    private companion object {
+        const val VARIANT_PRICE_LOOKBACK_DAYS = 31
+        const val ANALYSIS_LOOKBACK_DAYS = 31L
+    }
 }
+
+internal fun variantMarketPrices(
+    variants: List<OfficialVariantEntity>,
+    rows: List<SourceObservationEntity>,
+    basis: MarketBasis,
+): List<VariantMarketPrice> {
+    val rowsByCode = rows.groupBy(SourceObservationEntity::commodityCode)
+    return variants
+        .distinctBy(OfficialVariantEntity::commodityCode)
+        .sortedWith(
+            compareBy(
+                { it.officialName.substringAfter('-', it.officialName) },
+                OfficialVariantEntity::commodityCode,
+            ),
+        )
+        .map { variant ->
+            val latest = latestVariantAggregation(
+                rows = rowsByCode[variant.commodityCode].orEmpty(),
+                basis = basis,
+            )
+            VariantMarketPrice(
+                commodityCode = OfficialCommodityCode(variant.commodityCode),
+                officialName = variant.officialName,
+                basis = basis,
+                observedOn = latest?.date,
+                wholesaleAverage = latest?.averageNtdPerKg?.let {
+                    ScaledPrice(
+                        amount = EstimationMath.ntdPerKilogramToNtdPerTaiJin(it),
+                        unit = PriceUnit.NTD_PER_TAI_JIN,
+                    )
+                },
+                volumeKg = latest?.volumeKg,
+            )
+        }
+}
+
+private fun latestVariantAggregation(
+    rows: List<SourceObservationEntity>,
+    basis: MarketBasis,
+): VariantAggregation? = rows
+    .groupBy(SourceObservationEntity::observedOn)
+    .toSortedMap(reverseOrder())
+    .asSequence()
+    .mapNotNull { (date, dayRows) ->
+        val selectedRows = when (basis) {
+            MarketBasis.TAIPEI_FIRST,
+            MarketBasis.TAIPEI_SECOND,
+            -> dayRows.filter { it.market == basis }
+
+            MarketBasis.TAIPEI_COMBINED -> {
+                val markets = dayRows.map(SourceObservationEntity::market).toSet()
+                if (MarketBasis.TAIPEI_FIRST !in markets || MarketBasis.TAIPEI_SECOND !in markets) {
+                    return@mapNotNull null
+                }
+                dayRows.filter {
+                    it.market == MarketBasis.TAIPEI_FIRST ||
+                        it.market == MarketBasis.TAIPEI_SECOND
+                }
+            }
+        }
+        selectedRows.toVariantAggregation(date)
+    }
+    .firstOrNull()
+
+private fun List<SourceObservationEntity>.toVariantAggregation(
+    date: LocalDate,
+): VariantAggregation? {
+    if (isEmpty() || any {
+            it.priceUnit != PriceUnit.NTD_PER_KILOGRAM ||
+                it.averagePrice == null ||
+                it.averagePrice <= BigDecimal.ZERO ||
+                it.volume == null ||
+                it.volume <= BigDecimal.ZERO
+        }
+    ) {
+        return null
+    }
+    return VariantAggregation(
+        date = date,
+        averageNtdPerKg = EstimationMath.weightedAverage(
+            map { requireNotNull(it.averagePrice) to requireNotNull(it.volume) },
+        ) ?: return null,
+        volumeKg = sumOf { requireNotNull(it.volume) },
+    )
+}
+
+private data class VariantAggregation(
+    val date: LocalDate,
+    val averageNtdPerKg: BigDecimal,
+    val volumeKg: BigDecimal,
+)

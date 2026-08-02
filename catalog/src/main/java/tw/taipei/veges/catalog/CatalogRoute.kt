@@ -1,6 +1,8 @@
 package tw.taipei.veges.catalog
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
+import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,9 +14,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.DragHandle
 import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -30,23 +34,34 @@ import androidx.compose.material3.carousel.rememberCarouselState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import java.math.BigDecimal
 import java.math.RoundingMode
-import tw.taipei.veges.designsystem.AiIllustrationDisclosure
+import kotlin.math.abs
 import tw.taipei.veges.designsystem.ProduceIllustration
 import tw.taipei.veges.domain.MarketItem
 import tw.taipei.veges.domain.ProduceCategory
@@ -55,17 +70,150 @@ import tw.taipei.veges.domain.previousChangePercent
 private val MarketRisingRed = Color(0xFFE5484D)
 private val MarketFallingGreen = Color(0xFF00A86B)
 
+private sealed interface CatalogSection {
+    val label: String
+    val assetPath: String
+
+    fun contains(item: MarketItem): Boolean
+}
+
 private enum class VegetableSection(
-    val label: String,
-    val assetPath: String,
-    val codePrefix: Char?,
-) {
+    override val label: String,
+    override val assetPath: String,
+    private val codePrefix: Char?,
+) : CatalogSection {
     LEAFY("葉菜類", "illustrations/categories/leafy.webp", 'L'),
     FRUITING("果菜・花菜・豆類", "illustrations/categories/fruiting.webp", 'F'),
     MUSHROOM("菇類", "illustrations/categories/mushroom.webp", 'M'),
     ROOT_SPROUT("根莖・芽菜類", "illustrations/categories/root-sprout.webp", 'S'),
     PROCESSED("加工蔬菜", "illustrations/categories/processed.webp", 'O'),
-    OTHER("其他蔬菜", "illustrations/categories/other.webp", null),
+    OTHER("其他蔬菜", "illustrations/categories/other.webp", null);
+
+    override fun contains(item: MarketItem): Boolean {
+        val prefix = item.concept.officialVariants.firstOrNull()?.code?.value?.firstOrNull()
+        return if (this == OTHER) {
+            entries.none { it.codePrefix != null && it.codePrefix == prefix }
+        } else {
+            codePrefix == prefix
+        }
+    }
+}
+
+private enum class FruitSection(
+    override val label: String,
+    override val assetPath: String,
+    val conceptIds: Set<String>,
+) : CatalogSection {
+    CITRUS(
+        "柑橘類",
+        "illustrations/categories/fruit-citrus.webp",
+        setOf(
+            "fruit.mandarin",
+            "fruit.tankan",
+            "fruit.orange",
+            "fruit.mixed-citrus",
+            "fruit.lemon",
+            "fruit.kumquat",
+            "fruit.pomelo",
+            "fruit.grapefruit",
+        ),
+    ),
+    MELON(
+        "瓜果類",
+        "illustrations/categories/fruit-melon.webp",
+        setOf(
+            "fruit.watermelon",
+            "fruit.oriental-melon",
+            "fruit.muskmelon",
+            "fruit.pepino",
+        ),
+    ),
+    TROPICAL(
+        "熱帶水果",
+        "illustrations/categories/fruit-tropical.webp",
+        setOf(
+            "fruit.coconut",
+            "fruit.passion-fruit",
+            "fruit.dragon-fruit",
+            "fruit.durian",
+            "fruit.mangosteen",
+            "fruit.rambutan",
+            "fruit.banana",
+            "fruit.pineapple",
+            "fruit.eggfruit",
+            "fruit.abiu",
+            "fruit.avocado",
+            "fruit.jackfruit",
+            "fruit.cempedak",
+            "fruit.papaya",
+            "fruit.mango",
+        ),
+    ),
+    ORCHARD(
+        "果園・堅果",
+        "illustrations/categories/fruit-orchard.webp",
+        setOf(
+            "fruit.kiwi",
+            "fruit.chestnut",
+            "fruit.loquat",
+            "fruit.pear",
+            "fruit.apple",
+            "fruit.persimmon",
+        ),
+    ),
+    STONE_FRUIT(
+        "桃李・梅棗",
+        "illustrations/categories/fruit-stone.webp",
+        setOf(
+            "fruit.jujube",
+            "fruit.honey-jujube",
+            "fruit.ume",
+            "fruit.chinese-bayberry",
+            "fruit.cherry",
+            "fruit.olive",
+            "fruit.plum",
+            "fruit.peach",
+        ),
+    ),
+    BERRY_GRAPE(
+        "莓果・葡萄",
+        "illustrations/categories/fruit-berry.webp",
+        setOf(
+            "fruit.mulberry",
+            "fruit.strawberry",
+            "fruit.blueberry",
+            "fruit.cherry-tomato",
+            "fruit.jabuticaba",
+            "fruit.grape",
+        ),
+    ),
+    TAIWAN_SPECIALTY(
+        "台灣特色・其他",
+        "illustrations/categories/fruit-taiwan.webp",
+        setOf(
+            "fruit.custard-apple",
+            "fruit.sugarcane",
+            "fruit.lychee",
+            "fruit.longan",
+            "fruit.starfruit",
+            "fruit.guava",
+            "fruit.wax-apple",
+            "fruit.other",
+        ),
+    );
+
+    override fun contains(item: MarketItem): Boolean =
+        item.concept.id.value in conceptIds
+}
+
+internal val fruitSectionByConceptId: Map<String, String> = buildMap {
+    FruitSection.entries.forEach { section ->
+        section.conceptIds.forEach { conceptId ->
+            check(put(conceptId, section.label) == null) {
+                "Fruit concept $conceptId appears in more than one Carousel section"
+            }
+        }
+    }
 }
 
 @Composable
@@ -84,6 +232,7 @@ fun CatalogRoute(
         onCategorySelected = viewModel::selectCategory,
         onConceptSelected = onConceptSelected,
         onDismissAmbiguity = viewModel::clearAmbiguity,
+        onMoveItem = viewModel::moveItem,
         modifier = modifier,
     )
 }
@@ -96,20 +245,88 @@ fun CatalogScreen(
     onCategorySelected: (ProduceCategory) -> Unit,
     onConceptSelected: (String) -> Unit,
     onDismissAmbiguity: () -> Unit,
+    onMoveItem: (draggedConceptId: String, targetConceptId: String) -> Unit = { _, _ -> },
     modifier: Modifier = Modifier,
 ) {
-    val sections = VegetableSection.entries
+    val sections: List<CatalogSection> = remember(state.category) {
+        when (state.category) {
+            ProduceCategory.VEGETABLE -> VegetableSection.entries
+            ProduceCategory.FRUIT -> FruitSection.entries
+        }.toList()
+    }
     val carouselState = rememberCarouselState { sections.size }
-    val selectedSection = sections[carouselState.currentItem.coerceIn(0, sections.lastIndex)]
+    val lazyListState = rememberLazyListState()
+    val coroutineScope = rememberCoroutineScope()
+    val sectionSwipeState = remember(carouselState, coroutineScope, sections.size) {
+        CatalogSectionSwipeState(carouselState, coroutineScope, sections.size)
+    }
+    LaunchedEffect(carouselState.currentItem) {
+        sectionSwipeState.syncFromCarousel()
+    }
+    val selectedSectionIndex = sectionSwipeState.selectedSectionIndex
+    val selectedSection = sections[selectedSectionIndex]
     val visibleResults = remember(state.results, state.query, selectedSection) {
-        if (state.query.isNotBlank() || state.category == ProduceCategory.FRUIT) {
+        if (state.query.isNotBlank()) {
             state.results
         } else {
-            state.results.filter { it.section() == selectedSection }
+            state.results.filter(selectedSection::contains)
+        }
+    }
+    var dragPreviewIds by remember { mutableStateOf<List<String>?>(null) }
+    LaunchedEffect(state.category, selectedSection, state.query) {
+        dragPreviewIds = null
+    }
+    val displayedResults = remember(visibleResults, dragPreviewIds) {
+        dragPreviewIds?.let(visibleResults::orderedByConceptIds) ?: visibleResults
+    }
+    val canReorder = state.query.isBlank() && visibleResults.size > 1
+    val currentOnMoveItem = rememberUpdatedState(onMoveItem)
+    val previewMoveHandler = rememberUpdatedState<(String, String) -> Unit> { draggedId, targetId ->
+        val currentIds = dragPreviewIds ?: visibleResults.map { it.concept.id.value }
+        currentIds.move(draggedId, targetId)?.let { reorderedIds ->
+            dragPreviewIds = reorderedIds
+            currentOnMoveItem.value(draggedId, targetId)
+        }
+    }
+    val dragDropState = remember(lazyListState, coroutineScope) {
+        CatalogDragDropState(lazyListState, coroutineScope) { draggedId, targetId ->
+            previewMoveHandler.value(draggedId, targetId)
+        }
+    }
+    LaunchedEffect(visibleResults, dragDropState.isDragging, dragPreviewIds) {
+        val persistedIds = visibleResults.map { it.concept.id.value }
+        if (!dragDropState.isDragging && dragPreviewIds == persistedIds) {
+            dragPreviewIds = null
+        }
+    }
+    val hapticFeedback = LocalHapticFeedback.current
+    LaunchedEffect(selectedSection) {
+        if (lazyListState.firstVisibleItemIndex > CatalogResultsHeaderIndex) {
+            lazyListState.scrollToItem(CatalogResultsHeaderIndex)
         }
     }
     LazyColumn(
-        modifier = modifier.fillMaxSize(),
+        state = lazyListState,
+        modifier = modifier
+            .fillMaxSize()
+            .pointerInput(dragDropState, canReorder) {
+                if (!canReorder) return@pointerInput
+                detectDragGesturesAfterLongPress(
+                    onDragStart = { offset ->
+                        if (dragDropState.onDragStart(offset.y)) {
+                            hapticFeedback.performHapticFeedback(HapticFeedbackType.LongPress)
+                        }
+                    },
+                    onDrag = { change, dragAmount ->
+                        if (dragDropState.isDragging) {
+                            change.consume()
+                            dragDropState.onDrag(dragAmount.y)
+                        }
+                    },
+                    onDragEnd = dragDropState::onDragEnd,
+                    onDragCancel = dragDropState::onDragEnd,
+                )
+            },
         contentPadding = PaddingValues(
             start = 18.dp,
             top = 18.dp,
@@ -129,14 +346,14 @@ fun CatalogScreen(
             OutlinedTextField(
                 value = state.query,
                 onValueChange = onQueryChange,
-                placeholder = { Text("搜尋名稱或官方代碼") },
+                placeholder = { Text("搜尋蔬果名稱") },
                 leadingIcon = { Icon(Icons.Rounded.Search, contentDescription = null) },
                 singleLine = true,
                 shape = MaterialTheme.shapes.large,
                 modifier = Modifier.fillMaxWidth(),
             )
         }
-        if (state.category == ProduceCategory.VEGETABLE && state.query.isBlank()) {
+        if (state.query.isBlank()) {
             item {
                 HorizontalMultiBrowseCarousel(
                     state = carouselState,
@@ -150,7 +367,7 @@ fun CatalogScreen(
                     val section = sections[index]
                     CategoryCarouselCard(
                         section = section,
-                        count = state.results.count { it.section() == section },
+                        count = state.results.count(section::contains),
                         modifier = Modifier.maskClip(MaterialTheme.shapes.extraLarge),
                     )
                 }
@@ -158,14 +375,38 @@ fun CatalogScreen(
         }
         item {
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .swipeToChangeSection(
+                        enabled = state.query.isBlank(),
+                        state = sectionSwipeState,
+                    )
+                    .semantics {
+                        customActions = buildList {
+                            sections.getOrNull(selectedSectionIndex - 1)?.let { previous ->
+                                add(
+                                    CustomAccessibilityAction("切到${previous.label}") {
+                                        sectionSwipeState.animateBy(-1)
+                                        true
+                                    },
+                                )
+                            }
+                            sections.getOrNull(selectedSectionIndex + 1)?.let { next ->
+                                add(
+                                    CustomAccessibilityAction("切到${next.label}") {
+                                        sectionSwipeState.animateBy(1)
+                                        true
+                                    },
+                                )
+                            }
+                        }
+                    },
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
                     when {
                         state.query.isNotBlank() -> "搜尋結果"
-                        state.category == ProduceCategory.FRUIT -> "全部水果"
                         else -> selectedSection.label
                     },
                     style = MaterialTheme.typography.titleMedium,
@@ -179,19 +420,50 @@ fun CatalogScreen(
             }
         }
         if (visibleResults.isEmpty()) {
-            item { EmptyCatalogState(query = state.query) }
+            item {
+                EmptyCatalogState(
+                    query = state.query,
+                    modifier = Modifier.swipeToChangeSection(
+                        enabled = state.query.isBlank(),
+                        state = sectionSwipeState,
+                    ),
+                )
+            }
         } else {
-            items(
-                items = visibleResults,
-                key = { it.concept.id.value },
-            ) { item ->
+            itemsIndexed(
+                items = displayedResults,
+                key = { _, item -> catalogItemKey(item.concept.id.value) },
+            ) { index, item ->
+                val conceptId = item.concept.id.value
+                val isDragging = dragDropState.draggedConceptId == conceptId
                 ProduceMarketRow(
                     item = item,
-                    onClick = { onConceptSelected(item.concept.id.value) },
+                    onClick = { onConceptSelected(conceptId) },
+                    canReorder = canReorder,
+                    isDragging = isDragging,
+                    onMoveUp = displayedResults.getOrNull(index - 1)?.let { previous ->
+                        { previewMoveHandler.value(conceptId, previous.concept.id.value) }
+                    },
+                    onMoveDown = displayedResults.getOrNull(index + 1)?.let { next ->
+                        { previewMoveHandler.value(conceptId, next.concept.id.value) }
+                    },
+                    modifier = (if (isDragging) Modifier else Modifier.animateItem())
+                        .swipeToChangeSection(
+                            enabled = state.query.isBlank(),
+                            state = sectionSwipeState,
+                        )
+                        .zIndex(if (isDragging) 1f else 0f)
+                        .graphicsLayer {
+                            if (isDragging) {
+                                translationY = dragDropState.draggedItemOffset
+                                scaleX = 1.02f
+                                scaleY = 1.02f
+                                shadowElevation = 10.dp.toPx()
+                            }
+                        },
                 )
             }
         }
-        item { AiIllustrationDisclosure() }
     }
 
     state.ambiguity?.let { ambiguity ->
@@ -222,7 +494,7 @@ fun CatalogScreen(
 
 @Composable
 private fun CategoryCarouselCard(
-    section: VegetableSection,
+    section: CatalogSection,
     count: Int,
     modifier: Modifier = Modifier,
 ) {
@@ -233,7 +505,6 @@ private fun CategoryCarouselCard(
     ) {
         ProduceIllustration(
             assetPath = section.assetPath,
-            householdName = section.label,
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize(),
         )
@@ -272,6 +543,11 @@ private fun CategoryCarouselCard(
 private fun ProduceMarketRow(
     item: MarketItem,
     onClick: () -> Unit,
+    canReorder: Boolean,
+    isDragging: Boolean,
+    onMoveUp: (() -> Unit)?,
+    onMoveDown: (() -> Unit)?,
+    modifier: Modifier = Modifier,
 ) {
     val concept = item.concept
     val price = item.latestEstimate?.point?.amount
@@ -284,11 +560,20 @@ private fun ProduceMarketRow(
     }
     Surface(
         onClick = onClick,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .semantics {
                 contentDescription =
-                    "${concept.householdName}，${price?.setScale(1, RoundingMode.HALF_UP) ?: "無價格"}元每台斤，$changeText"
+                    "${concept.householdName}，${price?.setScale(1, RoundingMode.HALF_UP) ?: "無價格"}元每台斤，$changeText" +
+                        if (canReorder) "，長按可拖曳排序" else ""
+                customActions = buildList {
+                    onMoveUp?.let { moveUp ->
+                        add(CustomAccessibilityAction("往上移") { moveUp(); true })
+                    }
+                    onMoveDown?.let { moveDown ->
+                        add(CustomAccessibilityAction("往下移") { moveDown(); true })
+                    }
+                }
             },
         color = Color.Transparent,
     ) {
@@ -300,7 +585,6 @@ private fun ProduceMarketRow(
             ) {
                 ProduceIllustration(
                     assetPath = concept.illustrationAsset,
-                    householdName = concept.householdName,
                     modifier = Modifier
                         .size(52.dp)
                         .clip(RoundedCornerShape(15.dp)),
@@ -332,6 +616,14 @@ private fun ProduceMarketRow(
                         color = changeColor,
                     )
                 }
+                if (canReorder && isDragging) {
+                    Icon(
+                        imageVector = Icons.Rounded.DragHandle,
+                        contentDescription = null,
+                        modifier = Modifier.size(20.dp),
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
             }
             HorizontalDivider(
                 modifier = Modifier.padding(start = 64.dp),
@@ -341,16 +633,13 @@ private fun ProduceMarketRow(
     }
 }
 
-private fun MarketItem.section(): VegetableSection {
-    val prefix = concept.officialVariants.firstOrNull()?.code?.value?.firstOrNull()
-    return VegetableSection.entries.firstOrNull { it.codePrefix == prefix }
-        ?: VegetableSection.OTHER
-}
-
 @Composable
-private fun EmptyCatalogState(query: String) {
+private fun EmptyCatalogState(
+    query: String,
+    modifier: Modifier = Modifier,
+) {
     Surface(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         shape = MaterialTheme.shapes.extraLarge,
         color = MaterialTheme.colorScheme.surfaceContainerLow,
     ) {
@@ -362,6 +651,51 @@ private fun EmptyCatalogState(query: String) {
         )
     }
 }
+
+private fun Modifier.swipeToChangeSection(
+    enabled: Boolean,
+    state: CatalogSectionSwipeState,
+): Modifier = if (!enabled) {
+    this
+} else {
+    pointerInput(state) {
+        var horizontalDistance = 0f
+        detectHorizontalDragGestures(
+            onDragStart = {
+                horizontalDistance = 0f
+                state.startGesture()
+            },
+            onHorizontalDrag = { change, dragAmount ->
+                change.consume()
+                horizontalDistance += dragAmount
+                state.dragBy(dragAmount)
+            },
+            onDragEnd = {
+                state.finishGesture(
+                    horizontalDistance = horizontalDistance,
+                    threshold = CatalogSectionSwipeThreshold.toPx(),
+                )
+                horizontalDistance = 0f
+            },
+            onDragCancel = {
+                state.cancelGesture()
+                horizontalDistance = 0f
+            },
+        )
+    }
+}
+
+private const val CatalogResultsHeaderIndex = 3
+private val CatalogSectionSwipeThreshold = 56.dp
+
+internal fun sectionSwipeDirection(horizontalDistance: Float, threshold: Float): Int? =
+    if (abs(horizontalDistance) < threshold) {
+        null
+    } else if (horizontalDistance < 0f) {
+        1
+    } else {
+        -1
+    }
 
 private fun BigDecimal?.asPercent(): String {
     if (this == null) return "—"

@@ -65,4 +65,21 @@ class OfficialHttpClientTest {
         assertTrue(error is OfficialHttpException)
         assertEquals("offline", error?.cause?.message)
     }
+
+    @Test
+    fun redactsSensitiveQueryParametersFromFailureDiagnostics() = runTest {
+        val client = OfficialHttpClient(OfficialHttpTransport { _ ->
+            OfficialHttpResponse(403, "forbidden", null, null)
+        })
+
+        val error = runCatching {
+            client.get(
+                "https://example.test/weather?Authorization=secret-token&format=JSON",
+                maxAttempts = 1,
+            )
+        }.exceptionOrNull() as OfficialHttpException
+
+        assertEquals("https://example.test/weather", error.url)
+        assertTrue(error.message.orEmpty().contains("secret-token").not())
+    }
 }

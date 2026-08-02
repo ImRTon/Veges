@@ -19,14 +19,14 @@ class CatalogIllustrationBudgetTest {
     fun everyCatalogConceptHasOneUniqueOptimizedWebp() {
         val repoRoot = Path.of(requireNotNull(System.getProperty("veges.repoRoot")))
         val auditPath = repoRoot.resolve(
-            "release-tool/audits/2026-07-27-catalog-illustration-audit.json",
+            "release-tool/audits/2026-07-29-catalog-illustration-audit.json",
         )
         val audit = Json.parseToJsonElement(Files.readString(auditPath)).jsonObject
         val assets = audit.getValue("assets").jsonArray
         val actualHashes = mutableSetOf<String>()
         var actualTotalBytes = 0L
 
-        assertEquals(121, assets.size)
+        assertEquals(175, assets.size)
         assertEquals("APPROVED", audit.getValue("status").jsonPrimitive.content)
         assertEquals(
             assets.size,
@@ -39,7 +39,7 @@ class CatalogIllustrationBudgetTest {
             },
         )
         assertEquals(
-            121,
+            175,
             audit.getValue("summary").jsonObject.getValue("approvedAssets").jsonPrimitive.int,
         )
         assertEquals(

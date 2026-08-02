@@ -1,0 +1,3000 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-29",
+  "status": "APPROVED",
+  "taxonomyVersion": "launch-all-produce-fruit-2026-07-29",
+  "sourceConceptCount": 175,
+  "compressionPolicy": {
+    "format": "WEBP",
+    "maxEdgePixels": 512,
+    "maxBytesPerAsset": 131072,
+    "maxCatalogBytes": 6291456,
+    "quality": 80
+  },
+  "summary": {
+    "assetCount": 175,
+    "totalBytes": 5475618,
+    "maxBytes": 88506,
+    "allTransparentCorners": true,
+    "uniqueHashes": true,
+    "approvedAssets": 175,
+    "pendingAssets": 0
+  },
+  "assets": [
+    {
+      "conceptId": "fruit.coconut",
+      "householdName": "椰子",
+      "assetPath": "illustrations/catalog/fruit-coconut.webp",
+      "sha256": "9d8bc8605ef26436d639fcdeccc650ddd7510869e0f1bbaf00be16121290f692",
+      "bytes": 37258,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.jujube",
+      "householdName": "棗子",
+      "assetPath": "illustrations/catalog/fruit-jujube.webp",
+      "sha256": "74b98736b5c98b17d2bb84c6a98ac3e506a5ae5d397c6629a8a84ea14610f2de",
+      "bytes": 16584,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.custard-apple",
+      "householdName": "釋迦",
+      "assetPath": "illustrations/catalog/fruit-custard-apple.webp",
+      "sha256": "a2209c9ea4c828839e2849666a4bdbcf5ac1cc320a65e265742f460a8fadecea",
+      "bytes": 27538,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.ume",
+      "householdName": "梅",
+      "assetPath": "illustrations/catalog/fruit-ume.webp",
+      "sha256": "e08242e74b320c0702b5d52645efb70f4f9573ffdf6112fc7a8cd6aba7d2f755",
+      "bytes": 24374,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.chinese-bayberry",
+      "householdName": "楊梅",
+      "assetPath": "illustrations/catalog/fruit-chinese-bayberry.webp",
+      "sha256": "b6e9db1bdd91ab4a2f1851c2e2e4eb5d9c878678a9b2da7ffa1e517c725e206d",
+      "bytes": 53162,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.mulberry",
+      "householdName": "桑椹",
+      "assetPath": "illustrations/catalog/fruit-mulberry.webp",
+      "sha256": "620aa99a5b70f3721b55f2ee785d87e4f8710d83e2aeda611b390583c75084c6",
+      "bytes": 49404,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.strawberry",
+      "householdName": "草莓",
+      "assetPath": "illustrations/catalog/fruit-strawberry.webp",
+      "sha256": "83bdb9665cec1b037959b98a97fe8f9d732d0e98c9b02dff0362bd525fd0053c",
+      "bytes": 54810,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.blueberry",
+      "householdName": "藍莓",
+      "assetPath": "illustrations/catalog/fruit-blueberry.webp",
+      "sha256": "15e101e4e1e9fa46a7d497e6abc693a1764f80c077a31303e62dd08d49af7ba5",
+      "bytes": 30688,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.passion-fruit",
+      "householdName": "百香果",
+      "assetPath": "illustrations/catalog/fruit-passion-fruit.webp",
+      "sha256": "0991e99b99d8e813c7660e9b9f06f46ec41226b526d858516579c52c0925ffb8",
+      "bytes": 30846,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.sugarcane",
+      "householdName": "甘蔗",
+      "assetPath": "illustrations/catalog/fruit-sugarcane.webp",
+      "sha256": "5b490e79ddd4e94ba5966420c0ee3a0ef2a9fe84fc043703c4b8079ca1076a23",
+      "bytes": 24360,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.cherry-tomato",
+      "householdName": "小番茄",
+      "assetPath": "illustrations/catalog/fruit-cherry-tomato.webp",
+      "sha256": "9f4fa9e341f1f60d5103931c113a3510323932819ac671e3b7b145d191a363b6",
+      "bytes": 31276,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.dragon-fruit",
+      "householdName": "紅龍果",
+      "assetPath": "illustrations/catalog/fruit-dragon-fruit.webp",
+      "sha256": "0e25860c3c5285883aba70fa401ca862ef4315cbf462ddb7cf4b784e2fb25128",
+      "bytes": 36382,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.honey-jujube",
+      "householdName": "蜜棗",
+      "assetPath": "illustrations/catalog/fruit-honey-jujube.webp",
+      "sha256": "c0bcafb61f278ea2d84e632ef08971931b28ab69e4ed5ad61564f5b835e52f54",
+      "bytes": 19166,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.cherry",
+      "householdName": "櫻桃",
+      "assetPath": "illustrations/catalog/fruit-cherry.webp",
+      "sha256": "44954c709e18d41fa2c92d2604bafaf21b2366a2c8dd2cf7ed7478eeb67aed72",
+      "bytes": 28382,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.durian",
+      "householdName": "榴槤",
+      "assetPath": "illustrations/catalog/fruit-durian.webp",
+      "sha256": "05e4fd6318adcf48cb62fb2d48d665e0acf6b97745a64f6a11d45247f1ceca5b",
+      "bytes": 44318,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.mangosteen",
+      "householdName": "山竹",
+      "assetPath": "illustrations/catalog/fruit-mangosteen.webp",
+      "sha256": "f5ebd17d0a8574e7a4a6d51d5a55d8f4926d80cfb075b3eef07575ddbb0b5bfd",
+      "bytes": 33728,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.rambutan",
+      "householdName": "紅毛丹",
+      "assetPath": "illustrations/catalog/fruit-rambutan.webp",
+      "sha256": "79de4638eed72e8e62eddad6c340800ec23b60db53ce651f3f82c12263872ccd",
+      "bytes": 69240,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.jabuticaba",
+      "householdName": "樹葡萄",
+      "assetPath": "illustrations/catalog/fruit-jabuticaba.webp",
+      "sha256": "a26b52cc7c5be7490c04b5fb908e97c4522a8e94adf8e1868bccf65804e331bd",
+      "bytes": 32672,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.other",
+      "householdName": "其他水果",
+      "assetPath": "illustrations/catalog/fruit-other.webp",
+      "sha256": "52f16b37149b64bc1fb63482a7c9650638c247a876a457846dc3200ad55d73eb",
+      "bytes": 22028,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.banana",
+      "householdName": "香蕉",
+      "assetPath": "illustrations/catalog/fruit-banana.webp",
+      "sha256": "7a475f0e9f05df55c4999822d348d1058b2f30c41ae0f2af5e2b5c60fa8f7648",
+      "bytes": 23170,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.pineapple",
+      "householdName": "鳳梨",
+      "assetPath": "illustrations/catalog/fruit-pineapple.webp",
+      "sha256": "4bed1d26f1ee9df63e9c1be10f7e3e2d1a3a68723ec4d48b3a8210197674d04d",
+      "bytes": 37426,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.mandarin",
+      "householdName": "柑橘",
+      "assetPath": "illustrations/catalog/fruit-mandarin.webp",
+      "sha256": "45234e24fe33166f5999113020cfd0e2d9b619d5837f4ae58b308f0d28bc9813",
+      "bytes": 30080,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.tankan",
+      "householdName": "桶柑",
+      "assetPath": "illustrations/catalog/fruit-tankan.webp",
+      "sha256": "162bcf6c4f10c409a240b8013ae702dc172ac8af5abf936646d96cb719307e10",
+      "bytes": 38846,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.orange",
+      "householdName": "甜橙",
+      "assetPath": "illustrations/catalog/fruit-orange.webp",
+      "sha256": "b7f96710e6a4da974439d588278310951c73eaeacf47caec4659bb88b8d4de43",
+      "bytes": 27734,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.mixed-citrus",
+      "householdName": "雜柑",
+      "assetPath": "illustrations/catalog/fruit-mixed-citrus.webp",
+      "sha256": "cb1b10b5eb8a0c5515eddd32909d7462b4bd85a164d154da5d1ffcbca3c12bf3",
+      "bytes": 27228,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.lemon",
+      "householdName": "檸檬",
+      "assetPath": "illustrations/catalog/fruit-lemon.webp",
+      "sha256": "c91dcda9ad1217a2bd921dee987151e933db77330d4158b215ddaba59b0b50aa",
+      "bytes": 22952,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.kumquat",
+      "householdName": "桔子",
+      "assetPath": "illustrations/catalog/fruit-kumquat.webp",
+      "sha256": "e02af9c97eb38cc19a0d38622cbd1c08dd804272a12714e6ed949fc3eaa9d990",
+      "bytes": 35548,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.eggfruit",
+      "householdName": "蛋黃果",
+      "assetPath": "illustrations/catalog/fruit-eggfruit.webp",
+      "sha256": "b6cd607e0375d611bc1ab4b174bf8034a35cc80c64117cd295f2840e9eba9342",
+      "bytes": 24060,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.abiu",
+      "householdName": "黃金果",
+      "assetPath": "illustrations/catalog/fruit-abiu.webp",
+      "sha256": "edca1c688edba8aff198733d07b6d3960934e8c7e87dc29629a3e53f077afd50",
+      "bytes": 19868,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.avocado",
+      "householdName": "酪梨",
+      "assetPath": "illustrations/catalog/fruit-avocado.webp",
+      "sha256": "9ecac5f72edd0e06fe1102bc3f8c28fef45174e2334275fd323da3d664560470",
+      "bytes": 33016,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.kiwi",
+      "householdName": "奇異果",
+      "assetPath": "illustrations/catalog/fruit-kiwi.webp",
+      "sha256": "580a782130cf4a753df70b56bd27b457da441632246e2474ba8f8887f410c76a",
+      "bytes": 37044,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.pepino",
+      "householdName": "香瓜梨",
+      "assetPath": "illustrations/catalog/fruit-pepino.webp",
+      "sha256": "7205e55105971ea9ea1f2c3efd5e9ed15f0c070447e98ed5172d20cce9297d24",
+      "bytes": 23794,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.olive",
+      "householdName": "橄欖",
+      "assetPath": "illustrations/catalog/fruit-olive.webp",
+      "sha256": "3001a950205ec51a851430748600e1f9eb5c386c63b3431451c7238ed037b8f4",
+      "bytes": 32012,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.chestnut",
+      "householdName": "栗子",
+      "assetPath": "illustrations/catalog/fruit-chestnut.webp",
+      "sha256": "2d1bb548638563a5bf66b3eedac98513313b33e027773a7124b376c045fc9cc2",
+      "bytes": 28370,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.jackfruit",
+      "householdName": "波蘿蜜",
+      "assetPath": "illustrations/catalog/fruit-jackfruit.webp",
+      "sha256": "65a7ebf88bdcf7b8c167156e4fc9770f3637c5c435f7da564a03ca9edd8d6a55",
+      "bytes": 48118,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.cempedak",
+      "householdName": "榴槤蜜",
+      "assetPath": "illustrations/catalog/fruit-cempedak.webp",
+      "sha256": "a3ce10ece421c3a3b160acc72c2152d66ee084d2865c0a9b7ebc84626919a3a3",
+      "bytes": 37600,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.pomelo",
+      "householdName": "柚子",
+      "assetPath": "illustrations/catalog/fruit-pomelo.webp",
+      "sha256": "ec4624ea439a4e8dca3a9c495fcac84dd6dc0b42934eb6c7d3a82fbdcfda557a",
+      "bytes": 37058,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.grapefruit",
+      "householdName": "葡萄柚",
+      "assetPath": "illustrations/catalog/fruit-grapefruit.webp",
+      "sha256": "c129d0524f05b4bfcf3eca7dddc3eb88fb404b9a39b5cfc40e1b14b6abcb37a4",
+      "bytes": 34502,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.papaya",
+      "householdName": "木瓜",
+      "assetPath": "illustrations/catalog/fruit-papaya.webp",
+      "sha256": "48bb142d1b3eabb0c85ce9a7cba99fc3623b454b7c4288d4f83986bdb471520b",
+      "bytes": 26152,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.lychee",
+      "householdName": "荔枝",
+      "assetPath": "illustrations/catalog/fruit-lychee.webp",
+      "sha256": "8432bdf009fcf6d86567e5d9f57e41af0e4f26f3597d776c660451ccb812f60d",
+      "bytes": 39914,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.longan",
+      "householdName": "龍眼",
+      "assetPath": "illustrations/catalog/fruit-longan.webp",
+      "sha256": "cc0124f7b31a240011e984e3c178778629f1a92166a1dcee07501addc2c1acdd",
+      "bytes": 28918,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.loquat",
+      "householdName": "枇杷",
+      "assetPath": "illustrations/catalog/fruit-loquat.webp",
+      "sha256": "f8b9b99030ef20164823d08f78c394cf00be234692a7e90c12b7866cb901ed1c",
+      "bytes": 28788,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.starfruit",
+      "householdName": "楊桃",
+      "assetPath": "illustrations/catalog/fruit-starfruit.webp",
+      "sha256": "bdd92a08b798db8d7f2b1ea8546b0758d6ee06e33cbc27e6c99ebe5789177850",
+      "bytes": 23624,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.plum",
+      "householdName": "李",
+      "assetPath": "illustrations/catalog/fruit-plum.webp",
+      "sha256": "c90436ba0472f69e66cbc0f9670194cb507b29129816b5d54c89815e0424cf55",
+      "bytes": 28622,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.pear",
+      "householdName": "梨",
+      "assetPath": "illustrations/catalog/fruit-pear.webp",
+      "sha256": "bf7c90491f0d86b80d5abffea24f9fe6d55328e4475d151c0f541a359824206f",
+      "bytes": 23350,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.guava",
+      "householdName": "番石榴",
+      "assetPath": "illustrations/catalog/fruit-guava.webp",
+      "sha256": "817650649cbe1edb87c96ce8390744889f4fd2eae2cd426be6fab9c631a95ff5",
+      "bytes": 19968,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.wax-apple",
+      "householdName": "蓮霧",
+      "assetPath": "illustrations/catalog/fruit-wax-apple.webp",
+      "sha256": "42038e7fef6b437b4516076377203e41067d36ec65c853b7696ddf252aba9e95",
+      "bytes": 20594,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.mango",
+      "householdName": "芒果",
+      "assetPath": "illustrations/catalog/fruit-mango.webp",
+      "sha256": "20bd90b69c8a48cafdf90b0a2dc0baf1b2136e9cdd9413c60887f64877d44bec",
+      "bytes": 34528,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.grape",
+      "householdName": "葡萄",
+      "assetPath": "illustrations/catalog/fruit-grape.webp",
+      "sha256": "4aede19f7d5fad9035ebc5472bd953a9542bee5c3fecc5487ff6b08d844db821",
+      "bytes": 27776,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.watermelon",
+      "householdName": "西瓜",
+      "assetPath": "illustrations/catalog/fruit-watermelon.webp",
+      "sha256": "0a100cf5a2dc0b2fe8cfe40cdb538235722219163a2ba3a0302fa9abcf5ef21e",
+      "bytes": 41732,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.oriental-melon",
+      "householdName": "甜瓜",
+      "assetPath": "illustrations/catalog/fruit-oriental-melon.webp",
+      "sha256": "975997da299fe3f10a9da8cfec12c8bd30f1f10684f622a53f912e85518536b8",
+      "bytes": 20854,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.muskmelon",
+      "householdName": "洋香瓜",
+      "assetPath": "illustrations/catalog/fruit-muskmelon.webp",
+      "sha256": "5dd456b7d9ac4cfb72afb4315f68446ecfb7e8771f781fb0cb0ce0aeebea6dc9",
+      "bytes": 36196,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.apple",
+      "householdName": "蘋果",
+      "assetPath": "illustrations/catalog/fruit-apple.webp",
+      "sha256": "6ea4933770c8659a2f8dbb48399ffe84cd51e2a17092f4a4e0dce6341d780eb8",
+      "bytes": 29296,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.peach",
+      "householdName": "桃子",
+      "assetPath": "illustrations/catalog/fruit-peach.webp",
+      "sha256": "429d0669fcc50b71166981762af851787cf5397378b1b6815441643d67433fb0",
+      "bytes": 27138,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "fruit.persimmon",
+      "householdName": "柿子",
+      "assetPath": "illustrations/catalog/fruit-persimmon.webp",
+      "sha256": "fcd45311be8665316dbebd0869ce16a1f2d88864bc850097e0f04259214267de",
+      "bytes": 24334,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-29",
+        "reviewedBy": "codex-image-review",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.lp2",
+      "householdName": "九層塔",
+      "assetPath": "illustrations/catalog/vegetable-lp2.webp",
+      "sha256": "eaa13d6a86eb247333116ac1bb3d0ddf7365d62eb504742e96de829fbf2c1aef",
+      "bytes": 61988,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.ly4",
+      "householdName": "人參葉",
+      "assetPath": "illustrations/catalog/vegetable-ly4.webp",
+      "sha256": "0396cb03fab6075885579817ce8dde8c13bf4bcac6467543416050b737b80472",
+      "bytes": 55872,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.ox1",
+      "householdName": "其他",
+      "assetPath": "illustrations/catalog/vegetable-ox1.webp",
+      "sha256": "d464a31a82416a64bf7101f8d0c2eb0b93e9f22c91f3506b57118c8703447a8c",
+      "bytes": 28992,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fa0",
+      "householdName": "其他花類",
+      "assetPath": "illustrations/catalog/vegetable-fa0.webp",
+      "sha256": "ebf3be274cf6902c5926a4361abba62fca77f21643a09e5fcfb451ac453b9ba8",
+      "bytes": 60902,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.mx1",
+      "householdName": "其他菇類",
+      "assetPath": "illustrations/catalog/vegetable-mx1.webp",
+      "sha256": "d9bf04f0e115ee9ebc27da49351bef6a18835a6113f2b4874960d8fbc96adf0b",
+      "bytes": 35368,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fe0",
+      "householdName": "冬瓜",
+      "assetPath": "illustrations/catalog/vegetable-fe0.webp",
+      "sha256": "8f7a4b5a76c9c8d25f532b6e89599e4b0e836fda2932286228ca2702cf9e356f",
+      "bytes": 34228,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.napa-cabbage",
+      "householdName": "包心白菜",
+      "assetPath": "illustrations/catalog/vegetable-napa-cabbage.webp",
+      "sha256": "0921957667cdf3e036d3e7b508017f21d99344922b72191dedff4423188e6710",
+      "bytes": 33734,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.lc90",
+      "householdName": "包心白菜",
+      "assetPath": "illustrations/catalog/vegetable-lc90.webp",
+      "sha256": "88a5adfff209c952a840f292045b001523e6400042743e8b90636f534b8cb7fb",
+      "bytes": 27944,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sz1",
+      "householdName": "半天筍",
+      "assetPath": "illustrations/catalog/vegetable-sz1.webp",
+      "sha256": "91e7f743c6f5b2a45f3ece4b01aa6b038fe9d03b653dfa04923fc2cd518cd8ba",
+      "bytes": 12634,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sz6",
+      "householdName": "半天花",
+      "assetPath": "illustrations/catalog/vegetable-sz6.webp",
+      "sha256": "9b27ba4c25aa9bb8b06897dbf5238621d3c89c0c91e9255752d03c11b7c5c18e",
+      "bytes": 46678,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.ft0",
+      "householdName": "南瓜",
+      "assetPath": "illustrations/catalog/vegetable-ft0.webp",
+      "sha256": "34486ca7a64fa01e8b32eb4acb425df088f8d4be6f098bd9eb8730dc72debd6c",
+      "bytes": 40460,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sg2",
+      "householdName": "大蒜",
+      "assetPath": "illustrations/catalog/vegetable-sg2.webp",
+      "sha256": "401d68fd0c51d4a3c9fa64268d106922016c71eb759f41633a51ed40bf354c8d",
+      "bytes": 21738,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.small-bok-choy",
+      "householdName": "小白菜",
+      "assetPath": "illustrations/catalog/vegetable-small-bok-choy.webp",
+      "sha256": "829a3f851bca4f4f6e0879beb5eb10b6e5f8b96c1eb34bc4bc1efef5db39c60e",
+      "bytes": 40050,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.lv1",
+      "householdName": "巴西利",
+      "assetPath": "illustrations/catalog/vegetable-lv1.webp",
+      "sha256": "f0850f3d02254a4d6b21c67b0b5b848a121a1c6e16d159604ae0a47b681a0dca",
+      "bytes": 45106,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.mg1",
+      "householdName": "巴西蘑菇",
+      "assetPath": "illustrations/catalog/vegetable-mg1.webp",
+      "sha256": "8d67381d93095ea50eb7ee494e3b3dc70b597bbe2d19722141f4e22ee1392ea1",
+      "bytes": 18936,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fh1",
+      "householdName": "扁蒲",
+      "assetPath": "illustrations/catalog/vegetable-fh1.webp",
+      "sha256": "f72803a2f17c8b162acb75d870c0afdaeb8af881d19e963eb3a5dae2f228a4c8",
+      "bytes": 23968,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fn1",
+      "householdName": "敏豆",
+      "assetPath": "illustrations/catalog/vegetable-fn1.webp",
+      "sha256": "04d86d93cab1218250fd974bf6679561300d858f27f73b38a477a818a3d8f086",
+      "bytes": 11334,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sz7",
+      "householdName": "晚香玉筍",
+      "assetPath": "illustrations/catalog/vegetable-sz7.webp",
+      "sha256": "af5f3d7cbacbc1cf3c0a6db6b1d7c00e58dfa6f6d4fe3f5d6df25c9936579d68",
+      "bytes": 13518,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.ol1",
+      "householdName": "朴菜",
+      "assetPath": "illustrations/catalog/vegetable-ol1.webp",
+      "sha256": "7c7e0c281e596d1b3fde5168ae5c3ce7e84586666dc2946f36048e995cddf630",
+      "bytes": 36228,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.mj1",
+      "householdName": "杏鮑菇",
+      "assetPath": "illustrations/catalog/vegetable-mj1.webp",
+      "sha256": "973031b05c80be620eb2d190f12003f5335287bc4f9f15ea4be6f1d24340676d",
+      "bytes": 16568,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.mn1",
+      "householdName": "柳松菇",
+      "assetPath": "illustrations/catalog/vegetable-mn1.webp",
+      "sha256": "cd580da08caa95dcc93e7bd1bfad555c18a956ec028c5153fe69bf40f1b1aca9",
+      "bytes": 23494,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.oh1",
+      "householdName": "桶筍",
+      "assetPath": "illustrations/catalog/vegetable-oh1.webp",
+      "sha256": "27d924b9315ec22b84bd9bbd97d1b16581ce3ec73a4faa23a952db5f568c1c7d",
+      "bytes": 21976,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.oc1",
+      "householdName": "榨菜",
+      "assetPath": "illustrations/catalog/vegetable-oc1.webp",
+      "sha256": "30e886c41a1172f6272fadce4ecb3f5e822e95e758a04f0e72019ef8b3d25a1e",
+      "bytes": 27604,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fa2",
+      "householdName": "樊花",
+      "assetPath": "illustrations/catalog/vegetable-fa2.webp",
+      "sha256": "613516f23094a1c2e8c9da4c0a0f3cf50c89ca1213fba6e4791b24ecb1b7a372",
+      "bytes": 42596,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fq1",
+      "householdName": "毛豆",
+      "assetPath": "illustrations/catalog/vegetable-fq1.webp",
+      "sha256": "4a50657ddca6516542b5845312c6c6cf3eff995ba7cf5f8f739a267b940154bf",
+      "bytes": 15642,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.ln1",
+      "householdName": "油菜",
+      "assetPath": "illustrations/catalog/vegetable-ln1.webp",
+      "sha256": "cb9576bcfe0b4b2280f720f0dcd8db0893b7bac8fec89af9c60364b21eecef85",
+      "bytes": 36128,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.ma0",
+      "householdName": "洋菇",
+      "assetPath": "illustrations/catalog/vegetable-ma0.webp",
+      "sha256": "dedb297ed90958305496a863090c7a924740c67199bf36db990e8a10a4fce8cf",
+      "bytes": 13808,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sd1",
+      "householdName": "洋蔥",
+      "assetPath": "illustrations/catalog/vegetable-sd1.webp",
+      "sha256": "bbd0aa7d39b84eb365fe17f2b44f6f1bbe113faf07a7a251ae9a127bd4735c6f",
+      "bytes": 23572,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fw2",
+      "householdName": "洛神花",
+      "assetPath": "illustrations/catalog/vegetable-fw2.webp",
+      "sha256": "6bef2bd5d779de885d4872178a5a3adc7947d48fee7cf7e9e66e9aafdcb4a4a6",
+      "bytes": 36804,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.lt2",
+      "householdName": "海菜",
+      "assetPath": "illustrations/catalog/vegetable-lt2.webp",
+      "sha256": "c66c372e98ecd42194e649c928765b9ddcb177497da556ab5ccdce7e6a5ab4e1",
+      "bytes": 32468,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.mc0",
+      "householdName": "濕木耳",
+      "assetPath": "illustrations/catalog/vegetable-mc0.webp",
+      "sha256": "87969e319dc95d66a4cc784f399b42a206b5831084623ace8032539b14940d96",
+      "bytes": 36826,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.md1",
+      "householdName": "濕香菇",
+      "assetPath": "illustrations/catalog/vegetable-md1.webp",
+      "sha256": "1b0b86af3594ae4f6cbb4273bbe31082fc57dfb613a85e15330f6eccdf326238",
+      "bytes": 33070,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.og1",
+      "householdName": "熟筍",
+      "assetPath": "illustrations/catalog/vegetable-og1.webp",
+      "sha256": "5ea05dcbda8bbf624b6ed33c2522d7b8fd17a2b7d51a5cb38f9ff2fd9ccdc729",
+      "bytes": 17166,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sm1",
+      "householdName": "牛蒡",
+      "assetPath": "illustrations/catalog/vegetable-sm1.webp",
+      "sha256": "67636c7290621f69c30804990ad7526bc9a367f424e6bc3f8b396734c26d450e",
+      "bytes": 12120,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fy0",
+      "householdName": "玉米",
+      "assetPath": "illustrations/catalog/vegetable-fy0.webp",
+      "sha256": "f73df200cb8c694f95d5afade69cdb9db0830acb2c5eca058fc7332e7be730dc",
+      "bytes": 22202,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.ml1",
+      "householdName": "珊瑚菇",
+      "assetPath": "illustrations/catalog/vegetable-ml1.webp",
+      "sha256": "089d738adc08b110ad8927e9a2d6a82523a9dd2c3eff6a1ae8ab2b55bac1c26c",
+      "bytes": 35462,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sw1",
+      "householdName": "大頭菜",
+      "assetPath": "illustrations/catalog/vegetable-sw1.webp",
+      "sha256": "018b819915f28f13eda9819f2498ab1674671a5253a2fce2eaf565df61897f32",
+      "bytes": 29776,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.so0",
+      "householdName": "地瓜",
+      "assetPath": "illustrations/catalog/vegetable-so0.webp",
+      "sha256": "073013cefb72ae94126623dbc4296f5ec149474d6178679b601f74154de34790",
+      "bytes": 23046,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.lo1",
+      "householdName": "地瓜葉",
+      "assetPath": "illustrations/catalog/vegetable-lo1.webp",
+      "sha256": "110e62e16565d7ba72c6c1f4ae35762ba67d68553e38f9d19fc6ff0cfe9a72aa",
+      "bytes": 28566,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.cabbage",
+      "householdName": "高麗菜",
+      "assetPath": "illustrations/catalog/vegetable-cabbage.webp",
+      "sha256": "76b50a9c2efad4aa2c289ee3f0c7e54c8f188f6a6c07175fda3bf0ff665710d4",
+      "bytes": 28058,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fk0",
+      "householdName": "甜椒",
+      "assetPath": "illustrations/catalog/vegetable-fk0.webp",
+      "sha256": "9fce6ad5958f2a37e4058a66d510c0d1e89bb1f4c6ff6c4ce26d28a3144bf3ab",
+      "bytes": 17284,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fj0",
+      "householdName": "番茄",
+      "assetPath": "illustrations/catalog/vegetable-fj0.webp",
+      "sha256": "b5072dc4f8de5fe8334f1a3a03ef6b6b8bbee2b8d4524da95f69f24ca6846ff7",
+      "bytes": 23008,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sz4",
+      "householdName": "百合",
+      "assetPath": "illustrations/catalog/vegetable-sz4.webp",
+      "sha256": "404c34e5146338117a78f55fa1120d4083d9728e6846b59bbb2470914c1df10c",
+      "bytes": 23046,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.le1",
+      "householdName": "皇宮菜",
+      "assetPath": "illustrations/catalog/vegetable-le1.webp",
+      "sha256": "260350701c3bd0f83febc4ed68bbefe8dee28b7374d45099c8efa472cd0c0ee5",
+      "bytes": 30230,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fu3",
+      "householdName": "石蓮花",
+      "assetPath": "illustrations/catalog/vegetable-fu3.webp",
+      "sha256": "cfe4077e6b62ccb70f25a8b89a1eb8fd9c30af711d37ecdca2bbe5432e32b048",
+      "bytes": 24486,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.mi1",
+      "householdName": "秀珍菇",
+      "assetPath": "illustrations/catalog/vegetable-mi1.webp",
+      "sha256": "71d7731daa0cf360054793acd263969ec6860ad7dfea3641ea37311f6b6f8e93",
+      "bytes": 22930,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sh1",
+      "householdName": "竹筍",
+      "assetPath": "illustrations/catalog/vegetable-sh1.webp",
+      "sha256": "c282c61f44c5522257c0760b512c887adcfb9dd8f6b186b8cbdfdbc786ec051f",
+      "bytes": 17436,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.oi3",
+      "householdName": "筍片",
+      "assetPath": "illustrations/catalog/vegetable-oi3.webp",
+      "sha256": "001c4235b1079ddad2f418d4b70be4d33c9e42ed169cfcc41303a93635158c4c",
+      "bytes": 17978,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.oi2",
+      "householdName": "筍絲",
+      "assetPath": "illustrations/catalog/vegetable-oi2.webp",
+      "sha256": "0e015cc190c2053c244d07f8c02a99193052b70c0ced574278e4eb20918d051d",
+      "bytes": 25164,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.oi4",
+      "householdName": "筍茸",
+      "assetPath": "illustrations/catalog/vegetable-oi4.webp",
+      "sha256": "713f31d56342e949c3d29506123823d4eaeef18b93bc588e3834f83cec84964b",
+      "bytes": 35656,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.lq1",
+      "householdName": "紅鳳菜",
+      "assetPath": "illustrations/catalog/vegetable-lq1.webp",
+      "sha256": "32b0acbb0532fa497400a1dfa85bb1925f7541eea225526ceba54a57c0ca04ac",
+      "bytes": 43636,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.ff0",
+      "householdName": "絲瓜",
+      "assetPath": "illustrations/catalog/vegetable-ff0.webp",
+      "sha256": "194c84f9d151bb48dc35d91741bcc374704e0bdf6107f666daa61e8f2fea2a1d",
+      "bytes": 16350,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.lp3",
+      "householdName": "羅勒",
+      "assetPath": "illustrations/catalog/vegetable-lp3.webp",
+      "sha256": "476a9382f251c04800d7a87bbdf63a03c07f24d0624f6114382eedfa148c01b4",
+      "bytes": 46064,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fc1",
+      "householdName": "胡瓜",
+      "assetPath": "illustrations/catalog/vegetable-fc1.webp",
+      "sha256": "f1a2cf5e33074538d37c28af1e6d2311f97eedf6364a9df06c7cad136eb7bcf8",
+      "bytes": 14978,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sb1",
+      "householdName": "胡蘿蔔",
+      "assetPath": "illustrations/catalog/vegetable-sb1.webp",
+      "sha256": "4b23cf496586f20264d3281a3dfa51ffbff83c88230c28a8d960d5924a1325b8",
+      "bytes": 28668,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sj1",
+      "householdName": "芋",
+      "assetPath": "illustrations/catalog/vegetable-sj1.webp",
+      "sha256": "b545197b5c796b22ee41ff6fb06cd9451bbaffea981acb541e008fbca85df7bb",
+      "bytes": 40528,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.lj1",
+      "householdName": "芥菜",
+      "assetPath": "illustrations/catalog/vegetable-lj1.webp",
+      "sha256": "77c7b837eba817a430fdbd0adeb489cab52a04cae901a84fa9f4bead50dbc455",
+      "bytes": 34730,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.lk2",
+      "householdName": "芥藍菜",
+      "assetPath": "illustrations/catalog/vegetable-lk2.webp",
+      "sha256": "4fb9e99723c00861e6503af91f6cfe3c17b64a69f3070013ea65804d5c55c0c6",
+      "bytes": 29516,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.lp1",
+      "householdName": "香菜",
+      "assetPath": "illustrations/catalog/vegetable-lp1.webp",
+      "sha256": "9e6d41c25b321fd2e2b332867c312afd24c8bf34210975264f9df03a06da766d",
+      "bytes": 55130,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fb0",
+      "householdName": "花椰菜",
+      "assetPath": "illustrations/catalog/vegetable-fb0.webp",
+      "sha256": "ad483cf37c8313ea6dce330229de12a65b9f75719322792b3e5e6d234d061648",
+      "bytes": 29834,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fd0",
+      "householdName": "花胡瓜",
+      "assetPath": "illustrations/catalog/vegetable-fd0.webp",
+      "sha256": "53b31a49f4b056e7ef6d17de1e8e0bac92222e07d79c1ebed26ebe797c80f500",
+      "bytes": 25598,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fx1",
+      "householdName": "花豆",
+      "assetPath": "illustrations/catalog/vegetable-fx1.webp",
+      "sha256": "d68cb990827a6f09a53c897d11f9c9f1a2807e906af161ca99ce0d846bac4833",
+      "bytes": 28580,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.lg2",
+      "householdName": "芹菜",
+      "assetPath": "illustrations/catalog/vegetable-lg2.webp",
+      "sha256": "85be761aa70ae20357e820246a338fa2ec65a5511f5745cd31348bf68a93cb39",
+      "bytes": 40162,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sx0",
+      "householdName": "其他芽菜",
+      "assetPath": "illustrations/catalog/vegetable-sx0.webp",
+      "sha256": "1d850e774f57d270bb8e11d2deb50707e818af931d736477770bd5043953a66b",
+      "bytes": 33848,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sx1",
+      "householdName": "綠豆芽",
+      "assetPath": "illustrations/catalog/vegetable-sx1.webp",
+      "sha256": "bcf6e62cc44adc255d7fcbc6a89384b0d15e76a0590fc72380dd5328c0bae681",
+      "bytes": 47986,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sx4",
+      "householdName": "苜蓿芽",
+      "assetPath": "illustrations/catalog/vegetable-sx4.webp",
+      "sha256": "6d6cea87ae9dff2728231e81c2c4a6b7f8ebb5102b08145aa3b01b7ccccc3a5b",
+      "bytes": 62288,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sx3",
+      "householdName": "豌豆芽",
+      "assetPath": "illustrations/catalog/vegetable-sx3.webp",
+      "sha256": "de209065bb669ac65d30b2d8730c49fb9086ea68f7c3db052162edf6a944a288",
+      "bytes": 64780,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sx2",
+      "householdName": "黃豆芽",
+      "assetPath": "illustrations/catalog/vegetable-sx2.webp",
+      "sha256": "5be748b3c4bd5e1ea4d3f80bc27bf5e1c0c5b484ad1b2ffa41cec7a541e23afe",
+      "bytes": 40708,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fg0",
+      "householdName": "苦瓜",
+      "assetPath": "illustrations/catalog/vegetable-fg0.webp",
+      "sha256": "c2e536fb18077788897732dcb039caf16ab5c8f3df9cd80f19bc51b098d189f8",
+      "bytes": 24518,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fi0",
+      "householdName": "茄子",
+      "assetPath": "illustrations/catalog/vegetable-fi0.webp",
+      "sha256": "10513b02cfafcf846c2c6d65b0a315ae7b69732506cafd7b756734d98c54562e",
+      "bytes": 13612,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sq1",
+      "householdName": "茭白筍",
+      "assetPath": "illustrations/catalog/vegetable-sq1.webp",
+      "sha256": "15a9db350cdd02e416982af77b4cfd9e29d8fdc1bb287506c916e6187b37fa35",
+      "bytes": 10576,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.ls1",
+      "householdName": "茴香",
+      "assetPath": "illustrations/catalog/vegetable-ls1.webp",
+      "sha256": "ce5114dcbfd2db5c066466eef078ec022201641501c8c609dd0770464d7a2a9c",
+      "bytes": 88506,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.ll1",
+      "householdName": "茼蒿",
+      "assetPath": "illustrations/catalog/vegetable-ll1.webp",
+      "sha256": "afda296d7ee6e6f94596030029adfa3d3dfd694583b4d7e48d2dbc12ff31c48e",
+      "bytes": 53638,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sz5",
+      "householdName": "草石蠶",
+      "assetPath": "illustrations/catalog/vegetable-sz5.webp",
+      "sha256": "e0af31ecb9f44d9d045c62b48f02eea2a9d924668906b2f8f4ae19d2d8d6f636",
+      "bytes": 25370,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.mb1",
+      "householdName": "草菇",
+      "assetPath": "illustrations/catalog/vegetable-mb1.webp",
+      "sha256": "5c876a15241ab3e9007d76fd5eb60eec2e6c260c275e98d9336de8fdb5b3b3f4",
+      "bytes": 26056,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sk1",
+      "householdName": "荸薺",
+      "assetPath": "illustrations/catalog/vegetable-sk1.webp",
+      "sha256": "ea81d4e488d1950761fb080711c15442a37f168f1987e8955eb970ebc9d64afa",
+      "bytes": 42078,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.lm1",
+      "householdName": "莧菜",
+      "assetPath": "illustrations/catalog/vegetable-lm1.webp",
+      "sha256": "26a79b688f41c7d8a6b60b3e420e5ba9c9825d903cb724c3c20b7e9adabcd01b",
+      "bytes": 43618,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fm1",
+      "householdName": "菜豆",
+      "assetPath": "illustrations/catalog/vegetable-fm1.webp",
+      "sha256": "9769faa5bb4589bbec87d614de41b5539cf67b6d0c3c51e7a9d946817f6191b9",
+      "bytes": 11128,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.lh1",
+      "householdName": "菠菜",
+      "assetPath": "illustrations/catalog/vegetable-lh1.webp",
+      "sha256": "b4616201048cd0f35678ace41675c84b2c51786c32ea9d5b99b6012f11ed5ef0",
+      "bytes": 41360,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sr1",
+      "householdName": "菱角",
+      "assetPath": "illustrations/catalog/vegetable-sr1.webp",
+      "sha256": "4f91290846e23b68d6211eee8c1e45610f4a2b9f5ffd578c5f11c1ce15dc6c30",
+      "bytes": 20328,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.lu1",
+      "householdName": "菾菜",
+      "assetPath": "illustrations/catalog/vegetable-lu1.webp",
+      "sha256": "38ce23266b816311dc1328a269551c313a07b7eac5cdc9c1cba2d5f703a9d888",
+      "bytes": 35100,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fp1",
+      "householdName": "萊豆",
+      "assetPath": "illustrations/catalog/vegetable-fp1.webp",
+      "sha256": "57d17d39fe74784f337e24b5a6b47b043b3ea1fc845c6e9ff19bf30a02f9fbd9",
+      "bytes": 15374,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.si1",
+      "householdName": "萵苣莖",
+      "assetPath": "illustrations/catalog/vegetable-si1.webp",
+      "sha256": "504a275b79f161e9c52f3a411be7bf6dbdfde8c1436345993918786ebd1043ca",
+      "bytes": 24742,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.li0",
+      "householdName": "萵苣菜",
+      "assetPath": "illustrations/catalog/vegetable-li0.webp",
+      "sha256": "a5f532679c6ac887cc57457b4e01820c8525b1df5fa1820590bc84ba50e21987",
+      "bytes": 41006,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fz1",
+      "householdName": "落花生",
+      "assetPath": "illustrations/catalog/vegetable-fz1.webp",
+      "sha256": "4479599bcbff28da4a05d3b2695dfb3e29fc32a2bd75cc57f17615f77e3542af",
+      "bytes": 32890,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sn1",
+      "householdName": "蓮藕",
+      "assetPath": "illustrations/catalog/vegetable-sn1.webp",
+      "sha256": "6ac8cb8a4dac2a358215d91ba50ffd89866ece6dc59399738f85121874cede73",
+      "bytes": 20558,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.st1",
+      "householdName": "蕎頭",
+      "assetPath": "illustrations/catalog/vegetable-st1.webp",
+      "sha256": "09262c17c46b0cd447cf7b4762d4792a5b41f996ff4170b2f069a8d0a6a5aafa",
+      "bytes": 19844,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.lx1",
+      "householdName": "蕨菜",
+      "assetPath": "illustrations/catalog/vegetable-lx1.webp",
+      "sha256": "5089ac49d107c4a311324b72ddeb2ac6506c0e24a4173c1c459d48d39bac9415",
+      "bytes": 41300,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.lf1",
+      "householdName": "空心菜",
+      "assetPath": "illustrations/catalog/vegetable-lf1.webp",
+      "sha256": "7f90b78db7cdd4e336ccafe0b253316b9af4e1c46dfd80ef209e3a20d7c92491",
+      "bytes": 48760,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sp0",
+      "householdName": "薑",
+      "assetPath": "illustrations/catalog/vegetable-sp0.webp",
+      "sha256": "37a2505152e003c06f681e79d6c0093cd9a8e269943da60ca2ab6a1626b731b8",
+      "bytes": 30306,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.su1",
+      "householdName": "山藥",
+      "assetPath": "illustrations/catalog/vegetable-su1.webp",
+      "sha256": "6e02606fa157e1a291f273209f61feeb5eda8d4d75b154a1121b9703b930f27d",
+      "bytes": 22106,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.lz2",
+      "householdName": "川七",
+      "assetPath": "illustrations/catalog/vegetable-lz2.webp",
+      "sha256": "c2f98407c3cad8bae2742be39f0e59e3fb272b88732b952ae4500a653ee78ba8",
+      "bytes": 65830,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sv1",
+      "householdName": "蘆筍",
+      "assetPath": "illustrations/catalog/vegetable-sv1.webp",
+      "sha256": "be60f09c6becd833c9d004eb0736cc6ca579db41782e6586389e63f8229a37b2",
+      "bytes": 9248,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sa0",
+      "householdName": "蘿蔔",
+      "assetPath": "illustrations/catalog/vegetable-sa0.webp",
+      "sha256": "832df13e5dc91116c21ef6b4a591dd808dcb15d46599f0da9ec55ec8f2d99194",
+      "bytes": 18984,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.od1",
+      "householdName": "蘿蔔乾",
+      "assetPath": "illustrations/catalog/vegetable-od1.webp",
+      "sha256": "2000c7b55cdcafea6796ba6738c5062fc57c64716b026e025c7e5deb7712999f",
+      "bytes": 30276,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fx2",
+      "householdName": "虎豆",
+      "assetPath": "illustrations/catalog/vegetable-fx2.webp",
+      "sha256": "3343953ef9aa6e2483062bc26ed1dae6439394b48ba84c4918831f1c3875f416",
+      "bytes": 17998,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.mf1",
+      "householdName": "蠔菇",
+      "assetPath": "illustrations/catalog/vegetable-mf1.webp",
+      "sha256": "7c58394a0df7ddfcb6bc3f58abacdb2050c0fb4adbe6662e012e95462ee78c97",
+      "bytes": 22538,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.ly1",
+      "householdName": "西洋菜",
+      "assetPath": "illustrations/catalog/vegetable-ly1.webp",
+      "sha256": "aa1e120e6adf866b3a3357947ff4d5f8dad7d2144c138c27932eda91f3e45f01",
+      "bytes": 55028,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sl1",
+      "householdName": "豆薯",
+      "assetPath": "illustrations/catalog/vegetable-sl1.webp",
+      "sha256": "2460f4061329cfc88f740ef537582e25d750d8f56e72c7cc4871980b06666775",
+      "bytes": 30318,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fl1",
+      "householdName": "豌豆",
+      "assetPath": "illustrations/catalog/vegetable-fl1.webp",
+      "sha256": "3f347948937d220f3ed024a09106fc6f97c2b74a45c7ef565d167c4ef9165a5c",
+      "bytes": 11878,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fs1",
+      "householdName": "越瓜",
+      "assetPath": "illustrations/catalog/vegetable-fs1.webp",
+      "sha256": "fc855010c22d3a4d2e8c6fc1cccf98a0beed8ee1db54dd2db41cac40b84f156e",
+      "bytes": 19806,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fv0",
+      "householdName": "辣椒",
+      "assetPath": "illustrations/catalog/vegetable-fv0.webp",
+      "sha256": "756af473566cbf36c18db16767be33e5a2fdebe6366264e629e628d384672604",
+      "bytes": 12014,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.oe1",
+      "householdName": "醃瓜",
+      "assetPath": "illustrations/catalog/vegetable-oe1.webp",
+      "sha256": "bcc26dacb08712b7e858c6c4b36abd686b9ab2e98bbb9d09dd4aee724c0315cc",
+      "bytes": 30216,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.me0",
+      "householdName": "金針菇",
+      "assetPath": "illustrations/catalog/vegetable-me0.webp",
+      "sha256": "84a53781089a6ea73f66576d0115264f390f25fb9157993e9a98d4941b5da806",
+      "bytes": 29630,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sz3",
+      "householdName": "金針筍",
+      "assetPath": "illustrations/catalog/vegetable-sz3.webp",
+      "sha256": "de0c70d4b2f1c3686a1da8a477c2b130b4bb4e07b44d7a9e71753081cf7943af",
+      "bytes": 36202,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fw1",
+      "householdName": "金針花",
+      "assetPath": "illustrations/catalog/vegetable-fw1.webp",
+      "sha256": "b6cbcd52dad947a80184259d2c3a073188c316032b8f6f63541f2e3cb45f21ee",
+      "bytes": 33648,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fu1",
+      "householdName": "佛手瓜",
+      "assetPath": "illustrations/catalog/vegetable-fu1.webp",
+      "sha256": "2cb000bbd382d6c3144f8941e31d493e4720926d8f689410ea1f1fa38927983f",
+      "bytes": 17178,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.ob1",
+      "householdName": "雪里紅",
+      "assetPath": "illustrations/catalog/vegetable-ob1.webp",
+      "sha256": "c952934701a2d7e790132b7d78464b562b9b25ecee069a1c69c8d61af07c5df2",
+      "bytes": 56902,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.qingjiang-bok-choy",
+      "householdName": "青江菜",
+      "assetPath": "illustrations/catalog/vegetable-qingjiang-bok-choy.webp",
+      "sha256": "95de40fa19d319d491ae3b1649166360558be9e5f107a135d477abf1a777f967",
+      "bytes": 33026,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fr1",
+      "householdName": "青花菜",
+      "assetPath": "illustrations/catalog/vegetable-fr1.webp",
+      "sha256": "21708ff232ebf4a5e2ce45d1a330e3ec64a68657460036c010136d2ffd7412ee",
+      "bytes": 50524,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.se1",
+      "householdName": "青蔥",
+      "assetPath": "illustrations/catalog/vegetable-se1.webp",
+      "sha256": "54bf947c2bfb400fb9c1b0f77572daf52384d11fbf52fa17f4e76ae1b6d60091",
+      "bytes": 18580,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sf1",
+      "householdName": "韭菜",
+      "assetPath": "illustrations/catalog/vegetable-sf1.webp",
+      "sha256": "e5271678e126068d6140ee674c7e679a238dfbad5e3ec7e772f155e87bbb3c69",
+      "bytes": 42966,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.ly6",
+      "householdName": "香椿",
+      "assetPath": "illustrations/catalog/vegetable-ly6.webp",
+      "sha256": "326b64e612593aded75f461c7b300a23a31160f7b68cd77dfb158098994286af",
+      "bytes": 56572,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sz8",
+      "householdName": "香茅",
+      "assetPath": "illustrations/catalog/vegetable-sz8.webp",
+      "sha256": "31663b2a537ead7a3419d47e1be602ba2b589218f5519d487b48f3c83a6d924f",
+      "bytes": 13350,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.sc1",
+      "householdName": "馬鈴薯",
+      "assetPath": "illustrations/catalog/vegetable-sc1.webp",
+      "sha256": "1ba7553218f2e52b95e0b7fe2dd3dad6e6ad4c2d7caa5f1debe4dfc644d83b35",
+      "bytes": 25310,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.mk0",
+      "householdName": "鴻喜菇",
+      "assetPath": "illustrations/catalog/vegetable-mk0.webp",
+      "sha256": "73c6e18e1987343b8c80b4c037d2501e5bc4fb129a4595ae38ff9d941fa86766",
+      "bytes": 26864,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fp3",
+      "householdName": "鵲豆",
+      "assetPath": "illustrations/catalog/vegetable-fp3.webp",
+      "sha256": "ea981263103777abbe11edeb14188b41eb7e60a7d43a5a486fa34795bcd7f32b",
+      "bytes": 13284,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.oa1",
+      "householdName": "鹹菜",
+      "assetPath": "illustrations/catalog/vegetable-oa1.webp",
+      "sha256": "847ebbd5ea101622c6e3233c807c5305c6d0bf60420b3cf8efff085d4af96a17",
+      "bytes": 40274,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.fa1",
+      "householdName": "黃秋葵",
+      "assetPath": "illustrations/catalog/vegetable-fa1.webp",
+      "sha256": "6d7ab31ee830b0a54fdf423b2fb035d143bc7e2596c9e93d4397d399ac5bbb28",
+      "bytes": 14228,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    },
+    {
+      "conceptId": "vegetable.moa.ly2",
+      "householdName": "黑甜仔菜",
+      "assetPath": "illustrations/catalog/vegetable-ly2.webp",
+      "sha256": "83be095bc643ddde9f6e42da451415bd92292f367bdc6e62f3ce3f7595c38070",
+      "bytes": 36514,
+      "width": 512,
+      "height": 512,
+      "format": "WEBP",
+      "transparentCorners": true,
+      "approval": {
+        "status": "APPROVED",
+        "reviewedAt": "2026-07-27",
+        "reviewedBy": "project-owner",
+        "scope": "EXACT_SHA256"
+      }
+    }
+  ]
+}

@@ -16,6 +16,7 @@ import tw.taipei.veges.data.network.WholesaleValidation
 import tw.taipei.veges.data.network.classifySourceDay
 import tw.taipei.veges.data.network.validateWholesale
 import tw.taipei.veges.domain.MarketBasis
+import tw.taipei.veges.domain.PriceRefreshStage
 import tw.taipei.veges.domain.SourceDayState
 import tw.taipei.veges.domain.SourceKind
 
@@ -35,8 +36,31 @@ class WholesaleSyncCoordinator @Inject constructor(
     private val database: VegesDatabase,
     private val clock: Clock,
 ) {
-    suspend fun synchronizeConceptHistory(conceptId: String): SyncResult =
-        synchronize(requestedConceptId = conceptId)
+    suspend fun synchronizeLatest(
+        onProgress: (PriceRefreshStage, Float) -> Unit = { _, _ -> },
+    ): SyncResult = synchronize(
+        fetchLatest = true,
+        includeCatalogHistory = false,
+        onProgress = onProgress,
+    )
+
+    suspend fun synchronizeCatalogHistory(
+        onProgress: (PriceRefreshStage, Float) -> Unit = { _, _ -> },
+    ): SyncResult = synchronize(
+        fetchLatest = false,
+        includeCatalogHistory = true,
+        onProgress = onProgress,
+    )
+
+    suspend fun synchronizeConceptHistory(
+        conceptId: String,
+        onProgress: (PriceRefreshStage, Float) -> Unit = { _, _ -> },
+    ): SyncResult = synchronize(
+        requestedConceptId = conceptId,
+        fetchLatest = false,
+        includeCatalogHistory = false,
+        onProgress = onProgress,
+    )
 
     suspend fun synchronize(
         requestedFrom: LocalDate? = null,
@@ -44,11 +68,21 @@ class WholesaleSyncCoordinator @Inject constructor(
         requestedConceptId: String? = null,
         etag: String? = null,
         lastModified: String? = null,
+        fetchLatest: Boolean = true,
+        includeCatalogHistory: Boolean = true,
+        onProgress: (PriceRefreshStage, Float) -> Unit = { _, _ -> },
     ): SyncResult {
         val runId = UUID.randomUUID().toString()
         val startedAt = Instant.now(clock)
         return try {
-            val snapshot = client.fetch(etag, lastModified)
+            val snapshot = if (fetchLatest) {
+                onProgress(PriceRefreshStage.LATEST_PRICES, 0.12f)
+                client.fetch(etag, lastModified).also {
+                    onProgress(PriceRefreshStage.LATEST_PRICES, 0.80f)
+                }
+            } else {
+                null
+            }
             val today = LocalDate.now(clock)
             val allPublishedConcepts = database.taxonomyDao().publishedConceptsWithDetails()
             val allowedCodes = allPublishedConcepts
@@ -68,18 +102,7 @@ class WholesaleSyncCoordinator @Inject constructor(
             val earliestRequestedObservation = requestedCodes
                 .takeIf(List<String>::isNotEmpty)
                 ?.let { database.sourceDao().earliestValidWholesaleObservationDate(it) }
-            val bootstrapFrom = today.minusDays(CATALOG_BOOTSTRAP_DAYS - 1L)
-            val expectedVegetableCodes = database.taxonomyDao().publishedVegetableCommodityCodeCount()
-            val recentVegetableCodes = database.sourceDao()
-                .recentObservedPublishedVegetableCodeCount(bootstrapFrom)
-            val recentVegetableTradingDays = database.sourceDao()
-                .recentPublishedVegetableTradingDayCount(bootstrapFrom)
-            val needsCatalogBootstrap = requestedConcept == null &&
-                needsCatalogBootstrap(
-                    expectedVegetableCodes = expectedVegetableCodes,
-                    recentVegetableCodes = recentVegetableCodes,
-                    recentTradingDays = recentVegetableTradingDays,
-                )
+            val bootstrapFrom = today.minusDays(CATALOG_HISTORY_DAYS - 1L)
             val backfillFrom = requestedFrom ?: when {
                 requestedConcept != null -> today.minusDays(HISTORY_DAYS - 1L)
                 else -> bootstrapFrom
@@ -92,6 +115,31 @@ class WholesaleSyncCoordinator @Inject constructor(
                             backfillFrom.plusDays(BACKFILL_BOUNDARY_TOLERANCE_DAYS),
                         )
                     )
+            val catalogHistoryQueries = if (includeCatalogHistory && requestedConcept == null) {
+                listOf(
+                    MarketBasis.TAIPEI_FIRST,
+                    MarketBasis.TAIPEI_SECOND,
+                ).flatMap { market ->
+                    val completedDates = database.sourceDao().completedWholesaleSourceDates(
+                        market = market,
+                        from = backfillFrom,
+                        to = backfillTo,
+                    )
+                    missingDateRanges(
+                        from = backfillFrom,
+                        to = backfillTo,
+                        completedDates = completedDates,
+                    ).map { range ->
+                        MoaWholesaleHistoryQuery(
+                            from = range.from,
+                            to = range.to,
+                            market = market,
+                        )
+                    }
+                }
+            } else {
+                emptyList()
+            }
             val historyQueries = when {
                 needsRequestedHistory -> requestedConcept!!.variants
                     .distinctBy { Triple(it.commodityCode, it.officialName, it.market) }
@@ -104,22 +152,27 @@ class WholesaleSyncCoordinator @Inject constructor(
                         )
                     }
 
-                needsCatalogBootstrap -> listOf(
-                    MarketBasis.TAIPEI_FIRST,
-                    MarketBasis.TAIPEI_SECOND,
-                ).map { market ->
-                    MoaWholesaleHistoryQuery(
-                        from = bootstrapFrom,
-                        to = backfillTo,
-                        market = market,
-                    )
-                }
+                catalogHistoryQueries.isNotEmpty() -> catalogHistoryQueries
 
                 else -> emptyList()
             }
-            val historySnapshots = historyQueries.map { client.fetchHistory(it) }
+            if (snapshot == null && historyQueries.isEmpty()) {
+                return SyncResult.Published(runId, 0, 0, 0)
+            }
+            val historySnapshots = historyQueries.mapIndexed { index, query ->
+                onProgress(
+                    PriceRefreshStage.HISTORY,
+                    0.10f + 0.70f * index / historyQueries.size.coerceAtLeast(1),
+                )
+                client.fetchHistory(query).also {
+                    onProgress(
+                        PriceRefreshStage.HISTORY,
+                        0.10f + 0.70f * (index + 1) / historyQueries.size.coerceAtLeast(1),
+                    )
+                }
+            }
             val historyRecords = historySnapshots.flatMap { it.records }
-            if (snapshot.notModified && historyRecords.isEmpty()) {
+            if (snapshot?.notModified == true && historyRecords.isEmpty()) {
                 val run = SyncRunEntity(
                     runId = runId,
                     sourceKind = SourceKind.MOA_WHOLESALE,
@@ -135,9 +188,9 @@ class WholesaleSyncCoordinator @Inject constructor(
                 database.sourceDao().replaceRun(run)
                 return SyncResult.Published(runId, 0, 0, 0)
             }
-            val retrievedAt = listOf(snapshot.retrievedAt) +
+            val retrievedAt = listOfNotNull(snapshot?.retrievedAt) +
                 historySnapshots.map { it.retrievedAt }
-            val records = (snapshot.records + historyRecords)
+            val records = (snapshot?.records.orEmpty() + historyRecords)
                 .asSequence()
                 .filter { record ->
                     record.cropCode.equals("rest", ignoreCase = true) ||
@@ -145,7 +198,7 @@ class WholesaleSyncCoordinator @Inject constructor(
                 }
                 .distinctBy { "${it.transactionDate}:${it.marketCode}:${it.cropCode}" }
                 .toList()
-            val effectiveRetrievedAt = retrievedAt.maxOrNull() ?: snapshot.retrievedAt
+            val effectiveRetrievedAt = retrievedAt.maxOrNull() ?: startedAt
             val validated = records.map { validateWholesale(it, effectiveRetrievedAt) }
             val invalid = validated.filterIsInstance<WholesaleValidation.Invalid>()
             if (invalid.isNotEmpty()) {
@@ -228,6 +281,7 @@ class WholesaleSyncCoordinator @Inject constructor(
                 )
             }
             val dayStates = validDayStates + closureDayStates
+            onProgress(PriceRefreshStage.SAVING, 0.90f)
             val run = SyncRunEntity(
                 runId = runId,
                 sourceKind = SourceKind.MOA_WHOLESALE,
@@ -236,12 +290,13 @@ class WholesaleSyncCoordinator @Inject constructor(
                 status = SourceDayState.VALID,
                 requestedFrom = backfillFrom.takeIf { historyQueries.isNotEmpty() },
                 requestedTo = backfillTo.takeIf { historyQueries.isNotEmpty() },
-                pagesFetched = (if (snapshot.notModified) 0 else 1) +
+                pagesFetched = (if (snapshot == null || snapshot.notModified) 0 else 1) +
                     historySnapshots.sumOf { it.pagesFetched },
                 recordsAccepted = observations.size,
                 diagnostic = null,
             )
             database.sourceDao().publishImport(run, observations, dayStates)
+            onProgress(PriceRefreshStage.SAVING, 0.98f)
             SyncResult.Published(runId, observations.size, 0, dayStates.size)
         } catch (cancellation: CancellationException) {
             throw cancellation
@@ -280,21 +335,41 @@ class WholesaleSyncCoordinator @Inject constructor(
 
     private companion object {
         const val HISTORY_DAYS = 365
-        const val CATALOG_BOOTSTRAP_DAYS = 60L
-        const val MIN_CATALOG_TRADING_DAYS = 31
+        const val CATALOG_HISTORY_DAYS = 30L
         const val BACKFILL_BOUNDARY_TOLERANCE_DAYS = 14L
-        const val MIN_CATALOG_COVERAGE_RATIO = 0.8
     }
 }
 
-internal fun needsCatalogBootstrap(
-    expectedVegetableCodes: Int,
-    recentVegetableCodes: Int,
-    recentTradingDays: Int,
-): Boolean {
-    if (expectedVegetableCodes <= 0) return false
-    val coverage = recentVegetableCodes.toDouble() / expectedVegetableCodes
-    return coverage < 0.8 || recentTradingDays < 31
+internal data class SyncDateRange(
+    val from: LocalDate,
+    val to: LocalDate,
+)
+
+internal fun missingDateRanges(
+    from: LocalDate,
+    to: LocalDate,
+    completedDates: Collection<LocalDate>,
+): List<SyncDateRange> {
+    require(from <= to) { "History start must not be after end" }
+    val completed = completedDates.asSequence()
+        .filter { !it.isBefore(from) && !it.isAfter(to) }
+        .toHashSet()
+    val ranges = mutableListOf<SyncDateRange>()
+    var missingFrom: LocalDate? = null
+    var date = from
+    while (!date.isAfter(to)) {
+        if (date !in completed) {
+            if (missingFrom == null) missingFrom = date
+        } else if (missingFrom != null) {
+            ranges += SyncDateRange(missingFrom, date.minusDays(1))
+            missingFrom = null
+        }
+        date = date.plusDays(1)
+    }
+    if (missingFrom != null) {
+        ranges += SyncDateRange(missingFrom, to)
+    }
+    return ranges
 }
 
 private fun tw.taipei.veges.domain.SourceObservation.toEntity(runId: String): SourceObservationEntity {

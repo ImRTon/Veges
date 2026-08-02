@@ -1,7 +1,9 @@
 package tw.taipei.veges.catalog
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.text.Normalizer
 import javax.inject.Inject
@@ -29,21 +31,36 @@ data class CatalogUiState(
 @HiltViewModel
 class CatalogViewModel @Inject constructor(
     private val repository: ProduceRepository,
+    private val orderStore: CatalogOrderStore,
 ) : ViewModel() {
     private val query = MutableStateFlow("")
     private val category = MutableStateFlow(ProduceCategory.VEGETABLE)
     private val dismissedAmbiguity = MutableStateFlow<String?>(null)
+    private val orderByCategory = MutableStateFlow(
+        ProduceCategory.entries.associateWith(orderStore::load),
+    )
 
     val state: StateFlow<CatalogUiState> =
-        combine(query, category, dismissedAmbiguity) { text, selectedCategory, dismissed ->
-            SearchRequest(text, selectedCategory, dismissed)
+        combine(query, category, dismissedAmbiguity, orderByCategory) {
+                text,
+                selectedCategory,
+                dismissed,
+                orders,
+            ->
+            SearchRequest(
+                query = text,
+                category = selectedCategory,
+                dismissedAmbiguity = dismissed,
+                orderedConceptIds = orders[selectedCategory].orEmpty(),
+            )
         }.flatMapLatest { request ->
             repository.observeMarket(request.category).map { market ->
                 val normalizedQuery = normalize(request.query)
+                val orderedMarket = market.orderedByConceptIds(request.orderedConceptIds)
                 val results = if (normalizedQuery.isBlank()) {
-                    market
+                    orderedMarket
                 } else {
-                    market.filter { it.concept.matches(normalizedQuery) }
+                    orderedMarket.filter { it.concept.matches(normalizedQuery) }
                 }
                 val exactMatches = if (normalizedQuery.isBlank()) {
                     emptyList()
@@ -82,11 +99,86 @@ class CatalogViewModel @Inject constructor(
         dismissedAmbiguity.value = normalize(query.value)
     }
 
+    fun moveItem(draggedConceptId: String, targetConceptId: String) {
+        if (query.value.isNotBlank() || draggedConceptId == targetConceptId) return
+        val currentCategory = category.value
+        val currentIds = state.value.results
+            .map { it.concept.id.value }
+            .orderedBySavedIds(orderByCategory.value[currentCategory].orEmpty())
+        val reorderedIds = currentIds
+            .move(draggedConceptId, targetConceptId)
+        if (reorderedIds == null) return
+
+        orderByCategory.value = orderByCategory.value + (currentCategory to reorderedIds)
+        orderStore.save(currentCategory, reorderedIds)
+    }
+
     private data class SearchRequest(
         val query: String,
         val category: ProduceCategory,
         val dismissedAmbiguity: String?,
+        val orderedConceptIds: List<String>,
     )
+}
+
+class CatalogOrderStore @Inject constructor(
+    @ApplicationContext context: Context,
+) {
+    private val preferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
+
+    fun load(category: ProduceCategory): List<String> =
+        preferences.getString(category.preferenceKey(), null)
+            ?.lineSequence()
+            ?.filter(String::isNotBlank)
+            ?.toList()
+            .orEmpty()
+
+    fun save(category: ProduceCategory, conceptIds: List<String>) {
+        preferences.edit()
+            .putString(category.preferenceKey(), conceptIds.joinToString("\n"))
+            .apply()
+    }
+
+    private fun ProduceCategory.preferenceKey(): String = "order-${name.lowercase()}"
+
+    private companion object {
+        const val PREFERENCES_NAME = "catalog-order"
+    }
+}
+
+internal fun List<MarketItem>.orderedByConceptIds(conceptIds: List<String>): List<MarketItem> {
+    if (conceptIds.isEmpty()) return this
+    val order = conceptIds.withIndex().associate { (index, id) -> id to index }
+    return withIndex()
+        .sortedWith(
+            compareBy<IndexedValue<MarketItem>>(
+                { order[it.value.concept.id.value] ?: Int.MAX_VALUE },
+                IndexedValue<MarketItem>::index,
+            ),
+        )
+        .map(IndexedValue<MarketItem>::value)
+}
+
+internal fun List<String>.move(draggedId: String, targetId: String): List<String>? {
+    val fromIndex = indexOf(draggedId)
+    val targetIndex = indexOf(targetId)
+    if (fromIndex == -1 || targetIndex == -1 || fromIndex == targetIndex) return null
+    return toMutableList().apply {
+        add(targetIndex, removeAt(fromIndex))
+    }
+}
+
+private fun List<String>.orderedBySavedIds(savedIds: List<String>): List<String> {
+    if (savedIds.isEmpty()) return this
+    val order = savedIds.withIndex().associate { (index, id) -> id to index }
+    return withIndex()
+        .sortedWith(
+            compareBy<IndexedValue<String>>(
+                { order[it.value] ?: Int.MAX_VALUE },
+                IndexedValue<String>::index,
+            ),
+        )
+        .map(IndexedValue<String>::value)
 }
 
 private fun ProduceConcept.hasExactIdentity(normalizedQuery: String): Boolean =

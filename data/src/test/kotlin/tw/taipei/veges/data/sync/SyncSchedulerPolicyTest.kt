@@ -7,7 +7,24 @@ import org.junit.Test
 class SyncSchedulerPolicyTest {
     @Test
     fun firstForegroundEntryRequestsCatchUp() {
-        assertTrue(shouldEnqueueForegroundCatchUp(lastRequestedAtMillis = 0L, nowMillis = 1L))
+        assertTrue(
+            shouldEnqueueForegroundCatchUp(
+                taxonomyReady = true,
+                lastRequestedAtMillis = 0L,
+                nowMillis = 1L,
+            ),
+        )
+    }
+
+    @Test
+    fun firstForegroundEntryWaitsForTaxonomyImport() {
+        assertFalse(
+            shouldEnqueueForegroundCatchUp(
+                taxonomyReady = false,
+                lastRequestedAtMillis = 0L,
+                nowMillis = 1L,
+            ),
+        )
     }
 
     @Test
@@ -16,6 +33,7 @@ class SyncSchedulerPolicyTest {
 
         assertFalse(
             shouldEnqueueForegroundCatchUp(
+                taxonomyReady = true,
                 lastRequestedAtMillis = lastRequestedAt,
                 nowMillis = lastRequestedAt + MIN_FOREGROUND_CATCH_UP_INTERVAL_MILLIS - 1L,
             ),
@@ -28,6 +46,7 @@ class SyncSchedulerPolicyTest {
 
         assertTrue(
             shouldEnqueueForegroundCatchUp(
+                taxonomyReady = true,
                 lastRequestedAtMillis = lastRequestedAt,
                 nowMillis = lastRequestedAt + MIN_FOREGROUND_CATCH_UP_INTERVAL_MILLIS,
             ),
@@ -38,6 +57,7 @@ class SyncSchedulerPolicyTest {
     fun clockRollbackDoesNotSuppressCatchUpIndefinitely() {
         assertTrue(
             shouldEnqueueForegroundCatchUp(
+                taxonomyReady = true,
                 lastRequestedAtMillis = 20_000L,
                 nowMillis = 10_000L,
             ),

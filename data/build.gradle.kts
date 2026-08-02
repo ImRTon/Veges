@@ -1,4 +1,17 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.util.Properties
+
+val localProperties = Properties().apply {
+    rootProject.file("local.properties")
+        .takeIf(File::isFile)
+        ?.inputStream()
+        ?.use { load(it) }
+}
+val cwaApiKey = providers.gradleProperty("CWA_API_KEY").orNull
+    ?: localProperties.getProperty("CWA_API_KEY").orEmpty()
+val escapedCwaApiKey = cwaApiKey
+    .replace("\\", "\\\\")
+    .replace("\"", "\\\"")
 
 plugins {
     alias(libs.plugins.android.library)
@@ -16,7 +29,10 @@ android {
         minSdk = 26
         consumerProguardFiles("consumer-rules.pro")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "CWA_API_KEY", "\"$escapedCwaApiKey\"")
     }
+
+    buildFeatures { buildConfig = true }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

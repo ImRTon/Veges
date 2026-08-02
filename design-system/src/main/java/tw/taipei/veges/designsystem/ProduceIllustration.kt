@@ -19,7 +19,6 @@ import androidx.compose.ui.platform.LocalContext
 @Composable
 fun ProduceIllustration(
     assetPath: String?,
-    householdName: String,
     modifier: Modifier = Modifier,
     contentScale: ContentScale = ContentScale.Fit,
 ) {
@@ -34,7 +33,7 @@ fun ProduceIllustration(
     if (bitmap != null) {
         Image(
             bitmap = bitmap,
-            contentDescription = "$householdName，AI 生成示意圖，非實物照片",
+            contentDescription = null,
             modifier = modifier,
             contentScale = contentScale,
         )

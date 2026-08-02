@@ -5,6 +5,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import tw.taipei.veges.data.sync.SyncWorker
 import tw.taipei.veges.data.sync.SyncWorkerDelegate
 import tw.taipei.veges.data.sync.WholesaleSyncCoordinator
@@ -26,11 +28,22 @@ class SyncWorkerDelegateImpl @javax.inject.Inject constructor(
     private val statusRepository: tw.taipei.veges.data.sync.SyncStatusRepository,
     private val historyRetention: tw.taipei.veges.data.sync.HistoryRetention,
 ) : SyncWorkerDelegate {
-    override suspend fun run(requestedConceptId: String?): tw.taipei.veges.data.sync.SyncResult {
-        val result = if (requestedConceptId == null) {
-            coordinator.synchronize()
-        } else {
-            coordinator.synchronizeConceptHistory(requestedConceptId)
+    override suspend fun run(
+        requestedConceptId: String?,
+        catalogHistory: Boolean,
+    ): tw.taipei.veges.data.sync.SyncResult = syncMutex.withLock {
+        statusRepository.recordStarted()
+        val result = when {
+            requestedConceptId != null -> coordinator.synchronizeConceptHistory(
+                requestedConceptId,
+                onProgress = statusRepository::recordProgress,
+            )
+            catalogHistory -> coordinator.synchronizeCatalogHistory(
+                onProgress = statusRepository::recordProgress,
+            )
+            else -> coordinator.synchronizeLatest(
+                onProgress = statusRepository::recordProgress,
+            )
         }
         when (result) {
             is tw.taipei.veges.data.sync.SyncResult.Published -> {
@@ -39,6 +52,10 @@ class SyncWorkerDelegateImpl @javax.inject.Inject constructor(
             }
             is tw.taipei.veges.data.sync.SyncResult.Failed -> statusRepository.recordFailure()
         }
-        return result
+        result
+    }
+
+    private companion object {
+        val syncMutex = Mutex()
     }
 }

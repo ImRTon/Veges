@@ -11,8 +11,10 @@ import tw.taipei.veges.data.repository.RoomHomeRepository
 import tw.taipei.veges.data.repository.RoomDetailRepository
 import tw.taipei.veges.domain.DetailRepository
 import tw.taipei.veges.domain.HomeRepository
+import tw.taipei.veges.domain.MarketShockRepository
 import tw.taipei.veges.domain.ProduceRepository
 import tw.taipei.veges.domain.TrackingRepository
+import tw.taipei.veges.data.repository.CwaMarketShockRepository
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -31,4 +33,9 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindDetailRepository(repository: RoomDetailRepository): DetailRepository
+
+    @Binds
+    abstract fun bindMarketShockRepository(
+        repository: CwaMarketShockRepository,
+    ): MarketShockRepository
 }

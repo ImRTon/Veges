@@ -33,12 +33,12 @@ class VegesApplication : Application(), Configuration.Provider {
 
     override fun onCreate() {
         super.onCreate()
-        syncScheduler.ensurePeriodicRefresh()
         applicationScope.launch {
             runCatching {
+                syncScheduler.prepareWorkQueue()
                 taxonomyBundleImporter.importAsset(this@VegesApplication)
             }.onSuccess {
-                syncScheduler.requestManualRefresh()
+                syncScheduler.markTaxonomyReadyAndRequestCatchUp()
             }.onFailure { failure ->
                 Log.e(
                     "VegesBootstrap",
