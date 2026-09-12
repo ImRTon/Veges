@@ -216,6 +216,8 @@ abstract class SourceDao {
           AND source_observations.priceUnit = 'NTD_PER_KILOGRAM'
           AND source_observations.averagePrice IS NOT NULL
           AND source_observations.volume IS NOT NULL
+          AND official_variants.conceptId IS NOT NULL
+          AND source_observations.observedOn IS NOT NULL
           AND source_observations.averagePrice > 0
           AND source_observations.volume > 0
           AND taxonomy_concepts.published = 1

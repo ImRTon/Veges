@@ -35,6 +35,7 @@ class SyncScheduler @Inject constructor(
             val migrationEditor = preferences.edit()
                 .putInt(SYNC_QUEUE_VERSION, CURRENT_SYNC_QUEUE_VERSION)
                 .remove(LAST_FOREGROUND_REQUEST_AT)
+                .remove(LAST_CATALOG_HISTORY_REQUEST_AT)
             preferences.all.keys
                 .filter { it.startsWith(LAST_HISTORY_REQUEST_PREFIX) }
                 .forEach(migrationEditor::remove)
@@ -75,7 +76,7 @@ class SyncScheduler @Inject constructor(
 
     fun requestManualRefresh() {
         if (!preferences.getBoolean(TAXONOMY_READY, false)) return
-        enqueueImmediateRefresh()
+        enqueueImmediateRefresh(existingWorkPolicy = MANUAL_REFRESH_WORK_POLICY)
     }
 
     override fun requestOneYearHistory(conceptId: ProduceConceptId) {
@@ -90,15 +91,22 @@ class SyncScheduler @Inject constructor(
         )
     }
 
-    private fun enqueueImmediateRefresh() {
+    private fun enqueueImmediateRefresh(
+        existingWorkPolicy: ExistingWorkPolicy = ExistingWorkPolicy.APPEND_OR_REPLACE,
+    ) {
         enqueueOneTimeRefresh(
             requestedConceptId = null,
             catalogHistory = false,
+            existingWorkPolicy = existingWorkPolicy,
         )
     }
 
     fun requestCatalogHistoryBackfill() {
         if (!preferences.getBoolean(TAXONOMY_READY, false)) return
+        val nowMillis = System.currentTimeMillis()
+        val lastRequestedAtMillis = preferences.getLong(LAST_CATALOG_HISTORY_REQUEST_AT, 0L)
+        if (!shouldEnqueueCatalogHistoryBackfill(lastRequestedAtMillis, nowMillis)) return
+        if (!preferences.edit().putLong(LAST_CATALOG_HISTORY_REQUEST_AT, nowMillis).commit()) return
         enqueueOneTimeRefresh(
             requestedConceptId = null,
             catalogHistory = true,
@@ -108,6 +116,7 @@ class SyncScheduler @Inject constructor(
     private fun enqueueOneTimeRefresh(
         requestedConceptId: String?,
         catalogHistory: Boolean,
+        existingWorkPolicy: ExistingWorkPolicy = ExistingWorkPolicy.APPEND_OR_REPLACE,
     ) {
         val request = OneTimeWorkRequestBuilder<RefreshPipelineWorker>()
             .apply {
@@ -125,7 +134,7 @@ class SyncScheduler @Inject constructor(
             .build()
         workManager.enqueueUniqueWork(
             ONE_TIME_SYNC_QUEUE,
-            ExistingWorkPolicy.APPEND_OR_REPLACE,
+            existingWorkPolicy,
             request,
         )
     }
@@ -140,8 +149,9 @@ class SyncScheduler @Inject constructor(
         const val ONE_TIME_SYNC_QUEUE = "veges.one-time-sync"
         const val SCHEDULER_PREFERENCES = "veges.sync-scheduler"
         const val SYNC_QUEUE_VERSION = "sync-queue-version"
-        const val CURRENT_SYNC_QUEUE_VERSION = 1
+        const val CURRENT_SYNC_QUEUE_VERSION = 2
         const val LAST_FOREGROUND_REQUEST_AT = "last-foreground-request-at"
+        const val LAST_CATALOG_HISTORY_REQUEST_AT = "last-catalog-history-request-at"
         const val TAXONOMY_READY = "taxonomy-ready"
         const val LAST_HISTORY_REQUEST_PREFIX = "last-history-request-at:"
         val networkConstraints = Constraints.Builder()
@@ -152,6 +162,8 @@ class SyncScheduler @Inject constructor(
 
 internal val MIN_FOREGROUND_CATCH_UP_INTERVAL_MILLIS: Long = TimeUnit.MINUTES.toMillis(15)
 internal val MIN_HISTORY_REFRESH_INTERVAL_MILLIS: Long = TimeUnit.HOURS.toMillis(24)
+internal val MIN_CATALOG_HISTORY_BACKFILL_INTERVAL_MILLIS: Long = TimeUnit.HOURS.toMillis(24)
+internal val MANUAL_REFRESH_WORK_POLICY: ExistingWorkPolicy = ExistingWorkPolicy.KEEP
 internal const val REQUESTED_CONCEPT_ID_KEY = "requested-concept-id"
 internal const val REQUEST_CATALOG_HISTORY_KEY = "request-catalog-history"
 
@@ -173,4 +185,13 @@ internal fun shouldEnqueueHistoryRefresh(
     if (lastRequestedAtMillis <= 0L) return true
     val elapsed = nowMillis - lastRequestedAtMillis
     return elapsed < 0L || elapsed >= MIN_HISTORY_REFRESH_INTERVAL_MILLIS
+}
+
+internal fun shouldEnqueueCatalogHistoryBackfill(
+    lastRequestedAtMillis: Long,
+    nowMillis: Long,
+): Boolean {
+    if (lastRequestedAtMillis <= 0L) return true
+    val elapsed = nowMillis - lastRequestedAtMillis
+    return elapsed < 0L || elapsed >= MIN_CATALOG_HISTORY_BACKFILL_INTERVAL_MILLIS
 }

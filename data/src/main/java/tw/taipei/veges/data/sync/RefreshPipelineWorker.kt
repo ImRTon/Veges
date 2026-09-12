@@ -55,9 +55,11 @@ class RefreshPipelineWorker(
             if (syncResult is SyncResult.Failed) return retryOrFail()
 
             val now = dependencies.clock().instant()
-            val estimates = dependencies.estimateRefreshCoordinator().calculateNewEstimates()
-            estimates.forEach { estimate ->
-                dependencies.alertEvaluationCoordinator().evaluate(estimate, now)
+            if (syncResult.hasPublishedSourceChanges()) {
+                val estimates = dependencies.estimateRefreshCoordinator().calculateNewEstimates()
+                estimates.forEach { estimate ->
+                    dependencies.alertEvaluationCoordinator().evaluate(estimate, now)
+                }
             }
             dependencies.notificationDeliveryCoordinator().deliverPending(now)
             if (requestedConceptId == null && !catalogHistory) {
@@ -133,3 +135,6 @@ class RefreshPipelineWorker(
 fun interface SyncWorkerDelegate {
     suspend fun run(requestedConceptId: String?, catalogHistory: Boolean): SyncResult
 }
+
+internal fun SyncResult.hasPublishedSourceChanges(): Boolean =
+    this is SyncResult.Published && (accepted > 0 || sourceDays > 0)

@@ -31,8 +31,8 @@ data class PendingNotificationDelivery(
 )
 
 data class ConceptMarketObservation(
-    val conceptId: String,
-    val observedOn: LocalDate,
-    val averagePrice: BigDecimal,
-    val volume: BigDecimal,
+    val conceptId: String?,
+    val observedOn: LocalDate?,
+    val averagePrice: BigDecimal?,
+    val volume: BigDecimal?,
 )

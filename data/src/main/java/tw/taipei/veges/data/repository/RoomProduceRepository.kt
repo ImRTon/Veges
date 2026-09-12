@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
+import tw.taipei.veges.data.local.ConceptMarketObservation
 import tw.taipei.veges.data.local.VegesDatabase
 import tw.taipei.veges.data.local.EstimateEntity
 import tw.taipei.veges.domain.MarketItem
@@ -39,7 +40,9 @@ class RoomProduceRepository @Inject constructor(
         database.sourceDao().observeConceptMarketHistory(category),
     ) { concepts, estimates, observations ->
         val historyByConcept = estimates.groupBy(EstimateEntity::conceptId)
-        val wholesaleByConcept = observations.groupBy { it.conceptId }
+        val wholesaleByConcept = observations
+            .mapNotNull(ConceptMarketObservation::completeOrNull)
+            .groupBy(CompleteConceptMarketObservation::conceptId)
         concepts.map { details ->
             val concept = details.toDomain()
             val ordered = historyByConcept[concept.id.value].orEmpty()
@@ -101,4 +104,24 @@ private fun MarketBasis.marketPriority(): Int = when (this) {
     MarketBasis.TAIPEI_COMBINED -> 2
     MarketBasis.TAIPEI_FIRST -> 1
     MarketBasis.TAIPEI_SECOND -> 0
+}
+
+internal data class CompleteConceptMarketObservation(
+    val conceptId: String,
+    val observedOn: java.time.LocalDate,
+    val averagePrice: java.math.BigDecimal,
+    val volume: java.math.BigDecimal,
+)
+
+internal fun ConceptMarketObservation.completeOrNull(): CompleteConceptMarketObservation? {
+    val completeConceptId = conceptId ?: return null
+    val completeObservedOn = observedOn ?: return null
+    val completeAveragePrice = averagePrice ?: return null
+    val completeVolume = volume ?: return null
+    return CompleteConceptMarketObservation(
+        conceptId = completeConceptId,
+        observedOn = completeObservedOn,
+        averagePrice = completeAveragePrice,
+        volume = completeVolume,
+    )
 }
