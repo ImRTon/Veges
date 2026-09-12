@@ -3,12 +3,17 @@ package tw.taipei.veges
 import android.os.SystemClock
 import androidx.compose.ui.test.assertHeightIsAtLeast
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.performImeAction
+import androidx.compose.ui.test.performKeyInput
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
+import androidx.compose.ui.test.pressKey
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.input.key.Key
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Assert.assertTrue
 import org.junit.Rule
@@ -42,5 +47,24 @@ class VegesAppNavigationTest {
         val elapsedMs = SystemClock.elapsedRealtime() - startedAt
 
         assertTrue("Official-code search took ${elapsedMs}ms", elapsedMs <= 3_000L)
+    }
+
+    @Test
+    fun catalogSearchKeepsTextAfterImeActionAndBackspace() {
+        composeRule.onNodeWithTag("top-level-蔬菜市場").performClick()
+
+        val searchField = composeRule.onNodeWithTag("catalog-search")
+        searchField.performTextInput("LP2")
+        searchField.assertTextEquals("LP2")
+
+        searchField.performImeAction()
+        searchField.assertTextEquals("LP2")
+
+        searchField.performClick()
+        searchField.performKeyInput { pressKey(Key.Backspace) }
+        searchField.assertTextEquals("LP")
+
+        searchField.performTextInput("3")
+        searchField.assertTextEquals("LP3")
     }
 }

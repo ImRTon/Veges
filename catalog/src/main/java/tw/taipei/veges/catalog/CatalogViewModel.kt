@@ -7,11 +7,13 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.text.Normalizer
 import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import tw.taipei.veges.domain.CatalogSearchResult
@@ -40,8 +42,20 @@ class CatalogViewModel @Inject constructor(
         ProduceCategory.entries.associateWith(orderStore::load),
     )
 
-    val state: StateFlow<CatalogUiState> =
-        combine(query, category, dismissedAmbiguity, orderByCategory) {
+    private val market: StateFlow<MarketSnapshot> =
+        category
+            .flatMapLatest { selectedCategory ->
+                repository.observeMarket(selectedCategory)
+                    .map { items -> MarketSnapshot(selectedCategory, items) }
+                    .flowOn(Dispatchers.Default)
+            }
+            .stateIn(
+                viewModelScope,
+                SharingStarted.WhileSubscribed(5_000),
+                MarketSnapshot(ProduceCategory.VEGETABLE, emptyList()),
+            )
+
+    private val request = combine(query, category, dismissedAmbiguity, orderByCategory) {
                 text,
                 selectedCategory,
                 dismissed,
@@ -53,36 +67,38 @@ class CatalogViewModel @Inject constructor(
                 dismissedAmbiguity = dismissed,
                 orderedConceptIds = orders[selectedCategory].orEmpty(),
             )
-        }.flatMapLatest { request ->
-            repository.observeMarket(request.category).map { market ->
-                val normalizedQuery = normalize(request.query)
-                val orderedMarket = market.orderedByConceptIds(request.orderedConceptIds)
-                val results = if (normalizedQuery.isBlank()) {
-                    orderedMarket
-                } else {
-                    orderedMarket.filter { it.concept.matches(normalizedQuery) }
-                }
-                val exactMatches = if (normalizedQuery.isBlank()) {
-                    emptyList()
-                } else {
-                    results.map(MarketItem::concept)
-                        .filter { it.hasExactIdentity(normalizedQuery) }
-                }
-                CatalogUiState(
-                    query = request.query,
-                    category = request.category,
-                    results = results,
-                    ambiguity = if (
-                        exactMatches.size > 1 &&
-                        request.dismissedAmbiguity != normalizedQuery
-                    ) {
-                        CatalogSearchResult.Ambiguous(request.query, exactMatches)
-                    } else {
-                        null
-                    },
-                )
-            }
         }
+
+    val state: StateFlow<CatalogUiState> = combine(request, market) { searchRequest, snapshot ->
+        val availableMarket = snapshot.items.takeIf { snapshot.category == searchRequest.category }
+            .orEmpty()
+        val normalizedQuery = normalize(searchRequest.query)
+        val orderedMarket = availableMarket.orderedByConceptIds(searchRequest.orderedConceptIds)
+        val results = if (normalizedQuery.isBlank()) {
+            orderedMarket
+        } else {
+            orderedMarket.filter { it.concept.matches(normalizedQuery) }
+        }
+        val exactMatches = if (normalizedQuery.isBlank()) {
+            emptyList()
+        } else {
+            results.map(MarketItem::concept)
+                .filter { it.hasExactIdentity(normalizedQuery) }
+        }
+        CatalogUiState(
+            query = searchRequest.query,
+            category = searchRequest.category,
+            results = results,
+            ambiguity = if (
+                exactMatches.size > 1 &&
+                searchRequest.dismissedAmbiguity != normalizedQuery
+            ) {
+                CatalogSearchResult.Ambiguous(searchRequest.query, exactMatches)
+            } else {
+                null
+            }
+        )
+    }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), CatalogUiState())
 
     fun updateQuery(value: String) {
@@ -118,6 +134,11 @@ class CatalogViewModel @Inject constructor(
         val category: ProduceCategory,
         val dismissedAmbiguity: String?,
         val orderedConceptIds: List<String>,
+    )
+
+    private data class MarketSnapshot(
+        val category: ProduceCategory,
+        val items: List<MarketItem>,
     )
 }
 

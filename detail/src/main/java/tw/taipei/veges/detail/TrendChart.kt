@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -30,6 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import java.math.BigDecimal
 import java.math.RoundingMode
+import tw.taipei.veges.designsystem.PillChoiceRow
 import tw.taipei.veges.domain.TrendPeriod
 import tw.taipei.veges.domain.TrendPoint
 import tw.taipei.veges.domain.TrendSummary
@@ -94,15 +94,15 @@ fun WholesaleTrendChart(
                     fontWeight = FontWeight.Black,
                 )
             }
-            Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                TrendPeriod.entries.forEach { option ->
-                    FilterChip(
-                        selected = option == period,
-                        onClick = { onPeriodSelected(option) },
-                        label = { Text(option.shortLabel()) },
-                    )
-                }
-            }
+            PillChoiceRow(
+                items = TrendPeriod.entries,
+                selectedItem = period,
+                onItemSelected = onPeriodSelected,
+                itemLabel = TrendPeriod::shortLabel,
+                containerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+                selectedContainerColor = MaterialTheme.colorScheme.primary,
+                selectedContentColor = MaterialTheme.colorScheme.onPrimary,
+            )
             Text("蔬果市場區間 K 線", style = MaterialTheme.typography.titleMedium)
             if (candles.isNotEmpty()) {
                 val priceValues = candles.flatMap { candle ->

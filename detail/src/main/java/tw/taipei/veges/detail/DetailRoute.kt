@@ -2,7 +2,6 @@ package tw.taipei.veges.detail
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,11 +10,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.Bookmark
 import androidx.compose.material.icons.rounded.BookmarkBorder
 import androidx.compose.material.icons.rounded.NotificationsNone
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -36,9 +35,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import java.math.RoundingMode
-import tw.taipei.veges.designsystem.EstimateDisclosureLabel
+import tw.taipei.veges.designsystem.PillChoiceRow
 import tw.taipei.veges.designsystem.ProduceIllustration
-import tw.taipei.veges.domain.EstimateDisclosure
 import tw.taipei.veges.domain.MarketBasis
 import tw.taipei.veges.domain.ProduceCategory
 import tw.taipei.veges.domain.ProduceConceptId
@@ -49,6 +47,7 @@ import tw.taipei.veges.domain.VariantMarketPrice
 fun DetailRoute(
     conceptId: String,
     onSetAlert: (String, MarketBasis) -> Unit,
+    onBack: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val viewModel: DetailViewModel = hiltViewModel()
@@ -65,6 +64,7 @@ fun DetailRoute(
         onToggleMethodology = viewModel::toggleMethodology,
         onConfirmUntrack = viewModel::confirmUntrackAndRemoveAlerts,
         onDismissUntrack = viewModel::dismissUntrackConfirmation,
+        onBack = onBack,
         modifier = modifier,
     )
 }
@@ -80,6 +80,7 @@ fun DetailScreen(
     onSetAlert: () -> Unit = {},
     onConfirmUntrack: () -> Unit = {},
     onDismissUntrack: () -> Unit = {},
+    onBack: () -> Unit = {},
 ) {
     state.untrackConfirmationCount?.let { count ->
         AlertDialog(
@@ -101,17 +102,48 @@ fun DetailScreen(
             .padding(20.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp),
     ) {
-        Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-            Text(
-                state.concept?.householdName ?: "蔬果詳情",
-                style = MaterialTheme.typography.headlineLarge,
-                fontWeight = FontWeight.Black,
-            )
-            if (state.concept == null) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            IconButton(onClick = onBack) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
+                    contentDescription = "返回",
+                )
+            }
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(2.dp),
+            ) {
                 Text(
-                    "正在載入行情",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    state.concept?.householdName ?: "蔬果詳情",
+                    style = MaterialTheme.typography.headlineLarge,
+                    fontWeight = FontWeight.Black,
+                )
+                if (state.concept == null) {
+                    Text(
+                        "正在載入行情",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+            }
+            IconButton(onClick = onSetAlert) {
+                Icon(
+                    Icons.Rounded.NotificationsNone,
+                    contentDescription = "設定提醒",
+                )
+            }
+            IconButton(onClick = onToggleTracked) {
+                Icon(
+                    if (state.isTracked) Icons.Rounded.Bookmark else Icons.Rounded.BookmarkBorder,
+                    contentDescription = if (state.isTracked) "取消追蹤" else "加入追蹤",
+                    tint = if (state.isTracked) {
+                        MaterialTheme.colorScheme.primary
+                    } else {
+                        MaterialTheme.colorScheme.onSurfaceVariant
+                    },
                 )
             }
         }
@@ -123,19 +155,12 @@ fun DetailScreen(
                 .height(160.dp)
                 .clip(MaterialTheme.shapes.extraLarge),
         )
-        FlowRow(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            MarketBasis.entries.forEach { basis ->
-                FilterChip(
-                    selected = basis == state.selectedBasis,
-                    onClick = { onBasisSelected(basis) },
-                    label = { Text(basis.displayName()) },
-                )
-            }
-        }
+        PillChoiceRow(
+            items = MarketBasis.entries,
+            selectedItem = state.selectedBasis,
+            onItemSelected = onBasisSelected,
+            itemLabel = MarketBasis::displayName,
+        )
         Surface(
             shape = MaterialTheme.shapes.extraLarge,
             color = MaterialTheme.colorScheme.surfaceContainerLow,
@@ -166,27 +191,7 @@ fun DetailScreen(
                             )
                         }
                     }
-                    IconButton(onClick = onToggleTracked) {
-                        Icon(
-                            if (state.isTracked) Icons.Rounded.Bookmark else Icons.Rounded.BookmarkBorder,
-                            contentDescription = if (state.isTracked) "取消追蹤" else "加入追蹤",
-                            tint = if (state.isTracked) {
-                                MaterialTheme.colorScheme.primary
-                            } else {
-                                MaterialTheme.colorScheme.onSurfaceVariant
-                            },
-                        )
-                    }
-                    IconButton(onClick = onSetAlert) {
-                        Icon(
-                            Icons.Rounded.NotificationsNone,
-                            contentDescription = "設定提醒",
-                        )
-                    }
                 }
-                EstimateDisclosureLabel(
-                    disclosure = state.estimate?.disclosure ?: EstimateDisclosure(),
-                )
                 if (state.estimate == null || point == null) {
                     Text(
                         "目前無可用估算",

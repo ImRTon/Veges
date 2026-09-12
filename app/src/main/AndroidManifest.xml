@@ -15,6 +15,7 @@
         android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.Veges"
+        android:enableOnBackInvokedCallback="true"
         android:usesCleartextTraffic="false">
         <provider
             android:name="androidx.startup.InitializationProvider"
