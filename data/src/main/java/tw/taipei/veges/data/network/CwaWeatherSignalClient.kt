@@ -106,8 +106,24 @@ internal object CwaWarningParser {
                     .toSet(),
                 effectiveAt = effectiveAt,
                 expiresAt = expiresAt,
+                cause = info.warningCause(kind),
             )
         }
+    }
+
+    private fun JsonObject.warningCause(kind: MarketShockKind): MarketShockKind? {
+        if (kind == MarketShockKind.TYPHOON) return null
+        val description = get("description")
+            ?.textValues()
+            ?.joinToString(separator = " ")
+            .orEmpty()
+        return MarketShockKind.TYPHOON.takeIf { description.contains("颱風") }
+    }
+
+    private fun JsonElement.textValues(): Sequence<String> = when (this) {
+        is JsonObject -> values.asSequence().flatMap { it.textValues() }
+        is JsonArray -> asSequence().flatMap { it.textValues() }
+        else -> listOfNotNull(runCatching { jsonPrimitive.content }.getOrNull()).asSequence()
     }
 
     private fun JsonObject.severity(): BigDecimal = when (string("severity")?.lowercase()) {

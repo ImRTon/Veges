@@ -11,6 +11,7 @@ import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -53,18 +54,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.withTransform
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
@@ -72,6 +74,8 @@ import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -91,13 +95,16 @@ import kotlin.math.roundToInt
 import kotlin.math.sin
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import tw.taipei.veges.designsystem.PillChoiceRow
 import tw.taipei.veges.designsystem.ProduceIllustration
 import tw.taipei.veges.domain.HomeItem
 import tw.taipei.veges.domain.MarketItem
 import tw.taipei.veges.domain.MarketPriceSurgeOutlook
+import tw.taipei.veges.domain.MarketShockKind
 import tw.taipei.veges.domain.PriceSurgeReason
 import tw.taipei.veges.domain.PriceSurgeReasonKind
 import tw.taipei.veges.domain.PriceSurgeRiskLevel
+import tw.taipei.veges.domain.ProductionAreaWeatherRisk
 import tw.taipei.veges.domain.PriceRefresh
 import tw.taipei.veges.domain.PriceRefreshStage
 import tw.taipei.veges.domain.averageChangePercent
@@ -106,45 +113,6 @@ import tw.taipei.veges.domain.previousChangePercent
 private val RisingRed = Color(0xFFE5484D)
 private val FallingGreen = Color(0xFF00A86B)
 private val HomeTabs = listOf("追蹤", "大跌")
-private val AnimationTestReasons = listOf(
-    PriceSurgeReason(
-        kind = PriceSurgeReasonKind.TYPHOON,
-        contribution = 0,
-        headline = "颱風來襲，整體蔬果價格可能上揚",
-        shortLabel = "颱風",
-    ),
-    PriceSurgeReason(
-        kind = PriceSurgeReasonKind.HEAVY_RAIN,
-        contribution = 0,
-        headline = "連續暴雨，整體蔬果價格可能上揚",
-        shortLabel = "暴雨",
-    ),
-    PriceSurgeReason(
-        kind = PriceSurgeReasonKind.EXTREME_HEAT,
-        contribution = 0,
-        headline = "高溫持續，整體蔬果供應承壓",
-        shortLabel = "高溫",
-    ),
-    PriceSurgeReason(
-        kind = PriceSurgeReasonKind.VOLUME_CONTRACTION,
-        contribution = 0,
-        headline = "到貨量普遍縮減，整體價格可能上揚",
-        shortLabel = "到貨量縮",
-    ),
-    PriceSurgeReason(
-        kind = PriceSurgeReasonKind.PRICE_MOMENTUM,
-        contribution = 0,
-        headline = "多項蔬果價格同步上揚",
-        shortLabel = "價格動能",
-    ),
-    PriceSurgeReason(
-        kind = PriceSurgeReasonKind.RECENT_PRICE_ANOMALY,
-        contribution = 0,
-        headline = "多項蔬果價格高於近期常態",
-        shortLabel = "價格異常",
-    ),
-)
-
 // Material 3 1.4 keeps MotionScheme internal. These are its default spatial spring tokens.
 private val Material3DefaultSpatialSpec: AnimationSpec<Float> = spring(
     dampingRatio = 0.9f,
@@ -256,9 +224,7 @@ fun HomeScreen(
             }
         }
         PriceRefreshProgress(state.priceRefresh)
-        PriceSurgeRadarSection(
-            outlook = state.marketPriceSurgeOutlook,
-            eligibleItemCount = state.predictionEligibleCount,
+        Column(
             modifier = Modifier
                 .clipToBounds()
                 .collapseFromTop { radarCollapsePx }
@@ -269,9 +235,17 @@ fun HomeScreen(
                         radarCollapsePx = radarCollapsePx.coerceAtMost(measuredHeight)
                     }
                 },
-        )
+        ) {
+            PriceSurgeRadarSection(
+                outlook = state.marketPriceSurgeOutlook,
+                eligibleItemCount = state.predictionEligibleCount,
+                productionAreaWeatherRisk = state.productionAreaWeatherRisk,
+            )
+        }
         PrimaryTabRow(
             selectedTabIndex = pagerState.currentPage,
+            containerColor = Color.Transparent,
+            contentColor = MaterialTheme.colorScheme.onSurface,
             indicator = {
                 Canvas(
                     modifier = Modifier
@@ -391,9 +365,9 @@ private fun PriceRefreshProgress(refresh: PriceRefresh) {
 private fun PriceSurgeRadarSection(
     outlook: MarketPriceSurgeOutlook?,
     eligibleItemCount: Int,
+    productionAreaWeatherRisk: ProductionAreaWeatherRisk?,
     modifier: Modifier = Modifier,
 ) {
-    var animationTestMode by rememberSaveable { androidx.compose.runtime.mutableStateOf(false) }
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -403,53 +377,21 @@ private fun PriceSurgeRadarSection(
         Row(
             modifier = Modifier.padding(horizontal = 20.dp),
             verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            Column(
-                modifier = Modifier.weight(1f),
-            ) {
-                Text(
-                    "漲價雷達",
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Black,
-                )
-                Text(
-                    "預測 7–14 日",
-                    style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.primary,
-                    fontWeight = FontWeight.Bold,
-                )
-            }
-            Surface(
-                onClick = { animationTestMode = !animationTestMode },
-                modifier = Modifier.semantics {
-                    contentDescription = if (animationTestMode) {
-                        "結束動畫測試"
-                    } else {
-                        "測試所有漲價原因動畫"
-                    }
-                },
-                shape = RoundedCornerShape(12.dp),
-                color = if (animationTestMode) {
-                    MaterialTheme.colorScheme.primary
-                } else {
-                    MaterialTheme.colorScheme.primaryContainer
-                },
-                contentColor = if (animationTestMode) {
-                    MaterialTheme.colorScheme.onPrimary
-                } else {
-                    MaterialTheme.colorScheme.onPrimaryContainer
-                },
-            ) {
-                Text(
-                    if (animationTestMode) "結束測試" else "測試動畫",
-                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 7.dp),
-                    style = MaterialTheme.typography.labelLarge,
-                    fontWeight = FontWeight.Bold,
-                )
-            }
+            Text(
+                "漲價雷達",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Black,
+            )
+            Text(
+                "預測 7–14 日",
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
         }
-        if (animationTestMode) {
-            AnimationTestPanel()
+        if (outlook == null && productionAreaWeatherRisk != null) {
+            ProductionAreaWeatherRiskRadar(productionAreaWeatherRisk)
         } else if (outlook == null) {
             Surface(
                 modifier = Modifier
@@ -493,7 +435,7 @@ private fun PriceSurgeRadarSection(
                             if (eligibleItemCount == 0) {
                                 "至少需要 10 個有效交易日"
                             } else {
-                                "已分析 $eligibleItemCount 項蔬果 · 模型預測不是保證"
+                                "已分析 $eligibleItemCount 項蔬果"
                             },
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -504,11 +446,75 @@ private fun PriceSurgeRadarSection(
         } else {
             MarketPriceSurgeOutlookCard(outlook)
             Text(
-                "至少 10 項具足夠歷史，且 20% 以上同步承壓才顯示 · 模型預測不是保證",
+                "至少 10 項具足夠歷史，且 20% 以上同步承壓才顯示",
                 modifier = Modifier.padding(horizontal = 20.dp),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
+        }
+    }
+}
+
+@Composable
+private fun ProductionAreaWeatherRiskRadar(risk: ProductionAreaWeatherRisk) {
+    val cause = when (risk.kind) {
+        MarketShockKind.TYPHOON -> "颱風"
+        MarketShockKind.HEAVY_RAIN -> "豪雨"
+        MarketShockKind.EXTREME_HEAT -> "高溫"
+    }
+    val areaSummary = when (risk.affectedCounties.size) {
+        1 -> "${risk.affectedCounties.single()}產區"
+        2, 3 -> "${risk.affectedCounties.joinToString("、")}產區"
+        else -> "${risk.affectedCounties.take(3).joinToString("、")}等 ${risk.affectedCounties.size} 個產區"
+    }
+    val headline = "${cause}影響$areaSummary"
+    val consequence = "近期蔬果價格可能上漲"
+    val reason = PriceSurgeReason(
+        kind = when (risk.kind) {
+            MarketShockKind.TYPHOON -> PriceSurgeReasonKind.TYPHOON
+            MarketShockKind.HEAVY_RAIN -> PriceSurgeReasonKind.HEAVY_RAIN
+            MarketShockKind.EXTREME_HEAT -> PriceSurgeReasonKind.EXTREME_HEAT
+        },
+        contribution = 0,
+        headline = headline,
+        shortLabel = cause,
+    )
+
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 20.dp)
+            .semantics(mergeDescendants = true) {
+                contentDescription = "$headline。$consequence"
+            },
+        shape = RoundedCornerShape(18.dp),
+        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.55f),
+    ) {
+        Row(
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            AnimatedRiskIcon(
+                reason = reason,
+                modifier = Modifier.size(60.dp),
+                accent = reason.kind.animationAccent(),
+            )
+            Column(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(3.dp),
+            ) {
+                Text(
+                    headline,
+                    style = MaterialTheme.typography.titleSmall,
+                    fontWeight = FontWeight.Bold,
+                )
+                Text(
+                    consequence,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
         }
     }
 }
@@ -527,90 +533,9 @@ private fun Modifier.collapseFromTop(
 }
 
 @Composable
-private fun AnimationTestPanel() {
-    Surface(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 20.dp)
-            .semantics {
-                contentDescription = "動畫測試模式，六種漲價原因動畫正在播放"
-            },
-        shape = RoundedCornerShape(18.dp),
-        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.42f),
-        border = BorderStroke(
-            width = 1.dp,
-            color = MaterialTheme.colorScheme.outline.copy(alpha = 0.12f),
-        ),
-    ) {
-        Column(
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 14.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-        ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Text(
-                    "動態訊號圖鑑",
-                    modifier = Modifier.weight(1f),
-                    style = MaterialTheme.typography.titleSmall,
-                    fontWeight = FontWeight.Black,
-                )
-                Text(
-                    "即時預覽",
-                    style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.primary,
-                    fontWeight = FontWeight.Bold,
-                )
-            }
-            AnimationTestReasons.chunked(3).forEach { reasons ->
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp),
-                ) {
-                    reasons.forEach { reason ->
-                        AnimationTestReason(
-                            reason = reason,
-                            modifier = Modifier.weight(1f),
-                        )
-                    }
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun AnimationTestReason(
-    reason: PriceSurgeReason,
-    modifier: Modifier = Modifier,
-) {
-    val accent = reason.kind.animationAccent()
-    Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(6.dp),
-    ) {
-        AnimatedRiskIcon(
-            reason = reason,
-            modifier = Modifier.size(72.dp),
-            accent = accent,
-        )
-        Text(
-            reason.shortLabel,
-            modifier = Modifier.fillMaxWidth(),
-            style = MaterialTheme.typography.labelLarge,
-            color = MaterialTheme.colorScheme.onSurface,
-            fontWeight = FontWeight.ExtraBold,
-            textAlign = TextAlign.Center,
-        )
-    }
-}
-
-@Composable
 private fun PriceSurgeReasonKind.animationAccent(): Color = when (this) {
-    PriceSurgeReasonKind.TYPHOON -> Color(0xFF7567D8)
-    PriceSurgeReasonKind.HEAVY_RAIN -> Color(0xFF3478F6)
+    PriceSurgeReasonKind.TYPHOON -> MaterialTheme.colorScheme.secondary
+    PriceSurgeReasonKind.HEAVY_RAIN -> Color(0xFF4F8DB8)
     PriceSurgeReasonKind.EXTREME_HEAT -> Color(0xFFE87800)
     PriceSurgeReasonKind.VOLUME_CONTRACTION -> FallingGreen
     PriceSurgeReasonKind.PRICE_MOMENTUM -> RisingRed
@@ -698,10 +623,10 @@ private fun AnimatedRiskIcon(
         animationSpec = infiniteRepeatable(
             animation = tween(
                 durationMillis = when (reason.kind) {
-                    PriceSurgeReasonKind.TYPHOON -> 4_200
-                    PriceSurgeReasonKind.HEAVY_RAIN -> 1_900
-                    PriceSurgeReasonKind.EXTREME_HEAT -> 3_200
-                    PriceSurgeReasonKind.VOLUME_CONTRACTION -> 2_600
+                    PriceSurgeReasonKind.TYPHOON -> 9_600
+                    PriceSurgeReasonKind.HEAVY_RAIN -> 1_600
+                    PriceSurgeReasonKind.EXTREME_HEAT -> 4_200
+                    PriceSurgeReasonKind.VOLUME_CONTRACTION -> 2_800
                     PriceSurgeReasonKind.PRICE_MOMENTUM -> 2_800
                     PriceSurgeReasonKind.RECENT_PRICE_ANOMALY -> 3_200
                 },
@@ -716,259 +641,65 @@ private fun AnimatedRiskIcon(
             contentDescription = reason.headline
         },
         shape = RoundedCornerShape(20.dp),
-        color = accent.copy(alpha = 0.105f),
+        color = if (reason.kind == PriceSurgeReasonKind.TYPHOON) {
+            Color.Transparent
+        } else {
+            accent.copy(alpha = 0.105f)
+        },
         contentColor = accent,
-        border = BorderStroke(
-            width = 1.dp,
-            color = accent.copy(alpha = 0.16f),
-        ),
+        border = if (reason.kind == PriceSurgeReasonKind.TYPHOON) {
+            null
+        } else {
+            BorderStroke(
+                width = 1.dp,
+                color = accent.copy(alpha = 0.16f),
+            )
+        },
     ) {
-        Canvas(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(7.dp),
-        ) {
+        if (reason.kind == PriceSurgeReasonKind.TYPHOON) {
+            AnimatedTyphoon(
+                progress = progress,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(2.dp),
+            )
+        } else {
+            Canvas(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(7.dp),
+            ) {
             val unit = size.minDimension
             val center = Offset(size.width / 2f, size.height / 2f)
             val tau = (PI * 2).toFloat()
-            drawCircle(
-                color = accent.copy(alpha = 0.045f),
-                radius = unit * 0.48f,
-                center = center,
-            )
+            if (
+                reason.kind != PriceSurgeReasonKind.TYPHOON &&
+                reason.kind != PriceSurgeReasonKind.HEAVY_RAIN &&
+                reason.kind != PriceSurgeReasonKind.EXTREME_HEAT
+            ) {
+                drawCircle(
+                    color = accent.copy(alpha = 0.045f),
+                    radius = unit * 0.48f,
+                    center = center,
+                )
+            }
             when (reason.kind) {
                 PriceSurgeReasonKind.HEAVY_RAIN -> {
-                    val cloudShift = sin(progress * tau) * unit * 0.018f
-                    val cloudY = size.height * 0.3f
-                    drawCircle(
-                        color = accent.copy(alpha = 0.66f),
-                        radius = unit * 0.145f,
-                        center = Offset(size.width * 0.37f + cloudShift, cloudY + unit * 0.015f),
-                    )
-                    drawCircle(
-                        color = accent.copy(alpha = 0.88f),
-                        radius = unit * 0.195f,
-                        center = Offset(size.width * 0.54f + cloudShift, cloudY - unit * 0.045f),
-                    )
-                    drawCircle(
-                        color = accent.copy(alpha = 0.72f),
-                        radius = unit * 0.13f,
-                        center = Offset(size.width * 0.7f + cloudShift, cloudY + unit * 0.025f),
-                    )
-                    drawRoundRect(
-                        color = accent.copy(alpha = 0.78f),
-                        topLeft = Offset(size.width * 0.22f + cloudShift, cloudY),
-                        size = Size(size.width * 0.6f, unit * 0.17f),
-                        cornerRadius = androidx.compose.ui.geometry.CornerRadius(
-                            unit * 0.085f,
-                            unit * 0.085f,
-                        ),
-                    )
-                    val groundY = size.height * 0.84f
-                    drawLine(
-                        color = accent.copy(alpha = 0.16f),
-                        start = Offset(size.width * 0.15f, groundY),
-                        end = Offset(size.width * 0.85f, groundY),
-                        strokeWidth = unit * 0.018f,
-                        cap = StrokeCap.Round,
-                    )
-                    repeat(6) { index ->
-                        val dropProgress = (progress + index * 0.165f) % 1f
-                        val x = size.width * (0.19f + index * 0.125f)
-                        val startY = size.height * 0.47f
-                        val y = startY + (groundY - startY) * dropProgress
-                        val alpha = sin(dropProgress * PI).toFloat().coerceAtLeast(0f)
-                        drawLine(
-                            color = accent.copy(alpha = 0.25f + alpha * 0.72f),
-                            start = Offset(x + unit * 0.055f, y - unit * 0.12f),
-                            end = Offset(x, y),
-                            strokeWidth = unit * 0.03f,
-                            cap = StrokeCap.Round,
-                        )
-                    }
-                    repeat(3) { index ->
-                        val ripple = (progress + index * 0.34f) % 1f
-                        val rippleAlpha = (1f - ripple) * 0.42f
-                        val rippleWidth = unit * (0.07f + ripple * 0.18f)
-                        drawOval(
-                            color = accent.copy(alpha = rippleAlpha),
-                            topLeft = Offset(
-                                size.width * (0.3f + index * 0.2f) - rippleWidth / 2f,
-                                groundY - unit * 0.018f,
-                            ),
-                            size = Size(rippleWidth, unit * 0.045f),
-                            style = Stroke(width = unit * 0.016f),
-                        )
-                    }
+                    drawRealisticHeavyRain(progress = progress, unit = unit)
                 }
 
                 PriceSurgeReasonKind.TYPHOON -> {
-                    val spin = -progress * 360f
-                    repeat(5) { layer ->
-                        val radius = unit * (0.13f + layer * 0.072f)
-                        drawArc(
-                            color = accent.copy(alpha = 0.92f - layer * 0.13f),
-                            startAngle = spin + layer * 74f,
-                            sweepAngle = 105f + layer * 3f,
-                            useCenter = false,
-                            topLeft = Offset(center.x - radius, center.y - radius),
-                            size = Size(radius * 2f, radius * 2f),
-                            style = Stroke(
-                                width = unit * (0.064f - layer * 0.007f),
-                                cap = StrokeCap.Round,
-                            ),
-                        )
-                    }
-                    repeat(9) { index ->
-                        val particleProgress = (progress + index / 8f) % 1f
-                        val angle = -progress * PI * 2 * 0.9 +
-                            index * PI * 2 / 9 -
-                            particleProgress * 1.35
-                        val radius = unit * (0.43f - particleProgress * 0.27f)
-                        val alpha = sin(particleProgress * PI).toFloat().coerceAtLeast(0f)
-                        drawCircle(
-                            color = accent.copy(alpha = alpha * 0.55f),
-                            radius = unit * (0.012f + particleProgress * 0.012f),
-                            center = Offset(
-                                center.x + cos(angle).toFloat() * radius,
-                                center.y + sin(angle).toFloat() * radius,
-                            ),
-                        )
-                    }
-                    drawCircle(
-                        color = accent.copy(alpha = 0.18f),
-                        radius = unit * 0.105f,
-                        center = center,
-                    )
-                    drawCircle(
-                        color = accent.copy(alpha = 0.95f),
-                        radius = unit * 0.04f,
-                        center = center,
-                    )
-                    drawCircle(
-                        color = Color.White.copy(alpha = 0.7f),
-                        radius = unit * 0.014f,
-                        center = Offset(center.x - unit * 0.012f, center.y - unit * 0.012f),
-                    )
+                    Unit
                 }
 
                 PriceSurgeReasonKind.EXTREME_HEAT -> {
-                    val sunCenter = Offset(size.width * 0.5f, size.height * 0.33f)
-                    val pulse = 1f + sin(progress * tau) * 0.035f
-                    val sunRadius = unit * 0.17f * pulse
-                    repeat(12) { index ->
-                        val angle = progress * PI * 2 * 0.12 + index * PI * 2 / 12
-                        val rayPulse = (
-                            sin(progress * tau + index * 0.7f) + 1f
-                            ) / 2f
-                        val inner = sunRadius * 1.32f
-                        val outer = sunRadius * (1.55f + rayPulse * 0.12f)
-                        drawLine(
-                            color = accent.copy(alpha = 0.48f + rayPulse * 0.26f),
-                            start = Offset(
-                                sunCenter.x + cos(angle).toFloat() * inner,
-                                sunCenter.y + sin(angle).toFloat() * inner,
-                            ),
-                            end = Offset(
-                                sunCenter.x + cos(angle).toFloat() * outer,
-                                sunCenter.y + sin(angle).toFloat() * outer,
-                            ),
-                            strokeWidth = unit * 0.025f,
-                            cap = StrokeCap.Round,
-                        )
-                    }
-                    drawCircle(
-                        color = accent.copy(alpha = 0.88f),
-                        radius = sunRadius,
-                        center = sunCenter,
-                    )
-                    repeat(3) { index ->
-                        val riseProgress = (progress + index * 0.32f) % 1f
-                        val baseY = size.height * (0.92f - riseProgress * 0.28f)
-                        val alpha = sin(riseProgress * PI).toFloat().coerceAtLeast(0f)
-                        val path = Path()
-                        repeat(8) { step ->
-                            val fraction = step / 7f
-                            val y = baseY - size.height * 0.14f * fraction
-                            val x = size.width * (0.32f + index * 0.18f) +
-                                sin(fraction * PI * 2.2f + index * 0.9f)
-                                    .toFloat() * unit * 0.025f
-                            if (step == 0) path.moveTo(x, y) else path.lineTo(x, y)
-                        }
-                        drawPath(
-                            path = path,
-                            color = accent.copy(alpha = alpha * 0.55f),
-                            style = Stroke(width = unit * 0.023f, cap = StrokeCap.Round),
-                        )
-                    }
+                    drawRealisticExtremeHeat(progress = progress, unit = unit)
                 }
 
                 PriceSurgeReasonKind.VOLUME_CONTRACTION -> {
-                    val squeeze = (1f - cos(progress * tau)) / 2f
-                    val rowWidths = listOf(0.68f, 0.54f, 0.4f)
-                    rowWidths.forEachIndexed { index, widthFraction ->
-                        val width = size.width * widthFraction * (1f - squeeze * 0.24f)
-                        val height = unit * 0.105f
-                        val y = size.height * (0.31f + index * 0.19f)
-                        drawRoundRect(
-                            color = accent.copy(alpha = 0.84f - index * 0.14f),
-                            topLeft = Offset(center.x - width / 2f, y),
-                            size = Size(width, height),
-                            cornerRadius = androidx.compose.ui.geometry.CornerRadius(
-                                height / 2f,
-                                height / 2f,
-                            ),
-                        )
-                        drawCircle(
-                            color = Color.White.copy(alpha = 0.5f),
-                            radius = unit * 0.018f,
-                            center = Offset(center.x, y + height / 2f),
-                        )
-                    }
-                    val arrowInset = size.width * (0.13f + squeeze * 0.13f)
-                    val arrowY = size.height * 0.79f
-                    val arrowHalf = unit * 0.07f
-                    drawLine(
-                        color = accent.copy(alpha = 0.8f),
-                        start = Offset(arrowInset, arrowY),
-                        end = Offset(center.x - unit * 0.11f, arrowY),
-                        strokeWidth = unit * 0.025f,
-                        cap = StrokeCap.Round,
-                    )
-                    drawLine(
-                        color = accent.copy(alpha = 0.8f),
-                        start = Offset(size.width - arrowInset, arrowY),
-                        end = Offset(center.x + unit * 0.11f, arrowY),
-                        strokeWidth = unit * 0.025f,
-                        cap = StrokeCap.Round,
-                    )
-                    drawLine(
-                        color = accent,
-                        start = Offset(center.x - unit * 0.11f, arrowY),
-                        end = Offset(center.x - unit * 0.11f - arrowHalf, arrowY - arrowHalf),
-                        strokeWidth = unit * 0.028f,
-                        cap = StrokeCap.Round,
-                    )
-                    drawLine(
-                        color = accent,
-                        start = Offset(center.x - unit * 0.11f, arrowY),
-                        end = Offset(center.x - unit * 0.11f - arrowHalf, arrowY + arrowHalf),
-                        strokeWidth = unit * 0.028f,
-                        cap = StrokeCap.Round,
-                    )
-                    drawLine(
-                        color = accent,
-                        start = Offset(center.x + unit * 0.11f, arrowY),
-                        end = Offset(center.x + unit * 0.11f + arrowHalf, arrowY - arrowHalf),
-                        strokeWidth = unit * 0.028f,
-                        cap = StrokeCap.Round,
-                    )
-                    drawLine(
-                        color = accent,
-                        start = Offset(center.x + unit * 0.11f, arrowY),
-                        end = Offset(center.x + unit * 0.11f + arrowHalf, arrowY + arrowHalf),
-                        strokeWidth = unit * 0.028f,
-                        cap = StrokeCap.Round,
+                    drawShrinkingCargoBox(
+                        progress = progress,
+                        unit = unit,
                     )
                 }
 
@@ -1139,6 +870,573 @@ private fun AnimatedRiskIcon(
             }
         }
     }
+    }
+}
+
+@Composable
+private fun AnimatedTyphoon(
+    progress: Float,
+    modifier: Modifier = Modifier,
+) {
+    val tau = (PI * 2).toFloat()
+    val layerTransition = rememberInfiniteTransition(label = "typhoon-layers")
+    val outerProgress by layerTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 11_200, easing = LinearEasing),
+            repeatMode = RepeatMode.Restart,
+        ),
+        label = "typhoon-outer",
+    )
+    val innerProgress by layerTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(durationMillis = 8_400, easing = LinearEasing),
+            repeatMode = RepeatMode.Restart,
+        ),
+        label = "typhoon-inner",
+    )
+    val outerWave = (sin(outerProgress * tau + tau * 0.68f) + 1f) / 2f
+    val middleWave = sin(progress * tau * 2f + tau / 3f)
+    val innerWave = sin(innerProgress * tau * 2f)
+
+    Box(modifier = modifier) {
+        Image(
+            painter = painterResource(R.drawable.typhoon_material_outer),
+            contentDescription = null,
+            contentScale = ContentScale.Fit,
+            modifier = Modifier
+                .fillMaxSize()
+                .graphicsLayer {
+                    val outwardScale = 1f + outerWave * 0.028f
+                    rotationZ = -outerProgress * 360f - outerWave * 3.2f
+                    scaleX = outwardScale
+                    scaleY = outwardScale
+                    alpha = 0.9f + outerWave * 0.1f
+                },
+        )
+        Image(
+            painter = painterResource(R.drawable.typhoon_material_middle),
+            contentDescription = null,
+            contentScale = ContentScale.Fit,
+            modifier = Modifier
+                .fillMaxSize()
+                .graphicsLayer {
+                    val breathingScale = 1f + middleWave * 0.009f
+                    rotationZ = -progress * 360f + middleWave * 1.7f
+                    scaleX = breathingScale
+                    scaleY = breathingScale
+                    alpha = 0.97f + middleWave * 0.03f
+                },
+        )
+        Image(
+            painter = painterResource(R.drawable.typhoon_material_inner),
+            contentDescription = null,
+            contentScale = ContentScale.Fit,
+            modifier = Modifier
+                .fillMaxSize()
+                .graphicsLayer {
+                    val breathingScale = 1f + innerWave * 0.006f
+                    rotationZ = -innerProgress * 360f - innerWave * 2.4f
+                    scaleX = breathingScale
+                    scaleY = breathingScale
+                    alpha = 0.985f + innerWave * 0.015f
+                },
+        )
+    }
+}
+
+private fun DrawScope.drawRealisticTyphoon(
+    progress: Float,
+    unit: Float,
+    accent: Color,
+) {
+    val tau = (PI * 2).toFloat()
+    val stormCenter = Offset(size.width * 0.5f, size.height * 0.5f)
+    val rotation = -progress * tau
+    val cloudLight = Color(0xFFEAF8F5)
+    val cloudMid = Color(0xFF9FD2C7)
+    val stormDeep = Color(0xFF173F45)
+
+    drawCircle(
+        brush = Brush.radialGradient(
+            0f to accent.copy(alpha = 0.2f),
+            0.4f to accent.copy(alpha = 0.09f),
+            0.74f to cloudMid.copy(alpha = 0.055f),
+            1f to Color.Transparent,
+            center = stormCenter,
+            radius = unit * 0.5f,
+        ),
+        radius = unit * 0.5f,
+        center = stormCenter,
+    )
+
+    repeat(4) { band ->
+        val bandOffset = when (band) {
+            0 -> 0f
+            1 -> 1.48f
+            2 -> 3.18f
+            else -> 4.92f
+        }
+        val bandReach = when (band) {
+            0 -> 0.37f
+            1 -> 0.33f
+            2 -> 0.35f
+            else -> 0.29f
+        }
+        val bandTurns = when (band) {
+            0 -> 0.7f
+            1 -> 0.62f
+            2 -> 0.74f
+            else -> 0.56f
+        }
+        val bandStart = rotation + bandOffset
+        val bandWobble = sin(progress * tau * 2f + band * 1.7f) * 0.035f
+        drawTyphoonBandSection(
+            center = stormCenter,
+            unit = unit,
+            startAngle = bandStart,
+            startFraction = 0f,
+            endFraction = 0.44f,
+            reach = bandReach,
+            turns = bandTurns + bandWobble,
+            width = unit * 0.086f,
+            accent = accent,
+            cloudMid = cloudMid,
+            cloudLight = cloudLight,
+            alpha = 0.82f,
+        )
+        drawTyphoonBandSection(
+            center = stormCenter,
+            unit = unit,
+            startAngle = bandStart,
+            startFraction = 0.34f,
+            endFraction = 0.76f,
+            reach = bandReach,
+            turns = bandTurns + bandWobble,
+            width = unit * 0.05f,
+            accent = accent,
+            cloudMid = cloudMid,
+            cloudLight = cloudLight,
+            alpha = 0.7f,
+        )
+        drawTyphoonBandSection(
+            center = stormCenter,
+            unit = unit,
+            startAngle = bandStart,
+            startFraction = 0.67f,
+            endFraction = 1f,
+            reach = bandReach,
+            turns = bandTurns + bandWobble,
+            width = unit * 0.023f,
+            accent = accent,
+            cloudMid = cloudMid,
+            cloudLight = cloudLight,
+            alpha = 0.56f,
+        )
+    }
+
+    repeat(12) { index ->
+        val travel = (progress * 2f + index / 12f) % 1f
+        val arm = index % 4
+        val angle = rotation + arm * tau / 4f + travel * tau * 0.68f
+        val radius = unit * (0.19f + travel * 0.27f)
+        val particleCenter = Offset(
+            x = stormCenter.x + cos(angle).toFloat() * radius,
+            y = stormCenter.y + sin(angle).toFloat() * radius * 0.94f,
+        )
+        val tangent = angle + PI.toFloat() / 2f
+        val length = unit * (0.018f + (1f - travel) * 0.032f)
+        val fade = sin(travel * PI).toFloat().coerceAtLeast(0f)
+        drawLine(
+            color = cloudLight.copy(alpha = fade * 0.68f),
+            start = Offset(
+                x = particleCenter.x - cos(tangent).toFloat() * length,
+                y = particleCenter.y - sin(tangent).toFloat() * length,
+            ),
+            end = Offset(
+                x = particleCenter.x + cos(tangent).toFloat() * length,
+                y = particleCenter.y + sin(tangent).toFloat() * length,
+            ),
+            strokeWidth = unit * 0.012f,
+            cap = StrokeCap.Round,
+        )
+    }
+
+    val eyePulse = 1f + sin(progress * tau * 2f) * 0.025f
+    drawCircle(
+        color = accent.copy(alpha = 0.28f),
+        radius = unit * 0.155f * eyePulse,
+        center = stormCenter,
+    )
+    drawCircle(
+        brush = Brush.radialGradient(
+            0f to cloudLight.copy(alpha = 0.9f),
+            0.58f to cloudLight.copy(alpha = 0.82f),
+            1f to cloudMid.copy(alpha = 0.66f),
+            center = stormCenter,
+            radius = unit * 0.12f,
+        ),
+        radius = unit * 0.12f * eyePulse,
+        center = stormCenter,
+    )
+    val eyeCenter = Offset(
+        x = stormCenter.x + unit * 0.006f,
+        y = stormCenter.y + unit * 0.004f,
+    )
+    drawOval(
+        brush = Brush.radialGradient(
+            0f to stormDeep.copy(alpha = 0.98f),
+            0.7f to stormDeep.copy(alpha = 0.9f),
+            1f to accent.copy(alpha = 0.72f),
+            center = eyeCenter,
+            radius = unit * 0.058f,
+        ),
+        topLeft = Offset(
+            x = eyeCenter.x - unit * 0.055f,
+            y = eyeCenter.y - unit * 0.046f,
+        ),
+        size = Size(unit * 0.11f, unit * 0.092f),
+    )
+    drawArc(
+        color = cloudLight.copy(alpha = 0.7f),
+        startAngle = 196f - progress * 360f,
+        sweepAngle = 86f,
+        useCenter = false,
+        topLeft = Offset(
+            x = eyeCenter.x - unit * 0.068f,
+            y = eyeCenter.y - unit * 0.06f,
+        ),
+        size = Size(unit * 0.136f, unit * 0.12f),
+        style = Stroke(
+            width = unit * 0.012f,
+            cap = StrokeCap.Round,
+        ),
+    )
+}
+
+private fun DrawScope.drawTyphoonBandSection(
+    center: Offset,
+    unit: Float,
+    startAngle: Float,
+    startFraction: Float,
+    endFraction: Float,
+    reach: Float,
+    turns: Float,
+    width: Float,
+    accent: Color,
+    cloudMid: Color,
+    cloudLight: Color,
+    alpha: Float,
+) {
+    val path = Path()
+    repeat(14) { step ->
+        val fraction = startFraction + (endFraction - startFraction) * step / 13f
+        val point = typhoonBandPoint(
+            center = center,
+            unit = unit,
+            startAngle = startAngle,
+            fraction = fraction,
+            reach = reach,
+            turns = turns,
+        )
+        if (step == 0) path.moveTo(point.x, point.y) else path.lineTo(point.x, point.y)
+    }
+    drawPath(
+        path = path,
+        color = accent.copy(alpha = alpha * 0.3f),
+        style = Stroke(width = width * 1.46f, cap = StrokeCap.Round),
+    )
+    drawPath(
+        path = path,
+        color = cloudMid.copy(alpha = alpha),
+        style = Stroke(width = width, cap = StrokeCap.Round),
+    )
+    drawPath(
+        path = path,
+        color = cloudLight.copy(alpha = alpha * 0.74f),
+        style = Stroke(width = width * 0.34f, cap = StrokeCap.Round),
+    )
+}
+
+private fun typhoonBandPoint(
+    center: Offset,
+    unit: Float,
+    startAngle: Float,
+    fraction: Float,
+    reach: Float,
+    turns: Float,
+): Offset {
+    val tau = (PI * 2).toFloat()
+    val eased = fraction * fraction * (3f - 2f * fraction)
+    val radius = unit * (0.105f + reach * eased)
+    val angle = startAngle + fraction * tau * turns
+    return Offset(
+        x = center.x + cos(angle).toFloat() * radius,
+        y = center.y + sin(angle).toFloat() * radius * 0.94f,
+    )
+}
+
+private fun DrawScope.drawShrinkingCargoBox(
+    progress: Float,
+    unit: Float,
+) {
+    val tau = (PI * 2).toFloat()
+    val shrink = (1f - cos(progress * tau)) / 2f
+    val scale = 1f - shrink * 0.46f
+    val boxWidth = unit * 0.61f * scale
+    val boxHeight = unit * 0.5f * scale
+    val boxLeft = size.width * 0.5f - boxWidth / 2f
+    val boxTop = size.height * 0.52f - boxHeight / 2f
+    val lidHeight = boxHeight * 0.22f
+    val corner = unit * 0.025f * scale
+    val cardboard = Color(0xFFC89455)
+    val cardboardDark = Color(0xFF8B5A2B)
+    val tape = Color(0xFFE9D2A9)
+
+    drawRoundRect(
+        color = cardboard,
+        topLeft = Offset(boxLeft, boxTop + lidHeight * 0.62f),
+        size = Size(boxWidth, boxHeight - lidHeight * 0.62f),
+        cornerRadius = androidx.compose.ui.geometry.CornerRadius(corner, corner),
+    )
+    val lid = Path().apply {
+        moveTo(boxLeft + boxWidth * 0.05f, boxTop)
+        lineTo(boxLeft + boxWidth * 0.95f, boxTop)
+        lineTo(boxLeft + boxWidth, boxTop + lidHeight)
+        lineTo(boxLeft, boxTop + lidHeight)
+        close()
+    }
+    drawPath(path = lid, color = Color(0xFFD9AA6D))
+    drawPath(
+        path = lid,
+        color = cardboardDark,
+        style = Stroke(width = unit * 0.022f * scale, cap = StrokeCap.Round),
+    )
+    drawRoundRect(
+        color = cardboardDark,
+        topLeft = Offset(boxLeft, boxTop + lidHeight * 0.62f),
+        size = Size(boxWidth, boxHeight - lidHeight * 0.62f),
+        cornerRadius = androidx.compose.ui.geometry.CornerRadius(corner, corner),
+        style = Stroke(width = unit * 0.022f * scale),
+    )
+    drawLine(
+        color = cardboardDark.copy(alpha = 0.62f),
+        start = Offset(boxLeft, boxTop + lidHeight),
+        end = Offset(boxLeft + boxWidth, boxTop + lidHeight),
+        strokeWidth = unit * 0.017f * scale,
+        cap = StrokeCap.Round,
+    )
+    val tapeWidth = boxWidth * 0.13f
+    drawRect(
+        color = tape.copy(alpha = 0.82f),
+        topLeft = Offset(boxLeft + (boxWidth - tapeWidth) / 2f, boxTop),
+        size = Size(tapeWidth, boxHeight),
+    )
+    drawLine(
+        color = cardboardDark.copy(alpha = 0.3f),
+        start = Offset(boxLeft + boxWidth / 2f, boxTop),
+        end = Offset(boxLeft + boxWidth / 2f, boxTop + boxHeight),
+        strokeWidth = unit * 0.008f * scale,
+    )
+}
+
+private fun DrawScope.drawRealisticHeavyRain(
+    progress: Float,
+    unit: Float,
+) {
+    val tau = (PI * 2).toFloat()
+    val groundY = size.height * 0.86f
+
+    val cloudDrift = sin(progress * tau) * unit * 0.012f
+    val cloudTop = size.height * 0.08f
+    drawOval(
+        brush = Brush.verticalGradient(
+            0f to Color(0xFF9DA9B0),
+            0.42f to Color(0xFF687985),
+            1f to Color(0xFF334956),
+            startY = cloudTop,
+            endY = size.height * 0.43f,
+        ),
+        topLeft = Offset(size.width * 0.09f + cloudDrift, size.height * 0.2f),
+        size = Size(size.width * 0.84f, unit * 0.22f),
+    )
+    drawCircle(
+        color = Color(0xFF71818B),
+        radius = unit * 0.16f,
+        center = Offset(size.width * 0.3f + cloudDrift, size.height * 0.23f),
+    )
+    drawCircle(
+        brush = Brush.radialGradient(
+            0f to Color(0xFFAAB2B6),
+            0.62f to Color(0xFF778690),
+            1f to Color(0xFF566A77),
+            center = Offset(size.width * 0.52f + cloudDrift, size.height * 0.18f),
+            radius = unit * 0.23f,
+        ),
+        radius = unit * 0.21f,
+        center = Offset(size.width * 0.52f + cloudDrift, size.height * 0.2f),
+    )
+    drawCircle(
+        color = Color(0xFF657783),
+        radius = unit * 0.14f,
+        center = Offset(size.width * 0.72f + cloudDrift, size.height * 0.25f),
+    )
+    drawOval(
+        color = Color(0xFF243B49).copy(alpha = 0.7f),
+        topLeft = Offset(size.width * 0.16f + cloudDrift, size.height * 0.33f),
+        size = Size(size.width * 0.7f, unit * 0.09f),
+    )
+
+    val rainTop = size.height * 0.49f
+    repeat(18) { index ->
+        val cycles = 2f + (index % 3)
+        val fall = (progress * cycles + index * 0.137f) % 1f
+        val lane = (index * 0.6180339f) % 1f
+        val depth = 0.58f + (index % 5) * 0.1f
+        val x = size.width * (0.12f + lane * 0.8f) + fall * unit * 0.02f
+        val y = rainTop + fall * (groundY - rainTop)
+        val length = unit * (0.075f + depth * 0.075f)
+        val rainEndY = (y + length).coerceAtMost(groundY)
+        val rainEndX = x - (rainEndY - y) * 0.38f
+        drawLine(
+            color = Color(0xFFD9F0FA).copy(alpha = 0.25f + depth * 0.58f),
+            start = Offset(x, y),
+            end = Offset(rainEndX, rainEndY),
+            strokeWidth = unit * (0.009f + depth * 0.011f),
+            cap = StrokeCap.Round,
+        )
+        if (fall > 0.86f) {
+            val splash = (fall - 0.86f) / 0.14f
+            val splashAlpha = sin(splash * PI).toFloat().coerceAtLeast(0f) * depth
+            val splashX = rainEndX
+            drawLine(
+                color = Color(0xFFD9F0FA).copy(alpha = splashAlpha * 0.58f),
+                start = Offset(splashX, groundY),
+                end = Offset(
+                    splashX - unit * 0.035f * splash,
+                    groundY - unit * 0.035f * splash,
+                ),
+                strokeWidth = unit * 0.009f,
+                cap = StrokeCap.Round,
+            )
+            drawLine(
+                color = Color(0xFFD9F0FA).copy(alpha = splashAlpha * 0.45f),
+                start = Offset(splashX, groundY),
+                end = Offset(
+                    splashX + unit * 0.045f * splash,
+                    groundY - unit * 0.025f * splash,
+                ),
+                strokeWidth = unit * 0.008f,
+                cap = StrokeCap.Round,
+            )
+        }
+    }
+
+    drawOval(
+        brush = Brush.horizontalGradient(
+            0f to Color.Transparent,
+            0.5f to Color(0xFFBED7E3).copy(alpha = 0.28f),
+            1f to Color.Transparent,
+        ),
+        topLeft = Offset(size.width * 0.04f, groundY - unit * 0.018f),
+        size = Size(size.width * 0.9f, unit * 0.055f),
+    )
+    repeat(3) { index ->
+        val ripple = (progress * 2f + index * 0.34f) % 1f
+        val rippleWidth = unit * (0.08f + ripple * 0.17f)
+        drawOval(
+            color = Color(0xFFD9F0FA).copy(alpha = (1f - ripple) * 0.28f),
+            topLeft = Offset(
+                size.width * (0.28f + index * 0.22f) - rippleWidth / 2f,
+                groundY - unit * 0.012f,
+            ),
+            size = Size(rippleWidth, unit * 0.035f),
+            style = Stroke(width = unit * 0.009f),
+        )
+    }
+}
+
+private fun DrawScope.drawRealisticExtremeHeat(
+    progress: Float,
+    unit: Float,
+) {
+    val tau = (PI * 2).toFloat()
+    val sunCenter = Offset(size.width * 0.62f, size.height * 0.3f)
+    val pulse = 1f + sin(progress * tau) * 0.025f
+    drawCircle(
+        brush = Brush.radialGradient(
+            0f to Color(0xFFFFF5D2).copy(alpha = 0.38f),
+            0.4f to Color(0xFFFFC76B).copy(alpha = 0.2f),
+            1f to Color.Transparent,
+            center = sunCenter,
+            radius = unit * 0.36f,
+        ),
+        radius = unit * 0.36f,
+        center = sunCenter,
+    )
+    drawCircle(
+        brush = Brush.radialGradient(
+            0f to Color(0xFFFFFBE8),
+            0.72f to Color(0xFFFFD88D),
+            1f to Color(0xFFF29C45),
+            center = Offset(
+                sunCenter.x - unit * 0.035f,
+                sunCenter.y - unit * 0.035f,
+            ),
+            radius = unit * 0.17f,
+        ),
+        radius = unit * 0.155f * pulse,
+        center = sunCenter,
+    )
+
+    val horizonY = size.height * 0.73f
+    drawOval(
+        brush = Brush.verticalGradient(
+            0f to Color(0xFF6E4930).copy(alpha = 0.34f),
+            1f to Color(0xFF241B18).copy(alpha = 0.82f),
+            startY = horizonY,
+            endY = size.height * 1.08f,
+        ),
+        topLeft = Offset(-size.width * 0.08f, horizonY),
+        size = Size(size.width * 1.16f, size.height * 0.38f),
+    )
+    repeat(5) { row ->
+        val path = Path()
+        repeat(24) { step ->
+            val fraction = step / 23f
+            val x = size.width * (0.06f + fraction * 0.88f)
+            val baseY = size.height * (0.5f + row * 0.065f)
+            val wave = sin(
+                fraction * tau * (1.7f + row * 0.08f) + progress * tau + row * 0.9f,
+            ) * unit * (0.008f + row * 0.0015f)
+            val y = baseY + wave
+            if (step == 0) path.moveTo(x, y) else path.lineTo(x, y)
+        }
+        drawPath(
+            path = path,
+            color = Color(0xFFFFE2A8).copy(alpha = 0.12f + row * 0.035f),
+            style = Stroke(
+                width = unit * (0.01f + row * 0.001f),
+                cap = StrokeCap.Round,
+            ),
+        )
+    }
+    repeat(4) { index ->
+        val dustProgress = (progress + index * 0.25f) % 1f
+        drawCircle(
+            color = Color(0xFFFFD08A).copy(
+                alpha = sin(dustProgress * PI).toFloat().coerceAtLeast(0f) * 0.2f,
+            ),
+            radius = unit * (0.008f + index * 0.002f),
+            center = Offset(
+                size.width * (0.16f + index * 0.19f) + dustProgress * unit * 0.04f,
+                horizonY - dustProgress * unit * 0.18f,
+            ),
+        )
+    }
 }
 
 @Composable
@@ -1185,41 +1483,15 @@ private fun DeclinersList(
     ) {
         item {
             val options = listOf(1, 3, 7, 14, 30)
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp, vertical = 4.dp),
-                horizontalArrangement = Arrangement.spacedBy(6.dp),
-            ) {
-                options.forEach { days ->
-                    val selected = lookbackDays == days
-                    Surface(
-                        onClick = { onLookbackSelected(days) },
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(38.dp),
-                        shape = RoundedCornerShape(11.dp),
-                        color = if (selected) {
-                            MaterialTheme.colorScheme.primary
-                        } else {
-                            Color.Transparent
-                        },
-                        contentColor = if (selected) {
-                            MaterialTheme.colorScheme.onPrimary
-                        } else {
-                            MaterialTheme.colorScheme.onSurfaceVariant
-                        },
-                    ) {
-                        Box(contentAlignment = Alignment.Center) {
-                            Text(
-                                "$days 日",
-                                style = MaterialTheme.typography.labelLarge,
-                                fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium,
-                            )
-                        }
-                    }
-                }
-            }
+            PillChoiceRow(
+                items = options,
+                selectedItem = lookbackDays,
+                onItemSelected = onLookbackSelected,
+                itemLabel = { "$it 日" },
+                modifier = Modifier.padding(horizontal = 20.dp, vertical = 4.dp),
+                selectedContainerColor = MaterialTheme.colorScheme.primary,
+                selectedContentColor = MaterialTheme.colorScheme.onPrimary,
+            )
         }
         item {
             Text(

@@ -24,6 +24,24 @@ class CwaWarningParserTest {
 
         assertEquals(1, signals.size)
         assertEquals(setOf("雲林縣", "屏東縣"), signals.single().affectedAreas)
+        assertEquals(MarketShockKind.TYPHOON, signals.single().cause)
+    }
+
+    @Test
+    fun leavesNonTyphoonRainWithoutCauseAttribution() {
+        val signals = CwaWarningParser.parse(
+            raw = alert(
+                urgency = "Future",
+                headline = "豪雨特報",
+                effective = "2026-07-29T20:00:00+08:00",
+                expires = "2026-07-30T08:00:00+08:00",
+                description = "午後對流影響，山區有局部豪雨。",
+            ),
+            kind = MarketShockKind.HEAVY_RAIN,
+            now = now,
+        )
+
+        assertEquals(null, signals.single().cause)
     }
 
     @Test
@@ -47,6 +65,7 @@ class CwaWarningParserTest {
         headline: String,
         effective: String,
         expires: String,
+        description: String = "第 8 號颱風及其外圍環流影響，產地有局部豪雨。",
     ) = """
         {
           "success": "true",
@@ -58,6 +77,11 @@ class CwaWarningParserTest {
                 "effective": "$effective",
                 "expires": "$expires",
                 "headline": "$headline",
+                "description": {
+                  "section": [
+                    { "title": "天氣影響", "value": "$description" }
+                  ]
+                },
                 "area": [
                   { "areaDesc": "雲林縣" },
                   { "areaDesc": "屏東縣" }

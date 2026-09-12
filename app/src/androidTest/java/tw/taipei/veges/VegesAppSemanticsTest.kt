@@ -67,15 +67,6 @@ import tw.taipei.veges.domain.accessibilityText
 import tw.taipei.veges.home.HomeScreen
 import tw.taipei.veges.home.HomeUiState
 
-private val AnimationTestContentDescriptions = listOf(
-    "颱風來襲，整體蔬果價格可能上揚",
-    "連續暴雨，整體蔬果價格可能上揚",
-    "高溫持續，整體蔬果供應承壓",
-    "到貨量普遍縮減，整體價格可能上揚",
-    "多項蔬果價格同步上揚",
-    "多項蔬果價格高於近期常態",
-)
-
 @RunWith(AndroidJUnit4::class)
 class VegesAppSemanticsTest {
     @get:Rule
@@ -132,7 +123,7 @@ class VegesAppSemanticsTest {
     }
 
     @Test
-    fun homePriceSurgeRadarCanPreviewEveryReasonAnimation() {
+    fun homePriceSurgeRadarDoesNotExposeInternalAnimationControls() {
         composeRule.setContent {
             VegesTheme {
                 HomeScreen(
@@ -145,14 +136,8 @@ class VegesAppSemanticsTest {
             }
         }
 
-        composeRule.onNodeWithText("測試動畫").performClick()
-
-        composeRule.onNodeWithText("動態訊號圖鑑").assertIsDisplayed()
-        composeRule.onNodeWithText("即時預覽").assertIsDisplayed()
-        AnimationTestContentDescriptions.forEach { description ->
-            composeRule.onNodeWithContentDescription(description).assertIsDisplayed()
-        }
-        composeRule.onNodeWithText("結束測試").assertIsDisplayed()
+        composeRule.onAllNodesWithText("測試動畫").assertCountEquals(0)
+        composeRule.onAllNodesWithText("動態訊號圖鑑").assertCountEquals(0)
     }
 
     @Test
@@ -184,10 +169,10 @@ class VegesAppSemanticsTest {
             }
         }
 
-        composeRule.onNodeWithText("測試動畫").assertIsDisplayed()
+        composeRule.onNodeWithText("漲價雷達").assertIsDisplayed()
         composeRule.onRoot().performTouchInput { swipeUp() }
         composeRule.waitForIdle()
-        composeRule.onNodeWithText("測試動畫").assertIsNotDisplayed()
+        composeRule.onNodeWithText("漲價雷達").assertIsNotDisplayed()
 
         composeRule.onRoot().performTouchInput {
             swipeDown(
@@ -196,13 +181,13 @@ class VegesAppSemanticsTest {
             )
         }
         composeRule.waitForIdle()
-        composeRule.onNodeWithText("測試動畫").assertIsDisplayed()
+        composeRule.onNodeWithText("漲價雷達").assertIsDisplayed()
 
         composeRule.onNodeWithText("大跌").performClick()
         composeRule.waitForIdle()
         composeRule.onRoot().performTouchInput { swipeUp() }
         composeRule.waitForIdle()
-        composeRule.onNodeWithText("測試動畫").assertIsNotDisplayed()
+        composeRule.onNodeWithText("漲價雷達").assertIsNotDisplayed()
 
         composeRule.onRoot().performTouchInput {
             swipeDown(
@@ -211,7 +196,7 @@ class VegesAppSemanticsTest {
             )
         }
         composeRule.waitForIdle()
-        composeRule.onNodeWithText("測試動畫").assertIsDisplayed()
+        composeRule.onNodeWithText("漲價雷達").assertIsDisplayed()
     }
 
     @Test
@@ -242,21 +227,38 @@ class VegesAppSemanticsTest {
     @Test
     fun sourceSwitchUnavailableDisclosureAndChartSemanticsAreExposed() {
         var selectedBasis: MarketBasis? = null
+        var backClicks = 0
+        var alertClicks = 0
+        var trackedClicks = 0
         composeRule.setContent {
             VegesTheme {
                 DetailScreen(
                     state = DetailUiState(),
                     onBasisSelected = { selectedBasis = it },
-                    onToggleTracked = {},
+                    onToggleTracked = { trackedClicks += 1 },
                     onToggleMethodology = {},
+                    onSetAlert = { alertClicks += 1 },
+                    onBack = { backClicks += 1 },
                 )
             }
         }
 
+        composeRule.onNodeWithContentDescription("返回").performClick()
+        composeRule.onNodeWithContentDescription("設定提醒").performClick()
+        composeRule.onNodeWithContentDescription("加入追蹤").performClick()
+        composeRule.runOnIdle {
+            assertEquals(1, backClicks)
+            assertEquals(1, alertClicks)
+            assertEquals(1, trackedClicks)
+        }
         composeRule.onNodeWithText("台北一").performClick()
         composeRule.runOnIdle { assertEquals(MarketBasis.TAIPEI_FIRST, selectedBasis) }
         composeRule.onNodeWithText("目前無可用估算").assertIsDisplayed()
-        composeRule.onNodeWithText("Taipei retail reference estimate").assertIsDisplayed()
+        composeRule.onAllNodesWithText("估算").assertCountEquals(0)
+        composeRule.onAllNodesWithText("Taipei retail reference estimate").assertCountEquals(0)
+        composeRule.onNodeWithContentDescription("返回").assertIsDisplayed()
+        composeRule.onNodeWithContentDescription("設定提醒").assertIsDisplayed()
+        composeRule.onNodeWithContentDescription("加入追蹤").assertIsDisplayed()
         composeRule.onNodeWithContentDescription(
             "線體連接前一交易日與當日平均價",
             substring = true,

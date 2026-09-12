@@ -17,6 +17,8 @@ import tw.taipei.veges.domain.MarketPriceSurgeOutlook
 import tw.taipei.veges.domain.MarketShockRepository
 import tw.taipei.veges.domain.PriceRefresh
 import tw.taipei.veges.domain.PriceSurgePredictor
+import tw.taipei.veges.domain.ProductionAreaWeatherRisk
+import tw.taipei.veges.domain.ProductionAreaWeatherRiskEvaluator
 import tw.taipei.veges.domain.ProduceCategory
 import tw.taipei.veges.domain.ProduceRepository
 import tw.taipei.veges.domain.averageChangePercent
@@ -27,6 +29,7 @@ data class HomeUiState(
     val declinerLookbackDays: Int = 7,
     val declinerEligibleCount: Int = 0,
     val marketPriceSurgeOutlook: MarketPriceSurgeOutlook? = null,
+    val productionAreaWeatherRisk: ProductionAreaWeatherRisk? = null,
     val predictionEligibleCount: Int = 0,
     val priceRefresh: PriceRefresh = PriceRefresh(),
 )
@@ -39,6 +42,7 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
     private val declinerLookbackDays = MutableStateFlow(7)
     private val predictor = PriceSurgePredictor()
+    private val productionAreaWeatherRiskEvaluator = ProductionAreaWeatherRiskEvaluator()
     private val vegetableMarket = produceRepository.observeMarket(ProduceCategory.VEGETABLE)
     private val allProduceMarket = combine(
         vegetableMarket,
@@ -64,6 +68,7 @@ class HomeViewModel @Inject constructor(
             item.averageChangePercent(lookbackDays)?.let { change -> item to change }
         }
         val predictionEvaluation = predictor.evaluate(allProduce, shockSignals)
+        val productionAreaWeatherRisk = productionAreaWeatherRiskEvaluator.evaluate(shockSignals)
         HomeUiState(
             tracked = tracked,
             decliners = ranked
@@ -74,6 +79,7 @@ class HomeViewModel @Inject constructor(
             declinerLookbackDays = lookbackDays,
             declinerEligibleCount = ranked.size,
             marketPriceSurgeOutlook = predictionEvaluation.marketOutlook,
+            productionAreaWeatherRisk = productionAreaWeatherRisk,
             predictionEligibleCount = predictionEvaluation.eligibleItemCount,
             priceRefresh = priceRefresh,
         )
