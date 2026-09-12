@@ -1,7 +1,6 @@
 package tw.taipei.veges.domain
 
 import java.math.BigDecimal
-import java.time.Instant
 import java.time.LocalDate
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
@@ -10,7 +9,6 @@ import org.junit.Test
 
 class ItemPriceDirectionPredictorTest {
     private val today = LocalDate.parse("2026-07-29")
-    private val now = Instant.parse("2026-07-29T14:00:00Z")
     private val predictor = ItemPriceDirectionPredictor()
 
     @Test
@@ -22,16 +20,13 @@ class ItemPriceDirectionPredictorTest {
                 recentVolume = "50",
                 baselineVolume = "100",
             ),
-            shockSignals = listOf(activeShock(MarketShockKind.TYPHOON)),
             today = today,
-            now = now,
         )
         val outlook = requireNotNull(result.outlook)
 
         assertEquals(ItemPriceDirectionStatus.SIGNAL, result.status)
         assertEquals(ItemPriceDirection.RISING, outlook.direction)
         assertTrue(outlook.projectedChangePercent > BigDecimal.ZERO)
-        assertTrue(outlook.reasons.any { it.kind == ItemPriceDirectionReasonKind.TYPHOON })
         assertTrue(outlook.reasons.any { it.kind == ItemPriceDirectionReasonKind.PRICE_MOMENTUM_UP })
     }
 
@@ -44,9 +39,7 @@ class ItemPriceDirectionPredictorTest {
                 recentVolume = "160",
                 baselineVolume = "100",
             ),
-            shockSignals = emptyList(),
             today = today,
-            now = now,
         )
         val outlook = requireNotNull(result.outlook)
 
@@ -61,9 +54,7 @@ class ItemPriceDirectionPredictorTest {
     fun stableHistoryReportsNoClearSignal() {
         val result = predictor.evaluate(
             history = history(),
-            shockSignals = emptyList(),
             today = today,
-            now = now,
         )
 
         assertEquals(ItemPriceDirectionStatus.NO_CLEAR_SIGNAL, result.status)
@@ -74,9 +65,7 @@ class ItemPriceDirectionPredictorTest {
     fun fewerThanTenValidDaysReportsInsufficientHistory() {
         val result = predictor.evaluate(
             history = history().take(9),
-            shockSignals = emptyList(),
             today = today,
-            now = now,
         )
 
         assertEquals(ItemPriceDirectionStatus.INSUFFICIENT_HISTORY, result.status)
@@ -88,9 +77,7 @@ class ItemPriceDirectionPredictorTest {
     fun oldLatestObservationReportsStaleData() {
         val result = predictor.evaluate(
             history = history().map { it.copy(observedOn = it.observedOn.minusDays(5)) },
-            shockSignals = emptyList(),
             today = today,
-            now = now,
         )
 
         assertEquals(ItemPriceDirectionStatus.STALE_DATA, result.status)
@@ -98,12 +85,10 @@ class ItemPriceDirectionPredictorTest {
     }
 
     @Test
-    fun activeWeatherWithoutMarketMovementDoesNotCreateSignal() {
+    fun neutralMarketHistoryDoesNotCreateSignal() {
         val result = predictor.evaluate(
             history = history(),
-            shockSignals = listOf(activeShock(MarketShockKind.HEAVY_RAIN)),
             today = today,
-            now = now,
         )
 
         assertEquals(ItemPriceDirectionStatus.NO_CLEAR_SIGNAL, result.status)
@@ -111,26 +96,149 @@ class ItemPriceDirectionPredictorTest {
     }
 
     @Test
-    fun expiredWeatherDoesNotContributeToRisingSignal() {
-        val expired = activeShock(MarketShockKind.TYPHOON).copy(
-            effectiveAt = now.minusSeconds(7_200),
-            expiresAt = now.minusSeconds(3_600),
+    fun includesEachRisingReasonAtItsConfiguredBoundary() {
+        val exactVolume = requireNotNull(
+            predictor.evaluate(
+                history = history(
+                    recentPrice = "150",
+                    baselinePrice = "100",
+                    recentVolume = "85",
+                    baselineVolume = "100",
+                ),
+                today = today,
+            ).outlook,
         )
-        val result = predictor.evaluate(
-            history = history(
-                recentPrice = "130",
-                baselinePrice = "100",
-                recentVolume = "50",
-                baselineVolume = "100",
-            ),
-            shockSignals = listOf(expired),
-            today = today,
-            now = now,
+        val exactMomentum = requireNotNull(
+            predictor.evaluate(
+                history = history(
+                    recentPrice = "105",
+                    baselinePrice = "100",
+                    recentVolume = "50",
+                    baselineVolume = "100",
+                    olderPrice = "60",
+                ),
+                today = today,
+            ).outlook,
         )
-        val outlook = requireNotNull(result.outlook)
+        val exactAnomaly = requireNotNull(
+            predictor.evaluate(
+                history = history(
+                    recentPrice = "110",
+                    baselinePrice = "100",
+                    recentVolume = "50",
+                    baselineVolume = "100",
+                    olderPrice = "100",
+                ),
+                today = today,
+            ).outlook,
+        )
 
-        assertEquals(ItemPriceDirection.RISING, outlook.direction)
-        assertTrue(outlook.reasons.none { it.kind == ItemPriceDirectionReasonKind.TYPHOON })
+        assertTrue(exactVolume.reasons.any { it.kind == ItemPriceDirectionReasonKind.VOLUME_CONTRACTION })
+        assertTrue(exactMomentum.reasons.any { it.kind == ItemPriceDirectionReasonKind.PRICE_MOMENTUM_UP })
+        assertTrue(exactAnomaly.reasons.any { it.kind == ItemPriceDirectionReasonKind.ABOVE_RECENT_NORMAL })
+    }
+
+    @Test
+    fun subthresholdVolumeDoesNotChangeProjection() {
+        val neutralVolume = requireNotNull(
+            predictor.evaluate(
+                history = history(
+                    recentPrice = "130",
+                    baselinePrice = "100",
+                    recentVolume = "100",
+                    baselineVolume = "100",
+                ),
+                today = today,
+            ).outlook,
+        )
+        val belowThresholdVolume = requireNotNull(
+            predictor.evaluate(
+                history = history(
+                    recentPrice = "130",
+                    baselinePrice = "100",
+                    recentVolume = "86",
+                    baselineVolume = "100",
+                ),
+                today = today,
+            ).outlook,
+        )
+
+        assertEquals(neutralVolume.projectedChangePercent, belowThresholdVolume.projectedChangePercent)
+        assertTrue(
+            belowThresholdVolume.reasons.none {
+                it.kind == ItemPriceDirectionReasonKind.VOLUME_CONTRACTION
+            },
+        )
+    }
+
+    @Test
+    fun subthresholdMomentumDoesNotChangeProjection() {
+        val neutralMomentum = requireNotNull(
+            predictor.evaluate(
+                history = history(
+                    recentPrice = "100",
+                    baselinePrice = "100",
+                    recentVolume = "50",
+                    baselineVolume = "100",
+                    olderPrice = "60",
+                ),
+                today = today,
+            ).outlook,
+        )
+        val belowThresholdMomentum = requireNotNull(
+            predictor.evaluate(
+                history = history(
+                    recentPrice = "100",
+                    baselinePrice = "96",
+                    recentVolume = "50",
+                    baselineVolume = "100",
+                    olderPrice = "60",
+                ),
+                today = today,
+            ).outlook,
+        )
+
+        assertEquals(neutralMomentum.projectedChangePercent, belowThresholdMomentum.projectedChangePercent)
+        assertTrue(
+            belowThresholdMomentum.reasons.none {
+                it.kind == ItemPriceDirectionReasonKind.PRICE_MOMENTUM_UP
+            },
+        )
+    }
+
+    @Test
+    fun subthresholdAnomalyDoesNotChangeProjection() {
+        val neutralAnomaly = requireNotNull(
+            predictor.evaluate(
+                history = history(
+                    recentPrice = "120",
+                    baselinePrice = "100",
+                    recentVolume = "50",
+                    baselineVolume = "100",
+                    olderPrice = "120",
+                ),
+                today = today,
+            ).outlook,
+        )
+        val belowThresholdAnomaly = requireNotNull(
+            predictor.evaluate(
+                history = history(
+                    recentPrice = "120",
+                    baselinePrice = "100",
+                    recentVolume = "50",
+                    baselineVolume = "100",
+                    olderPrice = "110",
+                ),
+                today = today,
+            ).outlook,
+        )
+
+        assertEquals(neutralAnomaly.projectedChangePercent, belowThresholdAnomaly.projectedChangePercent)
+        assertTrue(
+            belowThresholdAnomaly.reasons.none {
+                it.kind == ItemPriceDirectionReasonKind.ABOVE_RECENT_NORMAL
+            },
+        )
     }
 
     private fun history(
@@ -138,20 +246,19 @@ class ItemPriceDirectionPredictorTest {
         baselinePrice: String = "100",
         recentVolume: String = "100",
         baselineVolume: String = "100",
+        olderPrice: String = baselinePrice,
     ): List<MarketHistoryPoint> = List(23) { index ->
         MarketHistoryPoint(
             observedOn = today.minusDays(index.toLong()),
-            averageNtdPerKg = BigDecimal(if (index < 3) recentPrice else baselinePrice),
+            averageNtdPerKg = BigDecimal(
+                when {
+                    index < 3 -> recentPrice
+                    index < 10 -> baselinePrice
+                    else -> olderPrice
+                },
+            ),
             volumeKg = BigDecimal(if (index < 3) recentVolume else baselineVolume),
         )
     }
 
-    private fun activeShock(kind: MarketShockKind) = MarketShockSignal(
-        kind = kind,
-        severity = BigDecimal.ONE,
-        headline = "官方警報",
-        affectedAreas = setOf("雲林縣"),
-        effectiveAt = now.minusSeconds(3_600),
-        expiresAt = now.plusSeconds(3_600),
-    )
 }

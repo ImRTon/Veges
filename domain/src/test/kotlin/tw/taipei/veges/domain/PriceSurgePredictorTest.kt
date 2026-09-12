@@ -12,33 +12,143 @@ class PriceSurgePredictorTest {
     private val now = Instant.parse("2026-07-29T14:00:00Z")
 
     @Test
-    fun combinesMarketEvidenceAndActiveTyphoonIntoExplainableAlert() {
-        val prediction = PriceSurgePredictor().evaluate(
-            items = listOf(
+    fun typhoonCausedRainIsMarketContextWithoutChangingItemScores() {
+        val items = (0 until 10).map { index ->
+            val item = if (index < 3) {
                 marketItem(
                     recentPrice = "130",
                     baselinePrice = "100",
                     recentVolume = "50",
                     baselineVolume = "100",
-                ),
-            ),
+                )
+            } else {
+                marketItem(
+                    recentPrice = "100",
+                    baselinePrice = "100",
+                    recentVolume = "100",
+                    baselineVolume = "100",
+                )
+            }
+            item.withIdentity(index)
+        }
+        val predictor = PriceSurgePredictor()
+        val withWeather = predictor.evaluate(
+            items = items,
             shockSignals = listOf(
                 MarketShockSignal(
-                    kind = MarketShockKind.TYPHOON,
+                    kind = MarketShockKind.HEAVY_RAIN,
                     severity = BigDecimal.ONE,
-                    headline = "海上陸上颱風警報",
+                    headline = "豪雨特報",
                     affectedAreas = setOf("雲林縣"),
                     effectiveAt = now.minusSeconds(3_600),
                     expiresAt = now.plusSeconds(10_800),
+                    cause = MarketShockKind.TYPHOON,
                 ),
             ),
             today = today,
             now = now,
+        )
+        val withoutWeather = predictor.evaluate(
+            items = items,
+            shockSignals = emptyList(),
+            today = today,
+            now = now,
+        )
+        val outlook = requireNotNull(withWeather.marketOutlook)
+
+        assertEquals(PriceSurgeReasonKind.TYPHOON, outlook.primaryReason.kind)
+        assertEquals("颱風來襲，整體蔬果價格可能上揚", outlook.primaryReason.headline)
+        assertEquals(
+            withoutWeather.predictions.map { it.riskScore to it.projectedRisePercent },
+            withWeather.predictions.map { it.riskScore to it.projectedRisePercent },
+        )
+        assertTrue(withWeather.predictions.flatMap { it.reasons }.none { it.kind.isWeather() })
+        assertEquals(
+            setOf(
+                PriceSurgeReasonKind.VOLUME_CONTRACTION,
+                PriceSurgeReasonKind.PRICE_MOMENTUM,
+                PriceSurgeReasonKind.RECENT_PRICE_ANOMALY,
+            ),
+            withWeather.predictions.first().reasons.map { it.kind }.toSet(),
+        )
+    }
+
+    @Test
+    fun classifiesEachQualifiedWeatherContext() {
+        val items = marketBreadthItems()
+        val cases = listOf(
+            MarketShockKind.TYPHOON to PriceSurgeReasonKind.TYPHOON,
+            MarketShockKind.HEAVY_RAIN to PriceSurgeReasonKind.HEAVY_RAIN,
+            MarketShockKind.EXTREME_HEAT to PriceSurgeReasonKind.EXTREME_HEAT,
+        )
+
+        cases.forEach { (kind, expectedReason) ->
+            val result = PriceSurgePredictor().evaluate(
+                items = items,
+                shockSignals = listOf(activeShock(kind, setOf("雲林縣"))),
+                today = today,
+                now = now,
+            )
+
+            assertEquals(expectedReason, requireNotNull(result.marketOutlook).primaryReason.kind)
+        }
+    }
+
+    @Test
+    fun missingOrUnknownWarningAreaDoesNotBecomePriceReason() {
+        listOf(emptySet(), setOf("臺北市"), setOf("臺灣東北部海面")).forEach { areas ->
+            val result = PriceSurgePredictor().evaluate(
+                items = marketBreadthItems(),
+                shockSignals = listOf(activeShock(MarketShockKind.TYPHOON, areas)),
+                today = today,
+                now = now,
+            )
+
+            assertEquals(
+                PriceSurgeReasonKind.VOLUME_CONTRACTION,
+                requireNotNull(result.marketOutlook).primaryReason.kind,
+            )
+        }
+    }
+
+    @Test
+    fun subthresholdAnomalyDoesNotIncreaseMarketProjection() {
+        val predictor = PriceSurgePredictor()
+        val neutralAnomaly = predictor.evaluate(
+            items = listOf(
+                marketItem(
+                    recentPrice = "120",
+                    baselinePrice = "100",
+                    recentVolume = "50",
+                    baselineVolume = "100",
+                    olderPrice = "120",
+                ),
+            ),
+            shockSignals = emptyList(),
+            today = today,
+            now = now,
+        ).predictions.single()
+        val belowThresholdAnomaly = predictor.evaluate(
+            items = listOf(
+                marketItem(
+                    recentPrice = "120",
+                    baselinePrice = "100",
+                    recentVolume = "50",
+                    baselineVolume = "100",
+                    olderPrice = "110",
+                ),
+            ),
+            shockSignals = emptyList(),
+            today = today,
+            now = now,
         ).predictions.single()
 
-        assertEquals(PriceSurgeReasonKind.TYPHOON, prediction.reasons.first().kind)
-        assertTrue(prediction.projectedRisePercent >= BigDecimal("20"))
-        assertTrue(prediction.riskScore >= 75)
+        assertEquals(neutralAnomaly.projectedRisePercent, belowThresholdAnomaly.projectedRisePercent)
+        assertTrue(
+            belowThresholdAnomaly.reasons.none {
+                it.kind == PriceSurgeReasonKind.RECENT_PRICE_ANOMALY
+            },
+        )
     }
 
     @Test
@@ -161,6 +271,7 @@ class PriceSurgePredictorTest {
         baselinePrice: String,
         recentVolume: String,
         baselineVolume: String,
+        olderPrice: String = baselinePrice,
     ) = MarketItem(
         concept = ProduceConcept(
             id = ProduceConceptId("vegetable.test"),
@@ -177,6 +288,7 @@ class PriceSurgePredictorTest {
             baselinePrice,
             recentVolume,
             baselineVolume,
+            olderPrice,
         ),
     )
 
@@ -185,10 +297,17 @@ class PriceSurgePredictorTest {
         baselinePrice: String = "100",
         recentVolume: String = "50",
         baselineVolume: String = "100",
+        olderPrice: String = baselinePrice,
     ): List<MarketHistoryPoint> = List(23) { index ->
         MarketHistoryPoint(
             observedOn = today.minusDays(index.toLong()),
-            averageNtdPerKg = BigDecimal(if (index < 3) recentPrice else baselinePrice),
+            averageNtdPerKg = BigDecimal(
+                when {
+                    index < 3 -> recentPrice
+                    index < 10 -> baselinePrice
+                    else -> olderPrice
+                },
+            ),
             volumeKg = BigDecimal(if (index < 3) recentVolume else baselineVolume),
         )
     }
@@ -199,4 +318,40 @@ class PriceSurgePredictorTest {
             householdName = "測試蔬菜$index",
         ),
     )
+
+    private fun marketBreadthItems(): List<MarketItem> = (0 until 10).map { index ->
+        val item = if (index < 3) {
+            marketItem(
+                recentPrice = "130",
+                baselinePrice = "100",
+                recentVolume = "50",
+                baselineVolume = "100",
+            )
+        } else {
+            marketItem(
+                recentPrice = "100",
+                baselinePrice = "100",
+                recentVolume = "100",
+                baselineVolume = "100",
+            )
+        }
+        item.withIdentity(index)
+    }
+
+    private fun activeShock(
+        kind: MarketShockKind,
+        affectedAreas: Set<String>,
+    ) = MarketShockSignal(
+        kind = kind,
+        severity = BigDecimal.ONE,
+        headline = "官方警報",
+        affectedAreas = affectedAreas,
+        effectiveAt = now.minusSeconds(3_600),
+        expiresAt = now.plusSeconds(3_600),
+    )
+
+    private fun PriceSurgeReasonKind.isWeather(): Boolean =
+        this == PriceSurgeReasonKind.TYPHOON ||
+            this == PriceSurgeReasonKind.HEAVY_RAIN ||
+            this == PriceSurgeReasonKind.EXTREME_HEAT
 }

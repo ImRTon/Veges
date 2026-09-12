@@ -2,7 +2,6 @@ package tw.taipei.veges.domain
 
 import java.math.BigDecimal
 import java.math.RoundingMode
-import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 
@@ -19,9 +18,6 @@ enum class ItemPriceDirectionStatus {
 }
 
 enum class ItemPriceDirectionReasonKind {
-    TYPHOON,
-    HEAVY_RAIN,
-    EXTREME_HEAT,
     VOLUME_CONTRACTION,
     VOLUME_EXPANSION,
     PRICE_MOMENTUM_UP,
@@ -61,9 +57,7 @@ data class ItemPriceDirectionEvaluation(
 class ItemPriceDirectionPredictor {
     fun evaluate(
         history: List<MarketHistoryPoint>,
-        shockSignals: List<MarketShockSignal>,
         today: LocalDate = LocalDate.now(TAIPEI_ZONE),
-        now: Instant = Instant.now(),
     ): ItemPriceDirectionEvaluation {
         val validHistory = history
             .filter { it.averageNtdPerKg > BigDecimal.ZERO && it.volumeKg > BigDecimal.ZERO }
@@ -101,13 +95,10 @@ class ItemPriceDirectionPredictor {
         val priceChangePercent = percentageChange(recentPrice, baselinePrice)
         val volumeChangePercent = percentageChange(recentVolume, baselineVolume)
         val anomalyPercent = percentageChange(recentPrice, longerPrice)
-        val activeShocks = shockSignals.filter { it.effectiveAt <= now && it.expiresAt > now }
-
         val rising = risingCandidate(
             priceMomentum = priceChangePercent.coerceAtLeast(BigDecimal.ZERO),
             volumeContraction = volumeChangePercent.negate().coerceAtLeast(BigDecimal.ZERO),
             aboveNormal = anomalyPercent.coerceAtLeast(BigDecimal.ZERO),
-            shocks = activeShocks,
         )
         val falling = fallingCandidate(
             priceMomentum = priceChangePercent.negate().coerceAtLeast(BigDecimal.ZERO),
@@ -132,11 +123,12 @@ class ItemPriceDirectionPredictor {
         priceMomentum: BigDecimal,
         volumeContraction: BigDecimal,
         aboveNormal: BigDecimal,
-        shocks: List<MarketShockSignal>,
     ): ItemPriceDirectionOutlook {
+        val volumeQualifies = volumeContraction >= VOLUME_CHANGE_THRESHOLD
+        val momentumQualifies = priceMomentum >= PRICE_MOMENTUM_THRESHOLD
+        val anomalyQualifies = aboveNormal >= RECENT_ANOMALY_THRESHOLD
         val reasons = buildList {
-            weatherReason(shocks)?.let(::add)
-            if (volumeContraction >= BigDecimal("15")) {
+            if (volumeQualifies) {
                 add(
                     ItemPriceDirectionReason(
                         kind = ItemPriceDirectionReasonKind.VOLUME_CONTRACTION,
@@ -146,7 +138,7 @@ class ItemPriceDirectionPredictor {
                     ),
                 )
             }
-            if (priceMomentum >= BigDecimal("5")) {
+            if (momentumQualifies) {
                 add(
                     ItemPriceDirectionReason(
                         kind = ItemPriceDirectionReasonKind.PRICE_MOMENTUM_UP,
@@ -156,7 +148,7 @@ class ItemPriceDirectionPredictor {
                     ),
                 )
             }
-            if (aboveNormal >= BigDecimal("10")) {
+            if (anomalyQualifies) {
                 add(
                     ItemPriceDirectionReason(
                         kind = ItemPriceDirectionReasonKind.ABOVE_RECENT_NORMAL,
@@ -166,21 +158,11 @@ class ItemPriceDirectionPredictor {
                     ),
                 )
             }
-        }.sortedWith(
-            compareByDescending<ItemPriceDirectionReason> { it.kind.isWeather() }
-                .thenByDescending(ItemPriceDirectionReason::contribution),
-        )
-        val weatherUplift = when (reasons.firstOrNull { it.kind.isWeather() }?.kind) {
-            ItemPriceDirectionReasonKind.TYPHOON -> BigDecimal("12")
-            ItemPriceDirectionReasonKind.HEAVY_RAIN -> BigDecimal("8")
-            ItemPriceDirectionReasonKind.EXTREME_HEAT -> BigDecimal("4")
-            else -> BigDecimal.ZERO
-        }
+        }.sortedByDescending(ItemPriceDirectionReason::contribution)
         val projected = (
-            priceMomentum * BigDecimal("0.65") +
-                volumeContraction * BigDecimal("0.25") +
-                aboveNormal * BigDecimal("0.15") +
-                weatherUplift
+            priceMomentum.takeIf { momentumQualifies }.orZero() * BigDecimal("0.65") +
+                volumeContraction.takeIf { volumeQualifies }.orZero() * BigDecimal("0.25") +
+                aboveNormal.takeIf { anomalyQualifies }.orZero() * BigDecimal("0.15")
             ).coerceAtMost(BigDecimal("60"))
             .setScale(1, RoundingMode.HALF_UP)
         return ItemPriceDirectionOutlook(
@@ -196,8 +178,11 @@ class ItemPriceDirectionPredictor {
         volumeExpansion: BigDecimal,
         belowNormal: BigDecimal,
     ): ItemPriceDirectionOutlook {
+        val volumeQualifies = volumeExpansion >= VOLUME_CHANGE_THRESHOLD
+        val momentumQualifies = priceMomentum >= PRICE_MOMENTUM_THRESHOLD
+        val anomalyQualifies = belowNormal >= RECENT_ANOMALY_THRESHOLD
         val reasons = buildList {
-            if (volumeExpansion >= BigDecimal("15")) {
+            if (volumeQualifies) {
                 add(
                     ItemPriceDirectionReason(
                         kind = ItemPriceDirectionReasonKind.VOLUME_EXPANSION,
@@ -207,7 +192,7 @@ class ItemPriceDirectionPredictor {
                     ),
                 )
             }
-            if (priceMomentum >= BigDecimal("5")) {
+            if (momentumQualifies) {
                 add(
                     ItemPriceDirectionReason(
                         kind = ItemPriceDirectionReasonKind.PRICE_MOMENTUM_DOWN,
@@ -217,7 +202,7 @@ class ItemPriceDirectionPredictor {
                     ),
                 )
             }
-            if (belowNormal >= BigDecimal("10")) {
+            if (anomalyQualifies) {
                 add(
                     ItemPriceDirectionReason(
                         kind = ItemPriceDirectionReasonKind.BELOW_RECENT_NORMAL,
@@ -229,9 +214,9 @@ class ItemPriceDirectionPredictor {
             }
         }.sortedByDescending(ItemPriceDirectionReason::contribution)
         val projectedMagnitude = (
-            priceMomentum * BigDecimal("0.70") +
-                volumeExpansion * BigDecimal("0.20") +
-                belowNormal * BigDecimal("0.15")
+            priceMomentum.takeIf { momentumQualifies }.orZero() * BigDecimal("0.70") +
+                volumeExpansion.takeIf { volumeQualifies }.orZero() * BigDecimal("0.20") +
+                belowNormal.takeIf { anomalyQualifies }.orZero() * BigDecimal("0.15")
             ).coerceAtMost(BigDecimal("50"))
             .setScale(1, RoundingMode.HALF_UP)
         return ItemPriceDirectionOutlook(
@@ -249,7 +234,7 @@ class ItemPriceDirectionPredictor {
         val qualified = listOf(rising, falling).filter { candidate ->
             candidate.strengthScore >= MINIMUM_STRENGTH_SCORE &&
                 candidate.projectedChangePercent.abs() >= MINIMUM_PROJECTED_CHANGE &&
-                candidate.reasons.any { !it.kind.isWeather() }
+                candidate.reasons.isNotEmpty()
         }.sortedByDescending(ItemPriceDirectionOutlook::strengthScore)
         if (qualified.size > 1 &&
             qualified[0].strengthScore - qualified[1].strengthScore < MINIMUM_DIRECTION_SCORE_LEAD
@@ -258,40 +243,6 @@ class ItemPriceDirectionPredictor {
         }
         return qualified.firstOrNull()
     }
-
-    private fun weatherReason(signals: List<MarketShockSignal>): ItemPriceDirectionReason? =
-        signals
-            .filter { signal ->
-                signal.affectedAreas.isEmpty() ||
-                    signal.affectedAreas.any { area ->
-                        AGRICULTURAL_AREAS.any(area::startsWith)
-                    }
-            }
-            .map { signal ->
-                when (signal.kind) {
-                    MarketShockKind.TYPHOON -> ItemPriceDirectionReason(
-                        kind = ItemPriceDirectionReasonKind.TYPHOON,
-                        contribution = (25 * signal.severity.toDouble()).toInt().coerceIn(15, 25),
-                        headline = "颱風警報可能加重供應壓力",
-                        shortLabel = "颱風警報",
-                    )
-
-                    MarketShockKind.HEAVY_RAIN -> ItemPriceDirectionReason(
-                        kind = ItemPriceDirectionReasonKind.HEAVY_RAIN,
-                        contribution = (20 * signal.severity.toDouble()).toInt().coerceIn(12, 20),
-                        headline = "豪雨可能影響產地供應",
-                        shortLabel = "豪雨影響",
-                    )
-
-                    MarketShockKind.EXTREME_HEAT -> ItemPriceDirectionReason(
-                        kind = ItemPriceDirectionReasonKind.EXTREME_HEAT,
-                        contribution = (10 * signal.severity.toDouble()).toInt().coerceIn(5, 10),
-                        headline = "高溫可能增加供應壓力",
-                        shortLabel = "高溫影響",
-                    )
-                }
-            }
-            .maxByOrNull(ItemPriceDirectionReason::contribution)
 
     private fun percentageChange(current: BigDecimal, reference: BigDecimal): BigDecimal {
         if (reference <= BigDecimal.ZERO) return BigDecimal.ZERO
@@ -324,14 +275,14 @@ class ItemPriceDirectionPredictor {
         .reduce(BigDecimal::add)
         .divide(BigDecimal(size), 6, RoundingMode.HALF_UP)
 
-    private fun ItemPriceDirectionReasonKind.isWeather(): Boolean =
-        this == ItemPriceDirectionReasonKind.TYPHOON ||
-            this == ItemPriceDirectionReasonKind.HEAVY_RAIN ||
-            this == ItemPriceDirectionReasonKind.EXTREME_HEAT
+    private fun BigDecimal?.orZero(): BigDecimal = this ?: BigDecimal.ZERO
 
     private companion object {
         val TAIPEI_ZONE: ZoneId = ZoneId.of("Asia/Taipei")
         val MINIMUM_PROJECTED_CHANGE = BigDecimal("8")
+        val VOLUME_CHANGE_THRESHOLD = BigDecimal("15")
+        val PRICE_MOMENTUM_THRESHOLD = BigDecimal("5")
+        val RECENT_ANOMALY_THRESHOLD = BigDecimal("10")
         const val MINIMUM_TRADING_DAYS = 10
         const val MAX_SOURCE_AGE_DAYS = 4L
         const val RECENT_DAYS = 3
@@ -339,21 +290,5 @@ class ItemPriceDirectionPredictor {
         const val LONG_BASELINE_DAYS = 20
         const val MINIMUM_STRENGTH_SCORE = 40
         const val MINIMUM_DIRECTION_SCORE_LEAD = 10
-        val AGRICULTURAL_AREAS = setOf(
-            "桃園市",
-            "宜蘭縣",
-            "苗栗縣",
-            "臺中市",
-            "彰化縣",
-            "南投縣",
-            "雲林縣",
-            "嘉義縣",
-            "嘉義市",
-            "臺南市",
-            "高雄市",
-            "屏東縣",
-            "花蓮縣",
-            "臺東縣",
-        )
     }
 }

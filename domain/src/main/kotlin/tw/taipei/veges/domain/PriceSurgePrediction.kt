@@ -20,6 +20,7 @@ data class MarketShockSignal(
     val affectedAreas: Set<String>,
     val effectiveAt: Instant,
     val expiresAt: Instant,
+    val cause: MarketShockKind? = null,
 )
 
 interface MarketShockRepository {
@@ -105,7 +106,7 @@ class PriceSurgePredictor {
                 return@mapNotNull null
             }
             eligibleCount += 1
-            predict(item, history, activeShocks)
+            predict(item, history)
         }.sortedWith(
             compareByDescending<PriceSurgePrediction>(PriceSurgePrediction::riskScore)
                 .thenByDescending(PriceSurgePrediction::projectedRisePercent),
@@ -114,13 +115,14 @@ class PriceSurgePredictor {
         return PriceSurgeEvaluation(
             predictions = predictions,
             eligibleItemCount = eligibleCount,
-            marketOutlook = buildMarketOutlook(predictions, eligibleCount),
+            marketOutlook = buildMarketOutlook(predictions, eligibleCount, activeShocks),
         )
     }
 
     private fun buildMarketOutlook(
         predictions: List<PriceSurgePrediction>,
         eligibleItemCount: Int,
+        activeShocks: List<MarketShockSignal>,
     ): MarketPriceSurgeOutlook? {
         if (eligibleItemCount < MINIMUM_MARKET_SAMPLE_SIZE ||
             predictions.size < MINIMUM_AFFECTED_ITEMS
@@ -145,9 +147,12 @@ class PriceSurgePredictor {
             ?.value
             ?.maxByOrNull(PriceSurgeReason::contribution)
             ?: return null
-        val marketReason = dominantReason.copy(
+        val marketEvidenceReason = dominantReason.copy(
             headline = dominantReason.kind.marketHeadline(),
         )
+        val primaryReason = weatherReason(activeShocks)?.let { weather ->
+            weather.copy(headline = weather.kind.marketHeadline())
+        } ?: marketEvidenceReason
         val averageRiskScore = predictions
             .map(PriceSurgePrediction::riskScore)
             .average()
@@ -168,7 +173,7 @@ class PriceSurgePredictor {
             affectedItemCount = predictions.size,
             eligibleItemCount = eligibleItemCount,
             marketBreadthPercent = breadthPercent,
-            primaryReason = marketReason,
+            primaryReason = primaryReason,
             affectedNames = predictions
                 .map { it.concept.householdName }
                 .distinct()
@@ -179,7 +184,6 @@ class PriceSurgePredictor {
     private fun predict(
         item: MarketItem,
         history: List<MarketHistoryPoint>,
-        shocks: List<MarketShockSignal>,
     ): PriceSurgePrediction? {
         val recent = history.take(RECENT_DAYS)
         val baseline = history.drop(RECENT_DAYS).take(BASELINE_DAYS)
@@ -197,10 +201,12 @@ class PriceSurgePredictor {
         val momentumPercent = positivePercentageChange(recentPrice, baselinePrice)
         val volumeDropPercent = positivePercentageChange(baselineVolume, recentVolume)
         val anomalyPercent = positivePercentageChange(recentPrice, longerPrice)
+        val volumeQualifies = volumeDropPercent >= VOLUME_CONTRACTION_THRESHOLD
+        val momentumQualifies = momentumPercent >= PRICE_MOMENTUM_THRESHOLD
+        val anomalyQualifies = anomalyPercent >= RECENT_ANOMALY_THRESHOLD
 
         val reasons = buildList {
-            weatherReason(shocks)?.let(::add)
-            if (volumeDropPercent >= BigDecimal("15")) {
+            if (volumeQualifies) {
                 add(
                     PriceSurgeReason(
                         kind = PriceSurgeReasonKind.VOLUME_CONTRACTION,
@@ -210,7 +216,7 @@ class PriceSurgePredictor {
                     ),
                 )
             }
-            if (momentumPercent >= BigDecimal("5")) {
+            if (momentumQualifies) {
                 add(
                     PriceSurgeReason(
                         kind = PriceSurgeReasonKind.PRICE_MOMENTUM,
@@ -220,7 +226,7 @@ class PriceSurgePredictor {
                     ),
                 )
             }
-            if (anomalyPercent >= BigDecimal("10")) {
+            if (anomalyQualifies) {
                 add(
                     PriceSurgeReason(
                         kind = PriceSurgeReasonKind.RECENT_PRICE_ANOMALY,
@@ -230,24 +236,12 @@ class PriceSurgePredictor {
                     ),
                 )
             }
-        }.sortedWith(
-            compareByDescending<PriceSurgeReason> { it.kind.isWeather() }
-                .thenByDescending(PriceSurgeReason::contribution),
-        )
+        }.sortedByDescending(PriceSurgeReason::contribution)
 
-        if (reasons.none { it.kind.isMarketEvidence() }) return null
-
-        val weatherUplift = when (reasons.firstOrNull { it.kind.isWeather() }?.kind) {
-            PriceSurgeReasonKind.TYPHOON -> BigDecimal("12")
-            PriceSurgeReasonKind.HEAVY_RAIN -> BigDecimal("8")
-            PriceSurgeReasonKind.EXTREME_HEAT -> BigDecimal("4")
-            else -> BigDecimal.ZERO
-        }
         val projectedRise = (
-            momentumPercent * BigDecimal("0.65") +
-                volumeDropPercent * BigDecimal("0.25") +
-                anomalyPercent * BigDecimal("0.15") +
-                weatherUplift
+            momentumPercent.takeIf { momentumQualifies }.orZero() * BigDecimal("0.65") +
+                volumeDropPercent.takeIf { volumeQualifies }.orZero() * BigDecimal("0.25") +
+                anomalyPercent.takeIf { anomalyQualifies }.orZero() * BigDecimal("0.15")
             ).coerceAtMost(BigDecimal("60"))
             .setScale(1, RoundingMode.HALF_UP)
         val riskScore = reasons.sumOf(PriceSurgeReason::contribution).coerceAtMost(100)
@@ -269,14 +263,9 @@ class PriceSurgePredictor {
 
     private fun weatherReason(signals: List<MarketShockSignal>): PriceSurgeReason? =
         signals
-            .filter { signal ->
-                signal.affectedAreas.isEmpty() ||
-                    signal.affectedAreas.any { area ->
-                        AGRICULTURAL_AREAS.any(area::startsWith)
-                    }
-            }
+            .filter { it.affectedAgriculturalCounties().isNotEmpty() }
             .map { signal ->
-                when (signal.kind) {
+                when (signal.effectiveWeatherKind()) {
                     MarketShockKind.TYPHOON -> PriceSurgeReason(
                         kind = PriceSurgeReasonKind.TYPHOON,
                         contribution = (25 * signal.severity.toDouble()).toInt().coerceIn(15, 25),
@@ -299,7 +288,10 @@ class PriceSurgePredictor {
                     )
                 }
             }
-            .maxByOrNull(PriceSurgeReason::contribution)
+            .maxWithOrNull(
+                compareBy<PriceSurgeReason> { it.kind.marketPriority() }
+                    .thenBy(PriceSurgeReason::contribution),
+            )
 
     private fun scaledScore(value: BigDecimal, maxPercent: Int, maxScore: Int): Int =
         value.divide(BigDecimal(maxPercent), 6, RoundingMode.HALF_UP)
@@ -333,12 +325,7 @@ class PriceSurgePredictor {
         .reduce(BigDecimal::add)
         .divide(BigDecimal(size), 6, RoundingMode.HALF_UP)
 
-    private fun PriceSurgeReasonKind.isWeather(): Boolean =
-        this == PriceSurgeReasonKind.TYPHOON ||
-            this == PriceSurgeReasonKind.HEAVY_RAIN ||
-            this == PriceSurgeReasonKind.EXTREME_HEAT
-
-    private fun PriceSurgeReasonKind.isMarketEvidence(): Boolean = !isWeather()
+    private fun BigDecimal?.orZero(): BigDecimal = this ?: BigDecimal.ZERO
 
     private fun PriceSurgeReasonKind.marketPriority(): Int = when (this) {
         PriceSurgeReasonKind.TYPHOON -> 6
@@ -361,6 +348,9 @@ class PriceSurgePredictor {
     private companion object {
         val TAIPEI_ZONE: ZoneId = ZoneId.of("Asia/Taipei")
         val MINIMUM_PROJECTED_RISE = BigDecimal("20")
+        val VOLUME_CONTRACTION_THRESHOLD = BigDecimal("15")
+        val PRICE_MOMENTUM_THRESHOLD = BigDecimal("5")
+        val RECENT_ANOMALY_THRESHOLD = BigDecimal("10")
         const val MINIMUM_TRADING_DAYS = 10
         const val MAX_SOURCE_AGE_DAYS = 4L
         const val RECENT_DAYS = 3
@@ -372,21 +362,5 @@ class PriceSurgePredictor {
         const val MINIMUM_AFFECTED_ITEMS = 3
         const val MINIMUM_MARKET_BREADTH_PERCENT = 20
         const val MAX_AFFECTED_NAMES = 4
-        val AGRICULTURAL_AREAS = setOf(
-            "桃園市",
-            "宜蘭縣",
-            "苗栗縣",
-            "臺中市",
-            "彰化縣",
-            "南投縣",
-            "雲林縣",
-            "嘉義縣",
-            "嘉義市",
-            "臺南市",
-            "高雄市",
-            "屏東縣",
-            "花蓮縣",
-            "臺東縣",
-        )
     }
 }
