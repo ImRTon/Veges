@@ -83,17 +83,17 @@ data class PriceSurgeEvaluation(
  * A deliberately explainable short-horizon warning model.
  *
  * It estimates price-surge risk rather than a future retail price. Every alert must be supported
- * by at least ten valid trading days and a combination of market evidence and, when available,
- * an active official weather warning.
+ * by at least ten valid trading days and observed wholesale market evidence.
  */
 class PriceSurgePredictor {
     fun evaluate(
         items: List<MarketItem>,
+        @Suppress("UNUSED_PARAMETER")
         shockSignals: List<MarketShockSignal>,
         today: LocalDate = LocalDate.now(TAIPEI_ZONE),
+        @Suppress("UNUSED_PARAMETER")
         now: Instant = Instant.now(),
     ): PriceSurgeEvaluation {
-        val activeShocks = shockSignals.filter { it.effectiveAt <= now && it.expiresAt > now }
         var eligibleCount = 0
         val predictions = items.mapNotNull { item ->
             val history = item.wholesaleHistory
@@ -115,14 +115,13 @@ class PriceSurgePredictor {
         return PriceSurgeEvaluation(
             predictions = predictions,
             eligibleItemCount = eligibleCount,
-            marketOutlook = buildMarketOutlook(predictions, eligibleCount, activeShocks),
+            marketOutlook = buildMarketOutlook(predictions, eligibleCount),
         )
     }
 
     private fun buildMarketOutlook(
         predictions: List<PriceSurgePrediction>,
         eligibleItemCount: Int,
-        activeShocks: List<MarketShockSignal>,
     ): MarketPriceSurgeOutlook? {
         if (eligibleItemCount < MINIMUM_MARKET_SAMPLE_SIZE ||
             predictions.size < MINIMUM_AFFECTED_ITEMS
@@ -150,9 +149,7 @@ class PriceSurgePredictor {
         val marketEvidenceReason = dominantReason.copy(
             headline = dominantReason.kind.marketHeadline(),
         )
-        val primaryReason = weatherReason(activeShocks)?.let { weather ->
-            weather.copy(headline = weather.kind.marketHeadline())
-        } ?: marketEvidenceReason
+        val primaryReason = marketEvidenceReason
         val averageRiskScore = predictions
             .map(PriceSurgePrediction::riskScore)
             .average()
@@ -261,37 +258,6 @@ class PriceSurgePredictor {
         )
     }
 
-    private fun weatherReason(signals: List<MarketShockSignal>): PriceSurgeReason? =
-        signals
-            .filter { it.affectedAgriculturalCounties().isNotEmpty() }
-            .map { signal ->
-                when (signal.effectiveWeatherKind()) {
-                    MarketShockKind.TYPHOON -> PriceSurgeReason(
-                        kind = PriceSurgeReasonKind.TYPHOON,
-                        contribution = (25 * signal.severity.toDouble()).toInt().coerceIn(15, 25),
-                        headline = "颱風來襲，即將漲價",
-                        shortLabel = "颱風警報",
-                    )
-
-                    MarketShockKind.HEAVY_RAIN -> PriceSurgeReason(
-                        kind = PriceSurgeReasonKind.HEAVY_RAIN,
-                        contribution = (20 * signal.severity.toDouble()).toInt().coerceIn(12, 20),
-                        headline = "連續暴雨，即將漲價",
-                        shortLabel = "豪雨影響",
-                    )
-
-                    MarketShockKind.EXTREME_HEAT -> PriceSurgeReason(
-                        kind = PriceSurgeReasonKind.EXTREME_HEAT,
-                        contribution = (10 * signal.severity.toDouble()).toInt().coerceIn(5, 10),
-                        headline = "高溫持續，供應承壓",
-                        shortLabel = "高溫影響",
-                    )
-                }
-            }
-            .maxWithOrNull(
-                compareBy<PriceSurgeReason> { it.kind.marketPriority() }
-                    .thenBy(PriceSurgeReason::contribution),
-            )
 
     private fun scaledScore(value: BigDecimal, maxPercent: Int, maxScore: Int): Int =
         value.divide(BigDecimal(maxPercent), 6, RoundingMode.HALF_UP)

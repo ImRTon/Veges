@@ -18,11 +18,14 @@ import java.time.Clock
 import java.time.Instant
 import tw.taipei.veges.data.alerts.AlertEvaluationCoordinator
 import tw.taipei.veges.data.alerts.NotificationDeliveryCoordinator
+import tw.taipei.veges.domain.PriceRefreshKind
 
 @EntryPoint
 @InstallIn(SingletonComponent::class)
 interface RefreshWorkerEntryPoint {
     fun syncWorker(): SyncWorkerDelegate
+
+    fun syncStatusRepository(): SyncStatusRepository
 
     fun syncScheduler(): SyncScheduler
 
@@ -69,6 +72,16 @@ class RefreshPipelineWorker(
         } catch (cancellation: kotlinx.coroutines.CancellationException) {
             throw cancellation
         } catch (failure: Exception) {
+            runCatching {
+                EntryPointAccessors.fromApplication(
+                    applicationContext,
+                    RefreshWorkerEntryPoint::class.java,
+                ).syncStatusRepository().recordFailure(
+                    kind = if (inputData.getString(REQUESTED_CONCEPT_ID_KEY) != null ||
+                        inputData.getBoolean(REQUEST_CATALOG_HISTORY_KEY, false)
+                    ) PriceRefreshKind.HISTORY else PriceRefreshKind.LATEST,
+                )
+            }
             retryOrFail()
         }
     }

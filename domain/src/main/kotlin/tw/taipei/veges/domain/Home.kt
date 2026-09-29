@@ -4,6 +4,7 @@ import java.math.BigDecimal
 import java.math.RoundingMode
 import java.time.LocalDate
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 
 data class HomeItem(
     val concept: ProduceConcept,
@@ -70,9 +71,9 @@ private fun percentageChange(
 interface HomeRepository {
     fun observeHome(): Flow<List<HomeItem>>
 
-    fun observePriceRefresh(): Flow<PriceRefresh>
+    fun observePriceRefresh(): StateFlow<PriceRefresh>
 
-    fun requestRefresh()
+    suspend fun requestRefresh(): Boolean
 }
 
 enum class PriceRefreshStage {
@@ -82,10 +83,24 @@ enum class PriceRefreshStage {
     SAVING,
 }
 
+enum class PriceRefreshKind {
+    LATEST,
+    HISTORY,
+}
+
+enum class PriceRefreshOutcome {
+    NEW_DATE,
+    SAME_DATE,
+    FAILED,
+}
+
 data class PriceRefresh(
     val isRunning: Boolean = false,
     val stage: PriceRefreshStage = PriceRefreshStage.PREPARING,
     val fraction: Float = 0f,
+    val kind: PriceRefreshKind = PriceRefreshKind.LATEST,
+    val completionVersion: Long = 0L,
+    val outcome: PriceRefreshOutcome? = null,
 )
 
 sealed interface CatalogSearchResult {

@@ -2,6 +2,7 @@ package tw.taipei.veges.data.repository
 
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import tw.taipei.veges.data.local.VegesDatabase
 import tw.taipei.veges.data.local.TaxonomyConceptWithDetails
@@ -54,9 +55,7 @@ class RoomHomeRepository @Inject constructor(
         }
     }
 
-    override fun observePriceRefresh(): Flow<PriceRefresh> = syncStatusRepository.priceRefresh
+    override fun observePriceRefresh(): StateFlow<PriceRefresh> = syncStatusRepository.priceRefresh
 
-    override fun requestRefresh() {
-        syncScheduler.requestManualRefresh()
-    }
+    override suspend fun requestRefresh(): Boolean = syncScheduler.requestManualRefresh()
 }

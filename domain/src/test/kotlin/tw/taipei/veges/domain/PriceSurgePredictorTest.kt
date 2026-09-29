@@ -12,7 +12,7 @@ class PriceSurgePredictorTest {
     private val now = Instant.parse("2026-07-29T14:00:00Z")
 
     @Test
-    fun typhoonCausedRainIsMarketContextWithoutChangingItemScores() {
+    fun weatherDoesNotReplaceObservedMarketReasonOrChangeItemScores() {
         val items = (0 until 10).map { index ->
             val item = if (index < 3) {
                 marketItem(
@@ -56,8 +56,8 @@ class PriceSurgePredictorTest {
         )
         val outlook = requireNotNull(withWeather.marketOutlook)
 
-        assertEquals(PriceSurgeReasonKind.TYPHOON, outlook.primaryReason.kind)
-        assertEquals("颱風來襲，整體蔬果價格可能上揚", outlook.primaryReason.headline)
+        assertEquals(PriceSurgeReasonKind.VOLUME_CONTRACTION, outlook.primaryReason.kind)
+        assertEquals("到貨量普遍縮減，整體價格可能上揚", outlook.primaryReason.headline)
         assertEquals(
             withoutWeather.predictions.map { it.riskScore to it.projectedRisePercent },
             withWeather.predictions.map { it.riskScore to it.projectedRisePercent },
@@ -74,15 +74,15 @@ class PriceSurgePredictorTest {
     }
 
     @Test
-    fun classifiesEachQualifiedWeatherContext() {
+    fun weatherContextNeverOverridesTheObservedMarketReason() {
         val items = marketBreadthItems()
         val cases = listOf(
-            MarketShockKind.TYPHOON to PriceSurgeReasonKind.TYPHOON,
-            MarketShockKind.HEAVY_RAIN to PriceSurgeReasonKind.HEAVY_RAIN,
-            MarketShockKind.EXTREME_HEAT to PriceSurgeReasonKind.EXTREME_HEAT,
+            MarketShockKind.TYPHOON,
+            MarketShockKind.HEAVY_RAIN,
+            MarketShockKind.EXTREME_HEAT,
         )
 
-        cases.forEach { (kind, expectedReason) ->
+        cases.forEach { kind ->
             val result = PriceSurgePredictor().evaluate(
                 items = items,
                 shockSignals = listOf(activeShock(kind, setOf("雲林縣"))),
@@ -90,7 +90,10 @@ class PriceSurgePredictorTest {
                 now = now,
             )
 
-            assertEquals(expectedReason, requireNotNull(result.marketOutlook).primaryReason.kind)
+            assertEquals(
+                PriceSurgeReasonKind.VOLUME_CONTRACTION,
+                requireNotNull(result.marketOutlook).primaryReason.kind,
+            )
         }
     }
 

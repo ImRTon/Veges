@@ -83,7 +83,7 @@ class VegesAppSemanticsTest {
     }
 
     @Test
-    fun homePriceSurgeRadarExplainsMarketWideTyphoonOutlook() {
+    fun homePriceSurgeRadarExplainsObservedMarketOutlook() {
         composeRule.setContent {
             VegesTheme {
                 HomeScreen(
@@ -96,10 +96,10 @@ class VegesAppSemanticsTest {
                             eligibleItemCount = 18,
                             marketBreadthPercent = 33,
                             primaryReason = PriceSurgeReason(
-                                kind = PriceSurgeReasonKind.TYPHOON,
+                                kind = PriceSurgeReasonKind.VOLUME_CONTRACTION,
                                 contribution = 25,
-                                headline = "颱風來襲，整體蔬果價格可能上揚",
-                                shortLabel = "颱風警報",
+                                headline = "到貨量普遍縮減，整體價格可能上揚",
+                                shortLabel = "到貨量縮",
                             ),
                             affectedNames = listOf("高麗菜", "青蔥", "小白菜"),
                         ),
@@ -114,10 +114,10 @@ class VegesAppSemanticsTest {
         }
 
         composeRule.onNodeWithText("漲價雷達").assertIsDisplayed()
-        composeRule.onNodeWithText("颱風來襲，整體蔬果價格可能上揚").assertIsDisplayed()
-        composeRule.onNodeWithText("6/18 項同步承壓 · 市場廣度 33%").assertIsDisplayed()
+        composeRule.onNodeWithText("到貨量普遍縮減，整體價格可能上揚").assertIsDisplayed()
+        composeRule.onNodeWithText("近 3 個交易日，6 項蔬果價格偏高").assertIsDisplayed()
         composeRule.onNodeWithContentDescription(
-            "6項蔬果同步出現訊號",
+            "近 3 個交易日有6項蔬果價格偏高",
             substring = true,
         ).assertIsDisplayed()
     }
@@ -190,6 +190,21 @@ class VegesAppSemanticsTest {
                             )
                         },
                         declinerEligibleCount = 24,
+                        marketPriceSurgeOutlook = MarketPriceSurgeOutlook(
+                            riskScore = 70,
+                            riskLevel = PriceSurgeRiskLevel.ELEVATED,
+                            projectedRisePercent = BigDecimal("21.0"),
+                            affectedItemCount = 3,
+                            eligibleItemCount = 10,
+                            marketBreadthPercent = 30,
+                            primaryReason = PriceSurgeReason(
+                                kind = PriceSurgeReasonKind.VOLUME_CONTRACTION,
+                                contribution = 25,
+                                headline = "到貨量普遍縮減，整體價格可能上揚",
+                                shortLabel = "到貨量縮",
+                            ),
+                            affectedNames = emptyList(),
+                        ),
                     ),
                     onBrowseCatalog = {},
                     onRefresh = {},

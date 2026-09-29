@@ -5,11 +5,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.time.LocalDate
 import javax.inject.Inject
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import tw.taipei.veges.domain.HomeItem
@@ -18,6 +24,8 @@ import tw.taipei.veges.domain.MarketItem
 import tw.taipei.veges.domain.MarketPriceSurgeOutlook
 import tw.taipei.veges.domain.MarketShockRepository
 import tw.taipei.veges.domain.PriceRefresh
+import tw.taipei.veges.domain.PriceRefreshKind
+import tw.taipei.veges.domain.PriceRefreshOutcome
 import tw.taipei.veges.domain.PriceSurgePredictor
 import tw.taipei.veges.domain.ProductionAreaWeatherRisk
 import tw.taipei.veges.domain.ProductionAreaWeatherRiskEvaluator
@@ -34,6 +42,15 @@ data class HomeUiState(
     val productionAreaWeatherRisk: ProductionAreaWeatherRisk? = null,
     val predictionEligibleCount: Int = 0,
     val priceRefresh: PriceRefresh = PriceRefresh(),
+    val latestPriceDate: LocalDate? = null,
+    val manualRefreshPending: Boolean = false,
+)
+
+private data class TrackedRefreshAndOrder(
+    val tracked: List<HomeItem>,
+    val priceRefresh: PriceRefresh,
+    val manualPending: Boolean,
+    val savedOrder: List<String>,
 )
 
 @HiltViewModel
@@ -45,6 +62,11 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
     private val declinerLookbackDays = MutableStateFlow(7)
     private val predictor = PriceSurgePredictor()
+    private val refreshNotices = Channel<PriceRefreshOutcome>(Channel.BUFFERED)
+    val refreshNotice = refreshNotices.receiveAsFlow()
+    private var manualRefreshAfterVersion: Long? = null
+    private var manualRefreshTimeoutJob: Job? = null
+    private val manualRefreshPending = MutableStateFlow(false)
     private val productionAreaWeatherRiskEvaluator = ProductionAreaWeatherRiskEvaluator()
     private val vegetableMarket = produceRepository.observeMarket(ProduceCategory.VEGETABLE)
     private val allProduceMarket = combine(
@@ -56,13 +78,14 @@ class HomeViewModel @Inject constructor(
     private val trackedAndRefresh = combine(
         repository.observeHome(),
         repository.observePriceRefresh(),
-    ) { tracked, priceRefresh ->
-        tracked to priceRefresh
+        manualRefreshPending,
+    ) { tracked, priceRefresh, manualPending ->
+        Triple(tracked, priceRefresh, manualPending)
     }
     private val savedOrder = MutableStateFlow(orderStore.load())
     private val trackedRefreshAndOrder = combine(trackedAndRefresh, savedOrder) {
-        (tracked, priceRefresh), savedOrder ->
-        Triple(tracked, priceRefresh, savedOrder)
+        (tracked, priceRefresh, manualPending), savedOrder ->
+        TrackedRefreshAndOrder(tracked, priceRefresh, manualPending, savedOrder)
     }
 
     val state: StateFlow<HomeUiState> = combine(
@@ -71,7 +94,7 @@ class HomeViewModel @Inject constructor(
         allProduceMarket,
         declinerLookbackDays,
         marketShockRepository.signals,
-    ) { (tracked, priceRefresh, savedOrder), vegetables, allProduce, lookbackDays, shockSignals ->
+    ) { (tracked, priceRefresh, manualPending, savedOrder), vegetables, allProduce, lookbackDays, shockSignals ->
         val ranked = vegetables.mapNotNull { item ->
             item.averageChangePercent(lookbackDays)?.let { change -> item to change }
         }
@@ -90,15 +113,59 @@ class HomeViewModel @Inject constructor(
             productionAreaWeatherRisk = productionAreaWeatherRisk,
             predictionEligibleCount = predictionEvaluation.eligibleItemCount,
             priceRefresh = priceRefresh,
+            manualRefreshPending = manualPending,
+            latestPriceDate = allProduce.asSequence()
+                .mapNotNull { item ->
+                    item.latestEstimate?.takeIf { it.point != null }
+                        ?.wholesaleSourceDates?.maxOrNull()
+                }
+                .maxOrNull(),
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), HomeUiState())
 
     init {
+        viewModelScope.launch {
+            repository.observePriceRefresh().collect { refresh ->
+                val requestedAfter = manualRefreshAfterVersion ?: return@collect
+                if (!refresh.isRunning && refresh.kind == PriceRefreshKind.LATEST &&
+                    refresh.completionVersion > requestedAfter
+                ) {
+                    manualRefreshAfterVersion = null
+                    manualRefreshPending.value = false
+                    manualRefreshTimeoutJob?.cancel()
+                    refresh.outcome?.let { refreshNotices.send(it) }
+                }
+            }
+        }
         viewModelScope.launch { marketShockRepository.refresh() }
     }
 
     fun refresh() {
-        repository.requestRefresh()
+        if (manualRefreshAfterVersion != null) return
+        manualRefreshAfterVersion = repository.observePriceRefresh().value.completionVersion
+        manualRefreshPending.value = true
+        manualRefreshTimeoutJob?.cancel()
+        manualRefreshTimeoutJob = viewModelScope.launch {
+            delay(MANUAL_REFRESH_WAIT_LIMIT_MILLIS)
+            if (manualRefreshAfterVersion != null) {
+                manualRefreshAfterVersion = null
+                manualRefreshPending.value = false
+                refreshNotices.send(PriceRefreshOutcome.FAILED)
+            }
+        }
+        viewModelScope.launch {
+            val enqueued = try {
+                repository.requestRefresh()
+            } catch (failure: Exception) {
+                false
+            }
+            if (!enqueued) {
+                manualRefreshAfterVersion = null
+                manualRefreshPending.value = false
+                manualRefreshTimeoutJob?.cancel()
+                refreshNotices.send(PriceRefreshOutcome.FAILED)
+            }
+        }
         viewModelScope.launch { marketShockRepository.refresh() }
     }
 
@@ -119,6 +186,7 @@ class HomeViewModel @Inject constructor(
 
     private companion object {
         val DECLINER_LOOKBACK_OPTIONS = setOf(1, 3, 7, 14, 30)
+        const val MANUAL_REFRESH_WAIT_LIMIT_MILLIS = 30_000L
     }
 }
 

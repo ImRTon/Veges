@@ -1,6 +1,7 @@
 package tw.taipei.veges.home
 
 import androidx.compose.animation.core.AnimationSpec
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animate
@@ -13,6 +14,10 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
+import androidx.compose.foundation.gestures.detectVerticalDragGestures
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.rememberScrollableState
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -44,9 +49,12 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalRippleConfiguration
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.PrimaryTabRow
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
@@ -84,6 +92,7 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.CustomAccessibilityAction
@@ -91,6 +100,8 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.PlatformTextStyle
+import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.Velocity
@@ -106,19 +117,17 @@ import kotlin.math.cos
 import kotlin.math.roundToInt
 import kotlin.math.sin
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import tw.taipei.veges.designsystem.PillChoiceRow
 import tw.taipei.veges.designsystem.ProduceIllustration
 import tw.taipei.veges.domain.HomeItem
 import tw.taipei.veges.domain.MarketItem
 import tw.taipei.veges.domain.MarketPriceSurgeOutlook
-import tw.taipei.veges.domain.MarketShockKind
 import tw.taipei.veges.domain.PriceSurgeReason
 import tw.taipei.veges.domain.PriceSurgeReasonKind
 import tw.taipei.veges.domain.PriceSurgeRiskLevel
-import tw.taipei.veges.domain.ProductionAreaWeatherRisk
-import tw.taipei.veges.domain.PriceRefresh
-import tw.taipei.veges.domain.PriceRefreshStage
+import tw.taipei.veges.domain.PriceRefreshOutcome
 import tw.taipei.veges.domain.averageChangePercent
 import tw.taipei.veges.domain.previousChangePercent
 
@@ -139,15 +148,43 @@ fun HomeRoute(
 ) {
     val viewModel: HomeViewModel = hiltViewModel()
     val state by viewModel.state.collectAsStateWithLifecycle()
-    HomeScreen(
-        state = state,
-        onBrowseCatalog = onBrowseCatalog,
-        onRefresh = viewModel::refresh,
-        onDeclinerLookbackSelected = viewModel::setDeclinerLookbackDays,
-        onConceptSelected = onConceptSelected,
-        onMoveTrackedItem = viewModel::moveTrackedItem,
-        modifier = modifier,
-    )
+    val snackbarHostState = remember { SnackbarHostState() }
+    LaunchedEffect(viewModel) {
+        viewModel.refreshNotice.collect { outcome ->
+            when (outcome) {
+                PriceRefreshOutcome.NEW_DATE -> Unit
+                PriceRefreshOutcome.SAME_DATE -> snackbarHostState.showSnackbar(
+                    message = viewModel.state.value.latestPriceDate?.let { date ->
+                        "目前仍是 ${date.monthValue}/${date.dayOfMonth} 行情"
+                    } ?: "目前沒有新行情",
+                    duration = SnackbarDuration.Short,
+                )
+                PriceRefreshOutcome.FAILED -> {
+                    val result = snackbarHostState.showSnackbar(
+                        message = "未能取得新行情",
+                        actionLabel = "重試",
+                        duration = SnackbarDuration.Long,
+                    )
+                    if (result == SnackbarResult.ActionPerformed) viewModel.refresh()
+                }
+            }
+        }
+    }
+    Box(modifier = modifier) {
+        HomeScreen(
+            state = state,
+            onBrowseCatalog = onBrowseCatalog,
+            onRefresh = viewModel::refresh,
+            onDeclinerLookbackSelected = viewModel::setDeclinerLookbackDays,
+            onConceptSelected = onConceptSelected,
+            onMoveTrackedItem = viewModel::moveTrackedItem,
+            modifier = Modifier.fillMaxSize(),
+        )
+        SnackbarHost(
+            hostState = snackbarHostState,
+            modifier = Modifier.align(Alignment.BottomCenter),
+        )
+    }
 }
 
 @Composable
@@ -213,324 +250,285 @@ fun HomeScreen(
             }
         }
     }
-    Column(
+    val density = LocalDensity.current
+    val pullThresholdPx = with(density) { 64.dp.toPx() }
+    val maxPullPx = with(density) { 96.dp.toPx() }
+    val refreshingLatest = state.manualRefreshPending
+    val pullState = remember { mutableFloatStateOf(0f) }
+    val currentOnRefresh by rememberUpdatedState(onRefresh)
+    val currentRefreshing by rememberUpdatedState(refreshingLatest)
+    val pullNestedScrollConnection = remember(pullThresholdPx, maxPullPx) {
+        object : NestedScrollConnection {
+            override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
+                if (available.y >= 0f || pullState.floatValue <= 0f) return Offset.Zero
+                val previous = pullState.floatValue
+                pullState.floatValue = (previous + available.y).coerceAtLeast(0f)
+                return Offset(0f, pullState.floatValue - previous)
+            }
+
+            override fun onPostScroll(
+                consumed: Offset,
+                available: Offset,
+                source: NestedScrollSource,
+            ): Offset {
+                if (source != NestedScrollSource.UserInput ||
+                    available.y <= 0f || currentRefreshing
+                ) return Offset.Zero
+                val previous = pullState.floatValue
+                pullState.floatValue = (previous + available.y).coerceAtMost(maxPullPx)
+                return Offset(0f, pullState.floatValue - previous)
+            }
+
+            override suspend fun onPreFling(available: Velocity): Velocity {
+                if (pullState.floatValue <= 0f) return Velocity.Zero
+                val shouldRefresh = pullState.floatValue >= pullThresholdPx && !currentRefreshing
+                pullState.floatValue = 0f
+                if (shouldRefresh) currentOnRefresh()
+                return available
+            }
+        }
+    }
+    val animatedPullPx by animateFloatAsState(
+        targetValue = pullState.floatValue * 0.85f,
+        animationSpec = Material3DefaultSpatialSpec,
+        label = "行情下拉距離",
+    )
+    val refreshRotation = if (refreshingLatest) {
+        val rotationTransition = rememberInfiniteTransition(label = "行情更新中")
+        val rotation by rotationTransition.animateFloat(
+            initialValue = 0f,
+            targetValue = 360f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(900, easing = LinearEasing),
+                repeatMode = RepeatMode.Restart,
+            ),
+            label = "更新圖示旋轉",
+        )
+        rotation
+    } else {
+        0f
+    }
+    val centeredHeaderLineHeight = LineHeightStyle(
+        alignment = LineHeightStyle.Alignment.Center,
+        trim = LineHeightStyle.Trim.Both,
+    )
+    val headerTitleStyle = MaterialTheme.typography.headlineLarge.copy(
+        platformStyle = PlatformTextStyle(includeFontPadding = false),
+        lineHeightStyle = centeredHeaderLineHeight,
+    )
+    val headerDateStyle = MaterialTheme.typography.labelSmall.copy(
+        platformStyle = PlatformTextStyle(includeFontPadding = false),
+        lineHeightStyle = centeredHeaderLineHeight,
+    )
+    Box(
         modifier
             .fillMaxSize()
-            .nestedScroll(radarNestedScrollConnection),
+            .clipToBounds()
+            .nestedScroll(pullNestedScrollConnection),
     ) {
-        Row(
+        Icon(
+            Icons.Rounded.Refresh,
+            contentDescription = null,
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 20.dp, top = 18.dp, end = 10.dp, bottom = 4.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Text(
-                "行情",
-                modifier = Modifier.weight(1f),
-                style = MaterialTheme.typography.headlineLarge,
-                fontWeight = FontWeight.Black,
-            )
-            IconButton(onClick = onRefresh) {
-                Icon(Icons.Rounded.Refresh, contentDescription = "更新行情")
-            }
-            IconButton(onClick = onBrowseCatalog) {
-                Icon(Icons.Rounded.Add, contentDescription = "新增追蹤")
-            }
-        }
-        PriceRefreshProgress(state.priceRefresh)
-        Column(
-            modifier = Modifier
-                .clipToBounds()
-                .collapseFromTop { radarCollapsePx }
-                .onSizeChanged { measuredSize ->
-                    val measuredHeight = measuredSize.height.toFloat()
-                    if (measuredHeight != radarExpandedHeightPx) {
-                        radarExpandedHeightPx = measuredHeight
-                        radarCollapsePx = radarCollapsePx.coerceAtMost(measuredHeight)
-                    }
+                .align(Alignment.TopCenter)
+                .padding(top = 18.dp)
+                .size(22.dp)
+                .graphicsLayer {
+                    val progress = (animatedPullPx / (pullThresholdPx * 0.85f))
+                        .coerceIn(0f, 1f)
+                    alpha = progress
+                    rotationZ = progress * 360f
                 },
+            tint = MaterialTheme.colorScheme.primary,
+        )
+        Column(
+            Modifier
+                .fillMaxSize()
+                .nestedScroll(radarNestedScrollConnection)
+                .graphicsLayer { translationY = animatedPullPx },
         ) {
-            PriceSurgeRadarSection(
-                outlook = state.marketPriceSurgeOutlook,
-                eligibleItemCount = state.predictionEligibleCount,
-                productionAreaWeatherRisk = state.productionAreaWeatherRisk,
-            )
-        }
-        PrimaryTabRow(
-            selectedTabIndex = pagerState.currentPage,
-            containerColor = Color.Transparent,
-            contentColor = MaterialTheme.colorScheme.onSurface,
-            indicator = {
-                Canvas(
-                    modifier = Modifier
-                        .tabIndicatorOffset(pagerState.currentPage)
-                        .height(48.dp),
-                ) {
-                    val center = Offset(size.width / 2f, size.height / 2f)
-                    val radius = size.width / 2f
-                    withTransform({
-                        scale(
-                            scaleX = 1f,
-                            scaleY = size.height / size.width,
-                            pivot = center,
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .pointerInput(onRefresh, refreshingLatest, pullThresholdPx) {
+                        detectVerticalDragGestures(
+                            onVerticalDrag = { change, dragAmount ->
+                                if (!refreshingLatest) {
+                                    pullState.floatValue =
+                                        (pullState.floatValue + dragAmount).coerceIn(0f, maxPullPx)
+                                    if (pullState.floatValue > 0f) change.consume()
+                                }
+                            },
+                            onDragEnd = {
+                                val shouldRefresh =
+                                    pullState.floatValue >= pullThresholdPx && !refreshingLatest
+                                pullState.floatValue = 0f
+                                if (shouldRefresh) onRefresh()
+                            },
+                            onDragCancel = { pullState.floatValue = 0f },
                         )
-                    }) {
-                        drawCircle(
-                            brush = Brush.radialGradient(
-                                0f to FallingGreen.copy(alpha = 0.18f),
-                                0.52f to FallingGreen.copy(alpha = 0.11f),
-                                0.82f to FallingGreen.copy(alpha = 0.035f),
-                                1f to Color.Transparent,
-                                center = center,
-                                radius = radius,
-                            ),
-                            radius = radius,
-                            center = center,
+                    }
+                    .padding(start = 20.dp, top = 11.dp, end = 10.dp, bottom = 11.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                Text(
+                    "行情",
+                    style = headerTitleStyle,
+                    fontWeight = FontWeight.Black,
+                )
+                state.latestPriceDate?.let { date ->
+                    Surface(
+                        shape = RoundedCornerShape(50),
+                        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.65f),
+                    ) {
+                        Text(
+                            "${date.monthValue}/${date.dayOfMonth} 更新",
+                            modifier = Modifier.padding(horizontal = 9.dp, vertical = 4.dp),
+                            style = headerDateStyle,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                     }
                 }
-            },
-        ) {
-            CompositionLocalProvider(LocalRippleConfiguration provides null) {
-                HomeTabs.forEachIndexed { index, label ->
-                    Tab(
-                        selected = pagerState.currentPage == index,
-                        onClick = {
-                            coroutineScope.launch {
-                                pagerState.animateScrollToPage(
-                                    page = index,
-                                    animationSpec = Material3DefaultSpatialSpec,
-                                )
-                            }
-                        },
-                        text = {
-                            Text(
-                                label,
-                                fontWeight = if (pagerState.currentPage == index) {
-                                    FontWeight.Bold
-                                } else {
-                                    FontWeight.Medium
-                                },
+                Spacer(Modifier.weight(1f))
+                IconButton(onClick = onRefresh, enabled = !refreshingLatest) {
+                    Icon(
+                        Icons.Rounded.Refresh,
+                        contentDescription = if (refreshingLatest) "正在更新行情" else "更新行情",
+                        modifier = Modifier.graphicsLayer { rotationZ = refreshRotation },
+                    )
+                }
+                IconButton(onClick = onBrowseCatalog) {
+                    Icon(Icons.Rounded.Add, contentDescription = "新增追蹤")
+                }
+            }
+            Column(
+                modifier = Modifier
+                    .clipToBounds()
+                    .collapseFromTop { radarCollapsePx }
+                    .onSizeChanged { measuredSize ->
+                        val measuredHeight = measuredSize.height.toFloat()
+                        if (measuredHeight != radarExpandedHeightPx) {
+                            radarExpandedHeightPx = measuredHeight
+                            radarCollapsePx = radarCollapsePx.coerceAtMost(measuredHeight)
+                        }
+                    },
+            ) {
+                PriceSurgeRadarSection(
+                    outlook = state.marketPriceSurgeOutlook,
+                )
+            }
+            PrimaryTabRow(
+                selectedTabIndex = pagerState.currentPage,
+                containerColor = Color.Transparent,
+                contentColor = MaterialTheme.colorScheme.onSurface,
+                indicator = {
+                    Canvas(
+                        modifier = Modifier
+                            .tabIndicatorOffset(pagerState.currentPage)
+                            .height(48.dp),
+                    ) {
+                        val center = Offset(size.width / 2f, size.height / 2f)
+                        val radius = size.width / 2f
+                        withTransform({
+                            scale(
+                                scaleX = 1f,
+                                scaleY = size.height / size.width,
+                                pivot = center,
                             )
-                        },
+                        }) {
+                            drawCircle(
+                                brush = Brush.radialGradient(
+                                    0f to FallingGreen.copy(alpha = 0.18f),
+                                    0.52f to FallingGreen.copy(alpha = 0.11f),
+                                    0.82f to FallingGreen.copy(alpha = 0.035f),
+                                    1f to Color.Transparent,
+                                    center = center,
+                                    radius = radius,
+                                ),
+                                radius = radius,
+                                center = center,
+                            )
+                        }
+                    }
+                },
+            ) {
+                CompositionLocalProvider(LocalRippleConfiguration provides null) {
+                    HomeTabs.forEachIndexed { index, label ->
+                        Tab(
+                            selected = pagerState.currentPage == index,
+                            onClick = {
+                                coroutineScope.launch {
+                                    pagerState.animateScrollToPage(
+                                        page = index,
+                                        animationSpec = Material3DefaultSpatialSpec,
+                                    )
+                                }
+                            },
+                            text = {
+                                Text(
+                                    label,
+                                    fontWeight = if (pagerState.currentPage == index) {
+                                        FontWeight.Bold
+                                    } else {
+                                        FontWeight.Medium
+                                    },
+                                )
+                            },
+                        )
+                    }
+                }
+            }
+            HorizontalPager(
+                state = pagerState,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                flingBehavior = pagerFlingBehavior,
+                key = HomeTabs::get,
+            ) { page ->
+                when (page) {
+                    0 -> TrackedList(
+                        items = state.tracked,
+                        listState = trackedListState,
+                        onBrowseCatalog = onBrowseCatalog,
+                        onConceptSelected = onConceptSelected,
+                        onMoveItem = onMoveTrackedItem,
+                    )
+
+                    else -> DeclinersList(
+                        items = state.decliners,
+                        eligibleCount = state.declinerEligibleCount,
+                        listState = declinersListState,
+                        lookbackDays = state.declinerLookbackDays,
+                        onLookbackSelected = onDeclinerLookbackSelected,
+                        onConceptSelected = onConceptSelected,
                     )
                 }
             }
         }
-        HorizontalPager(
-            state = pagerState,
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f),
-            flingBehavior = pagerFlingBehavior,
-            key = HomeTabs::get,
-        ) { page ->
-            when (page) {
-                0 -> TrackedList(
-                    items = state.tracked,
-                    listState = trackedListState,
-                    onBrowseCatalog = onBrowseCatalog,
-                    onConceptSelected = onConceptSelected,
-                    onMoveItem = onMoveTrackedItem,
-                )
-
-                else -> DeclinersList(
-                    items = state.decliners,
-                    eligibleCount = state.declinerEligibleCount,
-                    listState = declinersListState,
-                    lookbackDays = state.declinerLookbackDays,
-                    onLookbackSelected = onDeclinerLookbackSelected,
-                    onConceptSelected = onConceptSelected,
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun PriceRefreshProgress(refresh: PriceRefresh) {
-    if (!refresh.isRunning) return
-    val label = when (refresh.stage) {
-        PriceRefreshStage.PREPARING -> "準備更新行情"
-        PriceRefreshStage.LATEST_PRICES -> "正在下載最新行情"
-        PriceRefreshStage.HISTORY -> "正在下載歷史行情"
-        PriceRefreshStage.SAVING -> "正在整理價格資料"
-    }
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 20.dp, vertical = 6.dp)
-            .semantics {
-                contentDescription = label
-            },
-        verticalArrangement = Arrangement.spacedBy(6.dp),
-    ) {
-        Text(
-            label,
-            style = MaterialTheme.typography.labelMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
-        LinearProgressIndicator(
-            modifier = Modifier.fillMaxWidth(),
-        )
     }
 }
 
 @Composable
 private fun PriceSurgeRadarSection(
     outlook: MarketPriceSurgeOutlook?,
-    eligibleItemCount: Int,
-    productionAreaWeatherRisk: ProductionAreaWeatherRisk?,
     modifier: Modifier = Modifier,
 ) {
+    if (outlook == null) return
     Column(
         modifier = modifier
             .fillMaxWidth()
             .padding(top = 4.dp, bottom = 10.dp),
         verticalArrangement = Arrangement.spacedBy(7.dp),
     ) {
-        Row(
+        Text(
+            "漲價雷達",
             modifier = Modifier.padding(horizontal = 20.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            Text(
-                "漲價雷達",
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Black,
-            )
-            Text(
-                "預測 7–14 日",
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-        }
-        if (outlook == null && productionAreaWeatherRisk != null) {
-            ProductionAreaWeatherRiskRadar(productionAreaWeatherRisk)
-        } else if (outlook == null) {
-            Surface(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp)
-                    .semantics {
-                        contentDescription = if (eligibleItemCount == 0) {
-                            "漲價雷達，資料累積中"
-                        } else {
-                            "漲價雷達，目前沒有大範圍漲價訊號"
-                        }
-                    },
-                shape = RoundedCornerShape(18.dp),
-                color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.55f),
-            ) {
-                Row(
-                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 13.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(12.dp),
-                ) {
-                    AnimatedRiskIcon(
-                        reason = PriceSurgeReason(
-                            kind = PriceSurgeReasonKind.RECENT_PRICE_ANOMALY,
-                            contribution = 0,
-                            headline = "行情掃描中",
-                            shortLabel = "行情掃描",
-                        ),
-                        modifier = Modifier.size(42.dp),
-                    )
-                    Column {
-                        Text(
-                            if (eligibleItemCount == 0) {
-                                "正在累積預測所需行情"
-                            } else {
-                                "目前沒有大範圍漲價訊號"
-                            },
-                            style = MaterialTheme.typography.titleSmall,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        Text(
-                            if (eligibleItemCount == 0) {
-                                "至少需要 10 個有效交易日"
-                            } else {
-                                "已分析 $eligibleItemCount 項蔬果"
-                            },
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        )
-                    }
-                }
-            }
-        } else {
-            MarketPriceSurgeOutlookCard(outlook)
-            Text(
-                "至少 10 項具足夠歷史，且 20% 以上同步承壓才顯示",
-                modifier = Modifier.padding(horizontal = 20.dp),
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-        }
-    }
-}
-
-@Composable
-private fun ProductionAreaWeatherRiskRadar(risk: ProductionAreaWeatherRisk) {
-    val cause = when (risk.kind) {
-        MarketShockKind.TYPHOON -> "颱風"
-        MarketShockKind.HEAVY_RAIN -> "豪雨"
-        MarketShockKind.EXTREME_HEAT -> "高溫"
-    }
-    val areaSummary = when (risk.affectedCounties.size) {
-        1 -> "${risk.affectedCounties.single()}產區"
-        2, 3 -> "${risk.affectedCounties.joinToString("、")}產區"
-        else -> "${risk.affectedCounties.take(3).joinToString("、")}等 ${risk.affectedCounties.size} 個產區"
-    }
-    val headline = "${cause}影響$areaSummary"
-    val consequence = "近期蔬果價格可能上漲"
-    val reason = PriceSurgeReason(
-        kind = when (risk.kind) {
-            MarketShockKind.TYPHOON -> PriceSurgeReasonKind.TYPHOON
-            MarketShockKind.HEAVY_RAIN -> PriceSurgeReasonKind.HEAVY_RAIN
-            MarketShockKind.EXTREME_HEAT -> PriceSurgeReasonKind.EXTREME_HEAT
-        },
-        contribution = 0,
-        headline = headline,
-        shortLabel = cause,
-    )
-
-    Surface(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 20.dp)
-            .semantics(mergeDescendants = true) {
-                contentDescription = "$headline。$consequence"
-            },
-        shape = RoundedCornerShape(18.dp),
-        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.55f),
-    ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-        ) {
-            AnimatedRiskIcon(
-                reason = reason,
-                modifier = Modifier.size(60.dp),
-                accent = reason.kind.animationAccent(),
-            )
-            Column(
-                modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(3.dp),
-            ) {
-                Text(
-                    headline,
-                    style = MaterialTheme.typography.titleSmall,
-                    fontWeight = FontWeight.Bold,
-                )
-                Text(
-                    consequence,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-        }
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.Black,
+        )
+        MarketPriceSurgeOutlookCard(outlook)
     }
 }
 
@@ -569,13 +567,11 @@ private fun MarketPriceSurgeOutlookCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 20.dp)
-            .heightIn(min = 126.dp)
+            .heightIn(min = 96.dp)
             .semantics {
                 contentDescription =
                     "${outlook.primaryReason.headline}，" +
-                        "${outlook.affectedItemCount}項蔬果同步出現訊號，" +
-                        "市場廣度${outlook.marketBreadthPercent}%，" +
-                        "整體風險分數${outlook.riskScore}"
+                        "近 3 個交易日有${outlook.affectedItemCount}項蔬果價格偏高"
             },
         shape = RoundedCornerShape(22.dp),
         color = accent.copy(alpha = 0.09f),
@@ -587,7 +583,7 @@ private fun MarketPriceSurgeOutlookCard(
         ) {
             AnimatedRiskIcon(
                 reason = outlook.primaryReason,
-                modifier = Modifier.size(width = 84.dp, height = 118.dp),
+                modifier = Modifier.size(width = 64.dp, height = 72.dp),
                 accent = outlook.primaryReason.kind.animationAccent(),
             )
             Column(
@@ -601,17 +597,9 @@ private fun MarketPriceSurgeOutlookCard(
                     color = accent,
                 )
                 Text(
-                    "${outlook.affectedItemCount}/${outlook.eligibleItemCount} 項同步承壓" +
-                        " · 市場廣度 ${outlook.marketBreadthPercent}%",
+                    "近 3 個交易日，${outlook.affectedItemCount} 項蔬果價格偏高",
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Bold,
-                )
-                Text(
-                    "${outlook.horizonStartDays}–${outlook.horizonEndDays} 日" +
-                        " · 受影響品項平均 +${outlook.projectedRisePercent}%" +
-                        " · 風險 ${outlook.riskScore} 分",
-                    style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
                 if (outlook.affectedNames.isNotEmpty()) {
                     Text(
@@ -1736,6 +1724,7 @@ private fun EmptyTrackedState(onBrowseCatalog: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .scrollable(rememberScrollableState { 0f }, Orientation.Vertical)
             .padding(32.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,

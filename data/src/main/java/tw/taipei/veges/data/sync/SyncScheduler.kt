@@ -74,9 +74,20 @@ class SyncScheduler @Inject constructor(
         requestForegroundCatchUp()
     }
 
-    fun requestManualRefresh() {
-        if (!preferences.getBoolean(TAXONOMY_READY, false)) return
-        enqueueImmediateRefresh(existingWorkPolicy = MANUAL_REFRESH_WORK_POLICY)
+    suspend fun requestManualRefresh(): Boolean = withContext(Dispatchers.IO) {
+        if (!preferences.getBoolean(TAXONOMY_READY, false)) return@withContext false
+        val pending = workManager.getWorkInfosForUniqueWork(ONE_TIME_SYNC_QUEUE)
+            .get()
+            .filterNot { it.state.isFinished }
+        val latestAlreadyPending = pending.any { LATEST_WORK_TAG in it.tags }
+        enqueueImmediateRefresh(
+            existingWorkPolicy = if (pending.isNotEmpty() && !latestAlreadyPending) {
+                ExistingWorkPolicy.APPEND_OR_REPLACE
+            } else {
+                MANUAL_REFRESH_WORK_POLICY
+            },
+        )
+        true
     }
 
     override fun requestOneYearHistory(conceptId: ProduceConceptId) {
@@ -122,11 +133,14 @@ class SyncScheduler @Inject constructor(
             .apply {
                 when {
                     requestedConceptId != null -> {
+                        addTag(HISTORY_WORK_TAG)
                         setInputData(workDataOf(REQUESTED_CONCEPT_ID_KEY to requestedConceptId))
                     }
                     catalogHistory -> {
+                        addTag(HISTORY_WORK_TAG)
                         setInputData(workDataOf(REQUEST_CATALOG_HISTORY_KEY to true))
                     }
+                    else -> addTag(LATEST_WORK_TAG)
                 }
             }
             .setConstraints(networkConstraints)
@@ -154,6 +168,8 @@ class SyncScheduler @Inject constructor(
         const val LAST_CATALOG_HISTORY_REQUEST_AT = "last-catalog-history-request-at"
         const val TAXONOMY_READY = "taxonomy-ready"
         const val LAST_HISTORY_REQUEST_PREFIX = "last-history-request-at:"
+        const val LATEST_WORK_TAG = "veges.latest-prices"
+        const val HISTORY_WORK_TAG = "veges.history"
         val networkConstraints = Constraints.Builder()
             .setRequiredNetworkType(NetworkType.CONNECTED)
             .build()

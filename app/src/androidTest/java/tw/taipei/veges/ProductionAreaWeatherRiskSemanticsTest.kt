@@ -1,6 +1,7 @@
 package tw.taipei.veges
 
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertDoesNotExist
 import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
@@ -24,7 +25,7 @@ class ProductionAreaWeatherRiskSemanticsTest {
     val composeRule = createComposeRule()
 
     @Test
-    fun homeShowsQualifiedTyphoonProductionRiskBeforeMarketSurge() {
+    fun weatherAloneDoesNotShowPriceSurgeRadar() {
         composeRule.setContent {
             VegesTheme {
                 HomeScreen(
@@ -44,15 +45,15 @@ class ProductionAreaWeatherRiskSemanticsTest {
             }
         }
 
-        composeRule.onNodeWithText("漲價雷達").assertIsDisplayed()
-        composeRule.onNodeWithText("颱風影響苗栗縣、臺中市、南投縣等 4 個產區").assertIsDisplayed()
-        composeRule.onNodeWithText("近期蔬果價格可能上漲").assertIsDisplayed()
+        composeRule.onNodeWithText("漲價雷達").assertDoesNotExist()
+        composeRule.onNodeWithText("颱風影響苗栗縣、臺中市、南投縣等 4 個產區").assertDoesNotExist()
+        composeRule.onNodeWithText("近期蔬果價格可能上漲").assertDoesNotExist()
         composeRule.onAllNodesWithText(
             "產地風險，不代表價格已上漲",
             substring = true,
         ).assertCountEquals(0)
         composeRule.onNodeWithContentDescription(
             "颱風影響苗栗縣、臺中市、南投縣等 4 個產區。近期蔬果價格可能上漲",
-        ).assertIsDisplayed()
+        ).assertDoesNotExist()
     }
 }

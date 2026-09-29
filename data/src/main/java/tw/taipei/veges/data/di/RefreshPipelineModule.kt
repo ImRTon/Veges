@@ -12,6 +12,7 @@ import tw.taipei.veges.data.sync.SyncWorkerDelegate
 import tw.taipei.veges.data.sync.WholesaleSyncCoordinator
 import tw.taipei.veges.data.sync.SyncScheduler
 import tw.taipei.veges.domain.HistoryRefreshRequester
+import tw.taipei.veges.domain.PriceRefreshKind
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -32,7 +33,13 @@ class SyncWorkerDelegateImpl @javax.inject.Inject constructor(
         requestedConceptId: String?,
         catalogHistory: Boolean,
     ): tw.taipei.veges.data.sync.SyncResult = syncMutex.withLock {
-        statusRepository.recordStarted()
+        statusRepository.recordStarted(
+            if (requestedConceptId != null || catalogHistory) {
+                PriceRefreshKind.HISTORY
+            } else {
+                PriceRefreshKind.LATEST
+            },
+        )
         val result = when {
             requestedConceptId != null -> coordinator.synchronizeConceptHistory(
                 requestedConceptId,
