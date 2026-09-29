@@ -141,6 +141,36 @@ class VegesAppSemanticsTest {
     }
 
     @Test
+    fun trackedListExplainsHowToReorderMultipleItems() {
+        composeRule.setContent {
+            VegesTheme {
+                HomeScreen(
+                    state = HomeUiState(
+                        tracked = listOf(
+                            HomeItem(
+                                concept = concept("vegetable.cabbage", "高麗菜"),
+                                latestEstimate = null,
+                                unavailableReason = null,
+                            ),
+                            HomeItem(
+                                concept = concept("vegetable.spinach", "菠菜"),
+                                latestEstimate = null,
+                                unavailableReason = null,
+                            ),
+                        ),
+                    ),
+                    onBrowseCatalog = {},
+                    onRefresh = {},
+                    onDeclinerLookbackSelected = {},
+                    onConceptSelected = {},
+                )
+            }
+        }
+
+        composeRule.onNodeWithText("長按並拖曳可調整順序").assertIsDisplayed()
+    }
+
+    @Test
     fun trackedListDragCollapsesAndExpandsPriceSurgeRadar() {
         composeRule.setContent {
             VegesTheme {

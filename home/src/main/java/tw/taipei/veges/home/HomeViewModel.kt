@@ -1,7 +1,9 @@
 package tw.taipei.veges.home
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.SharingStarted
@@ -39,6 +41,7 @@ class HomeViewModel @Inject constructor(
     private val repository: HomeRepository,
     produceRepository: ProduceRepository,
     private val marketShockRepository: MarketShockRepository,
+    private val orderStore: HomeOrderStore,
 ) : ViewModel() {
     private val declinerLookbackDays = MutableStateFlow(7)
     private val predictor = PriceSurgePredictor()
@@ -56,21 +59,26 @@ class HomeViewModel @Inject constructor(
     ) { tracked, priceRefresh ->
         tracked to priceRefresh
     }
+    private val savedOrder = MutableStateFlow(orderStore.load())
+    private val trackedRefreshAndOrder = combine(trackedAndRefresh, savedOrder) {
+        (tracked, priceRefresh), savedOrder ->
+        Triple(tracked, priceRefresh, savedOrder)
+    }
 
     val state: StateFlow<HomeUiState> = combine(
-        trackedAndRefresh,
+        trackedRefreshAndOrder,
         vegetableMarket,
         allProduceMarket,
         declinerLookbackDays,
         marketShockRepository.signals,
-    ) { (tracked, priceRefresh), vegetables, allProduce, lookbackDays, shockSignals ->
+    ) { (tracked, priceRefresh, savedOrder), vegetables, allProduce, lookbackDays, shockSignals ->
         val ranked = vegetables.mapNotNull { item ->
             item.averageChangePercent(lookbackDays)?.let { change -> item to change }
         }
         val predictionEvaluation = predictor.evaluate(allProduce, shockSignals)
         val productionAreaWeatherRisk = productionAreaWeatherRiskEvaluator.evaluate(shockSignals)
         HomeUiState(
-            tracked = tracked,
+            tracked = tracked.orderedBySavedIds(savedOrder),
             decliners = ranked
                 .filter { (_, change) -> change.signum() < 0 }
                 .sortedBy { (_, change) -> change }
@@ -100,7 +108,61 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun moveTrackedItem(draggedConceptId: String, targetConceptId: String) {
+        val reorderedIds = state.value.tracked
+            .map { it.concept.id.value }
+            .move(draggedConceptId, targetConceptId)
+            ?: return
+        orderStore.save(reorderedIds)
+        savedOrder.value = reorderedIds
+    }
+
     private companion object {
         val DECLINER_LOOKBACK_OPTIONS = setOf(1, 3, 7, 14, 30)
+    }
+}
+
+class HomeOrderStore @Inject constructor(
+    @ApplicationContext context: Context,
+) {
+    private val preferences = context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
+
+    fun load(): List<String> = preferences.getString(ORDER_KEY, null)
+        ?.lineSequence()
+        ?.filter(String::isNotBlank)
+        ?.toList()
+        .orEmpty()
+
+    fun save(conceptIds: List<String>) {
+        preferences.edit()
+            .putString(ORDER_KEY, conceptIds.joinToString("\n"))
+            .apply()
+    }
+
+    private companion object {
+        const val PREFERENCES_NAME = "home-order"
+        const val ORDER_KEY = "tracked-concepts"
+    }
+}
+
+internal fun List<HomeItem>.orderedBySavedIds(savedIds: List<String>): List<HomeItem> {
+    if (savedIds.isEmpty()) return this
+    val order = savedIds.withIndex().associate { (index, id) -> id to index }
+    return withIndex()
+        .sortedWith(
+            compareBy<IndexedValue<HomeItem>>(
+                { order[it.value.concept.id.value] ?: Int.MAX_VALUE },
+                IndexedValue<HomeItem>::index,
+            ),
+        )
+        .map(IndexedValue<HomeItem>::value)
+}
+
+internal fun List<String>.move(draggedId: String, targetId: String): List<String>? {
+    val fromIndex = indexOf(draggedId)
+    val targetIndex = indexOf(targetId)
+    if (fromIndex == -1 || targetIndex == -1 || fromIndex == targetIndex) return null
+    return toMutableList().apply {
+        add(targetIndex, removeAt(fromIndex))
     }
 }
