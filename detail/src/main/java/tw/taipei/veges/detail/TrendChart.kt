@@ -29,7 +29,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import java.math.BigDecimal
 import java.math.RoundingMode
+import java.time.LocalDate
 import tw.taipei.veges.designsystem.PillChoiceRow
+import tw.taipei.veges.domain.CandleInterval
+import tw.taipei.veges.domain.ProduceMarketCandle
+import tw.taipei.veges.domain.candleInterval
 import tw.taipei.veges.domain.TrendPeriod
 import tw.taipei.veges.domain.TrendPoint
 import tw.taipei.veges.domain.TrendSummary
@@ -49,7 +53,8 @@ fun WholesaleTrendChart(
     modifier: Modifier = Modifier,
 ) {
     val validPoints = points.filter { it.averageNtdPerKg != null }.sortedBy { it.date }
-    val candles = validPoints.toProduceMarketCandles()
+    val interval = period.candleInterval
+    val candles = validPoints.toProduceMarketCandles(interval)
     val averages = validPoints.map { requireNotNull(it.averageNtdPerKg) }
     val latest = validPoints.lastOrNull()
     val summary = TrendSummary(
@@ -103,7 +108,13 @@ fun WholesaleTrendChart(
                 selectedContainerColor = MaterialTheme.colorScheme.primary,
                 selectedContentColor = MaterialTheme.colorScheme.onPrimary,
             )
-            Text("蔬果市場區間 K 線", style = MaterialTheme.typography.titleMedium)
+            Text(
+                when (interval) {
+                    CandleInterval.DAY -> "日 K 線"
+                    CandleInterval.WEEK -> "週 K 線"
+                },
+                style = MaterialTheme.typography.titleMedium,
+            )
             if (candles.isNotEmpty()) {
                 val priceValues = candles.flatMap { candle ->
                     listOfNotNull(
@@ -171,7 +182,7 @@ fun WholesaleTrendChart(
                         return priceBottom - ratio * (priceBottom - priceTop)
                     }
                     val slotWidth = size.width / candles.size.coerceAtLeast(1)
-                    val bodyWidth = (slotWidth * 0.52f).coerceIn(5.dp.toPx(), 18.dp.toPx())
+                    val bodyWidth = (slotWidth * 0.6f).coerceIn(1.5.dp.toPx(), 18.dp.toPx())
                     candles.forEachIndexed { index, candle ->
                         val x = slotWidth * (index + 0.5f)
                         val candleColor = when (candle.direction) {
@@ -235,8 +246,10 @@ fun WholesaleTrendChart(
                     }
                 }
                 selected?.let { candle ->
+                    val latestYear = candles.last().endDate.year
                     Text(
-                        "${candle.date}　${candle.currentAverageNtdPerKg.price()} / 台斤　" +
+                        "${candle.dateRangeText(latestYear)}　" +
+                            "${candle.currentAverageNtdPerKg.price()} / 台斤　" +
                             candle.direction.displayText(),
                         style = MaterialTheme.typography.titleSmall,
                         fontWeight = FontWeight.Bold,
@@ -310,6 +323,17 @@ private fun MarketBasis.displayText(): String = when (this) {
     MarketBasis.TAIPEI_COMBINED -> "台北合併"
     MarketBasis.TAIPEI_FIRST -> "台北一"
     MarketBasis.TAIPEI_SECOND -> "台北二"
+}
+
+private fun ProduceMarketCandle.dateRangeText(latestYear: Int): String {
+    fun LocalDate.label(withYear: Boolean) =
+        if (withYear) "$year/$monthValue/$dayOfMonth" else "$monthValue/$dayOfMonth"
+    val withYear = date.year != latestYear || endDate.year != latestYear
+    return if (endDate == date) {
+        date.label(withYear)
+    } else {
+        "${date.label(withYear)}–${endDate.label(withYear && endDate.year != date.year)}"
+    }
 }
 
 private fun BigDecimal.price(): String =

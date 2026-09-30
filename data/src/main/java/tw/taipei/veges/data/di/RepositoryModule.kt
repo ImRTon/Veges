@@ -15,6 +15,8 @@ import tw.taipei.veges.domain.MarketShockRepository
 import tw.taipei.veges.domain.ProduceRepository
 import tw.taipei.veges.domain.TrackingRepository
 import tw.taipei.veges.data.repository.CwaMarketShockRepository
+import tw.taipei.veges.data.repository.SharedPreferencesAppearanceRepository
+import tw.taipei.veges.domain.AppearanceRepository
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -38,4 +40,9 @@ abstract class RepositoryModule {
     abstract fun bindMarketShockRepository(
         repository: CwaMarketShockRepository,
     ): MarketShockRepository
+
+    @Binds
+    abstract fun bindAppearanceRepository(
+        repository: SharedPreferencesAppearanceRepository,
+    ): AppearanceRepository
 }

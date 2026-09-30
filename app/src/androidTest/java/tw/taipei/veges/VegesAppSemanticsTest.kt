@@ -18,6 +18,7 @@ import androidx.compose.ui.test.assertHeightIsAtLeast
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.captureToImage
+import androidx.compose.ui.test.onAllNodesWithContentDescription
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
@@ -30,6 +31,7 @@ import androidx.compose.ui.test.swipeDown
 import androidx.compose.ui.test.swipeUp
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import java.math.BigDecimal
+import java.time.Instant
 import java.time.LocalDate
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
@@ -37,6 +39,8 @@ import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import tw.taipei.veges.alerts.AlertRuleItem
+import tw.taipei.veges.alerts.SettingsScreen
 import tw.taipei.veges.catalog.CatalogScreen
 import tw.taipei.veges.catalog.CatalogUiState
 import tw.taipei.veges.designsystem.EstimateDisclosureLabel
@@ -44,7 +48,9 @@ import tw.taipei.veges.designsystem.VegesTheme
 import tw.taipei.veges.detail.DetailScreen
 import tw.taipei.veges.detail.DetailUiState
 import tw.taipei.veges.detail.WholesaleTrendChart
+import tw.taipei.veges.domain.AlertRule
 import tw.taipei.veges.domain.CatalogSearchResult
+import tw.taipei.veges.domain.Estimate
 import tw.taipei.veges.domain.HomeItem
 import tw.taipei.veges.domain.MarketBasis
 import tw.taipei.veges.domain.MarketItem
@@ -59,6 +65,7 @@ import tw.taipei.veges.domain.PriceSurgeReason
 import tw.taipei.veges.domain.PriceSurgeReasonKind
 import tw.taipei.veges.domain.PriceSurgeRiskLevel
 import tw.taipei.veges.domain.ScaledPrice
+import tw.taipei.veges.domain.ThemeMode
 import tw.taipei.veges.domain.TrendPeriod
 import tw.taipei.veges.domain.TrendPoint
 import tw.taipei.veges.domain.TrendSummary
@@ -141,7 +148,7 @@ class VegesAppSemanticsTest {
     }
 
     @Test
-    fun trackedListExplainsHowToReorderMultipleItems() {
+    fun trackedListOffersReorderWithoutVisibleHint() {
         composeRule.setContent {
             VegesTheme {
                 HomeScreen(
@@ -167,7 +174,9 @@ class VegesAppSemanticsTest {
             }
         }
 
-        composeRule.onNodeWithText("長按並拖曳可調整順序").assertIsDisplayed()
+        composeRule.onAllNodesWithText("長按並拖曳可調整順序").assertCountEquals(0)
+        composeRule.onAllNodesWithContentDescription("長按並拖曳可調整順序", substring = true)
+            .assertCountEquals(2)
     }
 
     @Test
@@ -339,6 +348,103 @@ class VegesAppSemanticsTest {
 
         composeRule.onAllNodesWithText("九層塔").assertCountEquals(1)
         composeRule.onAllNodesWithText("LP2", substring = true).assertCountEquals(0)
+    }
+
+    @Test
+    fun detailShowsWholesaleDateWithoutInternalApprovalDate() {
+        val estimate = Estimate(
+            conceptId = ProduceConceptId("vegetable.cabbage"),
+            basis = MarketBasis.TAIPEI_COMBINED,
+            modelVersion = "test",
+            wholesaleSourceDates = listOf(LocalDate.parse("2026-09-29")),
+            calibrationCutoff = LocalDate.parse("2026-07-26"),
+            calculatedAt = Instant.parse("2026-09-29T08:00:00Z"),
+            point = ScaledPrice(BigDecimal("32.5"), PriceUnit.NTD_PER_TAI_JIN),
+            intervalLower = null,
+            intervalUpper = null,
+            confidence = null,
+            unavailableReason = null,
+        )
+        composeRule.setContent {
+            VegesTheme {
+                DetailScreen(
+                    state = DetailUiState(
+                        concept = concept("vegetable.cabbage", "高麗菜"),
+                        estimate = estimate,
+                    ),
+                    onBasisSelected = {},
+                    onToggleTracked = {},
+                    onToggleMethodology = {},
+                )
+            }
+        }
+
+        composeRule.onNodeWithText("9/29 批發行情").assertIsDisplayed()
+        composeRule.onAllNodesWithText("核准", substring = true).assertCountEquals(0)
+        composeRule.onAllNodesWithText("2026-07-26", substring = true).assertCountEquals(0)
+    }
+
+    @Test
+    fun settingsCombinesThemeAlertsAndSources() {
+        var selectedTheme: ThemeMode? = null
+        var edited: AlertRuleItem? = null
+        val rule = AlertRuleItem(
+            rule = AlertRule(
+                ruleId = "rule-1",
+                conceptId = ProduceConceptId("vegetable.cabbage"),
+                basis = MarketBasis.TAIPEI_FIRST,
+                thresholdNtdPerTaiJin = BigDecimal("25"),
+                enabled = true,
+                conditionMet = false,
+                lastEvaluatedSourceDate = null,
+            ),
+            produceName = "高麗菜",
+            illustrationAsset = null,
+        )
+        composeRule.setContent {
+            VegesTheme {
+                SettingsScreen(
+                    themeMode = ThemeMode.SYSTEM,
+                    alertRules = listOf(rule),
+                    notificationsEnabled = false,
+                    onThemeModeSelected = { selectedTheme = it },
+                    onToggleAlert = {},
+                    onEditAlert = { edited = it },
+                    onOpenNotificationSettings = {},
+                )
+            }
+        }
+
+        composeRule.onNodeWithText("深色").performClick()
+        composeRule.onNodeWithText("高麗菜").performClick()
+        composeRule.runOnIdle {
+            assertEquals(ThemeMode.DARK, selectedTheme)
+            assertEquals(rule, edited)
+        }
+        composeRule.onNodeWithText("台北一・低於 25 元 / 台斤").assertIsDisplayed()
+        composeRule.onNodeWithText("通知已關閉").assertIsDisplayed()
+        composeRule.onAllNodesWithText("vegetable.cabbage", substring = true).assertCountEquals(0)
+        composeRule.onNodeWithText("資料來源與隱私").performScrollTo().assertIsDisplayed()
+    }
+
+    @Test
+    fun settingsExplainsHowToAddTheFirstAlert() {
+        composeRule.setContent {
+            VegesTheme {
+                SettingsScreen(
+                    themeMode = ThemeMode.SYSTEM,
+                    alertRules = emptyList(),
+                    notificationsEnabled = true,
+                    onThemeModeSelected = {},
+                    onToggleAlert = {},
+                    onEditAlert = {},
+                    onOpenNotificationSettings = {},
+                )
+            }
+        }
+
+        composeRule.onNodeWithText("尚未設定提醒").assertIsDisplayed()
+        composeRule.onAllNodesWithText("通知已關閉").assertCountEquals(0)
     }
 
     @Test

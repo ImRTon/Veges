@@ -68,8 +68,12 @@ import java.math.BigDecimal
 import java.math.RoundingMode
 import kotlin.math.abs
 import tw.taipei.veges.designsystem.ProduceIllustration
+import tw.taipei.veges.designsystem.produceContainerTransform
+import tw.taipei.veges.designsystem.produceSharedIllustration
+import tw.taipei.veges.designsystem.produceSharedName
 import tw.taipei.veges.domain.MarketItem
 import tw.taipei.veges.domain.ProduceCategory
+import tw.taipei.veges.domain.ProduceConcept
 import tw.taipei.veges.domain.previousChangePercent
 
 private val MarketRisingRed = Color(0xFFE5484D)
@@ -225,7 +229,7 @@ internal val fruitSectionByConceptId: Map<String, String> = buildMap {
 @OptIn(ExperimentalMaterial3Api::class)
 fun CatalogRoute(
     category: ProduceCategory,
-    onConceptSelected: (String) -> Unit,
+    onConceptSelected: (conceptId: String, preview: ProduceConcept?) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val viewModel: CatalogViewModel = hiltViewModel()
@@ -235,7 +239,11 @@ fun CatalogRoute(
         state = state,
         onQueryChange = viewModel::updateQuery,
         onCategorySelected = viewModel::selectCategory,
-        onConceptSelected = onConceptSelected,
+        onConceptSelected = { conceptId ->
+            val preview = state.results.firstOrNull { it.concept.id.value == conceptId }?.concept
+                ?: state.ambiguity?.concepts?.firstOrNull { it.id.value == conceptId }
+            onConceptSelected(conceptId, preview)
+        },
         onDismissAmbiguity = viewModel::clearAmbiguity,
         onMoveItem = viewModel::moveItem,
         modifier = modifier,
@@ -573,6 +581,7 @@ private fun ProduceMarketRow(
     Surface(
         onClick = onClick,
         modifier = modifier
+            .produceContainerTransform(concept.id.value)
             .fillMaxWidth()
             .semantics {
                 contentDescription =
@@ -587,7 +596,7 @@ private fun ProduceMarketRow(
                     }
                 }
             },
-        color = Color.Transparent,
+        color = MaterialTheme.colorScheme.background,
     ) {
         Column {
             Row(
@@ -598,15 +607,18 @@ private fun ProduceMarketRow(
                 ProduceIllustration(
                     assetPath = concept.illustrationAsset,
                     modifier = Modifier
+                        .produceSharedIllustration(concept.id.value, RoundedCornerShape(15.dp))
                         .size(52.dp)
                         .clip(RoundedCornerShape(15.dp)),
                 )
-                Text(
-                    concept.householdName,
-                    modifier = Modifier.weight(1f),
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
-                )
+                Box(Modifier.weight(1f)) {
+                    Text(
+                        concept.householdName,
+                        modifier = Modifier.produceSharedName(concept.id.value),
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                    )
+                }
                 Column(horizontalAlignment = Alignment.End) {
                     Row(verticalAlignment = Alignment.Bottom) {
                         Text(

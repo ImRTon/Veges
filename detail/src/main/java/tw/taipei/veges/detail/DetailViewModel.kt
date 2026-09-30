@@ -13,6 +13,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import tw.taipei.veges.designsystem.parseAlertThreshold
+import tw.taipei.veges.domain.AlertRule
+import tw.taipei.veges.domain.AlertRuleRepository
+import tw.taipei.veges.domain.AlertRuleUseCases
 import tw.taipei.veges.domain.DetailRepository
 import tw.taipei.veges.domain.HistoryRefreshRequester
 import tw.taipei.veges.domain.ItemPriceDirectionPredictor
@@ -27,10 +31,14 @@ import tw.taipei.veges.domain.UntrackResult
 class DetailViewModel @Inject constructor(
     private val repository: DetailRepository,
     trackingRepository: TrackingRepository,
+    private val alertRuleRepository: AlertRuleRepository,
     private val historyRefreshRequester: HistoryRefreshRequester,
     private val clock: Clock,
 ) : ViewModel() {
     private val trackingUseCases = TrackingUseCases(trackingRepository)
+    private val alertRuleUseCases = AlertRuleUseCases(alertRuleRepository)
+    private var conceptAlertRules: List<AlertRule> = emptyList()
+    private var alertRulesJob: Job? = null
     private val priceDirectionPredictor = ItemPriceDirectionPredictor()
     private val mutableState = MutableStateFlow(DetailUiState())
     val state: StateFlow<DetailUiState> = mutableState.asStateFlow()
@@ -84,6 +92,79 @@ class DetailViewModel @Inject constructor(
         this.conceptId = conceptId
         historyRefreshRequester.requestOneYearHistory(conceptId)
         observe()
+        observeAlertRules(conceptId)
+    }
+
+    fun openAlertEditor() {
+        val selectedBasis = mutableState.value.selectedBasis
+        val existing = conceptAlertRules.firstOrNull { it.basis == selectedBasis }
+            ?: conceptAlertRules.firstOrNull()
+        mutableState.update {
+            it.copy(
+                alertEditor = AlertEditorState(
+                    basis = existing?.basis ?: selectedBasis,
+                    thresholdInput = existing?.thresholdNtdPerTaiJin?.toPlainString().orEmpty(),
+                    editingRule = existing,
+                ),
+            )
+        }
+    }
+
+    fun selectAlertBasis(basis: MarketBasis) = mutableState.update { state ->
+        state.copy(alertEditor = state.alertEditor?.copy(basis = basis))
+    }
+
+    fun updateAlertThreshold(input: String) = mutableState.update { state ->
+        state.copy(alertEditor = state.alertEditor?.copy(thresholdInput = input, showError = false))
+    }
+
+    fun closeAlertEditor() = mutableState.update { it.copy(alertEditor = null) }
+
+    /** Returns true when the alert was valid and is being saved. */
+    fun saveAlert(): Boolean {
+        val id = conceptId ?: return false
+        val editor = mutableState.value.alertEditor ?: return false
+        val threshold = parseAlertThreshold(editor.thresholdInput)
+        if (threshold == null) {
+            mutableState.update { it.copy(alertEditor = editor.copy(showError = true)) }
+            return false
+        }
+        mutableState.update { it.copy(alertEditor = null) }
+        viewModelScope.launch {
+            val now = Instant.now(clock)
+            val existing = editor.editingRule
+            if (existing == null) {
+                alertRuleUseCases.create(id, editor.basis, threshold, now)
+            } else {
+                alertRuleUseCases.update(
+                    rule = existing.copy(basis = editor.basis),
+                    thresholdNtdPerTaiJin = threshold,
+                    enabled = true,
+                    now = now,
+                )
+            }
+        }
+        return true
+    }
+
+    fun deleteAlert() {
+        val rule = mutableState.value.alertEditor?.editingRule
+        mutableState.update { it.copy(alertEditor = null) }
+        if (rule != null) {
+            viewModelScope.launch { alertRuleUseCases.delete(rule.ruleId) }
+        }
+    }
+
+    private fun observeAlertRules(id: ProduceConceptId) {
+        alertRulesJob?.cancel()
+        alertRulesJob = viewModelScope.launch {
+            alertRuleRepository.observeRules().collectLatest { rules ->
+                conceptAlertRules = rules.filter { it.conceptId == id }
+                mutableState.update { state ->
+                    state.copy(hasActiveAlert = conceptAlertRules.any(AlertRule::enabled))
+                }
+            }
+        }
     }
 
     private fun observe() {

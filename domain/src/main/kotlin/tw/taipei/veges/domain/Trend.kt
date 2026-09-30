@@ -1,6 +1,7 @@
 package tw.taipei.veges.domain
 
 import java.math.BigDecimal
+import java.time.DayOfWeek
 import java.time.LocalDate
 
 enum class TrendPeriod(val days: Int) {
@@ -9,6 +10,17 @@ enum class TrendPeriod(val days: Int) {
     NINETY_DAYS(90),
     ONE_YEAR(365),
 }
+
+enum class CandleInterval {
+    DAY,
+    WEEK,
+}
+
+val TrendPeriod.candleInterval: CandleInterval
+    get() = when (this) {
+        TrendPeriod.SEVEN_DAYS, TrendPeriod.THIRTY_DAYS -> CandleInterval.DAY
+        TrendPeriod.NINETY_DAYS, TrendPeriod.ONE_YEAR -> CandleInterval.WEEK
+    }
 
 data class TrendPoint(
     val date: LocalDate,
@@ -42,6 +54,7 @@ data class ProduceMarketCandle(
     val officialLowNtdPerKg: BigDecimal?,
     val officialHighNtdPerKg: BigDecimal?,
     val volumeKg: BigDecimal?,
+    val endDate: LocalDate = date,
 ) {
     val direction: CandleDirection
         get() = when {
@@ -65,6 +78,40 @@ fun List<TrendPoint>.toProduceMarketCandles(): List<ProduceMarketCandle> {
             officialLowNtdPerKg = point.lowerNtdPerKg,
             officialHighNtdPerKg = point.upperNtdPerKg,
             volumeKg = point.volumeKg,
+        )
+    }
+}
+
+fun List<TrendPoint>.toProduceMarketCandles(interval: CandleInterval): List<ProduceMarketCandle> =
+    when (interval) {
+        CandleInterval.DAY -> toProduceMarketCandles()
+        CandleInterval.WEEK -> toWeeklyProduceMarketCandles()
+    }
+
+private fun List<TrendPoint>.toWeeklyProduceMarketCandles(): List<ProduceMarketCandle> {
+    val weeks = filter { it.averageNtdPerKg != null }
+        .sortedBy { it.date }
+        .groupBy { it.date.with(DayOfWeek.MONDAY) }
+        .values
+        .toList()
+    return weeks.mapIndexed { index, week ->
+        val first = week.first()
+        val last = week.last()
+        val lows = week.mapNotNull { it.lowerNtdPerKg }
+        val highs = week.mapNotNull { it.upperNtdPerKg }
+        val volumes = week.mapNotNull { it.volumeKg }
+        ProduceMarketCandle(
+            date = first.date,
+            endDate = last.date,
+            basis = last.basis,
+            previousAverageNtdPerKg = weeks.getOrNull(index - 1)
+                ?.last()
+                ?.averageNtdPerKg
+                ?: requireNotNull(first.averageNtdPerKg),
+            currentAverageNtdPerKg = requireNotNull(last.averageNtdPerKg),
+            officialLowNtdPerKg = lows.minOrNull(),
+            officialHighNtdPerKg = highs.maxOrNull(),
+            volumeKg = volumes.takeIf { it.isNotEmpty() }?.fold(BigDecimal.ZERO, BigDecimal::add),
         )
     }
 }
@@ -104,6 +151,10 @@ fun TrendSummary.accessibilityText(): String {
         ?.let(EstimationMath::ntdPerKilogramToNtdPerTaiJin)
         ?.toPlainString()
         ?: "無最新平均價"
+    val bodyText = when (period.candleInterval) {
+        CandleInterval.DAY -> "每根代表一個交易日，線體連接前一交易日與當日平均價"
+        CandleInterval.WEEK -> "每根代表一週，線體連接前一週與當週最後交易日平均價"
+    }
     return "${period.days}日蔬果市場 K 線，${directionText}，最新平均價 $latestText 元/台斤。" +
-        "線體連接前一交易日與當日平均價，影線代表官方低價至高價，成交量另列。"
+        "$bodyText，影線代表官方低價至高價，成交量另列。"
 }

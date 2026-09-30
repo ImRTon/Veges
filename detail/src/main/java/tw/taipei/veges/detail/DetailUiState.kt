@@ -1,5 +1,6 @@
 package tw.taipei.veges.detail
 
+import tw.taipei.veges.domain.AlertRule
 import tw.taipei.veges.domain.Estimate
 import tw.taipei.veges.domain.ItemPriceDirectionEvaluation
 import tw.taipei.veges.domain.MarketBasis
@@ -22,4 +23,13 @@ data class DetailUiState(
     val methodologyExpanded: Boolean = false,
     val untrackConfirmationCount: Int? = null,
     val priceDirectionEvaluation: ItemPriceDirectionEvaluation? = null,
+    val hasActiveAlert: Boolean = false,
+    val alertEditor: AlertEditorState? = null,
+)
+
+data class AlertEditorState(
+    val basis: MarketBasis,
+    val thresholdInput: String,
+    val editingRule: AlertRule?,
+    val showError: Boolean = false,
 )

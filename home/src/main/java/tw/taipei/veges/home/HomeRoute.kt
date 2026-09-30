@@ -121,6 +121,9 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import tw.taipei.veges.designsystem.PillChoiceRow
 import tw.taipei.veges.designsystem.ProduceIllustration
+import tw.taipei.veges.designsystem.produceContainerTransform
+import tw.taipei.veges.designsystem.produceSharedIllustration
+import tw.taipei.veges.designsystem.produceSharedName
 import tw.taipei.veges.domain.HomeItem
 import tw.taipei.veges.domain.MarketItem
 import tw.taipei.veges.domain.MarketPriceSurgeOutlook
@@ -128,6 +131,7 @@ import tw.taipei.veges.domain.PriceSurgeReason
 import tw.taipei.veges.domain.PriceSurgeReasonKind
 import tw.taipei.veges.domain.PriceSurgeRiskLevel
 import tw.taipei.veges.domain.PriceRefreshOutcome
+import tw.taipei.veges.domain.ProduceConcept
 import tw.taipei.veges.domain.averageChangePercent
 import tw.taipei.veges.domain.previousChangePercent
 
@@ -143,7 +147,7 @@ private val Material3DefaultSpatialSpec: AnimationSpec<Float> = spring(
 @Composable
 fun HomeRoute(
     onBrowseCatalog: () -> Unit,
-    onConceptSelected: (String) -> Unit,
+    onConceptSelected: (conceptId: String, preview: ProduceConcept?) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val viewModel: HomeViewModel = hiltViewModel()
@@ -176,7 +180,11 @@ fun HomeRoute(
             onBrowseCatalog = onBrowseCatalog,
             onRefresh = viewModel::refresh,
             onDeclinerLookbackSelected = viewModel::setDeclinerLookbackDays,
-            onConceptSelected = onConceptSelected,
+            onConceptSelected = { conceptId ->
+                val preview = state.tracked.firstOrNull { it.concept.id.value == conceptId }?.concept
+                    ?: state.decliners.firstOrNull { it.concept.id.value == conceptId }?.concept
+                onConceptSelected(conceptId, preview)
+            },
             onMoveTrackedItem = viewModel::moveTrackedItem,
             modifier = Modifier.fillMaxSize(),
         )
@@ -1504,16 +1512,6 @@ private fun TrackedList(
                 )
             },
     ) {
-        if (canReorder) {
-            item {
-                Text(
-                    "長按並拖曳可調整順序",
-                    modifier = Modifier.padding(horizontal = 20.dp, vertical = 4.dp),
-                    style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-        }
         itemsIndexed(
             items = displayedItems,
             key = { _, item -> homeItemKey(item.concept.id.value) },
@@ -1521,6 +1519,7 @@ private fun TrackedList(
             val conceptId = item.concept.id.value
             val isDragging = dragDropState.draggedConceptId == conceptId
             PriceTickerRow(
+                conceptId = conceptId,
                 name = item.concept.householdName,
                 illustrationAsset = item.concept.illustrationAsset,
                 price = item.latestEstimate?.point?.amount,
@@ -1613,6 +1612,7 @@ private fun DeclinersList(
         } else {
             items(items, key = { it.concept.id.value }) { item ->
                 PriceTickerRow(
+                    conceptId = item.concept.id.value,
                     name = item.concept.householdName,
                     illustrationAsset = item.concept.illustrationAsset,
                     price = item.latestEstimate?.point?.amount,
@@ -1626,6 +1626,7 @@ private fun DeclinersList(
 
 @Composable
 private fun PriceTickerRow(
+    conceptId: String,
     name: String,
     illustrationAsset: String?,
     price: BigDecimal?,
@@ -1647,6 +1648,7 @@ private fun PriceTickerRow(
     Surface(
         onClick = onClick,
         modifier = modifier
+            .produceContainerTransform(conceptId)
             .fillMaxWidth()
             .semantics {
                 contentDescription =
@@ -1661,7 +1663,7 @@ private fun PriceTickerRow(
                     }
                 }
             },
-        color = Color.Transparent,
+        color = MaterialTheme.colorScheme.background,
     ) {
         Column {
             Row(
@@ -1672,15 +1674,18 @@ private fun PriceTickerRow(
                 ProduceIllustration(
                     assetPath = illustrationAsset,
                     modifier = Modifier
+                        .produceSharedIllustration(conceptId, RoundedCornerShape(14.dp))
                         .size(48.dp)
                         .clip(RoundedCornerShape(14.dp)),
                 )
-                Text(
-                    name,
-                    modifier = Modifier.weight(1f),
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
-                )
+                Box(Modifier.weight(1f)) {
+                    Text(
+                        name,
+                        modifier = Modifier.produceSharedName(conceptId),
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                    )
+                }
                 Column(horizontalAlignment = Alignment.End) {
                     Row(verticalAlignment = Alignment.Bottom) {
                         Text(
