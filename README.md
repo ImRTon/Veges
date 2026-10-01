@@ -7,7 +7,7 @@
 https://github.com/user-attachments/assets/6e5fc385-15e8-479a-a5da-ca7eb6377f2c
 
 <div align="center">
-  <video src="https://github.com/op7418/NanoBanana-PPT-Skills/assets/YOUR_USER_ID/demo.mp4"
+  <video src="https://github.com/user-attachments/assets/6e5fc385-15e8-479a-a5da-ca7eb6377f2c"
          width="800"
          controls
          loop
