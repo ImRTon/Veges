@@ -12,7 +12,6 @@ import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
 import androidx.compose.foundation.gestures.Orientation
@@ -89,11 +88,9 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.layout.onSizeChanged
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.contentDescription
@@ -634,7 +631,7 @@ private fun AnimatedRiskIcon(
         animationSpec = infiniteRepeatable(
             animation = tween(
                 durationMillis = when (reason.kind) {
-                    PriceSurgeReasonKind.TYPHOON -> 9_600
+                    PriceSurgeReasonKind.TYPHOON -> 14_000
                     PriceSurgeReasonKind.HEAVY_RAIN -> 1_600
                     PriceSurgeReasonKind.EXTREME_HEAT -> 4_200
                     PriceSurgeReasonKind.VOLUME_CONTRACTION -> 2_800
@@ -668,8 +665,8 @@ private fun AnimatedRiskIcon(
         },
     ) {
         if (reason.kind == PriceSurgeReasonKind.TYPHOON) {
-            AnimatedTyphoon(
-                progress = progress,
+            TyphoonVortex(
+                rotationProgress = progress,
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(2.dp),
@@ -882,312 +879,6 @@ private fun AnimatedRiskIcon(
         }
     }
     }
-}
-
-@Composable
-private fun AnimatedTyphoon(
-    progress: Float,
-    modifier: Modifier = Modifier,
-) {
-    val tau = (PI * 2).toFloat()
-    val layerTransition = rememberInfiniteTransition(label = "typhoon-layers")
-    val outerProgress by layerTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 11_200, easing = LinearEasing),
-            repeatMode = RepeatMode.Restart,
-        ),
-        label = "typhoon-outer",
-    )
-    val innerProgress by layerTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 8_400, easing = LinearEasing),
-            repeatMode = RepeatMode.Restart,
-        ),
-        label = "typhoon-inner",
-    )
-    val outerWave = (sin(outerProgress * tau + tau * 0.68f) + 1f) / 2f
-    val middleWave = sin(progress * tau * 2f + tau / 3f)
-    val innerWave = sin(innerProgress * tau * 2f)
-
-    Box(modifier = modifier) {
-        Image(
-            painter = painterResource(R.drawable.typhoon_material_outer),
-            contentDescription = null,
-            contentScale = ContentScale.Fit,
-            modifier = Modifier
-                .fillMaxSize()
-                .graphicsLayer {
-                    val outwardScale = 1f + outerWave * 0.028f
-                    rotationZ = -outerProgress * 360f - outerWave * 3.2f
-                    scaleX = outwardScale
-                    scaleY = outwardScale
-                    alpha = 0.9f + outerWave * 0.1f
-                },
-        )
-        Image(
-            painter = painterResource(R.drawable.typhoon_material_middle),
-            contentDescription = null,
-            contentScale = ContentScale.Fit,
-            modifier = Modifier
-                .fillMaxSize()
-                .graphicsLayer {
-                    val breathingScale = 1f + middleWave * 0.009f
-                    rotationZ = -progress * 360f + middleWave * 1.7f
-                    scaleX = breathingScale
-                    scaleY = breathingScale
-                    alpha = 0.97f + middleWave * 0.03f
-                },
-        )
-        Image(
-            painter = painterResource(R.drawable.typhoon_material_inner),
-            contentDescription = null,
-            contentScale = ContentScale.Fit,
-            modifier = Modifier
-                .fillMaxSize()
-                .graphicsLayer {
-                    val breathingScale = 1f + innerWave * 0.006f
-                    rotationZ = -innerProgress * 360f - innerWave * 2.4f
-                    scaleX = breathingScale
-                    scaleY = breathingScale
-                    alpha = 0.985f + innerWave * 0.015f
-                },
-        )
-    }
-}
-
-private fun DrawScope.drawRealisticTyphoon(
-    progress: Float,
-    unit: Float,
-    accent: Color,
-) {
-    val tau = (PI * 2).toFloat()
-    val stormCenter = Offset(size.width * 0.5f, size.height * 0.5f)
-    val rotation = -progress * tau
-    val cloudLight = Color(0xFFEAF8F5)
-    val cloudMid = Color(0xFF9FD2C7)
-    val stormDeep = Color(0xFF173F45)
-
-    drawCircle(
-        brush = Brush.radialGradient(
-            0f to accent.copy(alpha = 0.2f),
-            0.4f to accent.copy(alpha = 0.09f),
-            0.74f to cloudMid.copy(alpha = 0.055f),
-            1f to Color.Transparent,
-            center = stormCenter,
-            radius = unit * 0.5f,
-        ),
-        radius = unit * 0.5f,
-        center = stormCenter,
-    )
-
-    repeat(4) { band ->
-        val bandOffset = when (band) {
-            0 -> 0f
-            1 -> 1.48f
-            2 -> 3.18f
-            else -> 4.92f
-        }
-        val bandReach = when (band) {
-            0 -> 0.37f
-            1 -> 0.33f
-            2 -> 0.35f
-            else -> 0.29f
-        }
-        val bandTurns = when (band) {
-            0 -> 0.7f
-            1 -> 0.62f
-            2 -> 0.74f
-            else -> 0.56f
-        }
-        val bandStart = rotation + bandOffset
-        val bandWobble = sin(progress * tau * 2f + band * 1.7f) * 0.035f
-        drawTyphoonBandSection(
-            center = stormCenter,
-            unit = unit,
-            startAngle = bandStart,
-            startFraction = 0f,
-            endFraction = 0.44f,
-            reach = bandReach,
-            turns = bandTurns + bandWobble,
-            width = unit * 0.086f,
-            accent = accent,
-            cloudMid = cloudMid,
-            cloudLight = cloudLight,
-            alpha = 0.82f,
-        )
-        drawTyphoonBandSection(
-            center = stormCenter,
-            unit = unit,
-            startAngle = bandStart,
-            startFraction = 0.34f,
-            endFraction = 0.76f,
-            reach = bandReach,
-            turns = bandTurns + bandWobble,
-            width = unit * 0.05f,
-            accent = accent,
-            cloudMid = cloudMid,
-            cloudLight = cloudLight,
-            alpha = 0.7f,
-        )
-        drawTyphoonBandSection(
-            center = stormCenter,
-            unit = unit,
-            startAngle = bandStart,
-            startFraction = 0.67f,
-            endFraction = 1f,
-            reach = bandReach,
-            turns = bandTurns + bandWobble,
-            width = unit * 0.023f,
-            accent = accent,
-            cloudMid = cloudMid,
-            cloudLight = cloudLight,
-            alpha = 0.56f,
-        )
-    }
-
-    repeat(12) { index ->
-        val travel = (progress * 2f + index / 12f) % 1f
-        val arm = index % 4
-        val angle = rotation + arm * tau / 4f + travel * tau * 0.68f
-        val radius = unit * (0.19f + travel * 0.27f)
-        val particleCenter = Offset(
-            x = stormCenter.x + cos(angle).toFloat() * radius,
-            y = stormCenter.y + sin(angle).toFloat() * radius * 0.94f,
-        )
-        val tangent = angle + PI.toFloat() / 2f
-        val length = unit * (0.018f + (1f - travel) * 0.032f)
-        val fade = sin(travel * PI).toFloat().coerceAtLeast(0f)
-        drawLine(
-            color = cloudLight.copy(alpha = fade * 0.68f),
-            start = Offset(
-                x = particleCenter.x - cos(tangent).toFloat() * length,
-                y = particleCenter.y - sin(tangent).toFloat() * length,
-            ),
-            end = Offset(
-                x = particleCenter.x + cos(tangent).toFloat() * length,
-                y = particleCenter.y + sin(tangent).toFloat() * length,
-            ),
-            strokeWidth = unit * 0.012f,
-            cap = StrokeCap.Round,
-        )
-    }
-
-    val eyePulse = 1f + sin(progress * tau * 2f) * 0.025f
-    drawCircle(
-        color = accent.copy(alpha = 0.28f),
-        radius = unit * 0.155f * eyePulse,
-        center = stormCenter,
-    )
-    drawCircle(
-        brush = Brush.radialGradient(
-            0f to cloudLight.copy(alpha = 0.9f),
-            0.58f to cloudLight.copy(alpha = 0.82f),
-            1f to cloudMid.copy(alpha = 0.66f),
-            center = stormCenter,
-            radius = unit * 0.12f,
-        ),
-        radius = unit * 0.12f * eyePulse,
-        center = stormCenter,
-    )
-    val eyeCenter = Offset(
-        x = stormCenter.x + unit * 0.006f,
-        y = stormCenter.y + unit * 0.004f,
-    )
-    drawOval(
-        brush = Brush.radialGradient(
-            0f to stormDeep.copy(alpha = 0.98f),
-            0.7f to stormDeep.copy(alpha = 0.9f),
-            1f to accent.copy(alpha = 0.72f),
-            center = eyeCenter,
-            radius = unit * 0.058f,
-        ),
-        topLeft = Offset(
-            x = eyeCenter.x - unit * 0.055f,
-            y = eyeCenter.y - unit * 0.046f,
-        ),
-        size = Size(unit * 0.11f, unit * 0.092f),
-    )
-    drawArc(
-        color = cloudLight.copy(alpha = 0.7f),
-        startAngle = 196f - progress * 360f,
-        sweepAngle = 86f,
-        useCenter = false,
-        topLeft = Offset(
-            x = eyeCenter.x - unit * 0.068f,
-            y = eyeCenter.y - unit * 0.06f,
-        ),
-        size = Size(unit * 0.136f, unit * 0.12f),
-        style = Stroke(
-            width = unit * 0.012f,
-            cap = StrokeCap.Round,
-        ),
-    )
-}
-
-private fun DrawScope.drawTyphoonBandSection(
-    center: Offset,
-    unit: Float,
-    startAngle: Float,
-    startFraction: Float,
-    endFraction: Float,
-    reach: Float,
-    turns: Float,
-    width: Float,
-    accent: Color,
-    cloudMid: Color,
-    cloudLight: Color,
-    alpha: Float,
-) {
-    val path = Path()
-    repeat(14) { step ->
-        val fraction = startFraction + (endFraction - startFraction) * step / 13f
-        val point = typhoonBandPoint(
-            center = center,
-            unit = unit,
-            startAngle = startAngle,
-            fraction = fraction,
-            reach = reach,
-            turns = turns,
-        )
-        if (step == 0) path.moveTo(point.x, point.y) else path.lineTo(point.x, point.y)
-    }
-    drawPath(
-        path = path,
-        color = accent.copy(alpha = alpha * 0.3f),
-        style = Stroke(width = width * 1.46f, cap = StrokeCap.Round),
-    )
-    drawPath(
-        path = path,
-        color = cloudMid.copy(alpha = alpha),
-        style = Stroke(width = width, cap = StrokeCap.Round),
-    )
-    drawPath(
-        path = path,
-        color = cloudLight.copy(alpha = alpha * 0.74f),
-        style = Stroke(width = width * 0.34f, cap = StrokeCap.Round),
-    )
-}
-
-private fun typhoonBandPoint(
-    center: Offset,
-    unit: Float,
-    startAngle: Float,
-    fraction: Float,
-    reach: Float,
-    turns: Float,
-): Offset {
-    val tau = (PI * 2).toFloat()
-    val eased = fraction * fraction * (3f - 2f * fraction)
-    val radius = unit * (0.105f + reach * eased)
-    val angle = startAngle + fraction * tau * turns
-    return Offset(
-        x = center.x + cos(angle).toFloat() * radius,
-        y = center.y + sin(angle).toFloat() * radius * 0.94f,
-    )
 }
 
 private fun DrawScope.drawShrinkingCargoBox(
