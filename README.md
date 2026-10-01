@@ -4,6 +4,9 @@
 
 台北蔬果價是一款 Android App，把台北果菜市場每天的批發行情整理成一眼看得懂的價格，幫你決定今天買什麼、要不要等幾天再買。
 
+<!-- 宣傳影片：在 GitHub 網頁編輯此檔，把 docs/promo.mp4 拖進編輯框，用產生的 https://github.com/user-attachments/assets/... 網址整行取代下面這行。 -->
+[<img src="docs/promo.jpg" alt="播放台北蔬果價介紹影片（23 秒）" width="640">](docs/promo.mp4)
+
 | 行情首頁 | 蔬菜市場 | 水果市場 |
 | --- | --- | --- |
 | <img src="docs/home.PNG" alt="行情首頁：追蹤品項與漲價雷達" width="220"> | <img src="docs/vege.PNG" alt="蔬菜市場：搜尋、分類與行情列表" width="220"> | <img src="docs/fruit.PNG" alt="水果市場：分類與行情列表" width="220"> |
