@@ -6,17 +6,6 @@
 
 https://github.com/user-attachments/assets/6e5fc385-15e8-479a-a5da-ca7eb6377f2c
 
-<div align="center">
-  <video src="https://github.com/user-attachments/assets/6e5fc385-15e8-479a-a5da-ca7eb6377f2c"
-         width="800"
-         controls
-         loop
-         muted>
-    Your browser does not support video playback.
-  </video>
-  <p><em>台北蔬果價介紹影片</em></p>
-</div>
-
 | 行情首頁 | 蔬菜市場 | 水果市場 |
 | --- | --- | --- |
 | <img src="docs/home.PNG" alt="行情首頁：追蹤品項與漲價雷達" width="220"> | <img src="docs/vege.PNG" alt="蔬菜市場：搜尋、分類與行情列表" width="220"> | <img src="docs/fruit.PNG" alt="水果市場：分類與行情列表" width="220"> |
